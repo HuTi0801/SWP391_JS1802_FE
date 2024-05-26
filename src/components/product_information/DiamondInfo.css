@@ -23,7 +23,7 @@
 .diamond-product-detail {
     border: 1px solid black;
     width: 600px;
-    height: 22rem;
+    height: 25rem;
 }
 
 .diamond-product-detail .text {
@@ -36,13 +36,15 @@
     border-bottom: 1px solid black;
 }
 
-.diamond-product-detail.text p {
+.diamond-product-detail .text p {
     padding: 5px 0px;
     font-size: 1.2em;
     font-family: var(--font-family);
+    padding-left: 5px;
 }
 
 .diamond-product-detail .text .price {
+    margin: 5px 0px;
     color: red;
 }
 

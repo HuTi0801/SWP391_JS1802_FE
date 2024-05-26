@@ -1,87 +1,72 @@
-import React, { useEffect, useState } from 'react'
-import './DiamondShellInfo.css';
+
+
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import './DiamondShellInfo.css'
 
 const DiamondShellInfo = () => {
-  const [shellInfo, setShellInfo] = useState({
-    id: "",
-    material: "",
-    secondaryStone: "",
-    gender: "",
-    size: "",
-    img: "",
-  });
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
 
-  const getShellInfo = async () => {
-    try {
-      const response = await axios.get("https://664b521735bbda10987c72ad.mockapi.io/searchDiamond/5");
-      return response.data;
-    } catch (error) {
-      console.error('Error fetching diamond info:', error);
-      return null;
-    }
-  }
   useEffect(() => {
-    const getShellData = async () => {
-      const data = await getShellInfo();
-      if (data) {
-        setShellInfo(data);
-        console.log(data)
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/diamond-shell/get-a-diamond-shell-${id}`);
+        setProduct(response.data);
+      } catch (error) {
+        console.error('Error fetching product:', error);
       }
-    }
-    getShellData();
+    };
 
-  }, []
-  )
+    fetchProduct();
+  }, [id]);
 
-
-  const handleAddToCart = async () => {
-
-    const addItem = {
-      id: shellInfo.id,
-      type: shellInfo.type,
-    }
-    await axios.post(
-      "https://664b521735bbda10987c72ad.mockapi.io/searchDiamond",
-      addItem
-    )
-    console.log(shellInfo);
-    console.log(addItem);
+  if (!product) {
+    return <div>Loading...</div>;
   }
-  return (
-    <div className='shell-product-info-container'>
-      <div className='product-image'>
-        <img src="https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg" alt="image-alt" />
-      </div>
-      <div className='shell-product-right'>
-        <div className='shell-product-detail'>
 
+  return (
+    /* <div className="product-detail">
+            <h2>{product.material}</h2>
+            <img src={product.imageDiamondShell} alt="product" />
+            <p>Price: {product.price}</p>
+            <p>Gender: {product.gender}</p>
+            
+        </div> */
+
+    < div className='diamond-product-info-container' >
+      <div className='product-image'>
+        <img src={product.imageDiamondShell} alt="image-alt" />
+      </div>
+      <div className='diamond-product-right'>
+        <div className='diamond-product-detail'>
           <div className='text'>
-            <p className='name'>Product Name</p>
-            <p className='price'>{shellInfo.price}</p>
+            <p className='name'>{product.material} + {product.secondaryStoneType}</p>
+            <p className='price'>{product.price}</p>
           </div>
           <div className='parameter'>
             <span>Material:</span>
-            <p>{shellInfo.material}</p>
-
-            <span >Secondary Stone:</span>
-            <p>{shellInfo.secondaryStone}</p>
+            <p>{product.material}</p>
 
             <span>Gender:</span>
-            <p>{shellInfo.gender}</p>
-          </div>
-          <div className='finger-size'>
-            <span>Size:</span>
-            <p>{shellInfo.size}</p>
+            <p>{product.gender}</p>
+
+            <span>Secondary Stone:</span>
+            <p>{product.secondaryStoneType}</p>
+            
           </div>
         </div>
         <div className='button-payment'>
-          <button type="submit" className='add-cart' >Add To Cart</button>
-          <button type="submit" className='buy-now' onClick={handleAddToCart}>BUY NOW</button>
+          <button type="button" className='add-cart'>Add To Cart</button>
+          <button type="button" className='buy-now'>BUY NOW</button>
         </div>
       </div>
-    </div>
-  )
-}
+    </div >
 
-export default DiamondShellInfo
+  );
+
+
+};
+
+export default DiamondShellInfo;

@@ -1,37 +1,75 @@
-import React from 'react'
-import ListContent from '../../components/product_list/ListContent'
-import Filter from '../../components/product_list/Filter'
-
-const listBanner = [
-    {
-        id: 1,
-        image: 'https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg'
-    },
-    {
-        id: 2,
-        image: 'https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg'
-    },
-    {
-        id: 3,
-        image: 'https://t4.ftcdn.net/jpg/02/56/10/07/360_F_256100731_qNLp6MQ3FjYtA3Freu9epjhsAj2cwU9c.jpg'
-    },
-    {
-        id: 4,
-        image: 'https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171_1280.jpg'
-    },
-    {
-        id: 5,
-        image: 'https://images.ctfassets.net/hrltx12pl8hq/28ECAQiPJZ78hxatLTa7Ts/2f695d869736ae3b0de3e56ceaca3958/free-nature-images.jpg?fit=fill&w=1200&h=630'
-    }
-]
+import React, { useEffect, useState } from 'react';
+import './ProductList.css';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const ProductList = () => {
+    const [diamondShellList, setDiamondShellList] = useState([]);
+    const [diamondList, setDiamondList] = useState([]);
+    const navigate = useNavigate();
+
+    const getDiamondShellInfo = async () => {
+        try {
+            const response = await axios.get("http://localhost:8080/diamond-shell/get-all-diamond-shell");
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching diamond shell info:', error);
+            return [];
+        }
+    };
+
+    const getDiamondInfo = async () => {
+        try {
+            const response = await axios.get("http://localhost:8080/diamond/get-all-diamond"); 
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching diamond info:', error);
+            return [];
+        }
+    };
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const diamondShellData = await getDiamondShellInfo();
+            const diamondData = await getDiamondInfo();
+
+            if (diamondShellData) {
+                setDiamondShellList(diamondShellData);
+            }
+            if (diamondData) {
+                setDiamondList(diamondData);
+            }
+        };
+        fetchData();
+    }, []);
+
+    const handleClick = (item) => {
+        const itemUrl = item.imageDiamondShell ? `/diamondshell/${item.id}` : `/diamond/${item.id}`;
+        navigate(itemUrl);
+    };
+
+    const productList = [...diamondShellList, ...diamondList];
+
     return (
         <div className='product-list-container'>
-            <Filter />
-            <ListContent listBanner={listBanner} />
+            <ul>
+                {productList.map((item) => (
+                    <li key={item.id}>
+                        <img
+                            src={item.imageDiamondShell || item.imageDiamond}
+                            alt="image"
+                            className='image'
+                            onClick={() => handleClick(item)}
+                        />
+                        <div className='product-list-desc'>
+                            <div className='name'>{item.material || item.origin}</div>
+                            <div className='price'>{item.price}</div>
+                        </div>
+                    </li>
+                ))}
+            </ul>
         </div>
-    )
-}
+    );
+};
 
-export default ProductList
+export default ProductList;

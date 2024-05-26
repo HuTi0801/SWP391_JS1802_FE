@@ -1,6 +1,6 @@
 .shell-product-info-container {
     display: flex;
-    height: calc(100vh-100px);
+    height: calc(100vh-50px);
     margin: 15px 0px;
     gap: 200px;
 
@@ -28,16 +28,16 @@
 
 .shell-product-detail .text {
     width: 100%;
-    padding: 15px 0px;
+    padding: 15px 5px;
     font-size: 1.2em;
     font-family: var(--font-family);
     display: grid;
-    color: black;
+    color: red;
     border-bottom: 1px solid black;
 }
 
 .shell-product-detail.text p {
-    padding: 5px 0px;
+    padding: 5px 5px;
     font-size: 1.2em;
     font-family: var(--font-family);
 }
@@ -103,21 +103,3 @@
     cursor: pointer;
 }
 
-/* Finger Size */
-
-.finger-size {
-    margin-left: 15px;
-    width: 100%;
-}
-
-.finger-size select {
-    padding: 3px 10px;
-    margin: 15px 10px;
-    border-radius: 5px;
-    width: 30%;
-}
-
-.finger-size a {
-    text-decoration: underline;
-    color: rgba(121, 117, 117, 0.9);
-}

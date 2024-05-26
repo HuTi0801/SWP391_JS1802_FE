@@ -1,9 +1,11 @@
 
 
+
 .footer-content{
     width: 100%;
     display: flex;
     background-color: var(--bg-color);
+    bottom: 0;
 }
 
 .footer-address{

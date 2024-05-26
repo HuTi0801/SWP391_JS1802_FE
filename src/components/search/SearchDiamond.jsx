@@ -1,29 +1,36 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 const SearchDiamond = () => {
     const [diamond, setDiamond] = useState({
-        cut: "",
+        origin: "",
         clarity: "",
+        caratWeight: 0,
+        price: 0,
         color: "",
+        cut: "",
+        certificateNumber: "",
+        quantity: 0,
+        imageDiamond: "",
+        min_price: 0,
+        max_price: 0,
     });
 
     const handleChange = (e) => {
-        setDiamond({ ...diamond, [e.target.name]: e.target.value })
-    }
+        setDiamond({ ...diamond, [e.target.name]: e.target.value });
+    };
+
     const handleSearch = async () => {
-        console.log(diamond);
-
-        const newDiamond = diamond;
-        await axios.post(
-            "https://664b521735bbda10987c72ad.mockapi.io/searchDiamond",
-            newDiamond
-        )
-
-    }
-
-
-
+        try {
+            const response = await axios.post(
+                "http://localhost:8080/diamond/searchDiamond",
+                diamond
+            );
+            console.log(response.data); // Handle the response data as needed
+        } catch (error) {
+            console.error('Error searching diamond:', error);
+        }
+    };
 
     return (
         <div className='search-content-container'>
@@ -33,39 +40,34 @@ const SearchDiamond = () => {
             <div className='search-parameter'>
                 <ul>
                     <li className='cut'>
-                        <label for="cut">Cut:</label>
-                        <select name="cut" id="cut" onChange={handleChange}>
+                        <label htmlFor="cut">Cut:</label>
+                        <select name="cut" id="cut" onChange={handleChange} value={diamond.cut}>
                             <option value="">Choose Cut</option>
-                            <option value="Cut A">Cut A</option>
-                            <option value="Cut B">Cut B</option>
-                            <option value="Cut C">Cut C</option>
+                            <option value="EX">EX</option>
                         </select>
                     </li>
                     <li className='clarity'>
-                        <label for="clarity">Clarity:</label>
-                        <select name="clarity" id="clarity" onChange={handleChange}>
+                        <label htmlFor="clarity">Clarity:</label>
+                        <select name="clarity" id="clarity" onChange={handleChange} value={diamond.clarity}>
                             <option value="">Choose Clarity</option>
-                            <option value="Clarity A">Clarity A</option>
-                            <option value="Clarity B">Clarity B</option>
-                            <option value="Clarity C">Clarity C</option>
+                            <option value="VS2">VS2</option>
+                            <option value="VVS2">VVS2</option>
                         </select>
                     </li>
                     <li className='color'>
-                        <label for="color">Color:</label>
-                        <select name="color" id="color" onChange={handleChange}>
+                        <label htmlFor="color">Color:</label>
+                        <select name="color" id="color" onChange={handleChange} value={diamond.color}>
                             <option value="">Choose Color</option>
-                            <option value="Color A">Color A</option>
-                            <option value="Color B">Color B</option>
-                            <option value="Color C">Color C</option>
+                            <option value="D">D</option>
+                            <option value="F">F</option>
                         </select>
                     </li>
                     <li className='origin'>
-                        <label for="origin">Origin:</label>
-                        <select name="origin" id="origin" onChange={handleChange}>
+                        <label htmlFor="origin">Origin:</label>
+                        <select name="origin" id="origin" onChange={handleChange} value={diamond.origin}>
                             <option value="">Choose Origin</option>
-                            <option value="Origin A">Origin A</option>
-                            <option value="Origin B">Origin B</option>
-                            <option value="Origin C">Origin C</option>
+                            <option value="Natural Diamond">Natural Diamond</option>
+                            <option value="Artificial Diamond">Artificial Diamond</option>
                         </select>
                     </li>
                     <li className='search-button'>
@@ -73,9 +75,8 @@ const SearchDiamond = () => {
                     </li>
                 </ul>
             </div>
-
         </div>
-    )
-}
+    );
+};
 
-export default SearchDiamond
+export default SearchDiamond;

@@ -28,8 +28,8 @@ const ProductInformation = () => {
     return (
         <div className='info-page-container'>
             
-            {/* <DiamondInfo /> */}
-            <DiamondShellInfo />
+            <DiamondInfo />
+            {/* <DiamondShellInfo /> */}
         </div>
     )
 }

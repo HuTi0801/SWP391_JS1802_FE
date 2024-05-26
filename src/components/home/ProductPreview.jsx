@@ -1,37 +1,54 @@
 import React, { useEffect, useState } from 'react';
 import './ProductPreview.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const ProductPreview = () => {
-    const [productList, setproductList] = useState([]);
+    const [diamondShellList, setDiamondShellList] = useState([]);
+    const [diamondList, setDiamondList] = useState([]);
+    const navigate = useNavigate();
+
+    const getDiamondShellInfo = async () => {
+        try {
+            const response = await axios.get("http://localhost:8080/diamond-shell/get-all-diamond-shell");
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching diamond shell info:', error);
+            return [];
+        }
+    };
 
     const getDiamondInfo = async () => {
         try {
-            const response = await axios.get("https://664b521735bbda10987c72ad.mockapi.io/searchDiamond/");
+            const response = await axios.get("http://localhost:8080/diamond/get-all-diamond"); 
             return response.data;
         } catch (error) {
             console.error('Error fetching diamond info:', error);
             return [];
         }
-    }
+    };
 
     useEffect(() => {
-        const getDiamondData = async () => {
-            const data = await getDiamondInfo();
-            if (data) {
-                setproductList(data);
-                console.log(data)
+        const fetchData = async () => {
+            const diamondShellData = await getDiamondShellInfo();
+            const diamondData = await getDiamondInfo();
+
+            if (diamondShellData) {
+                setDiamondShellList(diamondShellData);
             }
-        }
-        getDiamondData();
+            if (diamondData) {
+                setDiamondList(diamondData);
+            }
+        };
+        fetchData();
     }, []);
 
-    const handleClick = async (itemId) => {
-        // Add your click handler logic here
-        const productId = itemId;
-        await axios.post("https://664b521735bbda10987c72ad.mockapi.io/searchDiamond/", productId);
-        console.log(productId);
-    }
+    const handleClick = (item) => {
+        const itemUrl = item.imageDiamondShell ? `/diamondshell/${item.id}` : `/diamond/${item.id}`;
+        navigate(itemUrl);
+    };
+
+    const productList = [...diamondShellList, ...diamondList];
 
     const previewList = productList.slice(0, 4); // Get first 4 items
 
@@ -41,19 +58,20 @@ const ProductPreview = () => {
                 {previewList.map((item) => (
                     <li key={item.id}>
                         <img
-                            src={item.img} alt="image"
+                            src={item.imageDiamondShell || item.imageDiamond}
+                            alt="image"
                             className='image'
-                            onClick={() => handleClick(item.id)}
+                            onClick={() => handleClick(item)}
                         />
                         <div className='preview-desc'>
-                            <div className='name'>{item.name}</div> {/* Display the actual cut */}
-                            <div className='price'>{item.price}</div> {/* Display the actual clarity */}
+                            <div className='name'>{item.material || item.origin}</div>
+                            <div className='price'>{item.price}</div>
                         </div>
                     </li>
                 ))}
             </ul>
         </div>
-    )
-}
+    );
+};
 
 export default ProductPreview;
