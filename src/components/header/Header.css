@@ -1,0 +1,82 @@
+.header-container{
+    display: flex;
+    height: 10vh;
+    width: 100%;
+    border-bottom: 1px solid black;
+    justify-content: space-between;
+}
+/* Left Header */
+.header-address{
+    font-size: 0.9em;
+    font-family: var(--font-family);
+    align-self: center;
+    width: 20%;
+    margin: 0px 20px;
+    flex-direction: column;
+}
+
+/* Center Header */
+.header-logo{
+    display: flex;
+    padding: 0px 5px;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-logo .logo-image{
+    width: 150px;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+/* Right Header */
+.header-right{
+    display: flex;
+    margin: 0px 50px;
+}
+
+.header-profile{
+    display: flex;
+    padding-right: 10px;
+}
+
+.profile-image{
+    width: 40%;
+    height: 40%;
+    align-self:center;
+    justify-self: center;
+    padding-right: 5px;
+    cursor: pointer;
+}
+
+.header-profile .text{
+    justify-self: center;
+    align-self: center;
+    font-size: 1.1em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: black;
+}
+
+.header-cart{
+    display: flex;
+    padding-left: 10px;
+}
+
+.cart-image{
+    width: 50%;
+    height: 50%;
+    align-self:center;
+    justify-self: center;
+    cursor: pointer;
+}
+
+.header-cart .text{
+    justify-self: center;
+    align-self: center;
+    font-size: 1.1em;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: black;
+}
+

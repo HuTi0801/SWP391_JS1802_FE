@@ -1,0 +1,8 @@
+.fitler-container{
+    display: flex;
+    background-color: red;
+}
+
+.fitler-parameter ul{
+    display: flex;
+}

@@ -1,0 +1,123 @@
+.shell-product-info-container {
+    display: flex;
+    height: calc(100vh-100px);
+    margin: 15px 0px;
+    gap: 200px;
+
+}
+
+/* Product Image */
+.shell-product-info-container .product-image {
+    padding-left: 300px;
+
+}
+
+.shell-product-info-container .product-image img {
+    width: 60vh;
+    height: 70vh;
+    object-fit: cover;
+}
+
+/* Product Details */
+
+.shell-product-detail {
+    border: 1px solid black;
+    width: 600px;
+    height: 23rem;
+}
+
+.shell-product-detail .text {
+    width: 100%;
+    padding: 15px 0px;
+    font-size: 1.2em;
+    font-family: var(--font-family);
+    display: grid;
+    color: black;
+    border-bottom: 1px solid black;
+}
+
+.shell-product-detail.text p {
+    padding: 5px 0px;
+    font-size: 1.2em;
+    font-family: var(--font-family);
+}
+
+.shell-product-detail .text .price {
+    color: red;
+}
+
+.shell-product-detail .parameter {
+    display: grid;
+    width: 100%;
+    border-bottom: 1px solid black;
+
+}
+
+.shell-product-detail .parameter div {
+    display: flex;
+    align-items: center;
+    padding: 0px 5px;
+    border-radius: 5px;
+    width: 100%;
+
+}
+
+.shell-product-detail .parameter select {
+    padding: 3px 10px;
+    margin: 15px 10px;
+    border-radius: 5px;
+    width: 70%;
+}
+
+.shell-product-detail .parameter label {
+    padding: 1px 10px;
+    font-size: 1.1em;
+    font-family: var(--font-family);
+
+}
+
+/* Button */
+
+.button-payment {
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    gap: 100px;
+}
+
+.button-payment button {
+    padding: 10px 30px;
+    font-size: 1.3em;
+    font-family: var(--font-family);
+}
+
+.button-payment .add-cart {
+    background-color: white;
+    cursor: pointer;
+}
+
+.button-payment .buy-now {
+    border: 0px;
+    background-color: black;
+    color: var(--font-color);
+    cursor: pointer;
+}
+
+/* Finger Size */
+
+.finger-size {
+    margin-left: 15px;
+    width: 100%;
+}
+
+.finger-size select {
+    padding: 3px 10px;
+    margin: 15px 10px;
+    border-radius: 5px;
+    width: 30%;
+}
+
+.finger-size a {
+    text-decoration: underline;
+    color: rgba(121, 117, 117, 0.9);
+}

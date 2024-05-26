@@ -1,0 +1,10 @@
+.cart-table {
+    margin-top: 100px;
+}
+
+
+.cart-table table td{
+    border: 1px solid black;
+    padding: 20px 100px;
+}
+
