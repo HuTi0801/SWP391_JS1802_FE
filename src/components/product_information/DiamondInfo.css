@@ -23,7 +23,7 @@
 .diamond-product-detail {
     border: 1px solid black;
     width: 600px;
-    height: 26rem;
+    height: 22rem;
 }
 
 .diamond-product-detail .text {
@@ -62,14 +62,14 @@
     
 }
 
-.diamond-product-detail .parameter select {
+.diamond-product-detail .parameter p {
     padding: 3px 10px;
     margin: 15px 10px;
     border-radius: 5px;
     width: 70%;
 }
 
-.diamond-product-detail .parameter label{
+.diamond-product-detail .parameter span{
     padding: 1px 10px;
     font-size: 1.1em;
     font-family: var(--font-family);

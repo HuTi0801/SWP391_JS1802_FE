@@ -1,14 +1,52 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './DiamondShellInfo.css';
+import axios from 'axios';
 
 const DiamondShellInfo = () => {
-  const [goToCart, setGoToCart] = useState(false);
+  const [shellInfo, setShellInfo] = useState({
+    id: "",
+    material: "",
+    secondaryStone: "",
+    gender: "",
+    size: "",
+    img: "",
+  });
 
-  const handleClick = () => {
-    setGoToCart(true);
+  const getShellInfo = async () => {
+    try {
+      const response = await axios.get("https://664b521735bbda10987c72ad.mockapi.io/searchDiamond/5");
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching diamond info:', error);
+      return null;
+    }
   }
-  if (goToCart) {
-    window.location.href = '/cart';
+  useEffect(() => {
+    const getShellData = async () => {
+      const data = await getShellInfo();
+      if (data) {
+        setShellInfo(data);
+        console.log(data)
+      }
+    }
+    getShellData();
+
+  }, []
+  )
+
+
+  const handleAddToCart = async () => {
+
+    const addItem = {
+      id: shellInfo.id,
+      type: shellInfo.type,
+    }
+    await axios.post(
+      "https://664b521735bbda10987c72ad.mockapi.io/searchDiamond",
+      addItem
+    )
+    console.log(shellInfo);
+    console.log(addItem);
   }
   return (
     <div className='shell-product-info-container'>
@@ -20,47 +58,26 @@ const DiamondShellInfo = () => {
 
           <div className='text'>
             <p className='name'>Product Name</p>
-            <p className='price'>Price</p>
+            <p className='price'>{shellInfo.price}</p>
           </div>
           <div className='parameter'>
-            <label for="material">Material:</label>
-            <select name="material" id="material">
-              <option value="A">A value</option>
-              <option value="B">B value</option>
-              <option value="C">C value</option>
-            </select>
+            <span>Material:</span>
+            <p>{shellInfo.material}</p>
 
-            <label for="secondary-stone">Secondary Stone:</label>
-            <select name="secondary-stone" id="secondary-stone">
-              <option value="A">A value</option>
-              <option value="B">B value</option>
-              <option value="C">C value</option>
-            </select>
+            <span >Secondary Stone:</span>
+            <p>{shellInfo.secondaryStone}</p>
 
-
-            <label for="gender">Gender:</label>
-            <select name="gender" id="gender">
-              <option value="A">A value</option>
-              <option value="B">B value</option>
-              <option value="C">C value</option>
-            </select>
+            <span>Gender:</span>
+            <p>{shellInfo.gender}</p>
           </div>
           <div className='finger-size'>
-            <label for="finger-size">Finger Size</label>
-            <select name="finger-size" id="finger-size">
-              <option value="1">Size 1</option>
-              <option value="2">Size 2</option>
-              <option value="3">Size 3</option>
-              <option value="4">Size 4</option>
-              <option value="5">Size 5</option>
-              <option value="6">Size 6</option>
-            </select>
-            <a href="">Finger Size Guide</a>
+            <span>Size:</span>
+            <p>{shellInfo.size}</p>
           </div>
         </div>
         <div className='button-payment'>
           <button type="submit" className='add-cart' >Add To Cart</button>
-          <button type="submit" className='buy-now' onClick={handleClick}>BUY NOW</button>
+          <button type="submit" className='buy-now' onClick={handleAddToCart}>BUY NOW</button>
         </div>
       </div>
     </div>

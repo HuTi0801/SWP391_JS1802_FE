@@ -15,9 +15,15 @@ import ProductInformation from './pages/productInformation/ProductInformation.js
 import { Cart } from './pages/cart/Cart.jsx';
 import SearchDiamondPage from './pages/search/SearchDiamondPage.jsx';
 import SearchShellPage from './pages/search/SearchShellPage.jsx';
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getDataUser } from "../redux/actions/userAction.js";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getDataUser());
+  }, []);
 
   return (
     <>

@@ -1,15 +1,54 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './DiamondInfo.css'
+import axios from 'axios';
 
 const DiamondInfo = () => {
-    const [goToCart, setGoToCart] = useState(false);
+    const [diamondInfo, setDiamondInfo] = useState({
+        id: "",
+        cut: "",
+        clarity: "",
+        color: "",
+        img: "",
+    });
 
-    const handleClick = () =>{
-        setGoToCart(true);
+    const getDiamondInfo = async () => {
+        try {
+            const response = await axios.get("https://664b521735bbda10987c72ad.mockapi.io/searchDiamond/5");
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching diamond info:', error);
+            return null;
+        }
     }
-    if (goToCart) {
-        window.location.href = '/cart';  
-      }
+
+    useEffect(() => {
+        const getDiamondData = async () => {
+            const data = await getDiamondInfo();
+            if (data) {
+                setDiamondInfo(data);
+                console.log(data)
+            }
+        }
+        getDiamondData();
+
+    }, []
+    )
+
+
+
+    const handleAddToCart = async () => {
+
+        const addItem = {
+            id: diamondInfo.id,
+            type: diamondInfo.type,
+        }
+        await axios.post(
+            "https://664b521735bbda10987c72ad.mockapi.io/searchDiamond",
+            addItem
+        )
+        console.log(diamondInfo);
+        console.log(addItem)
+    }
     return (
         <div className='diamond-product-info-container'>
             <div className='product-image'>
@@ -19,38 +58,22 @@ const DiamondInfo = () => {
                 <div className='diamond-product-detail'>
                     <div className='text'>
                         <p className='name'>Product Name</p>
-                        <p className='price'>Price</p>
+                        <p className='price'>{diamondInfo.price}</p>
                     </div>
                     <div className='parameter'>
-                        <label for="cut">Cut:</label>
-                        <select name="cut" id="cut">
-                            <option value="A">Option A</option>
-                            <option value="B">Option B</option>
-                            <option value="C">Option C</option>
-                        </select>
-                        <label for="clarity">Clarity:</label>
-                        <select name="clarity" id="clarity">
-                            <option value="A">Option A</option>
-                            <option value="B">Option B</option>
-                            <option value="C">Option C</option>
-                        </select>
-                        <label for="color">Color:</label>
-                        <select name="color" id="color">
-                            <option value="A">Option A</option>
-                            <option value="B">Option B</option>
-                            <option value="C">Option C</option>
-                        </select>
-                        <label for="carat-weight">Carat Weight:</label>
-                        <select name="carat-weight" id="carat-weight">
-                            <option value="A">Option A</option>
-                            <option value="B">Option B</option>
-                            <option value="C">Option C</option>
-                        </select>
+                        <span>Cut:</span>
+                        <p>{diamondInfo.cut}</p>
+
+                        <span >Clarity:</span>
+                        <p>{diamondInfo.clarity}</p>
+
+                        <span>Color:</span>
+                        <p>{diamondInfo.color}</p>
                     </div>
                 </div>
                 <div className='button-payment'>
-                    <button type="submit" className='add-cart' >Add To Cart</button>
-                    <button type="submit" className='buy-now' onClick={handleClick}>BUY NOW</button>
+                    <button type="submit" className='add-cart' onClick={handleAddToCart} >Add To Cart</button>
+                    <button type="submit" className='buy-now' >BUY NOW</button>
                 </div>
             </div>
         </div>
