@@ -65,7 +65,7 @@ const ProductPreview = () => {
                         />
                         <div className='preview-desc'>
                             <div className='name'>{item.material || item.origin}</div>
-                            <div className='price'>{item.price}</div>
+                            <div className='price'>{item.price}đ</div>
                         </div>
                     </li>
                 ))}

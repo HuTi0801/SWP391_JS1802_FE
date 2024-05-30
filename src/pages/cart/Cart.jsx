@@ -1,5 +1,5 @@
 import React from 'react'
-import CartDetail from '../../components/cart/CartDetail'
+import CartDetail from '../../components/userComponents/cart/CartDetail'
 import TestData from '../../data/TestData.json'
 import './Cart.css';
 

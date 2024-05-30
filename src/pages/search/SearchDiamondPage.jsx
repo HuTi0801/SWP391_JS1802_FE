@@ -1,5 +1,5 @@
 import React from 'react'
-import SearchDiamond from '../../components/search/SearchDiamond'
+import SearchDiamond from '../../components/userComponents/search/SearchDiamond'
 import './SearchDiamondPage.css'
 
 const SearchDiamondPage = () => {

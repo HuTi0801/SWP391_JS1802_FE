@@ -1,0 +1,59 @@
+.order-creation-content-container {
+    width: 100%;
+    margin: 20px 0px;
+
+}
+
+/* Text */
+
+.order-creation-content-container .order-creation-text {
+    color: red;
+    font-size: 3em;
+    font-family: var(--font-family);
+    text-align: center;
+    padding: 50px 0px;
+
+}
+
+/* Creation Detail */
+
+.order-creation-content-container .order-creation-detail {
+    padding: 100px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.order-creation-content-container .order-creation-detail .detail-content {
+    text-align: left;
+    border: 1px solid black;
+    justify-content: center;
+    width: 40%;
+    padding: 30px 30px;
+    
+}
+
+.order-creation-content-container .order-creation-detail .detail-content p{
+    font-size: 2em;
+    padding: 10px 0px;
+    font-family: var(--font-family);
+    
+}
+
+/* Action Button */
+.order-creation-content-container .action-button {
+    display: flex;
+    justify-content: center;
+    gap: 350px;
+}
+.order-creation-content-container .action-button button {
+    padding: 20px 0px;
+    width: 230px;
+    font-size: 1.5em;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.order-creation-content-container .action-button .order-list-button {
+    background-color: black;
+    color: var(--font-color);
+}

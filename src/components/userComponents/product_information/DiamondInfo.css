@@ -1,6 +1,6 @@
 .diamond-product-info-container {
     display: flex;
-    height: calc(100vh-100px);
+    height: 900px;
     margin: 15px 0px;
     gap: 200px;
 
@@ -69,11 +69,13 @@
     margin: 15px 10px;
     border-radius: 5px;
     width: 70%;
+    font-family: var(--font-family);
+    font-size: 1em;
 }
 
 .diamond-product-detail .parameter span{
     padding: 1px 10px;
-    font-size: 1.1em;
+    font-size: 1.2em;
     font-family: var(--font-family);
     
 }

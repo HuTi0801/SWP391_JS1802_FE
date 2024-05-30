@@ -52,6 +52,9 @@ const ProductList = () => {
 
     return (
         <div className='product-list-container'>
+            <div className='product-list-filter'>
+                This is product List's Filter
+            </div>
             <ul>
                 {productList.map((item) => (
                     <li key={item.id}>

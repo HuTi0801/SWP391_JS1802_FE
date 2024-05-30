@@ -1,4 +1,4 @@
-import * as UserApi from "../../api/userRequest";
+/* import * as UserApi from "../../api/userRequest";
 
 export const getDataUser = () => async (dispatch) => {
   dispatch({ type: "USER_START" }); //load api 1' true
@@ -18,3 +18,4 @@ export const createUser = () => async (dispatch) => {
     dispatch({ type: "USER_FAIL" }); //error
   }
 }
+ */

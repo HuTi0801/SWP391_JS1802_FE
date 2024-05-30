@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './ProductInformation.css';
-import DiamondInfo from '../../components/product_information/DiamondInfo';
-import DiamondShellInfo from '../../components/product_information/DiamondShellInfo';
+import DiamondInfo from '../../components/userComponents/product_information/DiamondInfo';
+import DiamondShellInfo from '../../components/userComponents/product_information/DiamondShellInfo';
 
 
 const ProductInformation = () => {

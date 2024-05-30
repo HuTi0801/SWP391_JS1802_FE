@@ -35,7 +35,7 @@ const DiamondInfo = () => {
             console.log('Add to cart response:', response.data);
             console.log(cartItem)
 
-
+            alert("Cart added successfully!");
 
         } catch (error) {
             console.error('Error adding diamond to cart:', error);
@@ -55,7 +55,7 @@ const DiamondInfo = () => {
             <div className='diamond-product-right'>
                 <div className='diamond-product-detail'>
                     <div className='text'>
-                        <p className='name'>{diamond.origin} + {diamond.cut} + {diamond.color} + {diamond.clarity}</p>
+                        <p className='name'>{diamond.origin} {diamond.cut} {diamond.color} {diamond.clarity}</p>
                         <p className='price'>{diamond.price}</p>
                     </div>
                     <div className='parameter'>

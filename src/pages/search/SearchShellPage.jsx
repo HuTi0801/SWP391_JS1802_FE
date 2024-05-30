@@ -1,6 +1,6 @@
 import React from 'react'
 import './SearchShellPage.css';
-import SearchDiamondShell from '../../components/search/SearchDiamondShell';
+import SearchDiamondShell from '../../components/userComponents/search/SearchDiamondShell';
 
 const SearchShellPage = () => {
     return (

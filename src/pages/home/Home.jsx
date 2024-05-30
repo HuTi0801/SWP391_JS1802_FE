@@ -1,7 +1,7 @@
 import React from 'react';
 import './Home.css';
-import Banner from '../../components/home/Banner';
-import ProductPreview from '../../components/home/ProductPreview';
+import Banner from '../../components/userComponents/home/Banner';
+import ProductPreview from '../../components/userComponents/home/ProductPreview';
 const listBanner = [
   {
     id: 1,
