@@ -1,0 +1,118 @@
+.diamond-shell-infodetails-container {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    border: 3px solid black;
+    padding: 20px;
+    width: 600px;
+    height: 300px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right: 100px;
+}
+
+h1 {
+    font-size: 50px;
+    font-weight: bold;
+    color: red;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.diamond-shell-infodetails-container .text {
+    font-weight: bold;
+    font-size: larger;
+}
+
+.diamond-shell-infodetails-container .text span {
+    margin-right: 10px;
+    font-weight: bold;
+    color: red;
+    font-size: 20px;
+    font-stretch: expanded;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 2;
+}
+
+.diamond-shell-infodetails-container .text p {
+    margin: 0;
+    display: flex;
+    flex: 16;
+    justify-content: center;
+    align-items: center;
+}
+
+.diamond-shell-infodetails-container .MaterialDetails,
+.diamond-shell-infodetails-container .GenderDetails,
+.diamond-shell-infodetails-container .SecondaryStoneTypeDetails,
+.diamond-shell-infodetails-container .QuantityDetails,
+.diamond-shell-infodetails-container .PriceDetails,
+.text {
+    display: flex;
+    align-items: center;
+    font-size: medium;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.diamond-shell-infodetails-container .MaterialDetails span,
+.diamond-shell-infodetails-container .GenderDetails span,
+.diamond-shell-infodetails-container .SecondaryStoneTypeDetails span,
+.diamond-shell-infodetails-container .QuantityDetails span,
+.diamond-shell-infodetails-container .PriceDetails span {
+    margin-right: 10px;
+    font-weight: bold;
+    color: red;
+    font-size: 20px;
+    font-stretch: expanded;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 2;
+}
+
+.diamond-shell-infodetails-container .MaterialDetails p,
+.diamond-shell-infodetails-container .GenderDetails p,
+.diamond-shell-infodetails-container .SecondaryStoneTypeDetails p,
+.diamond-shell-infodetails-container .QuantityDetails p,
+.diamond-shell-infodetails-container .PriceDetails p {
+    margin: 0;
+    font-size: 20px;
+    font-stretch: expanded;
+    display: flex;
+    flex: 16;
+    justify-content: center;
+    align-items: center;
+}
+
+.ImageDiamondShellDetails {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    margin-top: -365px;
+    margin-bottom: 20px;
+    margin-left: 100px;
+}
+
+.ImageDiamondShellDetails img {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    width: 400px;
+    height: auto;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
+    transition: 0.4 ease;
+    /* Add shadow effect */
+}
+
+.diamond-shell-infodetails-container .PriceDetails p {
+    margin-left: 30px;
+}

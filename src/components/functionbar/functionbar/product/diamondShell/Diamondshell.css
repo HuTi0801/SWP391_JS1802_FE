@@ -1,0 +1,202 @@
+.diamondshell-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+}
+
+.diamondshell-container .create {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 20px;
+}
+
+.diamondshell-container .create .createDiamondShell {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 20px;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 16px;
+    margin-top: -42px;
+    margin-right: 15px;
+}
+
+.diamondshell-container .create img {
+    display: flex;
+    align-items: flex-end;
+    padding: 10px;
+}
+
+.diamondshell-container .create h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 50px;
+    font-stretch: expanded;
+}
+
+
+.create-DiamondShell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+}
+
+.create-DiamondShell .sub-create-DiamondShell .Material,
+.Gender,
+.SecondaryStoneType,
+.Quantity,
+.Price,
+.imgDiamondShell,
+.statusDiamondShell {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+button {
+    margin-top: 10px;
+    display: block;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: rgba(35, 35, 236, 0.8);
+    color: white;
+    font-weight: 500;
+    border-style: none;
+    width: 60px;
+}
+
+button:hover {
+
+    color: rgba(255, 0, 0, 0.826);
+    background-color: rgba(0, 106, 255, 0.934)
+}
+
+input {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-left: 10px;
+    /* Điều chỉnh khoảng cách giữa thẻ hình dạng kim cương và tên màu */
+    font-size: 16px;
+    margin-bottom: 10px;
+    color: #000;
+    /* Màu chữ của tên màu */
+    font-weight: bold;
+    font-size: medium;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+select {
+    margin-left: 10px;
+    /* Điều chỉnh khoảng cách giữa thẻ hình dạng kim cương và tên màu */
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    /* Màu chữ của tên màu */
+    font-weight: bold;
+    font-size: medium;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
+/* Product Details */
+
+.diamond-shell-info-container {
+
+    display: flex;
+    flex-direction: column;
+}
+
+.diamond-shell-info-container .diamond-shell-card {
+    display: block;
+    width: 800px;
+    height: 150px;
+    border: 2px solid lightgray;
+    padding: 10px 20px;
+    margin-top: 40px;
+    border-radius: 5px;
+}
+
+.diamond-shell-info-container .diamond-shell-card .ID {
+    font-size: 20px;
+    display: flex;
+    font-size: larger;
+    font-family: var(--font-styledata);
+    flex-direction: row;
+    align-items: flex-start;
+    font-weight: bold;
+    color: red;
+    margin-bottom: 7px;
+    font-stretch: expanded;
+}
+
+.diamond-shell-info-container .diamond-shell-card .text {
+    font-size: 20px;
+    display: flex;
+    font-size: larger;
+    font-family: var(--font-styledata);
+    flex-direction: row;
+    align-items: flex-start;
+    font-weight: bold;
+    margin-left: -3px;
+    color: rgba(60, 6, 197, 0.903);
+    margin-bottom: 7px;
+    font-stretch: expanded;
+}
+
+.diamond-shell-info-container .diamond-shell-card .MaterialData,
+.GenderData,
+.SecondaryStoneTypeData {
+    display: flex;
+    font-size: large;
+    font-family: var(--font-styledata);
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 7px;
+    font-stretch: expanded;
+}
+
+/* ViewDetail Button */
+.diamond-shell-card .diamondShellInfo {
+    padding: 10px 50px;
+
+    display: flex;
+
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    /* Căn giữa theo chiều dọc */
+    flex-direction: column;
+    text-align: center;
+    margin-left: auto;
+    margin-right: 0;
+    margin-top: -80px;
+
+}
+
+.diamondShellInfo {
+    display: block;
+    background-color: rgba(128, 128, 128, 0.811);
+    width: 2.4em;
+    border-radius: 20px;
+}
+
+.diamond-shell-card .diamondShellInfo:hover {
+    color: rgba(255, 0, 0, 0.826);
+    background-color: rgba(0, 106, 255, 0.934)
+}

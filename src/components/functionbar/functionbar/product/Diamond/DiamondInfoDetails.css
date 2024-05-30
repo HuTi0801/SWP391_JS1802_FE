@@ -1,0 +1,137 @@
+.diamond-infodetails-container {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    border: 3px solid black;
+    padding: 20px;
+    width: 600px;
+    height: 400px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right: 100px;
+}
+
+h1 {
+    font-size: 50px;
+    font-weight: bold;
+    color: red;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.diamond-infodetails-container .text {
+    font-weight: bold;
+    font-size: larger;
+}
+
+.diamond-infodetails-container .text span {
+    margin-right: 10px;
+    font-weight: bold;
+    color: red;
+    font-size: 20px;
+    font-stretch: expanded;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 2;
+}
+
+.diamond-infodetails-container .text p {
+    margin: 0;
+    font-size: 20px;
+    font-stretch: expanded;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 16;
+}
+
+.diamond-infodetails-container .OriginDetails,
+.diamond-infodetails-container .ClarityDetails,
+.diamond-infodetails-container .CutDetails,
+.diamond-infodetails-container .CaratWeightDetails,
+.diamond-infodetails-container .ColorDetails,
+.diamond-infodetails-container .CertificateNumberDetails,
+.diamond-infodetails-container .QuantityDetails,
+.diamond-infodetails-container .PriceDetails,
+.text {
+    display: flex;
+    align-items: center;
+    font-size: medium;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.diamond-infodetails-container .OriginDetails span,
+.diamond-infodetails-container .ClarityDetails span,
+.diamond-infodetails-container .CutDetails span,
+.diamond-infodetails-container .CaratWeightDetails span,
+.diamond-infodetails-container .ColorDetails span,
+.diamond-infodetails-container .CertificateNumberDetails span,
+.diamond-infodetails-container .QuantityDetails span,
+.diamond-infodetails-container .PriceDetails span {
+    margin-right: 10px;
+    font-weight: bold;
+    color: red;
+    font-size: 20px;
+    font-stretch: expanded;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 2;
+}
+
+.diamond-infodetails-container .OriginDetails p,
+.diamond-infodetails-container .ClarityDetails p,
+.diamond-infodetails-container .CutDetails p,
+.diamond-infodetails-container .CaratWeightDetails p,
+.diamond-infodetails-container .ColorDetails p,
+.diamond-infodetails-container .CertificateNumberDetails p,
+.diamond-infodetails-container .QuantityDetails p,
+.diamond-infodetails-container .PriceDetails p {
+    font-size: 20px;
+    font-stretch: expanded;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 16;
+}
+
+.ImageDiamondDetails {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    margin-top: -480px;
+    margin-bottom: 20px;
+    margin-left: 100px;
+}
+
+.ImageDiamondDetails img {
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    width: 500px;
+    height: auto;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
+    transition: 0.4 ease;
+    /* Add shadow effect */
+}
+
+.diamond-infodetails-container .CaratWeightDetails p {
+    margin-left: -60px;
+}
+
+.diamond-infodetails-container .CertificateNumberDetails p {
+    margin-left: -120px;
+}
+
+
+.diamond-infodetails-container .QuantityDetails p {
+    margin-left: -20px;
+}
