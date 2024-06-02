@@ -1,7 +1,10 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import { Navigate, useNavigate } from 'react-router-dom';
+import './SearchDiamond.css'
 
 const SearchDiamond = () => {
+    const navigate = useNavigate();
     const [diamond, setDiamond] = useState({
         id: 0,
         origin: "",
@@ -24,11 +27,13 @@ const SearchDiamond = () => {
     const handleSearch = async () => {
         try {
             const response = await axios.post(
-                "http://localhost:8080/diamond/searchDiamond",
+                "http://localhost:8080/diamond/search-diamond",
                 diamond
             );
             console.log(response); // Handle the response data as needed
             console.log(diamond)
+            navigate('/productlist',{state: {results: response.data}})
+            
         } catch (error) {
             console.error('Error searching diamond:', error);
         }
@@ -42,14 +47,14 @@ const SearchDiamond = () => {
             <div className='search-parameter'>
                 <ul>
                     <li className='cut'>
-                        <label htmlFor="cut">Cut:</label>
+                        <label htmlFor="cut">Cut</label>
                         <select name="cut" id="cut" onChange={handleChange} >
                             <option value="">Choose Cut</option>
                             <option value="EX">EX</option>
                         </select>
                     </li>
                     <li className='clarity'>
-                        <label htmlFor="clarity">Clarity:</label>
+                        <label htmlFor="clarity">Clarity</label>
                         <select name="clarity" id="clarity" onChange={handleChange} >
                             <option value="">Choose Clarity</option>
                             <option value="VS2">VS2</option>
@@ -57,7 +62,7 @@ const SearchDiamond = () => {
                         </select>
                     </li>
                     <li className='color'>
-                        <label htmlFor="color">Color:</label>
+                        <label htmlFor="color">Color</label>
                         <select name="color" id="color" onChange={handleChange} >
                             <option value="">Choose Color</option>
                             <option value="D">D</option>
@@ -65,7 +70,7 @@ const SearchDiamond = () => {
                         </select>
                     </li>
                     <li className='origin'>
-                        <label htmlFor="origin">Origin:</label>
+                        <label htmlFor="origin">Origin</label>
                         <select name="origin" id="origin" onChange={handleChange}>
                             <option value="">Choose Origin</option>
                             <option value="Natural diamond">Natural Diamond</option>

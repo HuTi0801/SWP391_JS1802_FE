@@ -23,7 +23,7 @@
 .shell-product-detail {
     border: 1px solid black;
     width: 600px;
-    height: 23rem;
+    height: 25rem;
 }
 
 .shell-product-detail .text {
@@ -44,6 +44,7 @@
 
 .shell-product-detail .text .price {
     color: red;
+    font-weight: bold;
 }
 
 .shell-product-detail .parameter {
@@ -74,6 +75,27 @@
     font-size: 1.1em;
     font-family: var(--font-family);
 
+}
+
+/* Form Group */
+
+.form-group{
+    border-top: 1px solid black;
+    padding: 12px 50px;
+    width: 500px;
+    text-align: center;
+}
+
+.form-group select{
+    font-size: 1em;
+    font-family: var(--font-family);
+    width: 200px;
+}
+
+.form-group label{
+    font-size: 1.2em;
+    font-family: var(--font-family);
+    padding: 0px 20px;
 }
 
 /* Button */

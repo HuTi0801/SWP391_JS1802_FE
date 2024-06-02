@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './DiamondInfo.css';
 
 const DiamondInfo = () => {
     const { id } = useParams();
     const [diamond, setDiamond] = useState(null);
-    const [cartID, setCartID] = useState("");
+    const navigate = useNavigate();
 
     useEffect(() => {
         const fetchDiamond = async () => {
             try {
                 const response = await axios.get(`http://localhost:8080/diamond/get-a-diamond-${id}`);
-                setDiamond(response.data);
+                setDiamond(response.data.result);
             } catch (error) {
                 console.error('Error fetching diamond:', error);
             }
@@ -21,27 +21,35 @@ const DiamondInfo = () => {
         fetchDiamond();
     }, [id]);
 
+    const handleAddToCart = async () => {
+        if (!diamond) {
+            console.error('Diamond data is not available');
+            return;
+        }
 
-    const addToCart = async () => {
+        const cartItem = {
+            productID: diamond.id,
+            productType: "DIAMOND",
+            customerID: 1,
+        };
+
         try {
-            const cartItem = {
-                productID: diamond.id,
-                productType: "DIAMOND",
-                customerID: 1,
-                cartID: 1
-            };
-
-            const response = await axios.post("http://localhost:8080/cart/add-to-cart", cartItem);
+            const response = await axios.post("http://localhost:8080/cart/add-to-cart", null, { params: cartItem });
+            alert(response.data.message);
             console.log('Add to cart response:', response.data);
-            console.log(cartItem)
-
-            alert("Cart added successfully!");
-
         } catch (error) {
             console.error('Error adding diamond to cart:', error);
         }
     };
 
+    const handleBuyNow = async () => {
+        await handleAddToCart();
+        navigate('/cart');
+    };
+
+    const formatPrice = (price) => {
+        return new Intl.NumberFormat('vi-VN').format(price);
+    };
 
     if (!diamond) {
         return <div>Loading...</div>;
@@ -56,7 +64,7 @@ const DiamondInfo = () => {
                 <div className='diamond-product-detail'>
                     <div className='text'>
                         <p className='name'>{diamond.origin} {diamond.cut} {diamond.color} {diamond.clarity}</p>
-                        <p className='price'>{diamond.price}</p>
+                        <p className='price'>{formatPrice(diamond.price)}đ</p>
                     </div>
                     <div className='parameter'>
                         <span>Cut:</span>
@@ -70,8 +78,8 @@ const DiamondInfo = () => {
                     </div>
                 </div>
                 <div className='button-payment'>
-                    <button type="button" className='add-cart' onClick={addToCart}>Add To Cart</button>
-                    <button type="button" className='buy-now'>BUY NOW</button>
+                    <button type="button" className='add-cart' onClick={handleAddToCart}>Add To Cart</button>
+                    <button type="button" className='buy-now' onClick={handleBuyNow}>BUY NOW</button>
                 </div>
             </div>
         </div>

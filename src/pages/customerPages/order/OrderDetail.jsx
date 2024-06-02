@@ -1,5 +1,5 @@
 import React from 'react'
-import OrderDetailContent from '../../components/userComponents/order/OrderDetailContent'
+import OrderDetailContent from '../../../components/userComponents/order/OrderDetailContent'
 import './OrderDetail.css'
 
 const OrderDetail = () => {

@@ -11,7 +11,7 @@ const ProductPreview = () => {
     const getDiamondShellInfo = async () => {
         try {
             const response = await axios.get("http://localhost:8080/diamond-shell/get-all-diamond-shell");
-            return response.data;
+            return response.data.result;
         } catch (error) {
             console.error('Error fetching diamond shell info:', error);
             return [];
@@ -21,7 +21,7 @@ const ProductPreview = () => {
     const getDiamondInfo = async () => {
         try {
             const response = await axios.get("http://localhost:8080/diamond/get-all-diamond"); 
-            return response.data;
+            return response.data.result;
         } catch (error) {
             console.error('Error fetching diamond info:', error);
             return [];
@@ -47,13 +47,23 @@ const ProductPreview = () => {
         const itemUrl = item.imageDiamondShell ? `/diamondshell/${item.id}` : `/diamond/${item.id}`;
         navigate(itemUrl);
     };
+    {console.log(diamondShellList)}
 
     const productList = [...diamondShellList, ...diamondList];
 
     const previewList = productList.slice(0, 4); // Get first 4 items
 
+    const formatPrice = (price) => {
+        return new Intl.NumberFormat('vi-VN').format(price);
+    };
+
+    const handleSeeAll = () => {
+        navigate('/productlist');
+    }
+
     return (
         <div className='preview-container'>
+            <p className='title'>WHAT'S TRENDING</p>
             <ul>
                 {previewList.map((item) => (
                     <li key={item.id}>
@@ -65,11 +75,14 @@ const ProductPreview = () => {
                         />
                         <div className='preview-desc'>
                             <div className='name'>{item.material || item.origin}</div>
-                            <div className='price'>{item.price}đ</div>
+                            <div className='price'>{formatPrice(item.price)}đ</div>
                         </div>
                     </li>
                 ))}
             </ul>
+            <div className='see-all'>
+            <button onClick={handleSeeAll}>SEE ALL PRODUCTS</button>
+            </div>
         </div>
     );
 };

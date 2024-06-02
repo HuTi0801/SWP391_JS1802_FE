@@ -59,21 +59,29 @@ td {
 
 /* Table data Quantity */
 
-.cart-table table .product-quantity {
-    vertical-align: middle;
+.cart-table table .product-quantity .quantity-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 }
 
-.cart-table table .product-quantity .minus-quantity {
-    font-size: 1.1em;
-    padding: 4px 4px;
+.cart-table table .product-quantity .quantity-container .p {
+    font-size: 5em;
+
+}
+
+.cart-table table .product-quantity .quantity-container .minus-quantity {
+    font-size: 1.3em;
+    padding: 0px 4px;
 
 
     cursor: pointer;
 }
 
-.cart-table table .product-quantity .add-quantity {
-    font-size: 1.1em;
-    padding: 4px 4px;
+.cart-table table .product-quantity .quantity-container .add-quantity {
+    font-size: 1.3em;
+    padding: 0px 4px;
 
     cursor: pointer;
 }

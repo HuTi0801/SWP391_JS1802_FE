@@ -1,6 +1,6 @@
 import React from 'react'
-import SearchDiamond from '../../components/userComponents/search/SearchDiamond'
-import './SearchDiamondPage.css'
+import SearchDiamond from '../../../components/userComponents/search/SearchDiamond'
+
 
 const SearchDiamondPage = () => {
     return (

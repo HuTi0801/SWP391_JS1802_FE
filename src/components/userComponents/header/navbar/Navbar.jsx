@@ -1,30 +1,28 @@
 import React, { useState } from 'react'
 import "./Navbar.css";
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
-    const [goToProductList,setGoToProductList] = useState(false);
+    const navigate = useNavigate();
 
-    const handleClickProductList = () =>{
-        setGoToProductList(true);
+    const handleClickProductList = () => {
+        navigate('/productlist')
     }
 
 
-      if (goToProductList) {
-        window.location.href = '/productlist';  
-      }
 
 
     return (
         <div className='navbar-container'>
             <div className='navbar-content'>
                 <ul >
-                    <li className='products'>
-                        <div className='text' onClick={handleClickProductList}>Products</div>
+                    <li className='products' onClick={handleClickProductList}>
+                        <div className='text' >Products</div>
                         <div className='dropdown-box'>
                             <div className='dropdown-content'>
-                                <a href="/productlist" className='product-list'>Product List</a>
-                                <a href="/searchdiamond">Diamond</a>
-                                <a href="/searchshell">Diamond Shell</a>
+                                <a href="/productlist" className='product-list' onClick={handleClickProductList}>Product List</a>
+                                <a href="/searchdiamond">Search Diamond</a>
+                                <a href="/searchshell">Search Diamond Shell</a>
                             </div>
                         </div>
                     </li>

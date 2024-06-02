@@ -1,7 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-
+import "./SearchDiamond.css"
+import { useNavigate } from 'react-router-dom';
 const SearchDiamondShell = () => {
+    const navigate = useNavigate();
     const [diamondShell, setDiamondShell] = useState({
         id: 0,
         quantity: 0,
@@ -21,11 +23,12 @@ const SearchDiamondShell = () => {
     const handleSearch = async () => {
         try {
             const response = await axios.post(
-                "http://localhost:8080/diamond-shell/searchDiamondShell",
+                "http://localhost:8080/diamond-shell/search-diamond-shell",
                 diamondShell
             );
             console.log(response); // Handle the response data as needed
             console.log(diamondShell)
+            navigate('/productlist',{state: {results: response.data}})
         } catch (e) {
             console.error(e);
         }

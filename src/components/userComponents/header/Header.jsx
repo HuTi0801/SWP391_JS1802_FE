@@ -1,26 +1,19 @@
 import React, { useState } from 'react'
 import './Header.css';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
-    const [goToHome, setGoToHome] = useState(false);
-    const [goToCart,setGoToCart] = useState(false);
+    const navigate = useNavigate();
 
     const handleClickHome = () =>{
-        setGoToHome(true);
+        navigate('/');
     }
 
     const handleClickCart = () =>{
-        setGoToCart(true);
+        navigate('/cart');
     }
 
 
-    if (goToHome) {
-        window.location.href = '/';  
-      }
-
-      if (goToCart) {
-        window.location.href = '/cart';  
-      }
 
     return (
         <div className='header-container'>

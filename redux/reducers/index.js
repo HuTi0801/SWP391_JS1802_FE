@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import userReducer from "./userReducer";
+import { diamondShellReducer } from "./diamondShellReducer";
 export const reducers = combineReducers({
-  userReducer,
+  diamondShellReducer,
 });
