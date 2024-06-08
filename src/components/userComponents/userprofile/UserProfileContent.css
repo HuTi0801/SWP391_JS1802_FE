@@ -1,0 +1,87 @@
+.user-profile-content-container {
+    display: block;
+    margin: 20px;
+    min-height: 120vh;
+}
+
+/* Action button */
+
+.user-profile-content-container .action-button {
+    width: 20%;
+    float: left;
+    padding: 0px 20px;
+}
+
+.user-profile-content-container .action-button button {
+    width: 100%;
+    margin: 20px 0px;
+    padding: 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.user-profile-content-container .action-button button:hover {
+    background-color: black;
+    color: white;
+}
+
+/* Profile Detail */
+
+.user-profile-content-container .profile-detail {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid black;
+    margin-left: 25%;
+    margin-right: 3%;
+    align-items: center;
+}
+
+.user-profile-content-container .profile-detail .profile-image {
+    width: 100%;
+    padding-top: 20px;
+    height: 300px;
+}
+
+.user-profile-content-container .profile-detail img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    float: left;
+    margin-right: 20px;
+}
+
+.user-profile-content-container .profile-detail .profile-text {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 50px 0px;
+    margin: 20px 0px;
+}
+
+.user-profile-content-container .profile-text .profile-information {
+    overflow: hidden;
+    margin: 10px 20px;
+    width: 50%;
+}
+
+.user-profile-content-container .profile-text .membership-detail {
+    overflow: hidden;
+    margin: 10px 0px;
+    width: 45%;
+}
+
+.user-profile-content-container .profile-information p,
+.membership-detail p {
+    margin: 5px 0;
+    font-size: 2em;
+    padding: 10px 0px;
+    font-family: var(--font-family);
+}

@@ -1,0 +1,185 @@
+.payment-detail-container {
+    width: 100%;
+    max-width: 800px; 
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.payment-detail-container .title {
+    font-size: 3em;
+    padding: 60px 0px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px;
+    color: red;
+    font-family: var(--font-family);
+}
+
+.payment-detail-container form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.payment-detail-container .payment-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 1px solid black;
+
+}
+
+.payment-detail-container .personal-information {
+    background-color: #fff;
+    padding: 50px;
+    padding-left: 30px;
+    border-bottom: 1px solid black;
+}
+
+.payment-detail-container .payment-method {
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 8px;
+
+}
+
+.payment-detail-container .personal-information label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+    font-family: var(--font-family);
+}
+
+.payment-detail-container .payment-method label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333;
+    font-family: var(--font-family);
+}
+
+.payment-detail-container .personal-information input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.payment-detail-container .payment-method input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.payment-method input[type="radio"] {
+    width: auto;
+    margin-right: 10px;
+}
+
+.order-detail ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.order-detail li {
+    margin-bottom: 10px;
+}
+
+.payment-detail-container .action-button {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0px;
+}
+
+.payment-detail-container .confirm-payment {
+    width: 13rem;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: var(--font-family);
+    font-size: 1.1em;
+}
+
+.confirm-payment:hover {
+    background-color: black;
+    color: var(--font-color);
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.payment-detail-container .promotion-code button {
+    width: 7rem;
+    padding: 7px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+    transition: background-color 0.3s ease;
+    font-family: var(--font-family);
+    font-size: 1.1em;
+}
+
+.payment-detail-container .promotion-code button:hover {
+    background-color: rgb(10, 168, 207);
+}
+
+.payment-detail-container .order-detail-title{
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    font-family: var(--font-family);
+}
+/* Payment Order's Products */
+
+.payment-detail-container .payment-method ul{
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 30px 0px;
+}
+
+.payment-detail-container  .list-order .order-detail-preview {
+    display: flex;
+    margin: 30px 0px;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 90%;
+    padding: 20px 0px;
+}
+
+.payment-detail-container .list-order .order-detail-preview {
+    font-family: var(--font-family);
+}
+
+
+
+.payment-detail-container .list-order .order-detail-preview .order-info p {
+    padding: 2px 0px;
+}
+
+.payment-detail-container .list-order .order-detail-preview img {
+    object-fit: cover;
+    text-align: left;
+    width: 70px;
+    height: 70px;
+    padding: 0px 20px;
+}
