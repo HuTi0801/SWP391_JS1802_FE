@@ -19,3 +19,14 @@ export const createDiamondShell = (data) => async (dispatch) => {
         dispatch({ type: "DIAMONDSHELL_FAIL" }); // Dispatch failure action
     }
 };
+
+
+export const updateDiamondShell = (id, diamondShellData) => async (dispatch) => {
+    dispatch({ type: "DIAMONDSHELL_START" }); // Bắt đầu tải dữ liệu từ API
+    try {
+        await DiamondShellApi.updateDiamondShell(id, diamondShellData); // Gửi dữ liệu đến API để cập nhật
+        dispatch({ type: "DIAMONDSHELL_SUCCESS" }); // Gửi action thành công
+    } catch (error) {
+        dispatch({ type: "DIAMONDSHELL_FAIL" }); // Gửi action thất bại
+    }
+};

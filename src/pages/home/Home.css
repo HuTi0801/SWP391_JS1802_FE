@@ -15,7 +15,7 @@
 }
 
 .function-container .url .product,
-.warranty,
+.OrderListPage,
 .promotion,
 .profile,
 .logout {
@@ -39,7 +39,7 @@
     color: blue;
 }
 
-.warranty:hover {
+.OrderListPage:hover {
     color: blue;
 }
 

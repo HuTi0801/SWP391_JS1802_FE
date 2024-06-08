@@ -1,0 +1,159 @@
+.OrderList-container {
+    display: inline-flex;
+    padding-top: 50px;
+    margin-top: -88px;
+    border-right: 1px solid #000;
+}
+
+.vertical-line {
+    border: none;
+    border-right: 1px solid #000;
+    height: 100vh;
+    margin-right: 20px;
+}
+
+.Status {
+    color: black;
+    font-size: 30px;
+    text-decoration: none;
+    margin-left: 15px;
+    margin-bottom: 20px;
+}
+
+.url_Status {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+}
+
+.url_Status a {
+    text-decoration: none;
+    padding: 8px 16px;
+}
+
+.Pending,
+.Confirm,
+.Delivering,
+.Delivered,
+.Canceled,
+.All {
+    color: black;
+    font-size: 30px;
+    margin-bottom: 30px;
+    text-decoration: none;
+}
+
+.All {
+    margin-left: 2px;
+}
+
+
+.Confirm:hover {
+    color: red;
+    font-weight: bold;
+}
+
+.Pending:hover {
+    color: red;
+    font-weight: bold;
+}
+
+.Delivering:hover {
+    color: red;
+    font-weight: bold;
+}
+
+.Delivered:hover {
+    color: red;
+    font-weight: bold;
+}
+
+.Canceled:hover {
+    color: red;
+    font-weight: bold;
+}
+
+.All:hover {
+    color: red;
+    font-weight: bold;
+}
+
+.OrderList {
+    display: block;
+    width: 600px;
+    height: 180px;
+    border: 2px solid lightgray;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-left: 400px;
+    margin-top: -600px;
+    font-stretch: expanded;
+}
+
+
+
+.OrderID,
+.TotalPrice,
+.SaleStaffID,
+.DeliveryStaffID,
+.ConfirmStatus,
+.Start_Date,
+.End_Date {
+    margin-right: 20px;
+    font-stretch: 5px;
+}
+
+.OrderList .Assigned {
+    padding: 32px 50px;
+
+    display: flex;
+
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    font-size: large;
+    /* Căn giữa theo chiều dọc */
+    flex-direction: column;
+    text-align: center;
+    margin-left: auto;
+    margin-right: 0;
+    margin-top: -120px;
+}
+
+.Assigned,
+.ViewDetails {
+    display: block;
+    background-color: rgba(128, 128, 128, 0.811);
+    width: 20px;
+    border-radius: 20px;
+}
+
+.OrderList .ViewDetails {
+    padding: 20px 50px;
+    display: flex;
+    font-stretch: expanded;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    /* Căn giữa theo chiều dọc */
+    flex-direction: column;
+    text-align: center;
+    font-size: large;
+    margin-left: 320px;
+    margin-right: 0;
+    margin-top: -90px;
+}
+
+.OrderList .ViewDetails:hover {
+    color: rgba(255, 0, 0, 0.826);
+    background-color: rgba(0, 106, 255, 0.934)
+}
+
+.OrderList .Assigned:hover {
+    color: rgba(255, 0, 0, 0.826);
+    background-color: rgba(0, 106, 255, 0.934)
+}

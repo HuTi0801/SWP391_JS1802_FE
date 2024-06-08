@@ -2,12 +2,14 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createDiamondShell } from "../../../../../redux/actions/diamondShellAction";
+
 const CreateDiamondShell = () => {
     const dispatch = useDispatch();
+
     const [diamondShell, setDiamondShell] = useState({
         gender: "",
         imageDiamondShell: "",
-        metarial: "",
+        material: "",
         price: "0",
         quantity: "0",
         secondaryStoneType: "",
@@ -19,6 +21,8 @@ const CreateDiamondShell = () => {
 
     const diamondShellAdd = async () => {
         dispatch(createDiamondShell(diamondShell));
+        alert("Add Diamond successfully!!!!");
+
     };
 
     return (
@@ -28,7 +32,7 @@ const CreateDiamondShell = () => {
             <div className="sub-create-DiamondShell">
                 <div className="Gender">
                     <label htmlFor="Gender">Gender:</label>
-                    <select name="gender" onChange={handleChange}>
+                    <select name="gender" placeholder="Gender" onChange={handleChange}>
                         <option value="">Gender</option>
                         <option value="female">Female</option>
                         <option value="male">Male</option>
@@ -47,7 +51,7 @@ const CreateDiamondShell = () => {
 
                 <div className="Material">
                     <label htmlFor="Material">Material:</label>
-                    <select name="material" onChange={handleChange}>
+                    <select name="material" placeholder="Material" onChange={handleChange}>
                         <option value="">Material</option>
                         <option value="Platinum 18K">Platinum 18K</option>
                         <option value="Gold 14K">Gold 14K</option>
@@ -66,26 +70,28 @@ const CreateDiamondShell = () => {
 
                 <div className="Quantity">
                     <label htmlFor="Quantity">Quantity:</label>
-                    <select name="quantity" onChange={handleChange}>
-                        <option value="">Quantity</option>
-                        <option value="100">100</option>
-                        <option value="200">200</option>
-                    </select>
+                    <input
+                        type="number"
+                        placeholder="Quantity"
+                        name="quantity"
+                        onChange={handleChange}
+                    />
                 </div>
 
                 <div className="SecondaryStoneType">
                     <label htmlFor="SecondaryStoneType">Secondary Stone Type:</label>
-                    <select name="secondaryStoneType" onChange={handleChange}>
-                        <option value="">Secondary Stone Type</option>
-                        <option value="KC DIA WHIRD1.6x2, 1.1x18.09x44">KC DIA WHIRD1.6x2, 1.1x18.09x44</option>
-                        <option value="KC DIA WHIRD0.9x44,08x96">KC DIA WHIRD0.9x44,08x96</option>
-                    </select>
+                    <input
+                        type="text"
+                        placeholder="SecondaryStoneType"
+                        name="secondaryStoneType"
+                        onChange={handleChange}
+                    />
                 </div>
 
                 <div className="statusDiamondShell">
-                    <label htmlFor="statusDiamondShell">statusDiamond:</label>
-                    <select name="statusDiamondShell" onChange={handleChange}>
-                        <option value="">statusDiamond</option>
+                    <label htmlFor="statusDiamondShell">StatusDiamond:</label>
+                    <select name="statusDiamondShell" placeholder="StatusDiamondShell" onChange={handleChange}>
+                        <option value="">StatusDiamondShell</option>
                         <option value="True">True</option>
                         <option value="False">False</option>
                     </select>

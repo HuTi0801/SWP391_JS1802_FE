@@ -8,9 +8,13 @@ export const diamondShellReducer = (
             return { ...state, loading: true };
         case "DIAMONDSHELL_SUCCESS":
             return { ...state, diamondShellData: payload, loading: false };
+        case "DIAMONDSHELL_UPDATE_SUCCESS":
+            // Handle the update success action here if needed
+            return { ...state, loading: false };
         case "DIAMONDSHELL_FAIL":
             return { ...state, loading: false, error: true };
         default:
             return { ...state };
+
     }
 };

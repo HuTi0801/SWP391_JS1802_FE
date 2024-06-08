@@ -7,3 +7,8 @@ export const getProduct = () => {
 export const createDiamondShellRequest = (data) => {
     return API.post("/diamond-shell/create-diamond-shell", data);
 };
+
+
+export const updateDiamondShell = (id, diamondShellData) => {
+    return API.post(`/diamond-shell/update-diamond-shell-${id}`, diamondShellData);
+};

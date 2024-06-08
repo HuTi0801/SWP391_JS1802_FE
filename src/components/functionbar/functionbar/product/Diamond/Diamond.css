@@ -63,6 +63,76 @@
     justify-content: center;
 }
 
+.sub-create-Diamond .imgDiamond label,
+.sub-create-Diamond .CertificateNumber label,
+.sub-create-Diamond .Origin label,
+.sub-create-Diamond .Quantity label,
+.sub-create-Diamond .Price label,
+.sub-create-Diamond .Clarity label,
+.sub-create-Diamond .CaratWeight label,
+.sub-create-Diamond .Cut label,
+.sub-create-Diamond .Color label,
+.sub-create-Diamond .statusDiamond label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 40px;
+    flex: 2;
+}
+
+.sub-create-Diamond .imgDiamond label {
+    margin-left: -34px;
+}
+
+.sub-create-Diamond .statusDiamond label {
+    margin-left: -44px;
+}
+
+.sub-create-Diamond .Quantity label {
+    margin-left: -74px;
+}
+
+.sub-create-Diamond .Price label {
+    margin-left: -90px;
+}
+
+.sub-create-Diamond .Clarity label,
+.sub-create-Diamond .Origin label {
+    margin-left: -88px;
+}
+
+.sub-create-Diamond .CaratWeight label {
+    margin-left: -48px;
+}
+
+.sub-create-Diamond .Cut label {
+    margin-left: -101px;
+}
+
+.sub-create-Diamond .Color label {
+    margin-left: -95px;
+}
+
+.sub-create-Diamond .imgDiamond input,
+.sub-create-Diamond .CertificateNumber input,
+.sub-create-Diamond .Origin select,
+.sub-create-Diamond .Quantity input,
+.sub-create-Diamond .Price input,
+.sub-create-Diamond .Clarity select,
+.sub-create-Diamond .CaratWeight input,
+.sub-create-Diamond .Cut select,
+.sub-create-Diamond .Color select,
+.sub-create-Diamond .statusDiamond select {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex: 2;
+    margin-left: 30px;
+}
+
 button {
     margin-top: 10px;
     display: block;
@@ -174,6 +244,12 @@ select {
     font-stretch: expanded;
 }
 
+.diamond-product-info-container .CutData p,
+.diamond-product-info-container .ColorData p,
+.diamond-product-info-container .ClarityData p {
+    margin-left: 7px;
+}
+
 /* ViewDetail Button */
 .diamond-card .diamondInfo {
     padding: 10px 50px;
@@ -194,7 +270,8 @@ select {
 
 }
 
-.diamondInfo {
+.diamondInfo,
+.Delete {
     display: block;
     background-color: rgba(128, 128, 128, 0.811);
     width: 2.4em;
@@ -204,4 +281,62 @@ select {
 .diamond-card .diamondInfo:hover {
     color: rgba(255, 0, 0, 0.826);
     background-color: rgba(0, 106, 255, 0.934)
+}
+
+.diamond-card .Delete:hover {
+    color: rgba(255, 0, 0, 0.826);
+    background-color: rgba(0, 106, 255, 0.934)
+}
+
+.diamond-card .Delete {
+    padding: 20px 50px;
+    padding-bottom: 23.5px;
+    display: flex;
+    font-stretch: expanded;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    /* Căn giữa theo chiều dọc */
+    flex-direction: column;
+    text-align: center;
+    font-size: large;
+    margin-left: auto;
+    margin-right: 200px;
+    margin-top: -64px;
+}
+
+/* pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-link {
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.page-link:hover {
+    background-color: #f5f5f5;
+}
+
+.page-link.active {
+    font-weight: bold;
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
 }

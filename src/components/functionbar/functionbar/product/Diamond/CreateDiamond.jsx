@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createProduct } from "../../../../../redux/actions/productAction";
+
 const CreateDiamond = () => {
     const dispatch = useDispatch();
+
     const [diamond, setDiamond] = useState({
         caratWeight: "0",
         certificateNumber: "",
@@ -22,6 +24,8 @@ const CreateDiamond = () => {
 
     const diamondAdd = () => {
         dispatch(createProduct(diamond));
+        alert("Add Diamond successfully!!!!");
+
     };
 
     return (
@@ -31,7 +35,7 @@ const CreateDiamond = () => {
             <div className="sub-create-Diamond">
                 <div className="Color">
                     <label htmlFor="color">Color:</label>
-                    <select name="color" onChange={handleChange}>
+                    <select name="color" placeholder="Color" onChange={handleChange}>
                         <option value="">Color</option>
                         <option value="D">D</option>
                         <option value="F">F</option>
@@ -41,7 +45,7 @@ const CreateDiamond = () => {
 
                 <div className="Cut">
                     <label htmlFor="cut">Cut:</label>
-                    <select name="cut" onChange={handleChange}>
+                    <select name="cut" placeholder="Cut" onChange={handleChange}>
                         <option value="">Cut</option>
                         <option value="EX">EX</option>
                     </select>
@@ -49,16 +53,17 @@ const CreateDiamond = () => {
 
                 <div className="CaratWeight">
                     <label htmlFor="carat_weight">CaratWeight:</label>
-                    <select name="caratWeight" onChange={handleChange}>
-                        <option value="">CaratWeight</option>
-                        <option value="3.4">3.4</option>
-                        <option value="4">4</option>
-                    </select>
+                    <input
+                        type="text"
+                        placeholder="CaratWeight"
+                        name="caratWeight"
+                        onChange={handleChange}
+                    />
                 </div>
 
                 <div className="Clarity">
                     <label htmlFor="clarity">Clarity:</label>
-                    <select name="clarity" onChange={handleChange}>
+                    <select name="clarity" placeholder="Clarity" onChange={handleChange}>
                         <option value="">Clarity</option>
                         <option value="VS2">VS2</option>
                         <option value="VVS2">VVS2</option>
@@ -67,10 +72,10 @@ const CreateDiamond = () => {
 
                 <div className="Origin">
                     <label htmlFor="origin">Origin:</label>
-                    <select name="origin" onChange={handleChange}>
+                    <select name="origin" placeholder="Origin" onChange={handleChange}>
                         <option value="">Origin</option>
                         <option value="Natural diamond">Natural diamond</option>
-                        <option value="Artificialdiamond">Artificial diamond</option>
+                        <option value="Artificial diamond">Artificial diamond</option>
                     </select>
                 </div>
 
@@ -86,12 +91,12 @@ const CreateDiamond = () => {
 
                 <div className="Quantity">
                     <label htmlFor="quantity">Quantity:</label>
-                    <select name="quantity" onChange={handleChange}>
-                        <option value="">Quantity</option>
-                        <option value="100">100</option>
-                        <option value="150">150</option>
-                        <option value="200">200</option>
-                    </select>
+                    <input
+                        type="number"
+                        placeholder="Quantity"
+                        name="quantity"
+                        onChange={handleChange}
+                    />
                 </div>
 
                 <div className="CertificateNumber">
@@ -115,9 +120,9 @@ const CreateDiamond = () => {
                 </div>
 
                 <div className="statusDiamond">
-                    <label htmlFor="statusDiamond">statusDiamond:</label>
-                    <select name="statusDiamond" onChange={handleChange}>
-                        <option value="">statusDiamond</option>
+                    <label htmlFor="statusDiamond">StatusDiamond:</label>
+                    <select name="statusDiamond" placeholder="StatusDiamond" onChange={handleChange}>
+                        <option value="">StatusDiamond</option>
                         <option value="True">True</option>
                         <option value="False">False</option>
                     </select>

@@ -8,10 +8,10 @@ body {
 }
 
 :root {
-  --primary-color: white;
   --bg-color: rgb(71, 71, 71);
-  --border-color: rgb(240, 240, 240);
+  --font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   --font-color: rgb(221, 221, 221);
+  --page-content-height: calc(100vh - 200px);
   --size-xl: 22px;
   --size-l: 18px;
   --font-styledata: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif

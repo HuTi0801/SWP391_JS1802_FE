@@ -1,7 +1,7 @@
 .diamond-shell-infodetails-container {
     font-family: Arial, sans-serif;
     background-color: white;
-    border: 3px solid black;
+    border: 1px hidden lightgray;
     padding: 20px;
     width: 600px;
     height: 300px;
@@ -97,6 +97,7 @@ h1 {
     margin-top: -365px;
     margin-bottom: 20px;
     margin-left: 100px;
+    transition: all 0.3s ease;
 }
 
 .ImageDiamondShellDetails img {
@@ -107,12 +108,156 @@ h1 {
     height: auto;
     object-fit: cover;
     margin-right: 10px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.45);
-    transition: 0.4 ease;
+    border-radius: 50px;
+    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.45);
+    transition: all 0.2s ease;
     /* Add shadow effect */
 }
 
 .diamond-shell-infodetails-container .PriceDetails p {
     margin-left: 30px;
+}
+
+.diamondShellUpdate {
+    display: block;
+    background-color: rgba(128, 128, 128, 0.811);
+    width: 2.4em;
+    border-radius: 20px;
+}
+
+.diamond-shell-infodetails-container.diamondShellUpdate:hover {
+    color: rgba(255, 0, 0, 0.826);
+    background-color: rgba(0, 106, 255, 0.934)
+}
+
+.diamond-shell-infodetails-container .diamondShellUpdate {
+    padding: 10px 50px;
+
+    display: flex;
+
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    /* Căn giữa theo chiều dọc */
+    flex-direction: column;
+    text-align: center;
+    margin-left: auto;
+    margin-right: 160px;
+    margin-top: 20px;
+
+}
+
+/* Update Diamondshell */
+
+.update-DiamondShell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+}
+
+.update-DiamondShell .sub-update-DiamondShell .Material,
+.Gender,
+.SecondaryStoneType,
+.Quantity,
+.Price,
+.imageDiamondShell,
+.statusDiamondShell {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    /* Adjusted to align to the left */
+}
+
+.sub-update-DiamondShell .Material label,
+.sub-update-DiamondShell .SecondaryStoneType label,
+.sub-update-DiamondShell .Quantity label,
+.sub-update-DiamondShell .Price label,
+.sub-update-DiamondShell .imageDiamondShell label,
+.sub-update-DiamondShell .statusDiamondShell label,
+.sub-update-DiamondShell .Gender label {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    /* Adjusted to align to the left */
+    margin-right: 30px;
+    flex: 2;
+}
+
+.sub-update-DiamondShell .Quantity label,
+.sub-update-DiamondShell .Material label {
+    margin-left: 0;
+    /* Adjusted to remove negative margin */
+}
+
+.sub-update-DiamondShell .Gender label {
+    margin-left: 0;
+    /* Adjusted to remove negative margin */
+}
+
+.sub-update-DiamondShell .statusDiamondShell label {
+    margin-left: 0;
+    /* Adjusted to remove negative margin */
+}
+
+.sub-update-DiamondShell .Price label {
+    margin-left: 0;
+    /* Adjusted to remove negative margin */
+}
+
+.sub-update-DiamondShell .imageDiamondShell label {
+    margin-left: 0;
+    /* Adjusted to remove negative margin */
+}
+
+.sub-update-DiamondShell .SecondaryStoneType label {
+    margin-left: 0;
+    /* Adjusted to remove negative margin */
+}
+
+.sub-update-DiamondShell .statusDiamondShell label {
+    margin-left: 0;
+    /* Adjusted to remove negative margin */
+}
+
+.sub-update-DiamondShell .Material input,
+.sub-update-DiamondShell .SecondaryStoneType input,
+.sub-update-DiamondShell .Quantity input,
+.sub-update-DiamondShell .Price input,
+.sub-update-DiamondShell .imageDiamondShell input,
+.sub-update-DiamondShell .statusDiamondShell input,
+.sub-update-DiamondShell .Gender input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    /* Adjusted to align to the left */
+    text-align: center;
+    flex: 2;
+    margin-left: 30px;
+    padding: 5px;
+}
+
+button {
+    margin-top: 10px;
+    display: block;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: rgba(35, 35, 236, 0.8);
+    color: white;
+    font-weight: 500;
+    border-style: none;
+    width: 60px;
+    margin-left: 140px;
+
+}
+
+button:hover {
+    color: rgba(255, 0, 0, 0.826);
+    background-color: rgba(0, 106, 255, 0.934);
 }

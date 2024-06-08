@@ -8,3 +8,9 @@ export const createProductRequest = (data) => {
     return API.post("/diamond/create-diamond", data); // Update the API endpoint to send the data
 };
 
+
+
+export const updateDiamond = (id, diamondData) => {
+    return API.post(`/diamond/update-diamond-${id}`, diamondData);
+};
+
