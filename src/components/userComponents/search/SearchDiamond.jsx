@@ -57,8 +57,10 @@ const SearchDiamond = () => {
                         <label htmlFor="clarity">Clarity</label>
                         <select name="clarity" id="clarity" onChange={handleChange} >
                             <option value="">Choose Clarity</option>
+                            <option value="VS1">VS1</option>
                             <option value="VS2">VS2</option>
                             <option value="VVS2">VVS2</option>
+                            
                         </select>
                     </li>
                     <li className='color'>
@@ -67,6 +69,7 @@ const SearchDiamond = () => {
                             <option value="">Choose Color</option>
                             <option value="D">D</option>
                             <option value="F">F</option>
+                            <option value="G">G</option>
                         </select>
                     </li>
                     <li className='origin'>
@@ -74,7 +77,7 @@ const SearchDiamond = () => {
                         <select name="origin" id="origin" onChange={handleChange}>
                             <option value="">Choose Origin</option>
                             <option value="Natural diamond">Natural Diamond</option>
-                            <option value="Artificialdiamond">Artificial Diamond</option>
+                            <option value="Artificial diamond">Artificial Diamond</option>
                         </select>
                     </li>
                     <li className='search-button'>

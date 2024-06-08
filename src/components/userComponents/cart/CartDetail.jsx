@@ -128,21 +128,22 @@ const CartDetail = () => {
 
 
 
-    const handleDeleteCart = async (productId, productType) => {
+    const handleDeleteCart = async (productId, productType,size) => {
         try {
             // Send delete request to server
             const response = await axios.post("http://localhost:8080/cart/delete-cart-item", null, {
                 params: {
                     customerID: customerID,
                     productID: productId,
-                    productType: productType
+                    productType: productType,
+                    size: size,
                 }
             });
 
             // If successful, update local state
             setCart(prevCart => ({
                 ...prevCart,
-                items: prevCart.items.filter(item => item.productId !== productId || item.productType !== productType)
+                items: prevCart.items.filter(item => item.productId !== productId || item.productType !== productType || item.size !== size)
             }));
         } catch (error) {
             console.error("Error deleting cart item:", error);
@@ -177,15 +178,15 @@ const CartDetail = () => {
                             const imageUrl = isDiamond ? (productDetails?.imageDiamond || '') : (productDetails?.imageDiamondShell || '');
                             const productDescription = isDiamond
                                 ? `${productDetails?.origin || ''} ${productDetails?.cut || ''} ${productDetails?.clarity || ''}`
-                                : `${productDetails?.material || ''} ${productDetails?.secondaryStoneType || ''}`;
+                                : `${productDetails?.material || ''} ${productDetails?.secondaryStoneType || ''} Size ${item?.size || ''}`;
 
                             return (
-                                <tr key={`${item.productId}-${item.productType}`}>
+                                <tr key={`${item.productId}-${item.productType}-${item.size}`}>
                                     <td className='product-cart-id'>{index + 1}</td>
                                     <td className='product-info'>
                                         <img src={imageUrl} alt="product" className='product-image' />
                                         <p>{productDescription}</p>
-                                        <DeleteOutlineTwoToneIcon className='remove-cart' onClick={() => { handleDeleteCart(item.productId, item.productType) }} />
+                                        <DeleteOutlineTwoToneIcon className='remove-cart' onClick={() => { handleDeleteCart(item.productId, item.productType,item.size) }} />
                                     </td>
                                     <td className='product-quantity'>
                                         <div className='quantity-container'>

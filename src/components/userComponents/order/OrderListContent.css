@@ -1,5 +1,6 @@
 .order-list-content-container {
     width: 100%;
+    padding: 70px 0px;
 }
 
 .order-list-content {
@@ -51,7 +52,7 @@
 /* Status and View Detail Button */
 
 
-.status-and-view span {
+.order-list-content-container .status-and-view span {
     font-family: var(--font-family);
     font-size: 1em;
     text-align: center;
@@ -60,7 +61,7 @@
     border-radius: 5px;
 }
 
-.status-and-view button {
+.order-list-content-container .status-and-view button {
     font-family: var(--font-family);
     margin-top: 50px;
     font-size: 1em;

@@ -2,6 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import './DiamondInfo.css';
+import Header from '../header/Header';
+import Navbar from '../header/navbar/Navbar';
+import Footer from '../footer/Footer';
 
 const DiamondInfo = () => {
     const { id } = useParams();
@@ -56,32 +59,39 @@ const DiamondInfo = () => {
     }
 
     return (
-        <div className='diamond-product-info-container'>
-            <div className='product-image'>
-                <img src={diamond.imageDiamond} alt="Diamond" />
-            </div>
-            <div className='diamond-product-right'>
-                <div className='diamond-product-detail'>
-                    <div className='text'>
-                        <p className='name'>{diamond.origin} {diamond.cut} {diamond.color} {diamond.clarity}</p>
-                        <p className='price'>{formatPrice(diamond.price)}đ</p>
+        <div>
+            <Header />
+            <Navbar />
+            <div className='diamond-product-info-container'>
+
+                <div className='product-image'>
+                    <img src={diamond.imageDiamond} alt="Diamond" />
+                </div>
+                <div className='diamond-product-right'>
+                    <div className='diamond-product-detail'>
+                        <div className='text'>
+                            <p className='name'>{diamond.origin} {diamond.cut} {diamond.color} {diamond.clarity}</p>
+                            <p className='price'>{formatPrice(diamond.price)}đ</p>
+                        </div>
+                        <div className='parameter'>
+                            <span>Cut:</span>
+                            <p>{diamond.cut}</p>
+
+                            <span>Color:</span>
+                            <p>{diamond.color}</p>
+
+                            <span>Clarity:</span>
+                            <p>{diamond.clarity}</p>
+                        </div>
                     </div>
-                    <div className='parameter'>
-                        <span>Cut:</span>
-                        <p>{diamond.cut}</p>
-
-                        <span>Color:</span>
-                        <p>{diamond.color}</p>
-
-                        <span>Clarity:</span>
-                        <p>{diamond.clarity}</p>
+                    <div className='button-payment'>
+                        <button type="button" className='add-cart' onClick={handleAddToCart}>Add To Cart</button>
+                        <button type="button" className='buy-now' onClick={handleBuyNow}>BUY NOW</button>
                     </div>
                 </div>
-                <div className='button-payment'>
-                    <button type="button" className='add-cart' onClick={handleAddToCart}>Add To Cart</button>
-                    <button type="button" className='buy-now' onClick={handleBuyNow}>BUY NOW</button>
-                </div>
+
             </div>
+            <Footer />
         </div>
     );
 };

@@ -2,6 +2,9 @@ import React from 'react';
 import './Home.css';
 import Banner from '../../../components/userComponents/home/Banner';
 import ProductPreview from '../../../components/userComponents/home/ProductPreview';
+import Header from '../../../components/userComponents/header/Header';
+import Navbar from '../../../components/userComponents/header/navbar/Navbar';
+import Footer from '../../../components/userComponents/footer/Footer';
 const listBanner = [
   {
     id: 1,
@@ -28,10 +31,11 @@ const listBanner = [
 const Home = () => {
   return (
     <div className='home-container'>
-      
+      <Header />
+      <Navbar />
       <Banner listBanner={listBanner} />
       <ProductPreview listBanner={listBanner} />
-      
+      <Footer />
     </div>
   )
 }

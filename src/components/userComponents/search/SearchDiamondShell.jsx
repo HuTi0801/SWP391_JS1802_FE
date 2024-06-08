@@ -57,6 +57,8 @@ const SearchDiamondShell = () => {
                             <option value="KC DIA WHIRD1.6x2, 1.1x18.09x44">KC DIA WHIRD1.6x2, 1.1x18.09x44 </option>
                             <option value="KC DIA WHIRD1.3x20">KC DIA WHIRD1.3x20 </option>
                             <option value="KC DIA WHIRD0.9x44,08x96">KC DIA WHIRD0.9x44,08x96 </option>
+                            <option value="KC DIA WHIRD1.6x2, 1.3x18">KC DIA WHIRD1.6x2, 1.3x18 </option>
+                            
                         </select>
                     </li>
                     <li className='gender' onChange={handleChange}>
