@@ -189,6 +189,7 @@ select {
 
     display: flex;
     flex-direction: column;
+    height: 100vh;
 }
 
 .diamond-product-info-container .diamond-card {
@@ -308,12 +309,20 @@ select {
 }
 
 /* pagination */
+
+
 .pagination {
     display: flex;
     justify-content: center;
     list-style: none;
     padding: 0;
-    margin-top: 20px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    padding: 10px;
 }
 
 .page-item {

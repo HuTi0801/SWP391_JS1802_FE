@@ -8,7 +8,7 @@ const DiamondShellInfo = () => {
 
     const fetchDiamondShells = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/diamond-shell/get-all-diamond-shell');
+            const response = await axios.get('http://localhost:8080/auth/diamond-shell/get-all-diamond-shell');
             return response.data.result;
         } catch (error) {
             console.error('Error fetching diamond shell info:', error);
@@ -21,7 +21,7 @@ const DiamondShellInfo = () => {
         if (!shouldDelete) return;
 
         try {
-            const url = `http://localhost:8080/diamond-shell/remove-diamond-shell-${id}`;
+            const url = `http://localhost:8080/auth/diamond-shell/remove-diamond-shell-${id}`;
             const response = await axios.post(url);
             const { status } = response.data.result;
 
@@ -31,8 +31,8 @@ const DiamondShellInfo = () => {
                     element.setAttribute("status", "true");
 
                 }
-
             }
+
         } catch (error) {
             console.error('Error deleting diamondshell:', error);
 

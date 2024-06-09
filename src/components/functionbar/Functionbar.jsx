@@ -23,6 +23,7 @@ import SaleStaffDelivering from './functionbar/ordertist/assign/SaleStaffDeliver
 import DeliveryStaffDelivering from './functionbar/ordertist/assign/DeliveryStaffDelivering';
 import SaleStaffDelivered from './functionbar/ordertist/assign/SaleStaffDelivered';
 import DeliveryStaffDelivered from './functionbar/ordertist/assign/DeliveryStaffDelivered';
+import OrderDetails from './functionbar/ordertist/OrderDetails';
 const Functionbar = () => {
     const [showLinks, setShowLinks] = useState(false);
 
@@ -110,7 +111,7 @@ const Functionbar = () => {
                 <Route path='/deliveryStaffDelivered' element={<DeliveryStaffDelivered />} />
 
                 <Route path='/canceled' element={< Canceled />} />
-
+                <Route path='/orderDetails/:id' element={< OrderDetails />} />
 
             </Routes>
 

@@ -12,7 +12,7 @@ const DiamondShellInfoDetails = () => {
     useEffect(() => {
         const fetchDiamondShellsDetails = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/diamond-shell/get-a-diamond-shell-${id}`);
+                const response = await axios.get(`http://localhost:8080/auth/diamond-shell/get-a-diamond-shell-${id}`);
                 setDiamondShells(response.data.result);
             } catch (error) {
                 setError(error.message);

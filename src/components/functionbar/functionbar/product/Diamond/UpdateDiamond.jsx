@@ -32,7 +32,7 @@ const UpdateDiamond = () => {
     useEffect(() => {
         const fetchDiamondDetails = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/diamond/get-a-diamond-${id}`);
+                const response = await axios.get(`http://localhost:8080/auth/diamond/get-a-diamond-${id}`);
                 setDiamond(response.data.result);
             } catch (error) {
                 setError(error.message);

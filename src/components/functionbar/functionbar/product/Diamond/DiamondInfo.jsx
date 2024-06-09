@@ -9,7 +9,7 @@ const DiamondInfo = () => {
     /* Display Diamond Info  */
     const getDiamondInfo = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/diamond/get-all-diamond');
+            const response = await axios.get('http://localhost:8080/auth/diamond/get-all-diamond');
             return response.data.result;
         } catch (error) {
             console.error('Error fetching diamond info:', error);
@@ -22,7 +22,7 @@ const DiamondInfo = () => {
         if (!shouldDelete) return;
 
         try {
-            const url = `http://localhost:8080/diamond/remove-diamond-${id}`;
+            const url = `http://localhost:8080/auth/diamond/remove-diamond-${id}`;
             const response = await axios.post(url);
             const { status } = response.data.result;
 
@@ -33,6 +33,7 @@ const DiamondInfo = () => {
                 }
 
             }
+
         } catch (error) {
             console.error('Error deleting diamond:', error);
             return <div>Error: {error}</div>;
