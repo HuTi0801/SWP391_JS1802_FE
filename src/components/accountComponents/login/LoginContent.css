@@ -1,15 +1,15 @@
 /* Container */
 .login-content-container {
     width: 100%;
-    height: 110vh; 
+    height: 110vh;
     display: flex;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
     background-image: url("https://t3.ftcdn.net/jpg/06/47/49/12/360_F_647491277_CEc0EIRHVlnWkFIgFyoJTtZGCYOjSaNV.jpg");
     background-size: cover;
     background-position: center;
-    position: relative; 
-    overflow: hidden; 
+    position: relative;
+    overflow: hidden;
 }
 
 /* Overlay */
@@ -19,30 +19,31 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
-    z-index: 1; 
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 
 /* Login Box */
 .login-content-box {
     display: flex;
     flex-direction: column;
-    gap: 40px; 
+    gap: 40px;
     width: 400px;
-    height: 500px; 
+    height: 500px;
     padding: 40px;
     border: 1px solid black;
     border-radius: 10px;
-    background-color: rgba(255, 255, 255, 0.8); 
-    z-index: 2; 
-    background: linear-gradient(197deg, rgba(231,231,231,0.8) 0%, rgba(251,251,251,0.8) 28%, rgba(151,162,184,0.8) 70%, rgba(102,117,120,0.8) 100%);}
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 2;
+    background: linear-gradient(197deg, rgba(231, 231, 231, 0.8) 0%, rgba(251, 251, 251, 0.8) 28%, rgba(151, 162, 184, 0.8) 70%, rgba(102, 117, 120, 0.8) 100%);
+}
 
 /* Title */
 .login-content-box .login-title {
     width: 100%;
     text-align: center;
     padding: 20px 0;
-    font-size: 4.3em; 
+    font-size: 4.3em;
     font-family: 'Times New Roman', Times, serif;
     font-weight: bold;
     color: red;
@@ -65,7 +66,7 @@
 .login-content-box .login-form input {
     padding: 10px;
     margin: 10px 0;
-    width: 90%; 
+    width: 90%;
     border-radius: 2px;
     border: 1px solid black;
 }
@@ -89,7 +90,7 @@
     padding-top: 60px;
 }
 
-.login-content-box .action-button .login-button{
+.login-content-box .action-button .login-button {
 
     padding: 10px 20px;
     font-size: 1em;

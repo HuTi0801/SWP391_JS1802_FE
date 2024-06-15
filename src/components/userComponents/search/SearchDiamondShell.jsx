@@ -23,12 +23,12 @@ const SearchDiamondShell = () => {
     const handleSearch = async () => {
         try {
             const response = await axios.post(
-                "http://localhost:8080/diamond-shell/search-diamond-shell",
+                "http://localhost:8080/auth/diamond-shell/search-diamond-shell",
                 diamondShell
             );
             console.log(response); // Handle the response data as needed
             console.log(diamondShell)
-            navigate('/productlist',{state: {results: response.data}})
+            navigate('/productlist', { state: { results: response.data } })
         } catch (e) {
             console.error(e);
         }
@@ -58,7 +58,7 @@ const SearchDiamondShell = () => {
                             <option value="KC DIA WHIRD1.3x20">KC DIA WHIRD1.3x20 </option>
                             <option value="KC DIA WHIRD0.9x44,08x96">KC DIA WHIRD0.9x44,08x96 </option>
                             <option value="KC DIA WHIRD1.6x2, 1.3x18">KC DIA WHIRD1.6x2, 1.3x18 </option>
-                            
+
                         </select>
                     </li>
                     <li className='gender' onChange={handleChange}>

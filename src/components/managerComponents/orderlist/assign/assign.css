@@ -1,0 +1,351 @@
+.PendingAssigned-container {
+    display: inline;
+    padding-top: 50px;
+    margin-top: -88px;
+    border-right: 1px solid #000;
+}
+
+.Pendingcontainer {
+    display: inline-flex;
+    padding-top: 50px;
+    margin-top: -88px;
+    border-right: 1px solid #000;
+}
+
+.vertical-line {
+    border: none;
+    border-right: 1px solid #000;
+    height: 100vh;
+    margin-right: 20px;
+}
+
+.Status {
+    color: black;
+    font-size: 30px;
+    text-decoration: none;
+    margin-left: 15px;
+    margin-bottom: 20px;
+}
+
+.url_Status {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+}
+
+.url_Status a {
+    text-decoration: none;
+    padding: 8px 16px;
+}
+
+.Pending,
+.All {
+    color: black;
+    font-size: 30px;
+    margin-bottom: 30px;
+    text-decoration: none;
+}
+
+.All {
+    margin-left: 2px;
+}
+
+
+table {
+    width: 500px;
+    margin-top: 70px;
+    margin-left: 380px;
+}
+
+th,
+td,
+thead {
+    padding: 0 30px;
+    text-align: center;
+    border: 1px solid black;
+}
+
+td {
+
+    padding: 20px;
+}
+
+.FirstName,
+.LastName,
+.Start_Date {
+    width: 50px;
+}
+
+.ID {
+    color: red;
+    font-weight: bold;
+}
+
+.check_Attendence {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+.CheckApp {
+    margin-top: 20px;
+    margin-left: 5px;
+}
+
+.PendingAssigned-container .Assigned {
+    padding: 20px;
+    color: white;
+    background-color: rgba(142, 136, 136, 0.4);
+    font-size: larger;
+    width: fit-content;
+    margin-top: -700px;
+    position: relative;
+    margin-left: 1000px;
+    top: 40px;
+}
+
+.PendingAssigned-container .Assigned:hover {
+    color: rgba(255, 0, 0, 0.826);
+    background-color: rgba(0, 106, 255, 0.934);
+}
+
+/*  */
+
+.ConfirmAssigned-container {
+    display: inline;
+    padding-top: 50px;
+    margin-top: -88px;
+    border-right: 1px solid #000;
+}
+
+.ConfirmAssigned-container .Assigned {
+    padding: 20px;
+    color: white;
+    background-color: rgba(142, 136, 136, 0.4);
+    font-size: larger;
+    width: fit-content;
+    margin-top: -700px;
+    position: relative;
+    margin-left: 860px;
+    top: 40px;
+}
+
+.ConfirmAssigned-container .Assigned:hover {
+    color: rgba(255, 0, 0, 0.826);
+    background-color: rgba(0, 106, 255, 0.934);
+}
+
+.Confirmcontainer {
+    display: inline-flex;
+    padding-top: 50px;
+    margin-top: -88px;
+    border-right: 1px solid #000;
+}
+
+.vertical-line {
+    border: none;
+    border-right: 1px solid #000;
+    height: 100vh;
+    margin-right: 20px;
+}
+
+.Status {
+    color: black;
+    font-size: 30px;
+    text-decoration: none;
+    margin-left: 15px;
+    margin-bottom: 20px;
+}
+
+.url_Status {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+}
+
+.url_Status a {
+    text-decoration: none;
+    padding: 8px 16px;
+}
+
+.Confirm,
+.All {
+    color: black;
+    font-size: 30px;
+    margin-bottom: 30px;
+    text-decoration: none;
+}
+
+.All {
+    margin-left: 2px;
+}
+
+/*  */
+
+
+.DeliveringAssigned-container {
+    display: inline;
+    padding-top: 50px;
+    margin-top: -88px;
+    border-right: 1px solid #000;
+}
+
+.DeliveringAssigned-container .Staff {
+    padding: 20px;
+    color: white;
+    background-color: rgba(142, 136, 136, 0.4);
+    font-size: larger;
+    width: fit-content;
+    border-radius: 10px;
+    margin-top: -700px;
+    position: relative;
+    margin-left: 890px;
+    top: 40px;
+}
+
+.DeliveringAssigned-container .Staff:hover {
+    color: rgba(255, 0, 0, 0.826);
+    background-color: rgba(0, 106, 255, 0.934);
+}
+
+.Deliveringcontainer {
+    display: inline-flex;
+    padding-top: 50px;
+    margin-top: -88px;
+    border-right: 1px solid #000;
+}
+
+.vertical-line {
+    border: none;
+    border-right: 1px solid #000;
+    height: 100vh;
+    margin-right: 20px;
+}
+
+.Status,
+.assigned {
+    color: black;
+    font-size: 30px;
+    text-decoration: none;
+    margin-left: 15px;
+    margin-bottom: 20px;
+}
+
+.url_Status {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+}
+
+.url_Status a {
+    text-decoration: none;
+    padding: 8px 16px;
+}
+
+.Delivering,
+.All,
+.Sale,
+.SaleStaff,
+.DeliveryStaff {
+    color: black;
+    font-size: 30px;
+    margin-bottom: 30px;
+    text-decoration: none;
+}
+
+.DeliveryStaff {
+    margin-top: -20px;
+}
+
+.All {
+    margin-left: 2px;
+}
+
+.DeliveryStaffDelivering {
+    margin-left: 700px;
+    margin-top: -600px;
+}
+
+/*  */
+
+.DeliveredAssigned-container {
+    display: inline;
+    padding-top: 50px;
+    margin-top: -88px;
+    border-right: 1px solid #000;
+}
+
+.DeliveredAssigned-container .Staff {
+    padding: 20px;
+    color: white;
+    background-color: rgba(142, 136, 136, 0.4);
+    font-size: larger;
+    width: fit-content;
+    border-radius: 10px;
+    margin-top: -700px;
+    position: relative;
+    margin-left: 890px;
+    top: 40px;
+}
+
+.DeliveredAssigned-container .Staff:hover {
+    color: rgba(255, 0, 0, 0.826);
+    background-color: rgba(0, 106, 255, 0.934);
+}
+
+.Deliveredcontainer {
+    display: inline-flex;
+    padding-top: 50px;
+    margin-top: -88px;
+    border-right: 1px solid #000;
+}
+
+.vertical-line {
+    border: none;
+    border-right: 1px solid #000;
+    height: 100vh;
+    margin-right: 20px;
+}
+
+.Status,
+.assigned {
+    color: black;
+    font-size: 30px;
+    text-decoration: none;
+    margin-left: 15px;
+    margin-bottom: 20px;
+}
+
+.url_Status {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+}
+
+.url_Status a {
+    text-decoration: none;
+    padding: 8px 16px;
+}
+
+.Delivered,
+.All,
+.Sale,
+.SaleStaff,
+.DeliveryStaff {
+    color: black;
+    font-size: 30px;
+    margin-bottom: 30px;
+    text-decoration: none;
+}
+
+.DeliveryStaff {
+    margin-top: -20px;
+}
+
+.All {
+    margin-left: 2px;
+}
+
+.DeliveryStaffDelivered {
+    margin-left: 700px;
+    margin-top: -600px;
+}

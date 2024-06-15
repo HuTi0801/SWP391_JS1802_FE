@@ -1,0 +1,128 @@
+.promotion-infodetails-container {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    border: 1px hidden lightgray;
+    padding: 20px;
+    width: 600px;
+    height: 300px;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right: 100px;
+}
+
+h1 {
+    font-size: 50px;
+    font-weight: bold;
+    color: red;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+
+.promotion-infodetails-container .ProductionName {
+    font-weight: bold;
+    font-size: larger;
+}
+
+.promotion-infodetails-container .ProductionName span {
+    margin-right: 10px;
+    font-weight: bold;
+    color: red;
+    font-size: 20px;
+    font-stretch: expanded;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 2;
+}
+
+.promotion-infodetails-container .ProductionName p {
+    margin: 0;
+    display: flex;
+    flex: 16;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.promotion-infodetails-container .DiscountPercent,
+.promotion-infodetails-container .MemberLevel,
+.promotion-infodetails-container .Startdate,
+.promotion-infodetails-container .Enddate,
+.promotion-infodetails-container .Type,
+.promotion-infodetails-container .Description,
+.ProductionName {
+    display: flex;
+    align-items: center;
+    font-size: medium;
+    margin-bottom: 20px;
+    margin-left: 20px;
+}
+
+.promotion-infodetails-container .DiscountPercent span,
+.promotion-infodetails-container .MemberLevel span,
+.promotion-infodetails-container .Startdate span,
+.promotion-infodetails-container .Enddate span,
+.promotion-infodetails-container .Type span,
+.promotion-infodetails-container .Description span {
+    margin-right: 10px;
+    font-weight: bold;
+    color: red;
+    font-size: 20px;
+    font-stretch: expanded;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 2;
+}
+
+.promotion-infodetails-container .DiscountPercent p,
+.promotion-infodetails-container .MemberLevel p,
+.promotion-infodetails-container .Startdate p,
+.promotion-infodetails-container .Enddate p,
+.promotion-infodetails-container .Type p,
+.promotion-infodetails-container .Description p {
+    margin: 0;
+    font-size: 20px;
+    font-stretch: expanded;
+    display: flex;
+    flex: 16;
+    justify-content: center;
+    align-items: center;
+}
+
+.PromotionUpdate {
+    display: block;
+    background-color: rgba(128, 128, 128, 0.811);
+    width: 2.4em;
+    border-radius: 20px;
+}
+
+.promotion-infodetails-container.PromotionUpdate:hover {
+    color: rgba(255, 0, 0, 0.826);
+    background-color: rgba(0, 106, 255, 0.934)
+}
+
+.promotion-infodetails-container .PromotionUpdate {
+    padding: 10px 50px;
+
+    display: flex;
+
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    /* Căn giữa theo chiều dọc */
+    flex-direction: column;
+    text-align: center;
+    margin-left: auto;
+    margin-right: 160px;
+    margin-top: 20px;
+
+}

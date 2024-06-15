@@ -1,0 +1,229 @@
+.OrderList-container {
+    display: inline-flex;
+    padding-top: 50px;
+    margin-top: -88px;
+    border-right: 1px solid #000;
+    max-height: 100vh;
+    /* Limit the height of the container */
+}
+
+.vertical-line {
+    border: none;
+    border-right: 1px solid #000;
+    margin-right: 20px;
+}
+
+.url_Status {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+}
+
+.url_Status a {
+    text-decoration: none;
+    padding: 8px 16px;
+}
+
+.Pending,
+.Confirm,
+.Delivering,
+.Delivered,
+.Canceled,
+.All {
+    color: black;
+    font-size: 30px;
+    margin-bottom: 30px;
+    text-decoration: none;
+}
+
+.All {
+    margin-left: 2px;
+}
+
+
+.Confirm:hover {
+    color: red;
+    font-weight: bold;
+}
+
+.Pending:hover {
+    color: red;
+    font-weight: bold;
+}
+
+.Delivering:hover {
+    color: red;
+    font-weight: bold;
+}
+
+.Delivered:hover {
+    color: red;
+    font-weight: bold;
+}
+
+.Canceled:hover {
+    color: red;
+    font-weight: bold;
+}
+
+.All:hover {
+    color: red;
+    font-weight: bold;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    margin-top: -700px;
+}
+
+.list .OrderList {
+    display: block;
+    width: 600px;
+    height: 180px;
+    border: 2px solid lightgray;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin-inline-start: 460px;
+    margin-bottom: 15px;
+    font-stretch: expanded;
+}
+
+.OrderID,
+.TotalPrice,
+.CustomerID,
+.CustomerName,
+.Address,
+.Phone,
+.OrderStatus,
+.status {
+    display: flex;
+    font-size: large;
+    font-family: var(--font-styledata);
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 7px;
+    font-stretch: expanded;
+}
+
+.OrderID span,
+.TotalPrice span,
+.CustomerID span,
+.CustomerName span,
+.Address span,
+.Phone span,
+.OrderStatus span,
+.status span {
+    margin-right: 20px;
+    font-stretch: 5px;
+    color: red;
+    font-weight: bold;
+}
+
+.OrderID p,
+.TotalPrice p,
+.CustomerID p,
+.CustomerName p,
+.Address p,
+.Phone p,
+.OrderStatus p,
+.status p {
+    display: flex;
+    flex: 5;
+    font-size: large;
+}
+
+
+
+
+
+
+.ViewDetails,
+.Assigned {
+    background-color: rgba(128, 128, 128, 0.811);
+    width: 20px;
+    border-radius: 20px;
+    padding: 10px 20px;
+    /* Reduce the padding */
+    font-size: medium;
+    /* Reduce the font size */
+}
+
+.OrderList .ViewDetails {
+    display: flex;
+    font-stretch: expanded;
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    /* Căn giữa theo chiều dọc */
+    flex-direction: column;
+    text-align: center;
+    padding: 10px 40px;
+    margin-left: 320px;
+    /* Adjust the left margin */
+    margin-top: -60px;
+    /* Adjust the top margin */
+}
+
+.OrderList .Assigned {
+    display: flex;
+
+    text-decoration: none;
+    font-weight: bold;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    /* Căn giữa theo chiều dọc */
+    flex-direction: column;
+    text-align: center;
+    margin-left: auto;
+    margin-right: 0;
+    margin-top: -120px;
+    padding: 20px 40px;
+    /* Reduce the padding */
+    margin-top: -100px;
+    /* Adjust the top margin */
+}
+
+/* pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    border-top: 1px solid #ccc;
+    padding: 10px;
+}
+
+.page-item {
+    margin: 0 5px;
+}
+
+.page-link {
+    display: block;
+    padding: 5px 10px;
+    text-decoration: none;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.page-link:hover {
+    background-color: #f5f5f5;
+}
+
+.page-link.active {
+    font-weight: bold;
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}

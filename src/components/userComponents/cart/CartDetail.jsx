@@ -18,7 +18,7 @@ const CartDetail = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.post(`http://localhost:8080/cart/get-cart-by-customer-id/${customerID}`);
+                const response = await axios.post(`http://localhost:8080/auth/cart/get-cart-by-customer-id/${customerID}`);
                 const cartData = response.data;
                 if (!cartData || !cartData.items) {
                     console.error('Cart data or cart items are undefined:', cartData);
@@ -28,11 +28,11 @@ const CartDetail = () => {
 
                 const diamondPromises = cartData.items
                     .filter(item => item.productType === "DIAMOND")
-                    .map(item => axios.get(`http://localhost:8080/diamond/get-a-diamond-${item.productId}`));
+                    .map(item => axios.get(`http://localhost:8080/auth/diamond/get-a-diamond-${item.productId}`));
 
                 const diamondShellPromises = cartData.items
                     .filter(item => item.productType === "DIAMOND_SHELL")
-                    .map(item => axios.get(`http://localhost:8080/diamond-shell/get-a-diamond-shell-${item.productId}`));
+                    .map(item => axios.get(`http://localhost:8080/auth/diamond-shell/get-a-diamond-shell-${item.productId}`));
 
                 const diamondResponses = await Promise.all(diamondPromises);
                 const diamondData = diamondResponses.map(response => response.data.result);
@@ -83,7 +83,7 @@ const CartDetail = () => {
     const updateCartItemQuantity = async (productId, productType, newQuantity) => {
         try {
             // Update quantity in the backend
-            const response = await axios.post("http://localhost:8080/cart/update-cart", null, {
+            const response = await axios.post("http://localhost:8080/auth/cart/update-cart", null, {
                 params: {
                     customerID: customerID,
                     productType: productType,
@@ -91,7 +91,7 @@ const CartDetail = () => {
                     quantity: newQuantity
                 }
             });
-    
+
             // Update local state
             setCart(prevCart => {
                 const updatedItems = prevCart.items.map(item => {
@@ -101,21 +101,21 @@ const CartDetail = () => {
                     }
                     return item;
                 });
-    
+
                 return {
                     ...prevCart,
                     items: updatedItems
                 };
             });
-    
+
             // Update total price
             calculateTotalPrice();
-    
+
         } catch (error) {
             console.error("Error updating cart item quantity:", error);
         }
     };
-    
+
 
     useEffect(() => {
         // Calculate total price whenever cart items change
@@ -128,10 +128,10 @@ const CartDetail = () => {
 
 
 
-    const handleDeleteCart = async (productId, productType,size) => {
+    const handleDeleteCart = async (productId, productType, size) => {
         try {
             // Send delete request to server
-            const response = await axios.post("http://localhost:8080/cart/delete-cart-item", null, {
+            const response = await axios.post("http://localhost:8080/auth/cart/delete-cart-item", null, {
                 params: {
                     customerID: customerID,
                     productID: productId,
@@ -186,7 +186,7 @@ const CartDetail = () => {
                                     <td className='product-info'>
                                         <img src={imageUrl} alt="product" className='product-image' />
                                         <p>{productDescription}</p>
-                                        <DeleteOutlineTwoToneIcon className='remove-cart' onClick={() => { handleDeleteCart(item.productId, item.productType,item.size) }} />
+                                        <DeleteOutlineTwoToneIcon className='remove-cart' onClick={() => { handleDeleteCart(item.productId, item.productType, item.size) }} />
                                     </td>
                                     <td className='product-quantity'>
                                         <div className='quantity-container'>

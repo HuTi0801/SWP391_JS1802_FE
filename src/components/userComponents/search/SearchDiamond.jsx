@@ -27,13 +27,13 @@ const SearchDiamond = () => {
     const handleSearch = async () => {
         try {
             const response = await axios.post(
-                "http://localhost:8080/diamond/search-diamond",
+                "http://localhost:8080/auth/diamond/search-diamond",
                 diamond
             );
             console.log(response); // Handle the response data as needed
             console.log(diamond)
-            navigate('/productlist',{state: {results: response.data}})
-            
+            navigate('/productlist', { state: { results: response.data } })
+
         } catch (error) {
             console.error('Error searching diamond:', error);
         }
@@ -60,7 +60,7 @@ const SearchDiamond = () => {
                             <option value="VS1">VS1</option>
                             <option value="VS2">VS2</option>
                             <option value="VVS2">VVS2</option>
-                            
+
                         </select>
                     </li>
                     <li className='color'>

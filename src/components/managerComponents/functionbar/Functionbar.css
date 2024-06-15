@@ -1,0 +1,103 @@
+.function-container {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+
+    background-color: var(--bg-color);
+    border-bottom: 2px solid rgb(168, 168, 168);
+}
+
+.function-container .url .product,
+.OrderListPage,
+.promotion,
+.profile,
+.dashBoard {
+    margin-left: 50px;
+    flex: 7;
+    color: var(--font-color);
+    font-weight: bolder;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.url {
+    margin-left: 410px;
+}
+
+
+
+.profile:hover {
+    color: red;
+}
+
+.OrderListPage:hover {
+    color: red;
+}
+
+.promotion:hover {
+    color: red;
+}
+
+.function-container .url .product .diamond,
+.diamondshell {
+    margin-left: 50px;
+    flex: 7;
+    font-weight: bolder;
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--font-color);
+
+}
+
+.product .sub-links .diamond:first-child:hover {
+    color: red;
+}
+
+.product .sub-links .diamondshell:hover {
+    color: red;
+}
+
+.product {
+    position: relative;
+}
+
+
+.product:hover .sub-links {
+    opacity: 1;
+    visibility: visible;
+}
+
+.dashBoard:hover {
+    color: red;
+}
+
+.sub-links {
+    position: absolute;
+    top: 100%;
+    width: 100vw;
+    margin-left: 50px;
+    /* Thay đổi giá trị này để điều chỉnh khoảng cách */
+    display: flex;
+    background-color: var(--bg-color);
+    padding: 15px;
+    transition: all 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 15px;
+}
+
+
+.sub-links .diamondshell {
+    margin-left: 0;
+
+}
+
+.function-container .url .sub-links .diamond {
+
+    margin-left: 0;
+    margin-bottom: 5px;
+}
