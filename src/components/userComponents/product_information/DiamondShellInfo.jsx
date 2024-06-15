@@ -17,9 +17,9 @@ const DiamondShellInfo = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/diamond-shell/get-a-diamond-shell-${id}`);
+        const response = await axios.get(`http://localhost:8080/auth/diamond-shell/get-a-diamond-shell-${id}`);
         setDiamondShell(response.data.result);
-        const responseFingerSize = await axios.get(`http://localhost:8080/size-diamond-shell/${id}`);
+        const responseFingerSize = await axios.get(`http://localhost:8080/auth/size-diamond-shell/${id}`);
         setFingerSize(responseFingerSize.data);
       } catch (error) {
         console.error('Error fetching product:', error);
@@ -59,7 +59,7 @@ const DiamondShellInfo = () => {
         size: formik.values.size, // Include the selected size in the cart item
       };
 
-      const response = await axios.post("http://localhost:8080/cart/add-to-cart", null, { params: cartItem });
+      const response = await axios.post("http://localhost:8080/auth/cart/add-to-cart", null, { params: cartItem });
       alert(response.data.message);
       console.log('Add to cart response:', response.data);
 

@@ -1,0 +1,93 @@
+/* Container */
+.register-content-container {
+    width: 100%;
+    height: 120vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://t3.ftcdn.net/jpg/06/47/49/12/360_F_647491277_CEc0EIRHVlnWkFIgFyoJTtZGCYOjSaNV.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    object-fit: 0.4 ease;
+    overflow: hidden;
+    margin-top: -70px;
+}
+
+/* Overlay */
+.register-content-container .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+/* Register Box */
+.register-content-box {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 400px;
+    height: 580px;
+    padding: 40px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 2;
+    background: linear-gradient(197deg, rgba(231, 231, 231, 0.8) 0%, rgba(251, 251, 251, 0.8) 28%, rgba(151, 162, 184, 0.8) 70%, rgba(102, 117, 120, 0.8) 100%);
+}
+
+/* Title */
+.register-content-box .register-title {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 4.3em;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: red;
+    margin-top: -50px;
+}
+
+/* Form */
+.register-content-box .register-form {
+
+    width: 100%;
+    display: flex;
+    margin-top: -70px;
+    flex-direction: column;
+}
+
+.register-content-box .register-form p {
+    font-family: var(--font-family);
+    font-size: 20px;
+    font-weight: 550;
+    padding: 5px 0;
+}
+
+.register-content-box .register-form input {
+    padding: 5px;
+    margin: 10px 0;
+    width: 90%;
+    border-radius: 2px;
+    border: 1px solid black;
+}
+
+/* Buttons */
+.register-content-box .action-button {
+    display: flex;
+    justify-content: center;
+    padding-top: 60px;
+    margin-top: -35px;
+}
+
+.register-content-box .action-button .register-button {
+    padding: 12px 50px;
+    font-size: 1.3em;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}

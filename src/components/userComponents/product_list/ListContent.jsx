@@ -7,12 +7,12 @@ const ListContent = () => {
     const [diamondShellList, setDiamondShellList] = useState([]);
     const [diamondList, setDiamondList] = useState([]);
     const location = useLocation();
-    const {results} = location.state || {};
+    const { results } = location.state || {};
     const navigate = useNavigate();
 
     const getDiamondShellInfo = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/diamond-shell/get-all-diamond-shell");
+            const response = await axios.get("http://localhost:8080/auth/diamond-shell/get-all-diamond-shell");
             return response.data.result;
         } catch (error) {
             console.error('Error fetching diamond shell info:', error);
@@ -22,7 +22,7 @@ const ListContent = () => {
 
     const getDiamondInfo = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/diamond/get-all-diamond"); 
+            const response = await axios.get("http://localhost:8080/auth/diamond/get-all-diamond");
             return response.data.result;
         } catch (error) {
             console.error('Error fetching diamond info:', error);
@@ -57,7 +57,7 @@ const ListContent = () => {
     const productList = results && results.length > 0 ? results : [...diamondShellList, ...diamondList];
     return (
         <div className='product-list-container'>
-            
+
             <ul>
                 {productList.map((item) => (
                     <li key={item.id}>

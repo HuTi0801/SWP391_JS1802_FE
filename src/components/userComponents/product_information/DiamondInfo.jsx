@@ -14,7 +14,7 @@ const DiamondInfo = () => {
     useEffect(() => {
         const fetchDiamond = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/diamond/get-a-diamond-${id}`);
+                const response = await axios.get(`http://localhost:8080/auth/diamond/get-a-diamond-${id}`);
                 setDiamond(response.data.result);
             } catch (error) {
                 console.error('Error fetching diamond:', error);
@@ -37,7 +37,7 @@ const DiamondInfo = () => {
         };
 
         try {
-            const response = await axios.post("http://localhost:8080/cart/add-to-cart", null, { params: cartItem });
+            const response = await axios.post("http://localhost:8080/auth/cart/add-to-cart", null, { params: cartItem });
             alert(response.data.message);
             console.log('Add to cart response:', response.data);
         } catch (error) {
