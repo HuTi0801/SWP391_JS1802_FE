@@ -1,17 +1,17 @@
 .OrderList-container {
     display: inline-flex;
     padding-top: 50px;
-    margin-top: -88px;
+    margin-top: -78px;
     border-right: 1px solid #000;
-    max-height: 100vh;
-    /* Limit the height of the container */
 }
 
 .vertical-line {
     border: none;
     border-right: 1px solid #000;
+    height: 100vh;
     margin-right: 20px;
 }
+
 
 .url_Status {
     display: flex;
@@ -80,20 +80,19 @@
 .list .OrderList {
     display: block;
     width: 600px;
-    height: 180px;
+    height: 160px;
     border: 2px solid lightgray;
     padding: 10px 20px;
     border-radius: 5px;
     margin-inline-start: 460px;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
     font-stretch: expanded;
 }
 
-.OrderID,
+
 .TotalPrice,
 .CustomerID,
 .CustomerName,
-.Address,
 .Phone,
 .OrderStatus,
 .status {
@@ -107,11 +106,10 @@
     font-stretch: expanded;
 }
 
-.OrderID span,
+
 .TotalPrice span,
 .CustomerID span,
 .CustomerName span,
-.Address span,
 .Phone span,
 .OrderStatus span,
 .status span {
@@ -121,11 +119,10 @@
     font-weight: bold;
 }
 
-.OrderID p,
+
 .TotalPrice p,
 .CustomerID p,
 .CustomerName p,
-.Address p,
 .Phone p,
 .OrderStatus p,
 .status p {

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './OrderDetailContent.css';
 import axios from 'axios';
+import ManagerHeader from "../../managerComponents/header/ManagerHeader.jsx"
+import Functionbar from "../../managerComponents/functionbar/Functionbar.jsx"
 import { useParams } from 'react-router-dom';
 const OrderDetails = () => {
     const [order, setOrder] = useState([]);
@@ -71,6 +73,8 @@ const OrderDetails = () => {
 
     return (
         <div className='order-detail-content-container'>
+            <ManagerHeader />
+            <Functionbar />
             <div className='title'>
                 <p>ORDER DETAIL</p>
             </div>

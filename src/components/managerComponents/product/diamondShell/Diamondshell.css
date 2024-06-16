@@ -1,4 +1,4 @@
-.diamond-container {
+.diamondshell-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -6,31 +6,31 @@
     width: 100vw;
 }
 
-.diamond-container .create {
+.diamondshell-container .create {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
     margin-top: 20px;
 }
 
-.diamond-container .create .createDiamond {
+.diamondshell-container .create .createDiamondShell {
     display: flex;
     flex-direction: row;
     padding: 10px 20px;
     font-weight: bold;
     text-decoration: none;
     font-size: 16px;
-    margin-top: -42px;
+    margin-top: -40px;
     margin-right: 15px;
 }
 
-.diamond-container .create img {
+.diamondshell-container .create img {
     display: flex;
     align-items: flex-end;
     padding: 10px;
 }
 
-.diamond-container .create h1 {
+.diamondshell-container .create h1 {
     text-align: center;
     font-weight: bold;
     font-size: 50px;
@@ -40,39 +40,37 @@
 
 
 
-.create-Diamond .sub-create-Diamond {
-    display: block;
-    margin-right: 400px;
-}
-
-.create-Diamond .sub-create-Diamond .createimgDiamond,
-.createCertificateNumber,
-.createOrigin,
+.create-DiamondShell .sub-create-DiamondShell .createMaterial,
+.createGender,
+.createSecondaryStoneType,
 .createQuantity,
 .createPrice,
-.createClarity,
-.createCaratWeight,
-.createCut,
-.createColor,
-.createstatusDiamond {
+.createimgDiamondShell,
+.createstatusDiamondShell,
+.Size {
     display: flex;
     flex-direction: row;
     align-items: center;
     max-width: 600px;
     margin-left: 500px;
     justify-content: center;
+    /* Adjusted to align to the left */
 }
 
-.sub-create-Diamond .createimgDiamond label,
-.sub-create-Diamond .createCertificateNumber label,
-.sub-create-Diamond .createOrigin label,
-.sub-create-Diamond .createQuantity label,
-.sub-create-Diamond .createPrice label,
-.sub-create-Diamond .createClarity label,
-.sub-create-Diamond .createCaratWeight label,
-.sub-create-Diamond .createCut label,
-.sub-create-Diamond .createColor label,
-.sub-create-Diamond .createstatusDiamond label {
+.create-DiamondShell .sub-create-DiamondShell {
+    display: block;
+    margin-right: 400px;
+}
+
+
+.sub-create-DiamondShell .createMaterial label,
+.sub-create-DiamondShell .createSecondaryStoneType label,
+.sub-create-DiamondShell .createQuantity label,
+.sub-create-DiamondShell .createPrice label,
+.sub-create-DiamondShell .createimgDiamondShell label,
+.sub-create-DiamondShell .createstatusDiamondShell label,
+.sub-create-DiamondShell .createGender label,
+.sub-create-DiamondShell .Size label {
     display: flex;
 
     flex-direction: row;
@@ -86,17 +84,13 @@
 
 
 
-.sub-create-Diamond .createOrigin select,
-
-.sub-create-Diamond .createClarity select,
-.sub-create-Diamond .createQuantity input,
-.sub-create-Diamond .createPrice input,
-.sub-create-Diamond .createCertificateNumber input,
-.sub-create-Diamond .createCaratWeight input,
-.sub-create-Diamond .createimgDiamond input,
-.sub-create-Diamond .createCut select,
-.sub-create-Diamond .createColor select,
-.sub-create-Diamond .createstatusDiamond select {
+.sub-create-DiamondShell .createMaterial select,
+.sub-create-DiamondShell .createSecondaryStoneType input,
+.sub-create-DiamondShell .createQuantity input,
+.sub-create-DiamondShell .createPrice input,
+.sub-create-DiamondShell .createimgDiamondShell input,
+.sub-create-DiamondShell .createstatusDiamondShell select,
+.sub-create-DiamondShell .createGender select {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -109,11 +103,19 @@
     padding: 2px;
 }
 
+.sub-create-DiamondShell .Select .custom-Size {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    /* Adjusted to align to the left */
+    text-align: center;
+    flex: 2;
+    margin-right: 150px;
+    padding: 0px 50px;
+}
 
-
-
-
-.create-Diamond button {
+.create-DiamondShell button {
     margin-top: 10px;
     display: block;
     border-radius: 4px;
@@ -123,10 +125,11 @@
     font-weight: 500;
     border-style: none;
     width: 60px;
-    margin-left: 680px;
+    margin-left: 700px;
 }
 
-.create-Diamond button:hover {
+.create-DiamondShell button:hover {
+
     color: rgba(255, 0, 0, 0.826);
     background-color: rgba(0, 106, 255, 0.934)
 }
@@ -164,27 +167,28 @@ select {
 }
 
 
+
 /* Product Details */
 
-.diamond-info-container {
+.diamond-shell-info-container {
 
     display: flex;
     flex-direction: column;
     height: 100vh;
 }
 
-.diamond-info-container .diamond-card {
+
+.diamond-shell-info-container .diamond-shell-card {
     display: block;
-    width: 600px;
+    width: 800px;
     height: 150px;
     border: 2px solid lightgray;
     padding: 10px 20px;
     margin-top: 40px;
     border-radius: 5px;
-    font-stretch: expanded;
 }
 
-.diamond-info-container .diamond-card .ID {
+.diamond-shell-info-container .diamond-shell-card .ID {
     font-size: 20px;
     display: flex;
     font-size: larger;
@@ -195,10 +199,9 @@ select {
     color: red;
     margin-bottom: 7px;
     font-stretch: expanded;
-
 }
 
-.diamond-info-container .diamond-card .text {
+.diamond-shell-info-container .diamond-shell-card .text {
     font-size: 20px;
     display: flex;
     font-size: larger;
@@ -206,16 +209,15 @@ select {
     flex-direction: row;
     align-items: flex-start;
     font-weight: bold;
-    color: rgba(60, 6, 197, 0.903);
     margin-left: -3px;
+    color: rgba(60, 6, 197, 0.903);
     margin-bottom: 7px;
     font-stretch: expanded;
-
 }
 
-.diamond-info-container .diamond-card .CutData,
-.ColorData,
-.ClarityData {
+.diamond-shell-info-container .diamond-shell-card .MaterialData,
+.GenderData,
+.SecondaryStoneTypeData {
     display: flex;
     font-size: large;
     font-family: var(--font-styledata);
@@ -226,14 +228,14 @@ select {
     font-stretch: expanded;
 }
 
-.diamond-info-container .CutData p,
-.diamond-info-container .ColorData p,
-.diamond-info-container .ClarityData p {
+.diamond-shell-info-container .MaterialData p,
+.diamond-shell-info-container .GenderData p,
+.diamond-shell-info-container .SecondaryStoneTypeData p {
     margin-left: 7px;
 }
 
 /* ViewDetail Button */
-.diamond-card .diamondInfo {
+.diamond-shell-card .diamondShellInfo {
     padding: 10px 50px;
 
     display: flex;
@@ -252,7 +254,7 @@ select {
 
 }
 
-.diamondInfo,
+.diamondShellInfo,
 .Delete {
     display: block;
     background-color: rgba(128, 128, 128, 0.811);
@@ -260,17 +262,17 @@ select {
     border-radius: 20px;
 }
 
-.diamond-card .diamondInfo:hover {
+.diamond-shell-card .diamondShellInfo:hover {
     color: rgba(255, 0, 0, 0.826);
     background-color: rgba(0, 106, 255, 0.934)
 }
 
-.diamond-card .Delete:hover {
+.diamond-shell-card .Delete:hover {
     color: rgba(255, 0, 0, 0.826);
     background-color: rgba(0, 106, 255, 0.934)
 }
 
-.diamond-card .Delete {
+.diamond-shell-card .Delete {
     padding: 20px 50px;
     padding-bottom: 23.5px;
     display: flex;
@@ -291,8 +293,6 @@ select {
 }
 
 /* pagination */
-
-
 .pagination {
     display: flex;
     justify-content: center;
@@ -325,7 +325,10 @@ select {
     background-color: #f5f5f5;
 }
 
-.page-link.active {
+
+
+.page-link:focus,
+.page-link:active {
     font-weight: bold;
     background-color: #007bff;
     color: #fff;

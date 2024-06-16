@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { createProduct } from "../../../../redux/actions/productAction";
 import ManagerHeader from "../../header/ManagerHeader"
 import Functionbar from "../../functionbar/Functionbar"
-import '../../../../pages/managerPages/product/diamond/Diamond.css'
+import './Diamond.css'
 import { useNavigate } from "react-router-dom";
 const CreateDiamond = () => {
     const dispatch = useDispatch();

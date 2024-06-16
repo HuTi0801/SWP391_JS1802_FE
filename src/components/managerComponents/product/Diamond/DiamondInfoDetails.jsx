@@ -40,12 +40,12 @@ const DiamondInfoDetails = () => {
     return (
         <>
             <ManagerHeader />
-
+            <Functionbar />
 
 
             <div className="diamond-infodetails-container">
-                <Functionbar />
-                <h1>Diamond Product Details</h1>
+
+                <h1>Diamond  Details</h1>
                 <div className="text">
                     <span>Name:</span>
                     <p>{diamond.origin}  {diamond.cut}  {diamond.color}  {diamond.clarity}</p>

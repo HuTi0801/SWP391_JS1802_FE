@@ -13,8 +13,9 @@ const Promotion = () => {
     return (
         <>
             <ManagerHeader />
+            <Functionbar />
             <div className='promotion-container'>
-                <Functionbar />
+
                 <div className='create-promotion'>
                     <h1>Promotion List</h1>
 

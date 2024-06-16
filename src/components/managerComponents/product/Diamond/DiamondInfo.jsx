@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import "../../../../pages/managerPages/product/diamond/Diamond.css"
+import "./Diamond.css"
 import { Link } from 'react-router-dom';
-import ManagerHeader from "../../header/ManagerHeader"
-import Functionbar from "../../functionbar/Functionbar"
+
 const DiamondInfo = () => {
     const [diamonds, setDiamonds] = useState([]);
 
@@ -76,10 +75,9 @@ const DiamondInfo = () => {
 
     return (
         <>
-            <ManagerHeader />
 
             <div className="diamond-info-container">
-                <Functionbar />
+
                 {records.map((diamond) => (
                     <div key={diamond.id} className="diamond-card">
                         <div className="ID">

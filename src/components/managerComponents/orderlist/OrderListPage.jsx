@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import "./OrderListPage.css"
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
+import ManagerHeader from "../../managerComponents/header/ManagerHeader.jsx"
+import Functionbar from "../../managerComponents/functionbar/Functionbar.jsx"
 const OrderListPage = () => {
 
     const [oders, setOrders] = useState([]);
@@ -52,11 +53,13 @@ const OrderListPage = () => {
 
     const numbers = [...Array(npage + 1).keys()].slice(1)
     return (
-        <>
 
+        <>
+            <ManagerHeader />
+            <Functionbar />
             <h1>Order List</h1>
             <div className="OrderList-container">
-                <hr className="vertical-line"></hr>
+                <hr className="vertical-line" />
                 <div>
                     <ul className="url_Status">
 
@@ -86,10 +89,6 @@ const OrderListPage = () => {
             <div className='list'>
                 {records.map((order) => (
                     <div key={order.id} className='OrderList'>
-                        <div className="OrderID">
-                            <span> Order ID:</span>
-                            <p>{order.id}</p>
-                        </div>
                         <div className="CustomerID">
                             <span>Customer ID:</span>
                             <p>{order.customerId}</p>
@@ -102,10 +101,7 @@ const OrderListPage = () => {
                             <span>Total Price:</span>
                             <p>{formatCurrency(order.totalPrice)}</p>
                         </div>
-                        <div className="Address">
-                            <span> Address:</span>
-                            <p>{order.address}</p>
-                        </div>
+
                         <div className="OrderStatus">
                             <span>Phone:</span>
                             <p>{order.phone}</p>
@@ -115,7 +111,7 @@ const OrderListPage = () => {
                             <p>{order.dateStatusOrders[order.dateStatusOrders.length - 1].status}</p>
                         </div>
                         <Link to="/assigned" className="Assigned">
-                            Assigned
+                            Assign
                         </Link>
                         <Link to={`/orderDetails/${order.id}`} className="ViewDetails">
                             View Details

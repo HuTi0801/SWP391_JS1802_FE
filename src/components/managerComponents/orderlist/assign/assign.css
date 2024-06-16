@@ -19,13 +19,6 @@
     margin-right: 20px;
 }
 
-.Status {
-    color: black;
-    font-size: 30px;
-    text-decoration: none;
-    margin-left: 15px;
-    margin-bottom: 20px;
-}
 
 .url_Status {
     display: flex;
@@ -148,13 +141,7 @@ td {
     margin-right: 20px;
 }
 
-.Status {
-    color: black;
-    font-size: 30px;
-    text-decoration: none;
-    margin-left: 15px;
-    margin-bottom: 20px;
-}
+
 
 .url_Status {
     display: flex;

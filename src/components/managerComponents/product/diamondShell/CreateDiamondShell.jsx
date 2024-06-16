@@ -5,7 +5,7 @@ import { createDiamondShell } from "../../../../redux/actions/diamondShellAction
 import { useNavigate } from "react-router-dom";
 import Select from 'react-select';
 import axios from 'axios';
-import '../../../../pages/managerPages/product/diamondshell/Diamondshell.css'
+import './Diamondshell.css'
 import ManagerHeader from "../../header/ManagerHeader"
 import Functionbar from "../../functionbar/Functionbar"
 const CreateDiamondShell = () => {
@@ -66,8 +66,9 @@ const CreateDiamondShell = () => {
     return (
         <>
             <ManagerHeader />
+            <Functionbar />
             <div className="create-DiamondShell">
-                <Functionbar />
+
                 <h1>Create DiamondShell </h1>
 
 

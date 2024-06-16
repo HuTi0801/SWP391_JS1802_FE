@@ -7,10 +7,12 @@ import "./Diamondshell.css"
 const DiamondShell = () => {
     return (
         <>
+            <ManagerHeader />
+            <Functionbar />
             <div className='diamondshell-container'>
-                <ManagerHeader />
+
                 <div className='create'>
-                    <Functionbar />
+
                     <h1>DiamondShell Product List</h1>
 
                     <img src="https://cdn-icons-png.freepik.com/256/1828/1828817.png?semt=ais_hybrid"

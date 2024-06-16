@@ -6,7 +6,7 @@ const ManagerHeader = () => {
 
 
   const handleClickHome = () => {
-    navigate('/diamond');
+    navigate('/manager');
   }
   return (
     <>

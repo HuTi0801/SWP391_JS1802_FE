@@ -9,7 +9,6 @@ const ConfirmAssigned = () => {
                     <hr className="vertical-line" />
                     <div>
                         <ul className="url_Status">
-                            <h3 className='Status'>Status</h3>
                             <Link to="/orderlist" className="All">
                                 All
                             </Link>

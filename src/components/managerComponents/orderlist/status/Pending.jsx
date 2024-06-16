@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import "../OrderListPage.css"
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import ManagerHeader from "../../../managerComponents/header/ManagerHeader.jsx"
+import Functionbar from "../../../managerComponents/functionbar/Functionbar.jsx"
 const Pending = () => {
 
     const [Pendingoders, setPendingOrders] = useState([]);
@@ -50,12 +52,13 @@ const Pending = () => {
     return (
 
         <>
+            <ManagerHeader />
+            <Functionbar />
             <h1>Pending Order List</h1>
             <div className="OrderList-container">
                 <hr className="vertical-line" />
                 <div>
                     <ul className="url_Status">
-                        <h3 className='Status'>Status</h3>
                         <Link to="/orderlist" className="All">
                             All
                         </Link>
@@ -82,10 +85,6 @@ const Pending = () => {
                 {records.filter(order => order.dateStatusOrders[order.dateStatusOrders.length - 1].status === "Pending")
                     .map((order) => (
                         <div key={order.id} className='OrderList'>
-                            <div className="OrderID">
-                                <span> Order ID:</span>
-                                <p>{order.id}</p>
-                            </div>
                             <div className="CustomerID">
                                 <span>Customer ID:</span>
                                 <p>{order.customerId}</p>
@@ -97,10 +96,6 @@ const Pending = () => {
                             <div className="TotalPrice">
                                 <span>Total Price:</span>
                                 <p>{formatCurrency(order.totalPrice)}</p>
-                            </div>
-                            <div className="Address">
-                                <span> Address:</span>
-                                <p>{order.address}</p>
                             </div>
                             <div className="OrderStatus">
                                 <span>Phone:</span>

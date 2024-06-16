@@ -18,23 +18,31 @@ import ForgetPassword from './pages/accountPages/forgetPassword/ForgetPassword.j
 import UserProfile from './pages/customerPages/userprofile/UserProfile.jsx';
 import StaffOrderList from './pages/saleStaffPages/orderList/StaffOrderList.jsx';
 import StaffOrderDetail from './pages/saleStaffPages/orderDetail/StaffOrderDetail.jsx';
-import Register from './pages/accountPages/register/Register'
-import Diamond from './pages/managerPages/product/diamond/Diamond'
-import DiamondShell from './pages/managerPages/product/diamondshell/DiamondShell.jsx'
-import CreateDiamond from './components/managerComponents/product/Diamond/CreateDiamond'
-import DiamondInfoDetails from './components/managerComponents/product/Diamond/DiamondInfoDetails'
-import UpdateDiamond from './components/managerComponents/product/Diamond/UpdateDiamond'
-import CreateDiamondShell from './components/managerComponents/product/diamondShell/CreateDiamondShell'
-import DiamondShellInfoDetails from './components/managerComponents/product/diamondShell/DiamondShellInfoDetails'
-import UpdateDiamondShell from './components/managerComponents/product/diamondShell/UpdateDiamondShell'
-import Profile from './pages/managerPages/profile/Profile'
-import ManagerLogin from './pages/managerPages/profile/login/ManagerLogin'
-import Promotion from './pages/managerPages/promotion/Promotion';
-import CreatePromotion from './components/managerComponents/promotion/CreatePromotion';
-import DiamondPromotion from './components/managerComponents/promotion/DiamondPromotion';
-import DiamondShellPromotion from './components/managerComponents/promotion/DiamondShellPromotion';
-import PromotionInfoDetails from './components/managerComponents/promotion/PromotionInfoDetails';
-import PromotionUpdate from './components/managerComponents/promotion/PromotionUpdate'
+import Register from './pages/accountPages/register/Register.jsx'
+import Diamonds from './pages/managerPages/product/diamond/Diamonds.jsx'
+import DiamondShells from './pages/managerPages/product/diamondshell/DiamondShells.jsx'
+import CreateDiamond from './components/managerComponents/product/Diamond/CreateDiamond.jsx'
+import DiamondInfoDetails from './components/managerComponents/product/Diamond/DiamondInfoDetails.jsx'
+import UpdateDiamond from './components/managerComponents/product/Diamond/UpdateDiamond.jsx'
+import CreateDiamondShell from './components/managerComponents/product/diamondShell/CreateDiamondShell.jsx'
+import DiamondShellInfoDetails from './components/managerComponents/product/diamondShell/DiamondShellInfoDetails.jsx'
+import UpdateDiamondShell from './components/managerComponents/product/diamondShell/UpdateDiamondShell.jsx'
+import Profile from './pages/managerPages/profile/Profile.jsx'
+import ManagerLogin from './pages/managerPages/profile/login/ManagerLogin.jsx'
+import Promotion from './pages/managerPages/promotion/Promotion.jsx';
+import CreatePromotion from './components/managerComponents/promotion/CreatePromotion.jsx';
+import DiamondPromotion from './components/managerComponents/promotion/DiamondPromotion.jsx';
+import DiamondShellPromotion from './components/managerComponents/promotion/DiamondShellPromotion.jsx';
+import PromotionInfoDetails from './components/managerComponents/promotion/PromotionInfoDetails.jsx';
+import PromotionUpdate from './components/managerComponents/promotion/PromotionUpdate.jsx'
+import ManagerHome from './pages/managerPages/home/ManagerHome.jsx';
+import ManagerOrderList from './pages/managerPages/orderlist/ManagerOrderList.jsx';
+import OrderDetails from './components/managerComponents/orderlist/OrderDetails.jsx';
+import Pending from './components/managerComponents/orderlist/status/Pending.jsx'
+import Confirm from './components/managerComponents/orderlist/status/Confirm.jsx'
+import Delivered from './components/managerComponents/orderlist/status/Delivered.jsx'
+import Delivering from './components/managerComponents/orderlist/status/Delivering.jsx'
+import Cancel from './components/managerComponents/orderlist/status/Canceled.jsx'
 export const Account = () => {
 
 }
@@ -68,7 +76,8 @@ function App() {
 
         {/* Manager Routes */}
         {/* Product Components  */}
-        <Route path='/diamond' element={<Diamond />} />
+        <Route path='/manager' element={<ManagerHome />} />
+        <Route path='/diamond' element={<Diamonds />} />
         <Route path='/CreateDiamond' element={<CreateDiamond />} />
         <Route
           path='/diamondInfoDetails/:id'
@@ -77,7 +86,7 @@ function App() {
           path='/updateDiamond/:id'
           element={<UpdateDiamond />} />
 
-        <Route path='/diamondshell' element={<DiamondShell />} />
+        <Route path='/diamondshell' element={<DiamondShells />} />
 
         <Route path='/createDiamondShell' element={<CreateDiamondShell />} />
 
@@ -103,6 +112,14 @@ function App() {
         <Route path='/promotionInfoDetail' element={< PromotionInfoDetails />} />
         <Route path='/updatePromotion' element={< PromotionUpdate />} />
         {/*Order List Components */}
+        <Route path='/managerorderlist' element={< ManagerOrderList />} />
+        <Route path='/orderDetails/:id' element={< OrderDetails />} />
+        <Route path='/pending' element={< Pending />} />
+        <Route path='/confirm' element={< Confirm />} />
+        <Route path='/delivering' element={< Delivering />} />
+        <Route path='/delivered' element={< Delivered />} />
+        <Route path='/canceled' element={< Cancel />} />
+
       </Routes>
 
 
