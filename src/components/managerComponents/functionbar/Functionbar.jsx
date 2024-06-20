@@ -14,7 +14,6 @@ const Functionbar = () => {
             <div className="function-container">
 
                 <ul className="url">
-
                     <Link to="/" className="product" onClick={handleClick}>
                         Product
                         {showLinks && (
@@ -35,7 +34,7 @@ const Functionbar = () => {
 
 
 
-                    <Link to="/orderlist" className="OrderListPage">
+                    <Link to="/managerorderlist" className="OrderListPage">
                         OrderListPage
                     </Link>
 
@@ -50,7 +49,9 @@ const Functionbar = () => {
                     <Link to="/dashBoard" className="dashBoard">
                         DashBoard
                     </Link>
+
                 </ul>
+
             </div>
         </>
     );

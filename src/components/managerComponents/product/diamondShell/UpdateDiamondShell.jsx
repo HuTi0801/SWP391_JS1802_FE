@@ -3,28 +3,33 @@ import { useDispatch } from "react-redux";
 import { updateDiamondShell } from "../../../../redux/actions/diamondShellAction";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import Select from 'react-select';
 import axios from "axios";
-import "./DiamondShellInfoDetails.css"
-import ManagerHeader from "../../header/ManagerHeader"
-import Functionbar from "../../functionbar/Functionbar"
+import "./DiamondShellInfoDetails.css";
+import ManagerHeader from "../../header/ManagerHeader";
+import Functionbar from "../../functionbar/Functionbar";
+
 const UpdateDiamondShell = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
     const [error, setError] = useState(null);
     const navigate = useNavigate();
     const [diamondShell, setDiamondShell] = useState({
-
         gender: "male",
         imageDiamondShell: "",
         material: "",
         price: "0",
         quantity: "0",
         secondaryStoneType: "",
-        statusDiamondShell: "true"
-
+        statusDiamondShell: "true",
+        accountId: 0,
+        sizeIds: [0]
     });
+
+    const [diamondShellSize, setDiamondShellSize] = useState([]);
+
     useEffect(() => {
-        const fetchDiamondShellsDetails = async () => {
+        const fetchDiamondShellDetails = async () => {
             try {
                 const response = await axios.get(`http://localhost:8080/auth/diamond-shell/get-a-diamond-shell-${id}`);
                 setDiamondShell(response.data.result);
@@ -33,19 +38,19 @@ const UpdateDiamondShell = () => {
             }
         };
 
-        fetchDiamondShellsDetails();
+
+
+        fetchDiamondShellDetails();
     }, [id]);
+
     if (error) {
         return <div>Error: {error}</div>;
     }
 
     const handleChange = (e) => {
-        setDiamondShell({
-            ...diamondShell,
-            [e.target.name]: e.target.value,
-        });
+        const { name, value } = e.target;
+        setDiamondShell({ ...diamondShell, [name]: value });
     };
-
 
 
     const handleUpdate = async () => {
@@ -54,8 +59,11 @@ const UpdateDiamondShell = () => {
         navigate("/diamondshell");
     };
 
+
+
     return (
-        <>  <ManagerHeader />
+        <>
+            <ManagerHeader />
             <div className="update-DiamondShell">
                 <Functionbar />
                 <h1>Update DiamondShell</h1>
@@ -67,7 +75,6 @@ const UpdateDiamondShell = () => {
                                 value={diamondShell.material}
                                 onChange={handleChange} />
                         </div>
-
                         <div className="SecondaryStoneType">
                             <label htmlFor="secondaryStoneType">Secondary Stone Type:</label>
                             <input
@@ -77,29 +84,24 @@ const UpdateDiamondShell = () => {
                                 onChange={handleChange}
                             />
                         </div>
-
                         <div className="Quantity">
                             <label htmlFor="quantity">Quantity:</label>
                             <input type="text" name="quantity"
                                 value={diamondShell.quantity}
                                 onChange={handleChange} />
                         </div>
-
                         <div className="Price">
-
                             <label htmlFor="price">Price:</label>
                             <input type="text" id="price" name="price"
                                 value={diamondShell.price}
                                 onChange={handleChange} />
                         </div>
-
                         <div className="Gender">
                             <label htmlFor="gender">Gender:</label>
                             <input type="text" id="gender" name="gender"
                                 value={diamondShell.gender}
                                 onChange={handleChange} />
                         </div>
-
                         <div className="imageDiamondShell">
                             <label htmlFor="imageDiamondShell"> Image:</label>
                             <input type="text" id="imageDiamondShell"
@@ -107,7 +109,6 @@ const UpdateDiamondShell = () => {
                                 value={diamondShell.imageDiamondShell}
                                 onChange={handleChange} />
                         </div>
-
                         <div className="statusDiamondShell">
                             <label htmlFor="statusDiamondShell">DiamondShell Status:</label>
                             <input
@@ -117,20 +118,27 @@ const UpdateDiamondShell = () => {
                                 value={diamondShell.statusDiamondShell}
                                 onChange={handleChange}
                             />
-
+                        </div>
+                        <div className="Manager_accountId">
+                            <label htmlFor="accountId">AccountId:</label>
+                            <input
+                                type="text"
+                                id="accountId"
+                                name="accountId"
+                                value={diamondShell.accountId}
+                                onChange={handleChange}
+                            />
                         </div>
 
-                        {/* Add additional input fields for other properties as needed */}
+
 
                         <button type="button" onClick={handleUpdate}>
                             Update
                         </button>
                     </div>
                 </form>
-
             </div>
         </>
-
     );
 };
 

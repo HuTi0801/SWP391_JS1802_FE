@@ -1,6 +1,6 @@
 export const diamondShellReducer = (
     state = { diamondShellData: [], loading: false, error: false },
-    state_Size = { diamondShellSizeData: [], loading: false, error: false },
+
     action
 ) => {
     const { type, payload } = action;

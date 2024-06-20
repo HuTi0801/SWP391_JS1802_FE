@@ -3,7 +3,7 @@ import * as DiamondShellApi from "../../apis/diamondShellRequest";
 export const getDiamondShell = () => async (dispatch) => {
     dispatch({ type: "DIAMONDSHELL_START" }); // Start loading the API
     try {
-        const response = await DiamondShellApi.getDiamonShell(); // Fetch data from the API
+        const response = await DiamondShellApi.getDiamondShell(); // Fetch data from the API
         dispatch({ type: "DIAMONDSHELL_SUCCESS", payload: response.data }); // Dispatch success action with the data
     } catch (error) {
         dispatch({ type: "DIAMONDSHELL_FAIL" }); // Dispatch failure action

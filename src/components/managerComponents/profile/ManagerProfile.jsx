@@ -13,8 +13,9 @@ const ManagerProfile = () => {
 
     return (
         <>  <ManagerHeader />
+            <Functionbar />
             <div className='user-profile-content-container'>
-                <Functionbar />
+
                 <div className='action-button'>
 
                     <button onClick={handleLogout}>Log Out</button>

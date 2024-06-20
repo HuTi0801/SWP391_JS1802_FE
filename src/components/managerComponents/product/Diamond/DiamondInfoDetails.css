@@ -193,7 +193,8 @@ h1 {
 .CaratWeight,
 .Cut,
 .Color,
-.statusDiamond {
+.statusDiamond,
+.accountId {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -213,7 +214,8 @@ h1 {
 .sub-update-Diamond .Cut label,
 .sub-update-Diamond .imgDiamond label,
 .sub-update-Diamond .Color label,
-.sub-update-Diamond .statusDiamond label {
+.sub-update-Diamond .statusDiamond label,
+.sub-update-Diamond .accountId label {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -235,7 +237,8 @@ h1 {
 .sub-update-Diamond .Quantity input,
 .sub-update-Diamond .Price input,
 .sub-update-Diamond .imgDiamond input,
-.sub-update-Diamond .statusDiamond input {
+.sub-update-Diamond .statusDiamond input,
+.sub-update-Diamond .accountId input {
     display: flex;
     flex-direction: row;
     align-items: center;

@@ -5,9 +5,10 @@ import { createDiamondShell } from "../../../../redux/actions/diamondShellAction
 import { useNavigate } from "react-router-dom";
 import Select from 'react-select';
 import axios from 'axios';
-import '../../../../pages/managerPages/product/diamondshell/Diamondshell.css'
-import ManagerHeader from "../../header/ManagerHeader"
-import Functionbar from "../../functionbar/Functionbar"
+import './Diamondshell.css';
+import ManagerHeader from "../../header/ManagerHeader";
+import Functionbar from "../../functionbar/Functionbar";
+
 const CreateDiamondShell = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -19,10 +20,19 @@ const CreateDiamondShell = () => {
         price: "0",
         quantity: "0",
         secondaryStoneType: "",
-        statusDiamondShell: ""
+        statusDiamondShell: "",
+        accountId: "0",
+        sizeIds: [0]
     });
+
     const handleChange = (e) => {
-        setDiamondShell({ ...diamondShell, [e.target.name]: e.target.value });
+        const { name, value } = e.target;
+        setDiamondShell({ ...diamondShell, [name]: value });
+    };
+
+    const handleSizeChange = (selectedOptions) => {
+        const sizeIds = selectedOptions ? selectedOptions.map(option => option.value) : [];
+        setDiamondShell({ ...diamondShell, sizeIds });
     };
 
     const diamondShellAdd = async () => {
@@ -30,7 +40,7 @@ const CreateDiamondShell = () => {
         alert("Add DiamondShell successfully!!!!");
         navigate("/diamondshell");
     };
-    /* Fetch diamondShell Size from ApI */
+
     const [diamondShellSize, setDiamondShellSize] = useState([]);
 
     const fetchDiamondShellSize = async () => {
@@ -42,37 +52,29 @@ const CreateDiamondShell = () => {
             return [];
         }
     };
+
     useEffect(() => {
         const fetchData = async () => {
             const diamondShellData = await fetchDiamondShellSize();
-
             if (diamondShellData) {
                 setDiamondShellSize(diamondShellData);
             }
-
         };
         fetchData();
+    }, []);
 
-
-    }, []
-
-    );
-
-    const options = diamondShellSize.map((diamondShell_size) => ({
-        value: diamondShell_size.size,
-        label: diamondShell_size.size,
+    const options = diamondShellSize.map((diamondShell_sizeid) => ({
+        value: diamondShell_sizeid.id,
+        label: diamondShell_sizeid.size,
     }));
 
     return (
         <>
             <ManagerHeader />
+            <Functionbar />
             <div className="create-DiamondShell">
-                <Functionbar />
-                <h1>Create DiamondShell </h1>
-
-
+                <h1>Create DiamondShell</h1>
                 <div className="sub-create-DiamondShell">
-
                     <div className="createGender">
                         <label htmlFor="Gender">Gender:</label>
                         <select name="gender" placeholder="Gender" onChange={handleChange}>
@@ -81,7 +83,6 @@ const CreateDiamondShell = () => {
                             <option value="male">Male</option>
                         </select>
                     </div>
-
                     <div className="createimgDiamondShell">
                         <label htmlFor="imgDiamondShell">Image:</label>
                         <input
@@ -91,7 +92,6 @@ const CreateDiamondShell = () => {
                             onChange={handleChange}
                         />
                     </div>
-
                     <div className="createMaterial">
                         <label htmlFor="Material">Material:</label>
                         <select name="material" placeholder="Material" onChange={handleChange}>
@@ -100,7 +100,6 @@ const CreateDiamondShell = () => {
                             <option value="Gold 14K">Gold 14K</option>
                         </select>
                     </div>
-
                     <div className="createPrice">
                         <label htmlFor="Price">Price:</label>
                         <input
@@ -110,7 +109,6 @@ const CreateDiamondShell = () => {
                             onChange={handleChange}
                         />
                     </div>
-
                     <div className="createQuantity">
                         <label htmlFor="Quantity">Quantity:</label>
                         <input
@@ -120,7 +118,6 @@ const CreateDiamondShell = () => {
                             onChange={handleChange}
                         />
                     </div>
-
                     <div className="createSecondaryStoneType">
                         <label htmlFor="SecondaryStoneType">Secondary Stone Type:</label>
                         <input
@@ -130,40 +127,42 @@ const CreateDiamondShell = () => {
                             onChange={handleChange}
                         />
                     </div>
-
                     <div className="createstatusDiamondShell">
-                        <label htmlFor="statusDiamondShell">StatusDiamond:</label>
+                        <label htmlFor="statusDiamondShell">Status Diamond:</label>
                         <select name="statusDiamondShell" placeholder="StatusDiamondShell" onChange={handleChange}>
                             <option value="">StatusDiamondShell</option>
                             <option value="True">True</option>
                             <option value="False">False</option>
                         </select>
                     </div>
-
+                    <div className="createAccountId">
+                        <label htmlFor="AccountId">AccountId:</label>
+                        <input
+                            type="text"
+                            placeholder="accountId"
+                            name="accountId"
+                            onChange={handleChange}
+                        />
+                    </div>
                     <div className="Size">
-                        <label htmlFor="Size">Size:</label>
+                        <label htmlFor="Size">Sizes:</label>
                         <div className="Select">
                             <Select
                                 isMulti
+                                name="sizeIds"
                                 options={options}
-                                onChange={(selectedOptions) => {
-                                    console.log(selectedOptions);
-                                }}
-                                placeholder="Select Size"
+                                onChange={handleSizeChange}
+                                placeholder="Select SizeID"
                                 className="custom-Size"
                             />
                         </div>
-
                     </div>
 
                 </div>
-
                 <button onClick={diamondShellAdd}>Add</button>
             </div>
         </>
-
     );
+};
 
-}
-
-export default CreateDiamondShell
+export default CreateDiamondShell;

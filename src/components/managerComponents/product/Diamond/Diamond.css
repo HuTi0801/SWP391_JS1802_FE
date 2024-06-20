@@ -20,7 +20,7 @@
     font-weight: bold;
     text-decoration: none;
     font-size: 16px;
-    margin-top: -42px;
+    margin-top: -40px;
     margin-right: 15px;
 }
 
@@ -54,7 +54,8 @@
 .createCaratWeight,
 .createCut,
 .createColor,
-.createstatusDiamond {
+.createstatusDiamond,
+.AccountId {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -72,7 +73,8 @@
 .sub-create-Diamond .createCaratWeight label,
 .sub-create-Diamond .createCut label,
 .sub-create-Diamond .createColor label,
-.sub-create-Diamond .createstatusDiamond label {
+.sub-create-Diamond .createstatusDiamond label,
+.sub-create-Diamond .AccountId label {
     display: flex;
 
     flex-direction: row;
@@ -96,7 +98,8 @@
 .sub-create-Diamond .createimgDiamond input,
 .sub-create-Diamond .createCut select,
 .sub-create-Diamond .createColor select,
-.sub-create-Diamond .createstatusDiamond select {
+.sub-create-Diamond .createstatusDiamond select,
+.sub-create-Diamond .AccountId input {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -271,8 +274,7 @@ select {
 }
 
 .diamond-card .Delete {
-    padding: 20px 50px;
-    padding-bottom: 23.5px;
+    padding: 12px 60px 23.5px 60px;
     display: flex;
     font-stretch: expanded;
     text-decoration: none;
@@ -286,8 +288,8 @@ select {
     text-align: center;
     font-size: large;
     margin-left: auto;
-    margin-right: 200px;
-    margin-top: -64px;
+    margin-right: 160px;
+    margin-top: -54px;
 }
 
 /* pagination */

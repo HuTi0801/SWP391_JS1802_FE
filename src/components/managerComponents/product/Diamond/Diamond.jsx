@@ -8,9 +8,9 @@ const Diamond = () => {
     return (
         <>
             <ManagerHeader />
-
+            <Functionbar />
             <div className='diamond-container'>
-                <Functionbar />
+
                 <div className='create'>
 
                     <h1>Diamond Product List</h1>

@@ -15,8 +15,8 @@ const LoginContent = () => {
             password: "",
         },
         validationSchema: yup.object({
-            username: yup.string().required("Please Enter Username"),
-            password: yup.string().required("Please Enter Password"),
+            username: yup.string().required(" Username is not blank"),
+            password: yup.string().required(" Password is not blank"),
         }),
         onSubmit: async (values) => {
             try {

@@ -39,11 +39,12 @@ const DiamondShellInfoDetails = () => {
 
     return (
 
-        <>     <ManagerHeader />
-
+        <>
+            <ManagerHeader />
+            <Functionbar />
             <div className="diamond-shell-infodetails-container">
-                <Functionbar />
-                <h1>DiamondShell Product Details</h1>
+
+                <h1>DiamondShell  Details</h1>
                 <div>
 
                     <div className="text">

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import "../OrderListPage.css"
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import ManagerHeader from "../../../managerComponents/header/ManagerHeader.jsx"
+import Functionbar from "../../../managerComponents/functionbar/Functionbar.jsx"
 const Canceled = () => {
     const [Canceloders, setCancelOrders] = useState([]);
     /* Display Canceled Order Info  */
@@ -49,13 +51,15 @@ const Canceled = () => {
     return (
 
         <>
-            <h1>Cancle OrderList</h1>
+            <ManagerHeader />
+            <Functionbar />
+            <h1>Cancled Order List</h1>
             <div className="OrderList-container">
                 <hr className="vertical-line" />
                 <div>
                     <ul className="url_Status">
-                        <h3 className='Status'>Status</h3>
-                        <Link to="/orderlist" className="All">
+
+                        <Link to="/managerorderlist" className="All">
                             All
                         </Link>
                         <Link to="/pending" className="Pending">
@@ -80,14 +84,10 @@ const Canceled = () => {
             <div className='list'>
                 {records.filter(order => order.dateStatusOrders[order.dateStatusOrders.length - 1].status === "Cancel")
                     .map((order) => (
-                        <div key={order.id} className='OrderList'>
-                            <div className="OrderID">
-                                <span> Order ID:</span>
-                                <p>{order.id}</p>
-                            </div>
+                        <div key={order.orderId} className='OrderList'>
                             <div className="CustomerID">
-                                <span>Customer ID:</span>
-                                <p>{order.customerId}</p>
+                                <span>OrderID:</span>
+                                <p>{order.orderId}</p>
                             </div>
                             <div className="CustomerName">
                                 <span>Customer Name:</span>
@@ -96,10 +96,6 @@ const Canceled = () => {
                             <div className="TotalPrice">
                                 <span>Total Price:</span>
                                 <p>{formatCurrency(order.totalPrice)}</p>
-                            </div>
-                            <div className="Address">
-                                <span> Address:</span>
-                                <p>{order.address}</p>
                             </div>
                             <div className="OrderStatus">
                                 <span>Phone:</span>
@@ -110,9 +106,9 @@ const Canceled = () => {
                                 <p>{order.dateStatusOrders[order.dateStatusOrders.length - 1].status}</p>
                             </div>
                             <Link to="/assigned" className="Assigned">
-                                Assigned
+                                Drop
                             </Link>
-                            <Link to={`/orderDetails/${order.id}`} className="ViewDetails">
+                            <Link to={`/orderDetails/${order.orderId}`} className="ViewDetails">
                                 View Details
                             </Link>
                         </div>

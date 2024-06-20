@@ -1,6 +1,6 @@
 import { Api } from "../utils/Api";
 const API = Api();
-export const getProduct = () => {
+export const getDiamondShell = () => {
     return API.get("/auth/diamond-shell/get-all-diamond-shell"); //gọi api để lấy data
 };
 

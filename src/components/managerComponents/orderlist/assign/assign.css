@@ -19,13 +19,6 @@
     margin-right: 20px;
 }
 
-.Status {
-    color: black;
-    font-size: 30px;
-    text-decoration: none;
-    margin-left: 15px;
-    margin-bottom: 20px;
-}
 
 .url_Status {
     display: flex;
@@ -52,17 +45,19 @@
 
 
 table {
+    display: table;
     width: 500px;
-    margin-top: 70px;
-    margin-left: 380px;
+    margin-top: 30px;
+    margin-left: 400px;
 }
 
 th,
 td,
 thead {
-    padding: 0 30px;
-    text-align: center;
+    padding: 0 30px 0 30px;
     border: 1px solid black;
+    text-align: center;
+
 }
 
 td {
@@ -70,9 +65,16 @@ td {
     padding: 20px;
 }
 
-.FirstName,
-.LastName,
-.Start_Date {
+th {
+
+    padding: 0 40px 0 40px;
+}
+
+.Username,
+.OrderCount,
+.OrderID,
+.OrderCount,
+.Role {
     width: 50px;
 }
 
@@ -81,6 +83,11 @@ td {
     font-weight: bold;
 }
 
+.OrderID {
+    font-weight: bold;
+}
+
+
 .check_Attendence {
     margin-top: 20px;
     margin-left: 20px;
@@ -88,19 +95,29 @@ td {
 
 .CheckApp {
     margin-top: 20px;
-    margin-left: 5px;
+    margin-left: 28px;
 }
 
-.PendingAssigned-container .Assigned {
+.PendingAssigned {
     padding: 20px;
+    display: block;
     color: white;
+    border-radius: 20px;
     background-color: rgba(142, 136, 136, 0.4);
     font-size: larger;
     width: fit-content;
+    border-style: none;
     margin-top: -700px;
-    position: relative;
     margin-left: 1000px;
-    top: 40px;
+    /* Ensures the button stays above other elements */
+}
+
+.Pendingwarning {
+    color: rgb(93, 0, 255);
+    font-weight: bold;
+    font-size: medium;
+    margin-top: 20px;
+    margin-left: 700px;
 }
 
 .PendingAssigned-container .Assigned:hover {
@@ -134,6 +151,14 @@ td {
     background-color: rgba(0, 106, 255, 0.934);
 }
 
+.Confirmwarning {
+    color: rgb(93, 0, 255);
+    font-weight: bold;
+    font-size: medium;
+    margin-top: 20px;
+    margin-left: 700px;
+}
+
 .Confirmcontainer {
     display: inline-flex;
     padding-top: 50px;
@@ -148,13 +173,7 @@ td {
     margin-right: 20px;
 }
 
-.Status {
-    color: black;
-    font-size: 30px;
-    text-decoration: none;
-    margin-left: 15px;
-    margin-bottom: 20px;
-}
+
 
 .url_Status {
     display: flex;
@@ -179,6 +198,20 @@ td {
     margin-left: 2px;
 }
 
+.ConfirmAssigned {
+    padding: 20px;
+    display: block;
+    color: white;
+    border-radius: 20px;
+    background-color: rgba(142, 136, 136, 0.4);
+    font-size: larger;
+    width: fit-content;
+    border-style: none;
+    margin-top: -700px;
+    margin-left: 1000px;
+    /* Ensures the button stays above other elements */
+}
+
 /*  */
 
 
@@ -189,23 +222,6 @@ td {
     border-right: 1px solid #000;
 }
 
-.DeliveringAssigned-container .Staff {
-    padding: 20px;
-    color: white;
-    background-color: rgba(142, 136, 136, 0.4);
-    font-size: larger;
-    width: fit-content;
-    border-radius: 10px;
-    margin-top: -700px;
-    position: relative;
-    margin-left: 890px;
-    top: 40px;
-}
-
-.DeliveringAssigned-container .Staff:hover {
-    color: rgba(255, 0, 0, 0.826);
-    background-color: rgba(0, 106, 255, 0.934);
-}
 
 .Deliveringcontainer {
     display: inline-flex;
@@ -260,10 +276,26 @@ td {
     margin-left: 2px;
 }
 
-.DeliveryStaffDelivering {
-    margin-left: 700px;
+.Delivering_table {
+
+    width: 500px;
     margin-top: -600px;
+    margin-left: 400px;
 }
+
+.AllStaff_table {
+    width: 500px;
+    margin-top: -600px;
+    margin-left: 400px;
+}
+
+.DeliveryDate,
+.DeliveryTime,
+.DateofReceiptOrders,
+.TimeofReceiptOrders {
+    width: 50px;
+}
+
 
 /*  */
 
@@ -274,23 +306,6 @@ td {
     border-right: 1px solid #000;
 }
 
-.DeliveredAssigned-container .Staff {
-    padding: 20px;
-    color: white;
-    background-color: rgba(142, 136, 136, 0.4);
-    font-size: larger;
-    width: fit-content;
-    border-radius: 10px;
-    margin-top: -700px;
-    position: relative;
-    margin-left: 890px;
-    top: 40px;
-}
-
-.DeliveredAssigned-container .Staff:hover {
-    color: rgba(255, 0, 0, 0.826);
-    background-color: rgba(0, 106, 255, 0.934);
-}
 
 .Deliveredcontainer {
     display: inline-flex;
@@ -329,6 +344,7 @@ td {
 .Delivered,
 .All,
 .Sale,
+.AllStaff,
 .SaleStaff,
 .DeliveryStaff {
     color: black;
@@ -337,15 +353,32 @@ td {
     text-decoration: none;
 }
 
+.AllStaff:hover,
+.SaleStaff:hover,
+.DeliveryStaff:hover {
+    color: red;
+}
+
 .DeliveryStaff {
     margin-top: -20px;
+}
+
+.AllStaff {
+    margin-bottom: 10px;
 }
 
 .All {
     margin-left: 2px;
 }
 
-.DeliveryStaffDelivered {
-    margin-left: 700px;
+.Delivered_table {
+
+    width: 500px;
     margin-top: -600px;
+    margin-left: 400px;
+}
+
+.DateofReceiptGoods,
+.TimeofReceiptGoods {
+    width: 50px;
 }

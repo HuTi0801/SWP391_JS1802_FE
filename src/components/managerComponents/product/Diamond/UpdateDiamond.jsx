@@ -24,6 +24,7 @@ const UpdateDiamond = () => {
         certificateNumber: "",
         imageDiamond: "",
         statusDiamond: true,
+        accountId: 0
     });
     const handleChange = (e) => {
         setDiamond({
@@ -136,6 +137,18 @@ const UpdateDiamond = () => {
                                 id="statusDiamond"
                                 name="statusDiamond"
                                 value={diamond.statusDiamond}
+
+                                onChange={handleChange}
+                            />
+                        </div>
+
+                        <div className="accountId">
+                            <label htmlFor="accountId">AccountId:</label>
+                            <input
+                                type="text"
+                                id="accountId"
+                                name="accountId"
+                                value={diamond.accountId}
 
                                 onChange={handleChange}
                             />

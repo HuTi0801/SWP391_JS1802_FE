@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import "../../../../pages/managerPages/product/diamondshell/Diamondshell.css"
+import "./Diamondshell.css"
 import { Link } from 'react-router-dom';
-import ManagerHeader from "../../header/ManagerHeader"
-import Functionbar from "../../functionbar/Functionbar"
 const DiamondShellInfo = () => {
     const [diamondShells, setDiamondShells] = useState([]);
 
@@ -87,9 +85,8 @@ const DiamondShellInfo = () => {
 
 
     return (
-        <>  <ManagerHeader />
+        <>
             <div className="diamond-shell-info-container">
-                <Functionbar />
                 {records.map((diamondShell) => (
                     <div key={diamondShell.id} className="diamond-shell-card">
                         <div>

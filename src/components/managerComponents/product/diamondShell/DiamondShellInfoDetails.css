@@ -169,7 +169,8 @@ h1 {
 .Quantity,
 .Price,
 .imageDiamondShell,
-.statusDiamondShell {
+.statusDiamondShell,
+.Manager_accountId {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -186,7 +187,8 @@ h1 {
 .sub-update-DiamondShell .imageDiamondShell label,
 .sub-update-DiamondShell .Material label,
 .sub-update-DiamondShell .statusDiamondShell label,
-.sub-update-DiamondShell .Gender label {
+.sub-update-DiamondShell .Gender label,
+.sub-update-DiamondShell .Manager_accountId label {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -204,7 +206,8 @@ h1 {
 .sub-update-DiamondShell .Material input,
 .sub-update-DiamondShell .imageDiamondShell input,
 .sub-update-DiamondShell .statusDiamondShell input,
-.sub-update-DiamondShell .Gender input {
+.sub-update-DiamondShell .Gender input,
+.sub-update-DiamondShell .Manager_accountId input {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -214,6 +217,7 @@ h1 {
     margin-right: 10px;
     padding: 5px;
 }
+
 
 
 .update-DiamondShell button {
