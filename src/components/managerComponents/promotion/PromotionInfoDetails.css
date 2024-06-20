@@ -95,34 +95,3 @@ h1 {
     justify-content: center;
     align-items: center;
 }
-
-.PromotionUpdate {
-    display: block;
-    background-color: rgba(128, 128, 128, 0.811);
-    width: 2.4em;
-    border-radius: 20px;
-}
-
-.promotion-infodetails-container.PromotionUpdate:hover {
-    color: rgba(255, 0, 0, 0.826);
-    background-color: rgba(0, 106, 255, 0.934)
-}
-
-.promotion-infodetails-container .PromotionUpdate {
-    padding: 10px 50px;
-
-    display: flex;
-
-    text-decoration: none;
-    font-weight: bold;
-    color: white;
-    justify-content: space-between;
-    align-items: center;
-    /* Căn giữa theo chiều dọc */
-    flex-direction: column;
-    text-align: center;
-    margin-left: auto;
-    margin-right: 160px;
-    margin-top: 20px;
-
-}

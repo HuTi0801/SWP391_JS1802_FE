@@ -59,7 +59,7 @@ const Canceled = () => {
                 <div>
                     <ul className="url_Status">
 
-                        <Link to="/orderlist" className="All">
+                        <Link to="/managerorderlist" className="All">
                             All
                         </Link>
                         <Link to="/pending" className="Pending">
@@ -84,10 +84,10 @@ const Canceled = () => {
             <div className='list'>
                 {records.filter(order => order.dateStatusOrders[order.dateStatusOrders.length - 1].status === "Cancel")
                     .map((order) => (
-                        <div key={order.id} className='OrderList'>
+                        <div key={order.orderId} className='OrderList'>
                             <div className="CustomerID">
-                                <span>Customer ID:</span>
-                                <p>{order.customerId}</p>
+                                <span>OrderID:</span>
+                                <p>{order.orderId}</p>
                             </div>
                             <div className="CustomerName">
                                 <span>Customer Name:</span>
@@ -106,9 +106,9 @@ const Canceled = () => {
                                 <p>{order.dateStatusOrders[order.dateStatusOrders.length - 1].status}</p>
                             </div>
                             <Link to="/assigned" className="Assigned">
-                                Assign
+                                Drop
                             </Link>
-                            <Link to={`/orderDetails/${order.id}`} className="ViewDetails">
+                            <Link to={`/orderDetails/${order.orderId}`} className="ViewDetails">
                                 View Details
                             </Link>
                         </div>

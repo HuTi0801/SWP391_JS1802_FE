@@ -158,7 +158,7 @@
     /* Căn giữa theo chiều dọc */
     flex-direction: column;
     text-align: center;
-    padding: 10px 40px;
+    padding: 12px 40px;
     margin-left: 320px;
     /* Adjust the left margin */
     margin-top: -60px;

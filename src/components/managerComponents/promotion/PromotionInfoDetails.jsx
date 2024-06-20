@@ -36,9 +36,6 @@ const PromotionInfoDetails = () => {
                         <p></p>
                     </div>
                 </div>
-                <Link to='/updatePromotion' className='PromotionUpdate'>
-                    Update
-                </Link>
             </div>
         </>
     )

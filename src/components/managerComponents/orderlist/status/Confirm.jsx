@@ -59,7 +59,7 @@ const Confirm = () => {
                 <div>
                     <ul className="url_Status">
 
-                        <Link to="/orderlist" className="All">
+                        <Link to="/managerorderlist" className="All">
                             All
                         </Link>
                         <Link to="/pending" className="Pending">
@@ -82,12 +82,12 @@ const Confirm = () => {
                 </div>
             </div>
             <div className='list'>
-                {records.filter(order => order.dateStatusOrders[order.dateStatusOrders.length - 1].status === "Confirm")
+                {records.filter(order => order.dateStatusOrders[order.dateStatusOrders.length - 1].status === "Confirmed")
                     .map((order) => (
-                        <div key={order.id} className='OrderList'>
+                        <div key={order.orderId} className='OrderList'>
                             <div className="CustomerID">
-                                <span>Customer ID:</span>
-                                <p>{order.customerId}</p>
+                                <span>OrderID:</span>
+                                <p>{order.orderId}</p>
                             </div>
                             <div className="CustomerName">
                                 <span>Customer Name:</span>
@@ -105,10 +105,10 @@ const Confirm = () => {
                                 <span>Status:</span>
                                 <p>{order.dateStatusOrders[order.dateStatusOrders.length - 1].status}</p>
                             </div>
-                            <Link to="/assigned" className="Assigned">
+                            <Link to={`/confirmassigned/${order.orderId}`} className="Assigned">
                                 Assign
                             </Link>
-                            <Link to={`/orderDetails/${order.id}`} className="ViewDetails">
+                            <Link to={`/orderDetails/${order.orderId}`} className="ViewDetails">
                                 View Details
                             </Link>
                         </div>

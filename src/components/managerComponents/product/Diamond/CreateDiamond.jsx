@@ -18,7 +18,8 @@ const CreateDiamond = () => {
         origin: "",
         price: "0",
         quantity: "0",
-        statusDiamond: ""
+        statusDiamond: "",
+        accountId: "0",
 
     });
     const handleChange = (e) => {
@@ -125,6 +126,16 @@ const CreateDiamond = () => {
                     />
                 </div>
 
+                <div className="AccountId">
+                    <label htmlFor="AccountId">AccountId:</label>
+                    <input
+                        type="text"
+                        placeholder="accountId"
+                        name="accountId"
+                        onChange={handleChange}
+                    />
+                </div>
+
                 <div className="createstatusDiamond">
                     <label htmlFor="statusDiamond">StatusDiamond:</label>
                     <select name="statusDiamond" placeholder="StatusDiamond" onChange={handleChange}>
@@ -133,6 +144,7 @@ const CreateDiamond = () => {
                         <option value="False">False</option>
                     </select>
                 </div>
+
             </div>
 
             <button onClick={diamondAdd}>Add</button>
