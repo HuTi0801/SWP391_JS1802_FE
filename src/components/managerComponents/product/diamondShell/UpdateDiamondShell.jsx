@@ -26,7 +26,6 @@ const UpdateDiamondShell = () => {
         sizeIds: [0]
     });
 
-    const [diamondShellSize, setDiamondShellSize] = useState([]);
 
     useEffect(() => {
         const fetchDiamondShellDetails = async () => {

@@ -37,7 +37,7 @@ const Pending = () => {
     }
     const [currentPage, setcurrentPage] = useState(1)
 
-    const recordsPerPage = 4;
+    const recordsPerPage = 3;
 
     const lastIndex = currentPage * recordsPerPage;
 
@@ -105,7 +105,7 @@ const Pending = () => {
                                 <span>Status:</span>
                                 <p>{order.dateStatusOrders[order.dateStatusOrders.length - 1].status}</p>
                             </div>
-                            <Link to={`/pendindassigned/${order.orderId}`} className="Assigned">
+                            <Link to={`/pendingassigned/${order.orderId}`} className="Assigned">
                                 Assign
                             </Link>
                             <Link to={`/orderDetails/${order.orderId}`} className="ViewDetails">

@@ -23,7 +23,7 @@ const Confirm = () => {
             setConfirmOrders(orderData);
         };
         fetchData();
-    }, []);
+    }, [Confirmoders]);
 
     function formatCurrency(amount) {
         const formatter = new Intl.NumberFormat('vi-VN', {
@@ -34,9 +34,9 @@ const Confirm = () => {
         });
         return formatter.format(amount);
     }
-    const [currentPage, setcurrentPage] = useState(1)
+    const [currentPage, setcurrentPage] = useState([])
 
-    const recordsPerPage = 4;
+    const recordsPerPage = 3;
 
     const lastIndex = currentPage * recordsPerPage;
 

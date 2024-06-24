@@ -5,11 +5,7 @@ import PromotionList from "../../../components/managerComponents/promotion/Promo
 import ManagerHeader from '../../../components/managerComponents/header/ManagerHeader';
 import Functionbar from '../../../components/managerComponents/functionbar/Functionbar';
 const Promotion = () => {
-    const [isListVisible, setIsListVisible] = useState(false);
 
-    const toggleListVisibility = () => {
-        setIsListVisible(!isListVisible);
-    };
     return (
         <>
             <ManagerHeader />
@@ -29,34 +25,6 @@ const Promotion = () => {
                         Create
                     </Link>
 
-                </div>
-                <div className='filter-promotion'>
-                    <div className='sub-filter-promotion'>
-                        <img
-                            src="https://t3.ftcdn.net/jpg/03/20/78/84/360_F_320788475_nEiLVViOBewea7taZWqNUR0lJAMTAaSo.jpg"
-                            alt='add icon'
-                            height={20}
-                            width={20}
-                        />
-                        <p onClick={toggleListVisibility} style={{ cursor: 'pointer' }}>
-                            Filter
-                        </p>
-                    </div>
-
-                    {isListVisible && (
-                        <ul className="url">
-                            <li>
-                                <Link to="/DiamondPromotion" className="Diamond_Promotion">
-                                    Diamond
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/DiamondShellPromotion" className="DiamondShell_Promotion">
-                                    DiamondShell
-                                </Link>
-                            </li>
-                        </ul>
-                    )}
                 </div>
                 <PromotionList />
 

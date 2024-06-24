@@ -36,7 +36,7 @@ const Canceled = () => {
     }
     const [currentPage, setcurrentPage] = useState(1)
 
-    const recordsPerPage = 4;
+    const recordsPerPage = 3;
 
     const lastIndex = currentPage * recordsPerPage;
 
