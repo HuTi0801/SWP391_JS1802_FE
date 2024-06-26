@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import "../../../pages/managerPages/promotion/Promotion.css";
 import { Link } from 'react-router-dom';
-
+import { useParams } from 'react-router-dom';
 const PromotionList = () => {
     const [Promotion, setPromotion] = useState([]);
 
@@ -24,9 +24,8 @@ const PromotionList = () => {
         };
         fetchData();
     }, []);
-
-    const DeletePromotion = async (id) => {
-        const shouldDelete = window.confirm(`Do you want to delete promotion ID: ${id}`);
+    const DeletePromotion = async (id, promotionCode) => {
+        const shouldDelete = window.confirm(`Do you want to delete promotion ID: ${promotionCode}`);
         if (!shouldDelete) return;
 
         try {
@@ -79,7 +78,7 @@ const PromotionList = () => {
                     <Link to={`/promotionInfoDetail/${promotion.id}`} className="PromotionInfo">
                         View Details
                     </Link>
-                    <button className="Delete" onClick={() => { DeletePromotion(promotion.id) }}>
+                    <button className="Delete" onClick={() => { DeletePromotion(promotion.id, promotion.promotionCode) }}>
                         Delete
                     </button>
                 </div>

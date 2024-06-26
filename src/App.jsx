@@ -52,8 +52,12 @@ import SaleStaffDelivered from './components/managerComponents/orderlist/assign/
 import DeliveryStaffDelivered from './components/managerComponents/orderlist/assign/DeliveryStaffDelivered.jsx'
 import DeliveryStaffDelivering from './components/managerComponents/orderlist/assign/DeliveryStaffDelivering.jsx'
 
-import DashBoard from './components/managerComponents/dashboard/DashBoardComponent.jsx'
-
+import DashBoard from './pages/managerPages/dashboard/DashBoard.jsx'
+import CancelRevenue from './pages/managerPages/dashboard/revenue/CancelRevenue.jsx'
+import ConfirmedRevenue from './pages/managerPages/dashboard/revenue/ConfirmedRevenue.jsx'
+import DeliveringRevenue from './pages/managerPages/dashboard/revenue/DeliveringRevenue.jsx'
+import DeliveredRevenue from './pages/managerPages/dashboard/revenue/DeliveredRevenue.jsx'
+import Performance from './pages/managerPages/dashboard/performance/Performance.jsx'
 export const Account = () => {
 
 }
@@ -139,6 +143,11 @@ function App() {
 
         {/*DashBoard Components */}
         <Route path='/dashBoard' element={< DashBoard />} />
+        <Route path='/cancelRevenue' element={< CancelRevenue />} />
+        <Route path='/confirmedRevenue' element={< ConfirmedRevenue />} />
+        <Route path='/deliveredRevenue' element={< DeliveredRevenue />} />
+        <Route path='/deliveringRevenue' element={< DeliveringRevenue />} />
+        <Route path='/staffPerformance' element={< Performance />} />
       </Routes>
 
 
