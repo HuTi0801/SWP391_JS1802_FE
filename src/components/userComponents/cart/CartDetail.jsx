@@ -13,42 +13,43 @@ const CartDetail = () => {
     const [diamond, setDiamond] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     const [loading, setLoading] = useState(true); // Add loading state
+    const [promotionCode, setPromotionCode] = useState(''); // State for promotion code input
     const customerID = 1;
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.post(`http://localhost:8080/auth/cart/get-cart-by-customer-id/${customerID}`);
-                const cartData = response.data;
-                if (!cartData || !cartData.items) {
-                    console.error('Cart data or cart items are undefined:', cartData);
-                    return;
-                }
-                setCart(cartData);
-
-                const diamondPromises = cartData.items
-                    .filter(item => item.productType === "DIAMOND")
-                    .map(item => axios.get(`http://localhost:8080/auth/diamond/get-a-diamond-${item.productId}`));
-
-                const diamondShellPromises = cartData.items
-                    .filter(item => item.productType === "DIAMOND_SHELL")
-                    .map(item => axios.get(`http://localhost:8080/auth/diamond-shell/get-a-diamond-shell-${item.productId}`));
-
-                const diamondResponses = await Promise.all(diamondPromises);
-                const diamondData = diamondResponses.map(response => response.data.result);
-                setDiamond(diamondData);
-
-                const diamondShellResponses = await Promise.all(diamondShellPromises);
-                const diamondShellData = diamondShellResponses.map(response => response.data.result);
-                setDiamondShell(diamondShellData);
-
-                setLoading(false); // Set loading to false after data is fetched
-            } catch (error) {
-                console.error(error);
+    const fetchCartData = async () => {
+        try {
+            const response = await axios.post(`http://localhost:8080/auth/cart/get-cart-by-customer-id/${customerID}`);
+            const cartData = response.data;
+            if (!cartData || !cartData.items) {
+                console.error('Cart data or cart items are undefined:', cartData);
+                return;
             }
-        };
+            setCart(cartData);
 
-        fetchData();
+            const diamondPromises = cartData.items
+                .filter(item => item.productType === "DIAMOND")
+                .map(item => axios.get(`http://localhost:8080/auth/diamond/get-a-diamond-${item.productId}`));
+
+            const diamondShellPromises = cartData.items
+                .filter(item => item.productType === "DIAMOND_SHELL")
+                .map(item => axios.get(`http://localhost:8080/auth/diamond-shell/get-a-diamond-shell-${item.productId}`));
+
+            const diamondResponses = await Promise.all(diamondPromises);
+            const diamondData = diamondResponses.map(response => response.data.result);
+            setDiamond(diamondData);
+
+            const diamondShellResponses = await Promise.all(diamondShellPromises);
+            const diamondShellData = diamondShellResponses.map(response => response.data.result);
+            setDiamondShell(diamondShellData);
+
+            setLoading(false); // Set loading to false after data is fetched
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+    useEffect(() => {
+        fetchCartData();
     }, [customerID]);
 
     const calculateTotalPrice = () => {
@@ -115,19 +116,6 @@ const CartDetail = () => {
             console.error("Error updating cart item quantity:", error);
         }
     };
-
-
-    useEffect(() => {
-        // Calculate total price whenever cart items change
-        let total = 0;
-        cart.items.forEach(item => {
-            total += item.unitPrice * item.quantity;
-        });
-        setTotalPrice(total);
-    }, [cart.items]);
-
-
-
     const handleDeleteCart = async (productId, productType, size) => {
         try {
             // Send delete request to server
@@ -157,6 +145,27 @@ const CartDetail = () => {
     const handleClickPayment = () => {
         navigate('/payment');
     };
+
+    const handleClickApplyPromotion = async () => {
+        try {
+            const response = await axios.post(`http://localhost:8080/auth/cart/apply-promotion?cartId=${cart.cartId}&promotionCode=${promotionCode}&customerID=1`);
+            console.log(response);
+            fetchCartData(); // Refresh cart data after applying promotion
+        } catch (error) {
+            console.error(error);
+            alert("Promotion code not valid!");
+        }
+    };
+
+    const handleClickRemovePromotion = async() => {
+        try {
+            const response = await axios.post(`http://localhost:8080/auth/cart/remove-applying-promotion-code?cartId=${cart.cartId}&customerId=1`)
+            console.log(response.data)
+            fetchCartData(); 
+        } catch (error) {
+            console.error(error);
+        }
+    }
 
     return (
         <div className='cart-detail-container'>
@@ -202,6 +211,16 @@ const CartDetail = () => {
                         })}
                     </tbody>
                 </table>
+            </div>
+            <div className='promotion-code'>
+                <input
+                    type="text"
+                    placeholder='Promotion Code'
+                    value={promotionCode}
+                    onChange={(e) => setPromotionCode(e.target.value)} // Update promotionCode state on input change
+                />
+                <button onClick={handleClickApplyPromotion}>APPLY</button>
+                <button onClick={handleClickRemovePromotion}>REMOVE</button>
             </div>
             <div className='total-price'>
                 <h2>Total: {formatPrice(totalPrice)}đ</h2>

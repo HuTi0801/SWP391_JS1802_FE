@@ -12,6 +12,7 @@ const StaffSideBar = () => {
 
   return (
     <div className='staff-side-bar-container'>
+      <p>SALE STAFF</p>
         <div className='side-bar-items'>
             <button onClick={handleClickLogOut}>LOG OUT</button>
         </div>

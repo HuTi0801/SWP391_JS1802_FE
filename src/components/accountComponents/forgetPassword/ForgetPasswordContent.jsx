@@ -11,25 +11,33 @@ const ForgetPasswordContent = () => {
     /* Start Formik */
     const formik = useFormik({
         initialValues: {
-            newpassword: "",
+            phone: "",
+            newPassword: "",
             confirmpassword: "",
         },
         validationSchema: yup.object({
-            newpassword: yup.string().required("Please Enter Password"),
+            phone: yup.string().required("Please Enter Phone Number"),
+            newPassword: yup.string().required("Please Enter Password"),
             confirmpassword: yup.string()
-                .oneOf([yup.ref('newpassword'), null], "Password does not match")
+                .oneOf([yup.ref('newPassword'), null], "Password does not match")
                 .required("Please Confirm Password"),
         }),
         validateOnBlur: false,
         validateOnChange: false,
         onSubmit: async (values) => {
             try {
-                await axios.post("http://localhost:8080", values);
+                const formData = {
+                    phone: values.phone,
+                    newPassword: values.newPassword,
+                }
+                const response = await axios.post("http://localhost:8080/auth/account/forgetPassword", formData);
                 navigate('/login');
-                console.log(values);
+                console.log(response.data);
+                alert("Password Changed Successfully!")
             }
             catch (error) {
-                console.error(error);
+                console.log(error);
+                alert("Password Changed Failed!")
             }
         }
     });
@@ -45,19 +53,30 @@ const ForgetPasswordContent = () => {
                 </div>
                 <div className='forget-password-form'>
                     <form onSubmit={formik.handleSubmit}>
+                        <p>PHONE</p>
+                        <input
+                            type="text"
+                            name="phone"
+                            placeholder='Enter Phone Number'
+                            inputMode="numeric"
+                            pattern="[0-9]*"
+                            value={formik.values.phone}
+                            onChange={formik.handleChange}
+                        />
+                        {formik.errors.phone && formik.touched.phone && <div>{formik.errors.phone}</div>}
                         <p>NEW PASSWORD</p>
                         <input type="password"
-                            name='newpassword'
+                            name='newPassword'
                             placeholder='Enter New Password'
-                            value={formik.values.newpassword}
+                            value={formik.values.newPassword}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                         />
-                        {formik.errors.newpassword && formik.touched.newpassword && <div>{formik.errors.newpassword}</div>}
+                        {formik.errors.newPassword && formik.touched.newPassword && <div>{formik.errors.newPassword}</div>}
                         <p>CONFIRM NEW PASSWORD</p>
                         <input type="password"
                             name='confirmpassword'
-                            placeholder='Enter Confirm Password'
+                            placeholder='Confirm New Password'
                             value={formik.values.confirmpassword}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}

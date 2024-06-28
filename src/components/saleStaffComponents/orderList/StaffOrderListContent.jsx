@@ -1,91 +1,116 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './StaffOrderListContent.css';
 import { useNavigate } from 'react-router-dom';
-import Pagination from '../../utilityComponents/Pagination';
+import Pagination from '../../utilityComponents/pagination/Pagination';
+import axios from 'axios';
+import moment from 'moment';
+import { Select, MenuItem, FormControl, InputLabel } from '@mui/material';
 
 const StaffOrderListContent = () => {
+    const [orders, setOrders] = useState([]);
+    const [filteredOrders, setFilteredOrders] = useState([]);
+    const [filterStatus, setFilterStatus] = useState('All');
     const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 10; // Number of items per page
+    const itemsPerPage = 10;
 
-    // Example orders array
-    const orders = [
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 1, status: 'Pending', orderDate: '2024-06-10' },
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 2, status: 'Confirmed', orderDate: '2024-06-11' },
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 3, status: 'Pending', orderDate: '2024-06-12' },
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 4, status: 'Confirmed', orderDate: '2024-06-13' },
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 5, status: 'Pending', orderDate: '2024-06-14' },
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 6, status: 'Confirmed', orderDate: '2024-06-15' },
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 7, status: 'Pending', orderDate: '2024-06-16' },
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 8, status: 'Confirmed', orderDate: '2024-06-17' },
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 9, status: 'Pending', orderDate: '2024-06-18' },
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 10, status: 'Confirmed', orderDate: '2024-06-19' },
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 11, status: 'Pending', orderDate: '2024-06-20' },
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 12, status: 'Confirmed', orderDate: '2024-06-21' },
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 13, status: 'Pending', orderDate: '2024-06-22' },
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 14, status: 'Confirmed', orderDate: '2024-06-23' },
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 15, status: 'Pending', orderDate: '2024-06-24' },
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 16, status: 'Confirmed', orderDate: '2024-06-25' },
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 17, status: 'Pending', orderDate: '2024-06-26' },
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 18, status: 'Confirmed', orderDate: '2024-06-27' },
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 19, status: 'Pending', orderDate: '2024-06-28' },
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 20, status: 'Confirmed', orderDate: '2024-06-29' },
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 21, status: 'Pending', orderDate: '2024-06-30' },
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 22, status: 'Confirmed', orderDate: '2024-07-01' },
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 23, status: 'Pending', orderDate: '2024-07-02' },
-        { image:"https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" ,id: 24, status: 'Confirmed', orderDate: '2024-07-03' },
-        
-    ];
+    useEffect(() => {
+        const fetchOrders = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/auth/orders/get-all-orders');
+                const data = response.data.result;
+                if (Array.isArray(data)) {
+                    setOrders(data);
+                    setFilteredOrders(data);
+                } else {
+                    console.error('Unexpected response format:', data);
+                }
+            } catch (error) {
+                console.error('Error fetching orders:', error);
+            }
+        };
 
-    const totalPages = Math.ceil(orders.length / itemsPerPage); // Calculate total pages
+        fetchOrders();
+    }, []);
 
-    const handleClickOrderDetail = () => {
-        navigate('/salestafforderdetail')
+    const handleClickOrderDetail = (orderId) => {
+        navigate(`/salestafforderdetail/${orderId}`, { state: { orderId: orderId } });
+    };
+
+    const formatDateTime = (dateTime) => {
+        return moment(dateTime).format('h:mm:ss A - dddd, MMMM Do YYYY');
+    };
+
+    const formatPrice = (price) => {
+        return new Intl.NumberFormat('vi-VN').format(price) + 'đ';
     };
 
     const handlePageChange = (page) => {
         setCurrentPage(page);
     };
 
-    // Calculate start and end index for the current page
+    const handleStatusFilterChange = (event) => {
+        const status = event.target.value;
+        setFilterStatus(status);
+
+        if (status === 'All') {
+            setFilteredOrders(orders);
+        } else {
+            const filtered = orders.filter((order) =>
+                order.dateStatusOrders[order.dateStatusOrders.length - 1].status === status
+            );
+            setFilteredOrders(filtered);
+        }
+
+        setCurrentPage(1);
+    };
+
     const startIndex = (currentPage - 1) * itemsPerPage;
     const endIndex = startIndex + itemsPerPage;
-
-    // Slice the orders array based on start and end index
-    const ordersToShow = orders.slice(startIndex, endIndex);
+    const ordersToShow = filteredOrders.slice(startIndex, endIndex);
 
     return (
         <div className='staff-order-list-content-container'>
             <div className='order-list-content'>
-                <div className='order-list-filter'>
-                    <span>Filter by: </span>
-                    <label htmlFor="status-filter">Status</label>
-                    <select name="status-filter" id="status-filter">
-                        <option value="">Choose a status</option>
-                        <option value="Pending">Pending</option>
-                        <option value="Confirmed">Confirmed</option>
-                    </select>
+                <div className='order-list-title'>
+                    ORDER LIST
                 </div>
+                <FormControl variant="outlined" sx={{ width: '200px', margin: '10px 0px' }} className='status-filter'>
+                    <InputLabel id="status-filter-label" sx={{ fontSize: '1.2em' }}>Filter by Status</InputLabel>
+                    <Select
+                        labelId="status-filter-label"
+                        id="status-filter-select"
+                        value={filterStatus}
+                        onChange={handleStatusFilterChange}
+                        sx={{ fontSize: '1.2em' }}
+                        label="Filter by Status"
+                    >
+                        <MenuItem value="All">All</MenuItem>
+                        <MenuItem value="Pending">Pending</MenuItem>
+                        <MenuItem value="Confirmed">Confirmed</MenuItem>
+                    </Select>
+                </FormControl>
                 <ul className='list-order'>
-                    {ordersToShow.map(order => (
-                        <li key={order.id} className='order-detail-preview'>
-                            {/* Replace with your order details */}
-                            <img src={order.image} alt="altimage" />
-                            <div className='order-info'>
-                                <p>OrderID: {order.id}</p>
-                                <p>Order Date: {order.orderDate}</p>
-                                <p>Customer ID: </p>
-                            </div>
-                            <div className='status-and-view'>
-                                <p>Status: {order.status}</p>
-                                <button onClick={handleClickOrderDetail}>View Detail</button>
-                            </div>
-                        </li>
-                    ))}
+                    {filteredOrders.length > 0 ? (
+                        ordersToShow.map((order) => (
+                            <li key={order.orderId} className='order-detail-preview' onClick={() => handleClickOrderDetail(order.orderId)}>
+                                <div className='order-info'>
+                                    <p>ORDER ID: {order.orderId}</p>
+                                    <p>PURCHASE DATE: {order.dateStatusOrders.length > 0 && formatDateTime(order.dateStatusOrders[0].dateStatus)}</p>
+                                    <p>TOTAL PRICE: {formatPrice(order.totalPrice)}</p>
+                                </div>
+                                <div className='status-and-view'>
+                                    <p>Status: {order.dateStatusOrders.length > 0 && order.dateStatusOrders[order.dateStatusOrders.length - 1].status}</p>
+                                </div>
+                            </li>
+                        ))
+                    ) : (
+                        <li>No orders found.</li>
+                    )}
                 </ul>
                 <Pagination
                     currentPage={currentPage}
-                    totalPages={totalPages}
+                    totalPages={Math.ceil(filteredOrders.length / itemsPerPage)}
                     onPageChange={handlePageChange}
                 />
             </div>

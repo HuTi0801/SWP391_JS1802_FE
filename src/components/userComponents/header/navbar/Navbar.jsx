@@ -20,7 +20,6 @@ const Navbar = () => {
                         <div className='text' >Products</div>
                         <div className='dropdown-box'>
                             <div className='dropdown-content'>
-                                <a href="/productlist" className='product-list' onClick={handleClickProductList}>Product List</a>
                                 <a href="/searchdiamond">Search Diamond</a>
                                 <a href="/searchshell">Search Diamond Shell</a>
                             </div>

@@ -2,26 +2,31 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 
-// import Home from './pages/customerPages/home/Home.jsx';
-// import DiamondInfo from './components/userComponents/product_information/DiamondInfo.jsx';
-// import SearchDiamondPage from './pages/customerPages/search/SearchDiamondPage.jsx';
-// import SearchShellPage from './pages/customerPages/search/SearchShellPage.jsx';
-// import ProductList from './pages/customerPages/productList/ProductList.jsx';
-// import { Cart } from './pages/customerPages/cart/Cart.jsx';
-// import Payment from './pages/customerPages/payment/Payment.jsx';
-// import OrderList from './pages/customerPages/order/OrderList.jsx';
-// import OrderDetail from './pages/customerPages/order/OrderDetail.jsx';
-// import OrderCreation from './pages/customerPages/order/OrderCreation.jsx';
-// import DiamondShellInfo from './components/userComponents/product_information/DiamondShellInfo.jsx';
-// import Login from './pages/accountPages/login/Login.jsx';
-// import ForgetPassword from './pages/accountPages/forgetPassword/ForgetPassword.jsx';
-// import UserProfile from './pages/customerPages/userprofile/UserProfile.jsx';
-// import Register from './pages/accountPages/register/Register.jsx'
+import Home from './pages/customerPages/home/Home.jsx';
+import DiamondInfo from './components/userComponents/product_information/DiamondInfo.jsx';
+import SearchDiamondPage from './pages/customerPages/search/SearchDiamondPage.jsx';
+import SearchShellPage from './pages/customerPages/search/SearchShellPage.jsx';
+import ProductList from './pages/customerPages/productList/ProductList.jsx';
+import { Cart } from './pages/customerPages/cart/Cart.jsx';
+import Payment from './pages/customerPages/payment/Payment.jsx';
+import OrderList from './pages/customerPages/order/OrderList.jsx';
+import OrderDetail from './pages/customerPages/order/OrderDetail.jsx';
+import OrderCreation from './pages/customerPages/order/OrderCreation.jsx';
+import DiamondShellInfo from './components/userComponents/product_information/DiamondShellInfo.jsx';
+import Login from './pages/accountPages/login/Login.jsx';
+import ForgetPassword from './pages/accountPages/forgetPassword/ForgetPassword.jsx';
+import UserProfile from './pages/customerPages/userprofile/UserProfile.jsx';
+import Register from './pages/accountPages/register/Register.jsx'
 
 import ManagerHome from './pages/managerPages/home/ManagerHome.jsx';
 
 import StaffOrderList from './pages/saleStaffPages/orderList/StaffOrderList.jsx';
 import StaffOrderDetail from './pages/saleStaffPages/orderDetail/StaffOrderDetail.jsx';
+import DeliveryOrderList from './pages/deliveryPages/orderList/DeliveryOrderList.jsx';
+import DeliveryOrderDetail from './pages/deliveryPages/orderDetail/DeliveryOrderDetail.jsx';
+import Warranty from './pages/saleStaffPages/warranty/Warranty.jsx';
+import PaymentReturn from './components/utilityComponents/paymentRedirect/PaymentReturn.jsx';
+import ErrorPage from './components/utilityComponents/statusPages/ErrorPage.jsx';
 import Diamonds from './pages/managerPages/product/diamond/Diamonds.jsx'
 import DiamondShells from './pages/managerPages/product/diamondshell/DiamondShells.jsx'
 import CreateDiamond from './components/managerComponents/product/Diamond/CreateDiamond.jsx'
@@ -65,12 +70,12 @@ export const Account = () => {
 
 function App() {
   return (
-    <div className='app-container'>
+    <div>
 
 
       <Routes>
         {/* Customer Routes */}
-        {/* <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/diamondshell/:id" element={<DiamondShellInfo />} />
         <Route path="/diamond/:id" element={<DiamondInfo />} />
         <Route path="/searchdiamond" element={<SearchDiamondPage />} />
@@ -79,15 +84,25 @@ function App() {
         <Route path='/cart' element={<Cart />} />
         <Route path='/payment' element={<Payment />} />
         <Route path='/orderlist' element={<OrderList />} />
-        <Route path='/orderdetail' element={<OrderDetail />} />
+        <Route path='/orderdetail/:id' element={<OrderDetail />} />
         <Route path='/ordercreation' element={<OrderCreation />} />
         <Route path='/userprofile' element={<UserProfile />} />
         <Route path='/login' element={<Login />} />
         <Route path='/forgetpassword' element={<ForgetPassword />} />
-        <Route path='/register' element={<Register />} /> */}
+        <Route path='error' element={<ErrorPage />} />
+
         {/* Sale Staff Routes */}
         <Route path='/salestaff' element={<StaffOrderList />} />
-        <Route path='/salestafforderdetail' element={<StaffOrderDetail />} />
+        <Route path='/salestafforderdetail/:id' element={<StaffOrderDetail />} />
+        <Route path='/warrantydetail' element={<Warranty />} />
+
+        {/* Delivery Staff Routes */}
+        <Route path='/delivery' element={<DeliveryOrderList />} />
+        <Route path='/deliveryorderdetail/:id' element={<DeliveryOrderDetail />} />
+
+        {/* Payment Return Route */}
+        <Route path="/auth/payment/return" element={<PaymentReturn />} />
+        <Route path='/register' element={<Register />} />
 
         {/* Manager Routes */}
         {/* Product Components  */}

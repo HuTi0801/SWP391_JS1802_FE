@@ -51,9 +51,10 @@
     font-size: 1.5em;
     cursor: pointer;
     border-radius: 5px;
+    transition: background-color 0.3s ease;
 }
 
-.order-creation-content-container .action-button .order-list-button {
+.order-creation-content-container .action-button button:hover {
     background-color: black;
-    color: var(--font-color);
+    color: white;
 }

@@ -1,149 +1,197 @@
-import React from 'react';
+import React, { useEffect, useState, useRef } from 'react';
+import { useLocation } from 'react-router-dom'; // Import useLocation
 import './PaymentDetail.css';
-import { useFormik } from "formik";
-import * as yup from "yup";
 import axios from 'axios';
 
 const PaymentDetail = () => {
-  const formik = useFormik({
-    initialValues: {
-      firstname: "",
-      lastname: "",
-      phonenumber: "",
-      address: "",
-      paymentmethod: "",
-    },
-    validationSchema: yup.object({
-      firstname: yup.string().required("Please Enter First Name"),
-      lastname: yup.string().required("Please Enter Last Name"),
-      phonenumber: yup.string().required("Please Enter Phone Number"),
-      address: yup.string().required("Please Enter Address"),
-      paymentmethod: yup.string().required("Please Specify Payment Method"),
-    }),
-    onSubmit: async (values) => {
+  const location = useLocation(); // Use useLocation to get the state
+  const [customerInfo, setCustomerInfo] = useState({
+    cusName: '',
+    numberPhone: '',
+    address: '',
+    description: '',
+  });
+  const [cart, setCart] = useState({ items: [] });
+  const [diamondShell, setDiamondShell] = useState([]);
+  const [diamond, setDiamond] = useState([]);
+  const [loading, setLoading] = useState(true); // Add loading state
+  const customerID = 1;
+  const [errors, setErrors] = useState({});
+  const alertShown = useRef(false); // Add useRef to track if the alert has been shown
+
+  useEffect(() => {
+    if (location.state && location.state.status === 'FAILED' && !alertShown.current) {
+      alert('Payment failed. Please try again.');
+      alertShown.current = true; // Set the alertShown to true after showing the alert
+    }
+  }, [location.state]);
+
+  useEffect(() => {
+    const fetchData = async () => {
       try {
-        await axios.post("http://localhost:8080", values);
-      }
-      catch (error) {
+        const response = await axios.post(`http://localhost:8080/auth/cart/get-cart-by-customer-id/${customerID}`);
+        const cartData = response.data;
+        if (!cartData || !cartData.items) {
+          console.error('Cart data or cart items are undefined:', cartData);
+          return;
+        }
+        setCart(cartData);
+
+        const diamondPromises = cartData.items
+          .filter(item => item.productType === "DIAMOND")
+          .map(item => axios.get(`http://localhost:8080/auth/diamond/get-a-diamond-${item.productId}`));
+
+        const diamondShellPromises = cartData.items
+          .filter(item => item.productType === "DIAMOND_SHELL")
+          .map(item => axios.get(`http://localhost:8080/auth/diamond-shell/get-a-diamond-shell-${item.productId}`));
+
+        const diamondResponses = await Promise.all(diamondPromises);
+        const diamondData = diamondResponses.map(response => response.data.result);
+        setDiamond(diamondData);
+
+        const diamondShellResponses = await Promise.all(diamondShellPromises);
+        const diamondShellData = diamondShellResponses.map(response => response.data.result);
+        setDiamondShell(diamondShellData);
+
+        setLoading(false); // Set loading to false after data is fetched
+      } catch (error) {
         console.error(error);
       }
+    };
+
+    fetchData();
+  }, [customerID]);
+
+  const validateForm = () => {
+    let errors = {};
+    if (!customerInfo.cusName) {
+      errors.cusName = "Please Enter Your Name";
     }
-  });
+    if (!customerInfo.numberPhone) {
+      errors.numberPhone = "Please Enter Phone Number";
+    }
+    if (!customerInfo.address) {
+      errors.address = "Please Enter Address";
+    }
+    setErrors(errors);
+    return Object.keys(errors).length === 0; // Return true if no errors
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setCustomerInfo(prevInfo => ({
+      ...prevInfo,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    try {
+      localStorage.setItem('paymentReturnData', JSON.stringify(customerInfo)); // Store customerInfo in localStorage
+      const response = await axios.post(`http://localhost:8080/auth/payment/create-payment?cusId=${customerID}&amount=${cart.totalPrice}&language=vn`);
+
+      window.open(response.data.url, '_blank');
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const formatPrice = (price) => {
+    return new Intl.NumberFormat('vi-VN').format(price) + 'đ';
+  };
 
   return (
     <div className='payment-detail-container'>
       <div className='title'>
         PAYMENT DETAIL
       </div>
-      <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className='payment-info'>
           <div className='personal-information'>
-            <label htmlFor="firstname">First Name:</label>
+            <label htmlFor="cusName">Customer Name:</label>
             <input
               type="text"
-              name="firstname"
-              placeholder='Enter First Name'
-              value={formik.values.firstname}
-              onChange={formik.handleChange}
+              name="cusName"
+              placeholder='Enter Your Name'
+              value={customerInfo.cusName}
+              onChange={handleInputChange}
             />
-            {formik.errors.firstname && <div className="error">{formik.errors.firstname}</div>}
+            {errors.cusName && <div className="error">{errors.cusName}</div>}
 
-            <label htmlFor="lastname">Last Name:</label>
+            <label htmlFor="numberPhone">Phone Number:</label>
             <input
               type="text"
-              name="lastname"
-              placeholder='Enter Last Name'
-              value={formik.values.lastname}
-              onChange={formik.handleChange}
-            />
-            {formik.errors.lastname && <div className="error">{formik.errors.lastname}</div>}
-
-            <label htmlFor="phonenumber">Phone Number:</label>
-            <input
-              type="text"
-              name="phonenumber"
+              name="numberPhone"
               placeholder='Enter Phone Number'
               inputMode="numeric"
               pattern="[0-9]*"
-              value={formik.values.phonenumber}
-              onChange={formik.handleChange}
+              value={customerInfo.numberPhone}
+              onChange={handleInputChange}
             />
-            {formik.errors.phonenumber && <div className="error">{formik.errors.phonenumber}</div>}
+            {errors.numberPhone && <div className="error">{errors.numberPhone}</div>}
 
             <label htmlFor="address">Address:</label>
             <input
               type="text"
               name="address"
               placeholder='Enter Address'
-              value={formik.values.address}
-              onChange={formik.handleChange}
+              value={customerInfo.address}
+              onChange={handleInputChange}
             />
-            {formik.errors.address && <div className="error">{formik.errors.address}</div>}
+            {errors.address && <div className="error">{errors.address}</div>}
+
+            <label htmlFor="description">Description:</label>
+            <input
+              type="text"
+              name="description"
+              placeholder='Enter Description'
+              value={customerInfo.description}
+              onChange={handleInputChange}
+            />
           </div>
 
           <div className='payment-method'>
             <div className='order-detail'>
               <p className='order-detail-title'>YOUR CART</p>
               <ul className='list-order'>
-                <li className='order-detail-preview'>
-                  <img src="https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" alt="altimage" className='order-image' />
-                  <div className='order-info'>
-                    <p>Product:</p>
-                    <p>Quantity</p>
-                    <p>Amount:</p>
-                  </div>
-                </li>
-                <li className='order-detail-preview'>
-                  <img src="https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" alt="altimage" className='order-image' />
-                  <div className='order-info'>
-                    <p>Product:</p>
-                    <p>Quantity</p>
-                    <p>Amount:</p>
-                  </div>
-                </li>
-                <li className='order-detail-preview'>
-                  <img src="https://img-cdn.pixlr.com/image-generator/history/65bb506dcb310754719cf81f/ede935de-1138-4f66-8ed7-44bd16efc709/medium.webp" alt="altimage" className='order-image' />
-                  <div className='order-info'>
-                    <p>Product:</p>
-                    <p>Quantity</p>
-                    <p>Amount:</p>
-                  </div>
-                </li>
-              </ul>
-            </div>
+                {cart.items.map((item, index) => {
+                  let productDetails = null;
+                  let productName = '';
+                  let productImage = '';
+                  let productPrice = 0;
 
-            <div className='payment-information'>
-              <label className='checkbox-container'>Payment Method
-                <div>
-                  <input
-                    type="radio"
-                    name="paymentmethod"
-                    value="Online Bank"
-                    onChange={formik.handleChange}
-                  /> Online Bank
-                </div>
-                <div>
-                  <input
-                    type="radio"
-                    name="paymentmethod"
-                    value="VNPay"
-                    onChange={formik.handleChange}
-                  /> VNPay
-                </div>
-                <div>
-                  <input
-                    type="radio"
-                    name="paymentmethod"
-                    value="PayPal"
-                    onChange={formik.handleChange}
-                  /> PayPal
-                </div>
-              </label>
-              {formik.errors.paymentmethod && <div className="error">{formik.errors.paymentmethod}</div>}
-              <div className='promotion-code'>
-                <input type="text" placeholder='Promotion Code' />
-                <button>APPLY</button>
-              </div>
+                  if (item.productType === 'DIAMOND') {
+                    productDetails = diamond.find(d => d.id === item.productId);
+                    productName = `${productDetails?.origin || ''} ${productDetails?.cut || ''} ${productDetails?.color || ''} ${productDetails?.clarity || ''}`;
+                    productImage = productDetails?.imageDiamond || '';
+                    productPrice = productDetails?.price || 0;
+                  } else if (item.productType === 'DIAMOND_SHELL') {
+                    productDetails = diamondShell.find(d => d.id === item.productId);
+                    productName = `${productDetails?.material || ''} ${productDetails?.secondaryStoneType || ''}`;
+                    productImage = productDetails?.imageDiamondShell || '';
+                    productPrice = productDetails?.price || 0;
+                  }
+
+                  return (
+                    <li key={index}>
+                      <div className="cart-item">
+                        <img src={productImage} alt="Product" />
+                        <div className='product-information'>
+                          <p>Product Name: {productName}</p>
+                          <p>Quantity: {item.quantity}</p>
+                          <p>Price: {formatPrice(productPrice)}</p>
+                        </div>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           </div>
         </div>

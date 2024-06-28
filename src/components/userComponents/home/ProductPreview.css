@@ -31,7 +31,6 @@
 }
 
 .preview-container ul li {
-    background: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 5px 5px 9px rgba(0, 0, 0, 0.5);
@@ -85,7 +84,9 @@
     margin-top: 80px;
     width: 15%;
 
+
 }
+
 
 .preview-container button {
     padding: 10px 20px;
@@ -94,4 +95,9 @@
     border-radius: 5px;
     background-color: black;
     color: var(--font-color);
+    transition: scale 0.3s ease;
+}
+
+.preview-container button:hover {
+    scale: 1.1;
 }
