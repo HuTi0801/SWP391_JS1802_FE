@@ -1,17 +1,92 @@
-.promotion-infodetails-container {
-    font-family: Arial, sans-serif;
-    background-color: white;
-    border: 1px hidden lightgray;
-    padding: 20px;
-    width: 600px;
-    height: 300px;
-    flex-wrap: wrap;
+.promotion-infoDetail-container {
+
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.promotion-infoDetail-container .promotion-card {
+    display: block;
+    width: 800px;
+    height: 240px;
+    border: 2px solid lightgray;
+    padding: 10px 20px;
+    margin-top: 20px;
+    margin-left: 350px;
+    border-radius: 5px;
+    font-stretch: expanded;
+}
+
+
+
+.promotion-infoDetail-container .promotion-card .promotionName {
+    font-size: 20px;
+    display: flex;
+    font-size: larger;
+    font-family: var(--font-styledata);
+    flex-direction: row;
+    align-items: flex-start;
+    font-weight: bold;
+    color: rgba(60, 6, 197, 0.903);
+    margin-left: 0px;
+    margin-bottom: 7px;
+    font-stretch: expanded;
+
+}
+
+.promotion-infoDetail-container .promotion-card .Startdate,
+.Enddate,
+.Type,
+.Description,
+.memberLevelPromotion,
+.discountPercent {
+    display: flex;
+    font-size: large;
+    font-family: var(--font-styledata);
+    flex-direction: row;
     align-items: flex-start;
     justify-content: flex-start;
-    margin-top: 80px;
-    margin-left: auto;
-    margin-right: 100px;
+    margin-bottom: 7px;
+    font-stretch: expanded;
 }
+
+.promotion-infoDetail-container .promotion-card .promotionDiamondShellNameList {
+    display: flex;
+    font-size: large;
+    flex: 4;
+    font-family: var(--font-styledata);
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 7px;
+    font-stretch: expanded;
+}
+
+.promotion-infoDetail-container .promotion-card .promotionDiamondNameList {
+    display: flex;
+    font-size: large;
+    flex: 4;
+    font-family: var(--font-styledata);
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 7px;
+    font-stretch: expanded;
+}
+
+.promotion-infoDetail-container .PromotionID p,
+.promotion-infoDetail-container .promotionName p,
+.promotion-infoDetail-container .Startdate p,
+.promotion-infoDetail-container .Enddate p,
+.promotion-infoDetail-container .Type p,
+.promotion-infoDetail-container .promotionDiamondShellNameList p,
+.promotion-infoDetail-container .promotionDiamondNameList p,
+.promotion-infoDetail-container .Description p,
+.promotion-infoDetail-container .discountPercent p,
+.promotion-infoDetail-container .memberLevelPromotion p {
+    margin-left: 7px;
+}
+
 
 h1 {
     font-size: 50px;
@@ -21,77 +96,28 @@ h1 {
     text-align: center;
 }
 
-
-
-.promotion-infodetails-container .ProductionName {
+.pagination .PrevPage {
+    width: 50px;
+    padding: 2px;
+    border-collapse: collapse;
+    margin-right: 20px;
+    color: black;
     font-weight: bold;
-    font-size: larger;
 }
 
-.promotion-infodetails-container .ProductionName span {
-    margin-right: 10px;
+
+.pagination .NextPage {
+    width: 50px;
+    padding: 2px 5px;
+    color: black;
     font-weight: bold;
-    color: red;
-    font-size: 20px;
-    font-stretch: expanded;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 2;
-}
-
-.promotion-infodetails-container .ProductionName p {
-    margin: 0;
-    display: flex;
-    flex: 16;
-    justify-content: center;
-    align-items: center;
-}
-
-
-
-.promotion-infodetails-container .DiscountPercent,
-.promotion-infodetails-container .MemberLevel,
-.promotion-infodetails-container .Startdate,
-.promotion-infodetails-container .Enddate,
-.promotion-infodetails-container .Type,
-.promotion-infodetails-container .Description,
-.ProductionName {
-    display: flex;
-    align-items: center;
-    font-size: medium;
-    margin-bottom: 20px;
     margin-left: 20px;
 }
 
-.promotion-infodetails-container .DiscountPercent span,
-.promotion-infodetails-container .MemberLevel span,
-.promotion-infodetails-container .Startdate span,
-.promotion-infodetails-container .Enddate span,
-.promotion-infodetails-container .Type span,
-.promotion-infodetails-container .Description span {
-    margin-right: 10px;
-    font-weight: bold;
+.pagination .NextPage:hover {
     color: red;
-    font-size: 20px;
-    font-stretch: expanded;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 2;
 }
 
-.promotion-infodetails-container .DiscountPercent p,
-.promotion-infodetails-container .MemberLevel p,
-.promotion-infodetails-container .Startdate p,
-.promotion-infodetails-container .Enddate p,
-.promotion-infodetails-container .Type p,
-.promotion-infodetails-container .Description p {
-    margin: 0;
-    font-size: 20px;
-    font-stretch: expanded;
-    display: flex;
-    flex: 16;
-    justify-content: center;
-    align-items: center;
+.pagination .PrevPage:hover {
+    color: red;
 }

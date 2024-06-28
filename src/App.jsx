@@ -17,6 +17,9 @@ import { Route, Routes } from 'react-router-dom';
 // import ForgetPassword from './pages/accountPages/forgetPassword/ForgetPassword.jsx';
 // import UserProfile from './pages/customerPages/userprofile/UserProfile.jsx';
 // import Register from './pages/accountPages/register/Register.jsx'
+
+import ManagerHome from './pages/managerPages/home/ManagerHome.jsx';
+
 import StaffOrderList from './pages/saleStaffPages/orderList/StaffOrderList.jsx';
 import StaffOrderDetail from './pages/saleStaffPages/orderDetail/StaffOrderDetail.jsx';
 import Diamonds from './pages/managerPages/product/diamond/Diamonds.jsx'
@@ -31,10 +34,8 @@ import Profile from './pages/managerPages/profile/Profile.jsx'
 import ManagerLogin from './pages/managerPages/profile/login/ManagerLogin.jsx'
 import Promotion from './pages/managerPages/promotion/Promotion.jsx';
 import CreatePromotion from './components/managerComponents/promotion/CreatePromotion.jsx';
-import DiamondPromotion from './components/managerComponents/promotion/DiamondPromotion.jsx';
-import DiamondShellPromotion from './components/managerComponents/promotion/DiamondShellPromotion.jsx';
-import PromotionInfoDetails from './components/managerComponents/promotion/PromotionInfoDetails.jsx';
-import ManagerHome from './pages/managerPages/home/ManagerHome.jsx';
+import PromotionDetails from './components/managerComponents/promotion/PromotionDetails.jsx';
+
 import ManagerOrderList from './pages/managerPages/orderlist/ManagerOrderList.jsx';
 import OrderDetails from './components/managerComponents/orderlist/OrderDetails.jsx';
 import Pending from './components/managerComponents/orderlist/status/Pending.jsx'
@@ -51,6 +52,12 @@ import SaleStaffDelivered from './components/managerComponents/orderlist/assign/
 import DeliveryStaffDelivered from './components/managerComponents/orderlist/assign/DeliveryStaffDelivered.jsx'
 import DeliveryStaffDelivering from './components/managerComponents/orderlist/assign/DeliveryStaffDelivering.jsx'
 
+import DashBoard from './pages/managerPages/dashboard/DashBoard.jsx'
+import CancelRevenue from './pages/managerPages/dashboard/revenue/CancelRevenue.jsx'
+import ConfirmedRevenue from './pages/managerPages/dashboard/revenue/ConfirmedRevenue.jsx'
+import DeliveringRevenue from './pages/managerPages/dashboard/revenue/DeliveringRevenue.jsx'
+import DeliveredRevenue from './pages/managerPages/dashboard/revenue/DeliveredRevenue.jsx'
+import Performance from './pages/managerPages/dashboard/performance/Performance.jsx'
 export const Account = () => {
 
 }
@@ -115,9 +122,7 @@ function App() {
         {/* Promotion Components */}
         <Route path='/promotion' element={< Promotion />} />
         <Route path='/createPromotion' element={< CreatePromotion />} />
-        <Route path='/DiamondPromotion' element={< DiamondPromotion />} />
-        <Route path='/DiamondShellPromotion' element={< DiamondShellPromotion />} />
-        <Route path='/promotionInfoDetail' element={< PromotionInfoDetails />} />
+        <Route path='/promotionInfoDetail/:id' element={< PromotionDetails />} />
 
         {/*Order List Components */}
         <Route path='/managerorderlist' element={< ManagerOrderList />} />
@@ -127,7 +132,7 @@ function App() {
         <Route path='/delivering' element={< Delivering />} />
         <Route path='/delivered' element={< Delivered />} />
         <Route path='/canceled' element={< Cancel />} />
-        <Route path='/pendindassigned/:id' element={< PendingAssigned />} />
+        <Route path='/pendingassigned/:id' element={< PendingAssigned />} />
         <Route path='/confirmassigned/:id' element={< ConfirmAssigned />} />
         <Route path='/deliveringassigned/:id' element={< DeliveringAssigned />} />
         <Route path='/deliveredassigned/:id' element={< DeliveredAssigned />} />
@@ -135,6 +140,14 @@ function App() {
         <Route path='/saleStaffDelivering/:id' element={< SaleStaffDelivering />} />
         <Route path='/deliveryStaffDelivered/:id' element={< DeliveryStaffDelivered />} />
         <Route path='/deliveryStaffDelivering/:id' element={< DeliveryStaffDelivering />} />
+
+        {/*DashBoard Components */}
+        <Route path='/dashBoard' element={< DashBoard />} />
+        <Route path='/cancelRevenue' element={< CancelRevenue />} />
+        <Route path='/confirmedRevenue' element={< ConfirmedRevenue />} />
+        <Route path='/deliveredRevenue' element={< DeliveredRevenue />} />
+        <Route path='/deliveringRevenue' element={< DeliveringRevenue />} />
+        <Route path='/staffPerformance' element={< Performance />} />
       </Routes>
 
 

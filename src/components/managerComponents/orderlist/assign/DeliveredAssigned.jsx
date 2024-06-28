@@ -11,6 +11,7 @@ const DeliveredAssigned = () => {
     const [order, setOrder] = useState(null);
     const { id } = useParams();
     const [SaleStaff, setSaleStaff] = useState([]);
+    const [Staff, setStaff] = useState([]);
     const [DeliveryStaff, setDeliveryStaff] = useState([]);
     useEffect(() => {
         const fetchOrder = async () => {
@@ -44,6 +45,17 @@ const DeliveredAssigned = () => {
                 setLoading(false);
             }
         };
+        const fetchStaff = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/auth/account-order/get-staff-accounts-assigning-by-order?orderId=${id}`);
+                setStaff(response.data);
+            } catch (error) {
+                setError(error.message);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchStaff();
         fetchSaleStaff();
         fetchDeliveryStaff();
         fetchOrder();
@@ -77,27 +89,16 @@ const DeliveredAssigned = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            {AllStaff.map((allstaff, index) => {
-
-                                let role = "";
-                                // uses the some() method to check if any of the staff objects 
-                                // in  the SaleStaff array have an accountId that matches the allstaff.accountId.
-                                if (SaleStaff && SaleStaff.some(staff => staff.accountId === allstaff.accountId)) {
-
-                                    role = "Sale Staff";
-                                    // uses the some() method to check if any of the staff objects 
-                                    // in  the DeliveryStaff array have an accountId that matches the allstaff.accountId.
-                                } else if (DeliveryStaff && DeliveryStaff.some(staff => staff.accountId === allstaff.accountId)) {
-                                    role = "Delivery Staff";
-                                }
+                            {Staff.filter(allstaff => allstaff.role !== "CUSTOMER").map((allstaff) => {
+                                const numOrder = AllStaff.find(staff => staff.accountId === allstaff.id);
+                                console.log(`Processing staff ID: ${allstaff.id}, Found order count: ${numOrder ? numOrder.orderCount : 'Not Found'}`);
                                 return (
-                                    <tr key={index}>
-
-                                        <td className='ID'>{allstaff.accountId}</td>
-                                        <td className='Role'>{role}</td>
+                                    <tr key={allstaff.id}>
+                                        <td className='ID'>{allstaff.id}</td>
                                         <td className='OrderID'>{order?.orderId || "-"}</td>
+                                        <td className='Role'>{allstaff.role}</td>
                                         <td className='Username'>{allstaff.username}</td>
-                                        <td className='OrderCount'>{allstaff.orderCount}</td>
+                                        <td className='OrderCount'>{numOrder?.orderCount || "-"}</td>
                                     </tr>
                                 );
                             })}

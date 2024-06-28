@@ -1,32 +1,31 @@
-import React, { useEffect, useState } from 'react'
-import "./assign.css"
+import React, { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import MemoizedDeliveringcontainer from "./MemoizedDeliveringcontainer.jsx"
+import { useTable } from 'react-table';
+import MemoizedDeliveringcontainer from "./MemoizedDeliveringcontainer.jsx";
 import ManagerHeader from "../../../managerComponents/header/ManagerHeader.jsx";
 import Functionbar from "../../../managerComponents/functionbar/Functionbar.jsx";
-const DeliveryStaffDelivering = () => {
-    const [deliveringAssigned, setDeliveringAssigned] = useState([]);
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true)
-    const [order, setOrder] = useState(null);
-    const { id } = useParams();
-    useEffect(() => {
-        const fetchOrder = async () => {
-            try {
-                const response = await axios.get(`http://localhost:8080/auth/orders/get-order-${id}`);
-                setOrder(response.data.result);
-            } catch (error) {
-                console.error('Error fetching order:', error);
-            } finally {
-                setLoading(false);
-            }
-        };
+import "./assign.css";
 
-        const fetchConfirmAssigned = async () => {
+const DeliveryStaffDelivering = () => {
+    const { id } = useParams();
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [order, setOrder] = useState(null);
+    const [deliveringAssigned, setDeliveringAssigned] = useState([]);
+    const [staff, setStaff] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/auth/account/get-active-delivery-staff-and-order-counts-list');
-                setDeliveringAssigned(response.data);
+                const orderResponse = await axios.get(`http://localhost:8080/auth/orders/get-order-${id}`);
+                setOrder(orderResponse.data.result);
+
+                const assignedResponse = await axios.get('http://localhost:8080/auth/account/get-active-delivery-staff-and-order-counts-list');
+                setDeliveringAssigned(assignedResponse.data);
+
+                const staffResponse = await axios.get(`http://localhost:8080/auth/account-order/get-staff-accounts-assigning-by-order?orderId=${id}`);
+                setStaff(staffResponse.data);
             } catch (error) {
                 setError(error.message);
             } finally {
@@ -34,9 +33,71 @@ const DeliveryStaffDelivering = () => {
             }
         };
 
-        fetchOrder();
-        fetchConfirmAssigned();
-    }, [deliveringAssigned]);
+        fetchData();
+    }, [id]);
+
+    const columns = useMemo(() => [
+        {
+            Header: 'AccountId',
+            accessor: 'accountId'
+        },
+        {
+            Header: 'OrderId',
+            accessor: 'orderId',
+            Cell: ({ row }) => (
+                <span>{order ? order.orderId : '-'}</span>
+            )
+        },
+        {
+            Header: 'First Name',
+            accessor: 'firstName'
+        },
+        {
+            Header: 'Last Name',
+            accessor: 'lastName'
+        },
+        {
+            Header: 'Number of Orders',
+            accessor: 'orderCount',
+            Cell: ({ row }) => {
+                const numOrder = deliveringAssigned.find(staff => staff.accountId === row.original.accountId);
+                return <span>{numOrder ? numOrder.orderCount : '-'}</span>;
+            }
+        },
+        {
+            Header: 'Delivery Date',
+            accessor: 'deliveryDate',
+            Cell: ({ row }) => (
+                <span>{order && order.dateStatusOrders[2] ? new Date(order.dateStatusOrders[2].dateStatus).toLocaleDateString() : '-'}</span>
+            )
+        },
+        {
+            Header: 'Delivery Time',
+            accessor: 'deliveryTime',
+            Cell: ({ row }) => (
+                <span>{order && order.dateStatusOrders[2] ? new Date(order.dateStatusOrders[2].dateStatus).toLocaleTimeString() : '-'}</span>
+            )
+        }
+    ], [order, deliveringAssigned]);
+
+    const data = useMemo(() => {
+        return staff.filter(allstaff => allstaff.role !== "CUSTOMER" && allstaff.role !== "SALE_STAFF").map(allstaff => ({
+            accountId: allstaff.id,
+            firstName: allstaff.firstName,
+            lastName: allstaff.lastName,
+            orderCount: deliveringAssigned.find(staff => staff.accountId === allstaff.id)?.orderCount,
+            deliveryDate: order && order.dateStatusOrders[2] ? new Date(order.dateStatusOrders[2].dateStatus) : null,
+            deliveryTime: order && order.dateStatusOrders[2] ? new Date(order.dateStatusOrders[2].dateStatus) : null
+        }));
+    }, [staff, deliveringAssigned, order]);
+
+    const {
+        getTableProps,
+        getTableBodyProps,
+        headerGroups,
+        rows,
+        prepareRow
+    } = useTable({ columns, data });
 
     if (loading) {
         return <div>Loading...</div>;
@@ -47,44 +108,42 @@ const DeliveryStaffDelivering = () => {
     }
 
     return (
-        <>  <ManagerHeader />
+        <>
+            <ManagerHeader />
             <Functionbar />
             <h1>Delivery Staff List</h1>
             <div className="DeliveringAssigned-container">
                 <MemoizedDeliveringcontainer id={id} />
                 <div>
-                    <table className='Delivering_table'>
+                    <table {...getTableProps()} className='Delivering_table'>
                         <thead>
-                            <tr>
-                                <th>AccountId</th>
-                                <th>OrderId</th>
-                                <th>Username</th>
-                                <th>Number of Orders</th>
-                                <th>Delivery Date</th>
-                                <th>Delivery Time</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            {deliveringAssigned.map((delivering) => (
-                                <tr key={delivering.accountId}>
-                                    <td className='ID'>{delivering.accountId}</td>
-                                    <td className='OrderID'>{order?.orderId}</td>
-                                    <td className='Username'>{delivering.username}</td>
-                                    <td className='OrderCount'>{delivering.orderCount}</td>
-                                    {/*    order.dateStatusOrders[2]?.dateStatus : the day updates Delivering Status*/}
-                                    <td className='DeliveryDate'>{new Date(order?.dateStatusOrders[2].dateStatus).toLocaleDateString()}</td>
-                                    <td className='DeliveryTime'>{new Date(order?.dateStatusOrders[2].dateStatus).toLocaleTimeString()}</td>
+                            {headerGroups.map(headerGroup => (
+                                <tr {...headerGroup.getHeaderGroupProps()}>
+                                    {headerGroup.headers.map(column => (
+                                        <th {...column.getHeaderProps()}>{column.render('Header')}</th>
+                                    ))}
                                 </tr>
                             ))}
+                        </thead>
+                        <tbody {...getTableBodyProps()}>
+                            {rows.map(row => {
+                                prepareRow(row);
+                                return (
+                                    <tr {...row.getRowProps()}>
+                                        {row.cells.map(cell => (
+                                            <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                                        ))}
+                                    </tr>
+                                );
+                            })}
                         </tbody>
                     </table>
                 </div>
             </div>
-
         </>
-    )
-}
+    );
+};
 
-export default DeliveryStaffDelivering
+export default DeliveryStaffDelivering;
+
+

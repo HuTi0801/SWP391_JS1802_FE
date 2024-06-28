@@ -5,6 +5,31 @@
     border-right: 1px solid #000;
 }
 
+.PendingAssigned-container .Assigned {
+    padding: 20px;
+    color: white;
+    background-color: rgba(142, 136, 136, 0.4);
+    font-size: larger;
+    width: fit-content;
+    margin-top: -700px;
+    position: relative;
+    margin-left: 860px;
+    top: 40px;
+}
+
+.PendingAssigned-container .Assigned:hover {
+    color: rgba(255, 0, 0, 0.826);
+    background-color: rgba(0, 106, 255, 0.934);
+}
+
+.Pendingwarning {
+    color: rgb(93, 0, 255);
+    font-weight: bold;
+    font-size: medium;
+    margin-top: 20px;
+    margin-left: 360px;
+}
+
 .Pendingcontainer {
     display: inline-flex;
     padding-top: 50px;
@@ -18,7 +43,6 @@
     height: 100vh;
     margin-right: 20px;
 }
-
 
 .url_Status {
     display: flex;
@@ -43,87 +67,82 @@
     margin-left: 2px;
 }
 
-
-table {
-    display: table;
-    width: 500px;
-    margin-top: 30px;
-    margin-left: 400px;
-}
-
-th,
-td,
-thead {
-    padding: 0 30px 0 30px;
-    border: 1px solid black;
+.ReactTable {
+    width: 100%;
+    max-width: 800px;
+    margin-left: 350px;
+    font-size: 16px;
     text-align: center;
-
+    border-radius: 10px;
+    border-collapse: collapse;
 }
 
-td {
-
-    padding: 20px;
+.ReactTable thead {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    background-color: #f5f5f5;
 }
 
-th {
-
-    padding: 0 40px 0 40px;
+.ReactTable th,
+.ReactTable td {
+    padding: 10px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
 }
 
-.Username,
-.OrderCount,
-.OrderID,
-.OrderCount,
-.Role {
-    width: 50px;
+.ReactTable th {
+    position: relative;
+    cursor: pointer;
+    border-bottom: 2px solid #ddd;
 }
 
-.ID {
-    color: red;
-    font-weight: bold;
+.ReactTable th::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 5px solid transparent;
+    border-top: 5px solid #bbb;
 }
 
-.OrderID {
-    font-weight: bold;
+.ReactTable th.sort-asc::after {
+    border-top: none;
+    border-bottom: 5px solid #bbb;
 }
 
+.ReactTable th.sort-desc::after {
+    border-top: 5px solid #bbb;
+}
 
-.check_Attendence {
-    margin-top: 20px;
-    margin-left: 20px;
+.ReactTable tr:hover {
+    background-color: #f1f1f1;
 }
 
 .CheckApp {
-    margin-top: 20px;
-    margin-left: 28px;
+    margin: 5px 0 0 50px;
+    transform: scale(1.2);
 }
 
 .PendingAssigned {
-    padding: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
     display: block;
-    color: white;
-    border-radius: 20px;
-    background-color: rgba(142, 136, 136, 0.4);
+    border-radius: 5px;
+    cursor: pointer;
     font-size: larger;
     width: fit-content;
     border-style: none;
+    margin-bottom: 20px;
     margin-top: -700px;
-    margin-left: 1000px;
-    /* Ensures the button stays above other elements */
+    margin-left: 360px;
 }
 
-.Pendingwarning {
-    color: rgb(93, 0, 255);
-    font-weight: bold;
-    font-size: medium;
-    margin-top: 20px;
-    margin-left: 700px;
-}
-
-.PendingAssigned-container .Assigned:hover {
-    color: rgba(255, 0, 0, 0.826);
-    background-color: rgba(0, 106, 255, 0.934);
-}
 
 /*  */
 
@@ -156,7 +175,7 @@ th {
     font-weight: bold;
     font-size: medium;
     margin-top: 20px;
-    margin-left: 700px;
+    margin-left: 360px;
 }
 
 .Confirmcontainer {
@@ -198,17 +217,82 @@ th {
     margin-left: 2px;
 }
 
+.ReactTable {
+    width: 100%;
+    max-width: 800px;
+    margin-left: 350px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 10px;
+    border-collapse: collapse;
+}
+
+.ReactTable thead {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    background-color: #f5f5f5;
+}
+
+.ReactTable th,
+.ReactTable td {
+    padding: 10px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+    /* Inner borders for rows */
+}
+
+.ReactTable th {
+    position: relative;
+    cursor: pointer;
+    border-bottom: 2px solid #ddd;
+    /* Thicker bottom border for headers */
+}
+
+.ReactTable th::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 5px solid transparent;
+    border-top: 5px solid #bbb;
+}
+
+.ReactTable th.sort-asc::after {
+    border-top: none;
+    border-bottom: 5px solid #bbb;
+}
+
+.ReactTable th.sort-desc::after {
+    border-top: 5px solid #bbb;
+}
+
+.ReactTable tr:hover {
+    background-color: #f1f1f1;
+}
+
+.CheckApp {
+    margin: 5px 0 0 50px;
+    transform: scale(1.2);
+}
+
 .ConfirmAssigned {
-    padding: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
     display: block;
-    color: white;
-    border-radius: 20px;
-    background-color: rgba(142, 136, 136, 0.4);
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
     font-size: larger;
     width: fit-content;
     border-style: none;
     margin-top: -700px;
-    margin-left: 1000px;
+    margin-left: 360px;
     /* Ensures the button stays above other elements */
 }
 
@@ -276,25 +360,133 @@ th {
     margin-left: 2px;
 }
 
-.Delivering_table {
-
-    width: 500px;
-    margin-top: -600px;
-    margin-left: 400px;
-}
-
-.AllStaff_table {
-    width: 500px;
-    margin-top: -600px;
-    margin-left: 400px;
-}
-
 .DeliveryDate,
 .DeliveryTime,
+.FirstName,
+.LastName,
 .DateofReceiptOrders,
 .TimeofReceiptOrders {
     width: 50px;
 }
+
+
+.AllStaff_table {
+    margin-top: -600px;
+    margin-left: 400px;
+    width: 100%;
+    max-width: 800px;
+    margin-left: 350px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 10px;
+    border-collapse: collapse;
+}
+
+.AllStaff_table thead {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    background-color: #f5f5f5;
+}
+
+.AllStaff_table th,
+.AllStaff_table td {
+    padding: 10px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+}
+
+.AllStaff_table th {
+    position: relative;
+    cursor: pointer;
+    border-bottom: 2px solid #ddd;
+}
+
+.AllStaff_table th::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 5px solid transparent;
+    border-top: 5px solid #bbb;
+}
+
+.AllStaff_table th.sort-asc::after {
+    border-top: none;
+    border-bottom: 5px solid #bbb;
+}
+
+.AllStaff_table th.sort-desc::after {
+    border-top: 5px solid #bbb;
+}
+
+.AllStaff_table tr:hover {
+    background-color: #f1f1f1;
+}
+
+/*  */
+.Delivering_table {
+    margin-top: -600px;
+    margin-left: 400px;
+    width: 100%;
+    max-width: 800px;
+    margin-left: 350px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 10px;
+    border-collapse: collapse;
+}
+
+.Delivering_table thead {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    background-color: #f5f5f5;
+}
+
+.Delivering_table th,
+.Delivering_table td {
+    padding: 10px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+}
+
+.Delivering_table th {
+    position: relative;
+    cursor: pointer;
+    border-bottom: 2px solid #ddd;
+}
+
+.Delivering_table th::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 5px solid transparent;
+    border-top: 5px solid #bbb;
+}
+
+.Delivering_table th.sort-asc::after {
+    border-top: none;
+    border-bottom: 5px solid #bbb;
+}
+
+.Delivering_table th.sort-desc::after {
+    border-top: 5px solid #bbb;
+}
+
+.Delivering_table tr:hover {
+    background-color: #f1f1f1;
+}
+
+
+
 
 
 /*  */
@@ -371,14 +563,66 @@ th {
     margin-left: 2px;
 }
 
-.Delivered_table {
 
-    width: 500px;
-    margin-top: -600px;
-    margin-left: 400px;
+.Delivered_table .DateofReceiptGoods,
+.Delivered_table .TimeofReceiptGoods {
+    width: 100px;
 }
 
-.DateofReceiptGoods,
-.TimeofReceiptGoods {
-    width: 50px;
+.Delivered_table {
+    margin-top: -600px;
+    margin-left: 400px;
+    width: 100%;
+    max-width: 800px;
+    margin-left: 350px;
+    font-size: 16px;
+    text-align: center;
+    border-radius: 10px;
+    border-collapse: collapse;
+}
+
+.Delivered_table thead {
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    background-color: #f5f5f5;
+}
+
+.Delivered_table th,
+.Delivered_table td {
+    padding: 10px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+}
+
+.Delivered_table th {
+    position: relative;
+    cursor: pointer;
+    border-bottom: 2px solid #ddd;
+}
+
+.Delivered_table th::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 5px solid transparent;
+    border-top: 5px solid #bbb;
+}
+
+.Delivered_table th.sort-asc::after {
+    border-top: none;
+    border-bottom: 5px solid #bbb;
+}
+
+.Delivered_table th.sort-desc::after {
+    border-top: 5px solid #bbb;
+}
+
+.Delivered_table tr:hover {
+    background-color: #f1f1f1;
+
 }

@@ -96,7 +96,7 @@ const DiamondShellInfo = () => {
                             </div>
 
                             <div className="text">
-                                <p>{diamondShell.material}  {diamondShell.secondaryStoneType}</p>
+                                <p>{diamondShell.gender} {diamondShell.material}  {diamondShell.secondaryStoneType}</p>
                             </div>
 
                             <div className="MaterialData">

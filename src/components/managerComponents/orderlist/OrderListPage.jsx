@@ -11,7 +11,7 @@ const OrderListPage = () => {
     /* Display Order Info  */
     const getOrderInfo = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/auth/orders/get-all-orders');
+            const response = await axios.get("http://localhost:8080/auth/orders/get-all-orders");
             return response.data.result;
         } catch (error) {
             console.error('Error fetching diamond info:', error);

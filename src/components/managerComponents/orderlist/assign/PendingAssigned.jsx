@@ -1,39 +1,37 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import ManagerHeader from "../../../managerComponents/header/ManagerHeader.jsx";
 import Functionbar from "../../../managerComponents/functionbar/Functionbar.jsx";
 import "./assign.css"; // Ensure correct path to your CSS file
 import { useParams } from 'react-router-dom';
+import { useTable } from 'react-table';
+
 const PendingAssigned = () => {
     const [pendingAssigned, setPendingAssigned] = useState([]);
     const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true); // Track loading state
-    const [selectedStaff, setSelectedStaff] = useState(new Set()); // Track selected checkboxes
-    const [warning, setWarning] = useState(''); // Warning message state
-    const [order, setOrder] = useState([]);
-    const { orderId } = useParams();
-
+    const [loading, setLoading] = useState(true);
+    const [selectedStaff, setSelectedStaff] = useState(new Set());
+    const [warning, setWarning] = useState('');
+    const [order, setOrder] = useState(null);
+    const { id } = useParams();
 
     useEffect(() => {
         const fetchPendingAssigned = async () => {
             try {
                 const response = await axios.get('http://localhost:8080/auth/account/get-active-sale-staff-and-order-counts-list');
-
                 setPendingAssigned(response.data);
-                console.log(response.data);
-
             } catch (error) {
-                setError(error.message); // Catch network errors or other exceptions
+                setError(error.message);
             } finally {
-                setLoading(false); // Update loading state regardless of success or failure
+                setLoading(false);
             }
         };
 
         const fetchOrder = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/auth/orders/get-order-${orderId}`);
+                const response = await axios.get(`http://localhost:8080/auth/orders/get-order-${id}`);
                 if (response.data.isSuccess) {
                     setOrder(response.data.result);
                 } else {
@@ -41,15 +39,15 @@ const PendingAssigned = () => {
                 }
             } catch (error) {
                 console.error('Error fetching order:', error);
+                setError(error.message);
             } finally {
                 setLoading(false);
             }
         };
+
         fetchOrder();
         fetchPendingAssigned();
-
-    }, [pendingAssigned]);
-
+    }, [id]);
 
     const handleCheckboxChange = (accountId) => {
         setSelectedStaff(prev => {
@@ -62,13 +60,7 @@ const PendingAssigned = () => {
             return updated;
         });
     };
-    if (loading) {
-        return <div>Loading...</div>; // Optional: Show a loading indicator
-    }
 
-    if (error) {
-        return <div>Error: {error}</div>; // Display error message if fetch failed
-    }
     const handleAssignClick = async () => {
         if (selectedStaff.size === 0) {
             setWarning('Please choose sale staff before assign');
@@ -76,10 +68,11 @@ const PendingAssigned = () => {
             setWarning('Please select only one sale staff');
         } else {
             try {
-                const response = await axios.post
-                    (`http://localhost:8080/auth/account-order/assign-staff-to-order?accountId=${Array.from(selectedStaff)[0]}&orderId=${order?.orderId}`);
+                const response = await axios.post(
+                    `http://localhost:8080/auth/account-order/assign-staff-to-order?accountId=${Array.from(selectedStaff)[0]}&orderId=${order?.orderId}`
+                );
                 if (response.data.isSuccess) {
-                    alert("Assign Sale Staff Successfully! ");
+                    alert("Assign Sale Staff Successfully!");
                 }
             } catch (error) {
                 console.error('Error assigning staff:', error);
@@ -87,55 +80,97 @@ const PendingAssigned = () => {
             }
         }
     };
+
+    const data = useMemo(() => pendingAssigned.map(pending => ({
+        ...pending,
+        orderId: order?.orderId
+    })), [pendingAssigned, order]);
+
+    const columns = useMemo(() => [
+        {
+            Header: 'Action',
+            Cell: ({ row }) => (
+                <input
+                    className='CheckApp'
+                    type='checkbox'
+                    checked={selectedStaff.has(row.original.accountId)}
+                    onChange={() => handleCheckboxChange(row.original.accountId)}
+                />
+            )
+        },
+        {
+            Header: 'AccountId',
+            accessor: 'accountId'
+        },
+        {
+            Header: 'OrderId',
+            accessor: 'orderId'
+        },
+        {
+            Header: 'Username',
+            accessor: 'username'
+        },
+        {
+            Header: 'Number of Orders',
+            accessor: 'orderCount'
+        }
+    ], [selectedStaff]);
+
+    const {
+        getTableProps,
+        getTableBodyProps,
+        headerGroups,
+        rows,
+        prepareRow
+    } = useTable({ columns, data });
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
+
     return (
         <>
             <ManagerHeader />
             <Functionbar />
+            <h1>Sale Staff List</h1>
             <div className="PendingAssigned-container">
-                <h1>Sale Staff List</h1>
                 <div className='Pendingcontainer'>
                     <hr className="vertical-line" />
                     <div>
                         <ul className="url_Status">
-                            <Link to="/managerorderlist" className="All">
-                                All
-                            </Link>
-
-                            <Link to="/pending" className="Pending">
-                                Pending
-                            </Link>
-
+                            <Link to="/managerorderlist" className="All">All</Link>
+                            <Link to="/pending" className="Pending">Pending</Link>
                         </ul>
                     </div>
                 </div>
                 <div>
-                    <button className='PendingAssigned' onClick={handleAssignClick}>
-                        Assign
-                    </button>
+                    <button className='PendingAssigned' onClick={handleAssignClick}>Assign</button>
                     {warning && <div className="Pendingwarning">{warning}</div>}
-                    <table>
+                    <table {...getTableProps()} className='ReactTable'>
                         <thead>
-                            <tr>
-                                <th>AccountId</th>
-                                <th>Username</th>
-                                <th>Number of Orders</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {pendingAssigned.map((pending) => (
-
-
-                                <tr key={pending.accountId}>
-                                    <td className='ID'>{pending.accountId}</td>
-                                    <td className='Username'>{pending.username}</td>
-                                    <td className='OrderCount'>{pending.orderCount}</td>
-                                    <td><input className='CheckApp' type='checkbox'
-                                        checked={selectedStaff.has(pending.accountId)}
-                                        onClick={() => handleCheckboxChange(pending.accountId)}
-                                    /></td>
+                            {headerGroups.map(headerGroup => (
+                                <tr key={headerGroup.id} {...headerGroup.getHeaderGroupProps()}>
+                                    {headerGroup.headers.map(column => (
+                                        <th key={column.id} {...column.getHeaderProps()}>{column.render('Header')}</th>
+                                    ))}
                                 </tr>
                             ))}
+                        </thead>
+                        <tbody {...getTableBodyProps()}>
+                            {rows.map(row => {
+                                prepareRow(row);
+                                return (
+                                    <tr key={row.id} {...row.getRowProps()}>
+                                        {row.cells.map(cell => (
+                                            <td key={cell.column.id} {...cell.getCellProps()}>{cell.render('Cell')}</td>
+                                        ))}
+                                    </tr>
+                                );
+                            })}
                         </tbody>
                     </table>
                 </div>

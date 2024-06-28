@@ -158,3 +158,9 @@ const DiamondInfo = () => {
 };
 
 export default DiamondInfo;
+
+
+
+
+
+
