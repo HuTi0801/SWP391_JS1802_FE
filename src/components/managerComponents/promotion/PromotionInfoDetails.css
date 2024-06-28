@@ -1,0 +1,123 @@
+.promotion-infoDetail-container {
+
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.promotion-infoDetail-container .promotion-card {
+    display: block;
+    width: 800px;
+    height: 240px;
+    border: 2px solid lightgray;
+    padding: 10px 20px;
+    margin-top: 20px;
+    margin-left: 350px;
+    border-radius: 5px;
+    font-stretch: expanded;
+}
+
+
+
+.promotion-infoDetail-container .promotion-card .promotionName {
+    font-size: 20px;
+    display: flex;
+    font-size: larger;
+    font-family: var(--font-styledata);
+    flex-direction: row;
+    align-items: flex-start;
+    font-weight: bold;
+    color: rgba(60, 6, 197, 0.903);
+    margin-left: 0px;
+    margin-bottom: 7px;
+    font-stretch: expanded;
+
+}
+
+.promotion-infoDetail-container .promotion-card .Startdate,
+.Enddate,
+.Type,
+.Description,
+.memberLevelPromotion,
+.discountPercent {
+    display: flex;
+    font-size: large;
+    font-family: var(--font-styledata);
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 7px;
+    font-stretch: expanded;
+}
+
+.promotion-infoDetail-container .promotion-card .promotionDiamondShellNameList {
+    display: flex;
+    font-size: large;
+    flex: 4;
+    font-family: var(--font-styledata);
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 7px;
+    font-stretch: expanded;
+}
+
+.promotion-infoDetail-container .promotion-card .promotionDiamondNameList {
+    display: flex;
+    font-size: large;
+    flex: 4;
+    font-family: var(--font-styledata);
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 7px;
+    font-stretch: expanded;
+}
+
+.promotion-infoDetail-container .PromotionID p,
+.promotion-infoDetail-container .promotionName p,
+.promotion-infoDetail-container .Startdate p,
+.promotion-infoDetail-container .Enddate p,
+.promotion-infoDetail-container .Type p,
+.promotion-infoDetail-container .promotionDiamondShellNameList p,
+.promotion-infoDetail-container .promotionDiamondNameList p,
+.promotion-infoDetail-container .Description p,
+.promotion-infoDetail-container .discountPercent p,
+.promotion-infoDetail-container .memberLevelPromotion p {
+    margin-left: 7px;
+}
+
+
+h1 {
+    font-size: 50px;
+    font-weight: bold;
+    color: red;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.pagination .PrevPage {
+    width: 50px;
+    padding: 2px;
+    border-collapse: collapse;
+    margin-right: 20px;
+    color: black;
+    font-weight: bold;
+}
+
+
+.pagination .NextPage {
+    width: 50px;
+    padding: 2px 5px;
+    color: black;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.pagination .NextPage:hover {
+    color: red;
+}
+
+.pagination .PrevPage:hover {
+    color: red;
+}

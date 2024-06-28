@@ -16,6 +16,10 @@ import DiamondShellInfo from './components/userComponents/product_information/Di
 import Login from './pages/accountPages/login/Login.jsx';
 import ForgetPassword from './pages/accountPages/forgetPassword/ForgetPassword.jsx';
 import UserProfile from './pages/customerPages/userprofile/UserProfile.jsx';
+import Register from './pages/accountPages/register/Register.jsx'
+
+import ManagerHome from './pages/managerPages/home/ManagerHome.jsx';
+
 import StaffOrderList from './pages/saleStaffPages/orderList/StaffOrderList.jsx';
 import StaffOrderDetail from './pages/saleStaffPages/orderDetail/StaffOrderDetail.jsx';
 import DeliveryOrderList from './pages/deliveryPages/orderList/DeliveryOrderList.jsx';
@@ -23,7 +27,42 @@ import DeliveryOrderDetail from './pages/deliveryPages/orderDetail/DeliveryOrder
 import Warranty from './pages/saleStaffPages/warranty/Warranty.jsx';
 import PaymentReturn from './components/utilityComponents/paymentRedirect/PaymentReturn.jsx';
 import ErrorPage from './components/utilityComponents/statusPages/ErrorPage.jsx';
+import Diamonds from './pages/managerPages/product/diamond/Diamonds.jsx'
+import DiamondShells from './pages/managerPages/product/diamondshell/DiamondShells.jsx'
+import CreateDiamond from './components/managerComponents/product/Diamond/CreateDiamond.jsx'
+import DiamondInfoDetails from './components/managerComponents/product/Diamond/DiamondInfoDetails.jsx'
+import UpdateDiamond from './components/managerComponents/product/Diamond/UpdateDiamond.jsx'
+import CreateDiamondShell from './components/managerComponents/product/diamondShell/CreateDiamondShell.jsx'
+import DiamondShellInfoDetails from './components/managerComponents/product/diamondShell/DiamondShellInfoDetails.jsx'
+import UpdateDiamondShell from './components/managerComponents/product/diamondShell/UpdateDiamondShell.jsx'
+import Profile from './pages/managerPages/profile/Profile.jsx'
+import ManagerLogin from './pages/managerPages/profile/login/ManagerLogin.jsx'
+import Promotion from './pages/managerPages/promotion/Promotion.jsx';
+import CreatePromotion from './components/managerComponents/promotion/CreatePromotion.jsx';
+import PromotionDetails from './components/managerComponents/promotion/PromotionDetails.jsx';
 
+import ManagerOrderList from './pages/managerPages/orderlist/ManagerOrderList.jsx';
+import OrderDetails from './components/managerComponents/orderlist/OrderDetails.jsx';
+import Pending from './components/managerComponents/orderlist/status/Pending.jsx'
+import Confirm from './components/managerComponents/orderlist/status/Confirm.jsx'
+import Delivered from './components/managerComponents/orderlist/status/Delivered.jsx'
+import Delivering from './components/managerComponents/orderlist/status/Delivering.jsx'
+import Cancel from './components/managerComponents/orderlist/status/Canceled.jsx'
+import PendingAssigned from './components/managerComponents/orderlist/assign/PendingAssigned.jsx'
+import ConfirmAssigned from './components/managerComponents/orderlist/assign/ConfirmAssigned.jsx'
+import DeliveringAssigned from './components/managerComponents/orderlist/assign/DeliveringAssigned.jsx'
+import DeliveredAssigned from './components/managerComponents/orderlist/assign/DeliveredAssigned.jsx'
+import SaleStaffDelivering from './components/managerComponents/orderlist/assign/SaleStaffDelivering.jsx'
+import SaleStaffDelivered from './components/managerComponents/orderlist/assign/SaleStaffDelivered.jsx'
+import DeliveryStaffDelivered from './components/managerComponents/orderlist/assign/DeliveryStaffDelivered.jsx'
+import DeliveryStaffDelivering from './components/managerComponents/orderlist/assign/DeliveryStaffDelivering.jsx'
+
+import DashBoard from './pages/managerPages/dashboard/DashBoard.jsx'
+import CancelRevenue from './pages/managerPages/dashboard/revenue/CancelRevenue.jsx'
+import ConfirmedRevenue from './pages/managerPages/dashboard/revenue/ConfirmedRevenue.jsx'
+import DeliveringRevenue from './pages/managerPages/dashboard/revenue/DeliveringRevenue.jsx'
+import DeliveredRevenue from './pages/managerPages/dashboard/revenue/DeliveredRevenue.jsx'
+import Performance from './pages/managerPages/dashboard/performance/Performance.jsx'
 export const Account = () => {
 
 }
@@ -63,6 +102,67 @@ function App() {
 
         {/* Payment Return Route */}
         <Route path="/auth/payment/return" element={<PaymentReturn />} />
+        <Route path='/register' element={<Register />} />
+
+        {/* Manager Routes */}
+        {/* Product Components  */}
+        <Route path='/' element={<ManagerHome />} />
+        <Route path='/diamond' element={<Diamonds />} />
+        <Route path='/CreateDiamond' element={<CreateDiamond />} />
+        <Route
+          path='/diamondInfoDetails/:id'
+          element={<DiamondInfoDetails />} />
+        <Route
+          path='/updateDiamond/:id'
+          element={<UpdateDiamond />} />
+
+        <Route path='/diamondshell' element={<DiamondShells />} />
+
+        <Route path='/createDiamondShell' element={<CreateDiamondShell />} />
+
+        <Route
+          path='/diamondShellInfoDetails/:id'
+          element={<DiamondShellInfoDetails />} />
+        <Route
+          path='/updateDiamondShell/:id'
+          element={<UpdateDiamondShell />} />
+
+        {/* Profile Components */}
+        <Route
+          path='/profile'
+          element={<Profile />} />
+        <Route
+          path='/stafflogin'
+          element={<ManagerLogin />} />
+        {/* Promotion Components */}
+        <Route path='/promotion' element={< Promotion />} />
+        <Route path='/createPromotion' element={< CreatePromotion />} />
+        <Route path='/promotionInfoDetail/:id' element={< PromotionDetails />} />
+
+        {/*Order List Components */}
+        <Route path='/managerorderlist' element={< ManagerOrderList />} />
+        <Route path='/orderDetails/:id' element={< OrderDetails />} />
+        <Route path='/pending' element={< Pending />} />
+        <Route path='/confirm' element={< Confirm />} />
+        <Route path='/delivering' element={< Delivering />} />
+        <Route path='/delivered' element={< Delivered />} />
+        <Route path='/canceled' element={< Cancel />} />
+        <Route path='/pendingassigned/:id' element={< PendingAssigned />} />
+        <Route path='/confirmassigned/:id' element={< ConfirmAssigned />} />
+        <Route path='/deliveringassigned/:id' element={< DeliveringAssigned />} />
+        <Route path='/deliveredassigned/:id' element={< DeliveredAssigned />} />
+        <Route path='/saleStaffDelivered/:id' element={< SaleStaffDelivered />} />
+        <Route path='/saleStaffDelivering/:id' element={< SaleStaffDelivering />} />
+        <Route path='/deliveryStaffDelivered/:id' element={< DeliveryStaffDelivered />} />
+        <Route path='/deliveryStaffDelivering/:id' element={< DeliveryStaffDelivering />} />
+
+        {/*DashBoard Components */}
+        <Route path='/dashBoard' element={< DashBoard />} />
+        <Route path='/cancelRevenue' element={< CancelRevenue />} />
+        <Route path='/confirmedRevenue' element={< ConfirmedRevenue />} />
+        <Route path='/deliveredRevenue' element={< DeliveredRevenue />} />
+        <Route path='/deliveringRevenue' element={< DeliveringRevenue />} />
+        <Route path='/staffPerformance' element={< Performance />} />
       </Routes>
 
 

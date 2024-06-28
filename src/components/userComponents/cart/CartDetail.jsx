@@ -116,7 +116,6 @@ const CartDetail = () => {
             console.error("Error updating cart item quantity:", error);
         }
     };
-
     const handleDeleteCart = async (productId, productType, size) => {
         try {
             // Send delete request to server

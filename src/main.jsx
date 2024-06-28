@@ -1,16 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.css";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App.jsx';
+import './index.css'
 import { BrowserRouter } from "react-router-dom";
-import { PaymentProvider } from "./components/userComponents/userContext/PaymentContext.jsx";
-
+import { Provider } from "react-redux";
+import store from "../store/ReduxStore.js";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <PaymentProvider>
+    <Provider store={store}>
       <BrowserRouter>
         <App />
       </BrowserRouter>
-    </PaymentProvider>
+
+    </Provider>
   </React.StrictMode>
 );

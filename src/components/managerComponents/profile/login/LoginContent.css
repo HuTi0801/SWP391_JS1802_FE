@@ -1,0 +1,95 @@
+/* Container */
+.login-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("https://t3.ftcdn.net/jpg/06/47/49/12/360_F_647491277_CEc0EIRHVlnWkFIgFyoJTtZGCYOjSaNV.jpg");
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Overlay */
+.login-container .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
+/* Login Box */
+.login-box {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 400px;
+    height: 450px;
+    padding: 40px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    z-index: 2;
+    background: linear-gradient(197deg, rgba(231, 231, 231, 0.8) 0%, rgba(251, 251, 251, 0.8) 28%, rgba(151, 162, 184, 0.8) 70%, rgba(102, 117, 120, 0.8) 100%);
+}
+
+/* Title */
+.login-box .login-title {
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 4.3em;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: red;
+}
+
+/* Form */
+.login-box .login-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-box .login-form p {
+    font-family: var(--font-family);
+    font-size: 1.2em;
+    font-weight: 550;
+    padding: 5px 0;
+}
+
+.login-box .login-form input {
+    padding: 10px;
+    margin: 10px 0;
+    width: 90%;
+    border-radius: 2px;
+    border: 1px solid black;
+}
+
+
+
+/* Buttons */
+.login-box .action-button {
+    display: flex;
+    flex-direction: column;
+    padding-top: 60px;
+}
+
+.login-box .action-button .login-button {
+    display: flex;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    margin-top: -30px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

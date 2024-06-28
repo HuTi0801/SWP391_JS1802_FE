@@ -20,7 +20,7 @@ const ProductPreview = () => {
 
     const getDiamondInfo = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/auth/diamond/get-all-diamond"); 
+            const response = await axios.get("http://localhost:8080/auth/diamond/get-all-diamond");
             return response.data.result;
         } catch (error) {
             console.error('Error fetching diamond info:', error);
@@ -47,7 +47,7 @@ const ProductPreview = () => {
         const itemUrl = item.imageDiamondShell ? `/diamondshell/${item.id}` : `/diamond/${item.id}`;
         navigate(itemUrl);
     };
-    {console.log(diamondShellList)}
+    { console.log(diamondShellList) }
 
     const productList = [...diamondShellList, ...diamondList];
 
@@ -81,7 +81,7 @@ const ProductPreview = () => {
                 ))}
             </ul>
             <div className='see-all'>
-            <button onClick={handleSeeAll}>SEE ALL PRODUCTS</button>
+                <button onClick={handleSeeAll}>SEE ALL PRODUCTS</button>
             </div>
         </div>
     );
