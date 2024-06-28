@@ -5,6 +5,7 @@ import ProductPreview from '../../../components/userComponents/home/ProductPrevi
 import Header from '../../../components/userComponents/header/Header';
 import Navbar from '../../../components/userComponents/header/navbar/Navbar';
 import Footer from '../../../components/userComponents/footer/Footer';
+import HomeContent from '../../../components/userComponents/home/HomeContent';
 const listBanner = [
   {
     id: 1,
@@ -35,6 +36,7 @@ const Home = () => {
       <Navbar />
       <Banner listBanner={listBanner} />
       <ProductPreview listBanner={listBanner} />
+      {/* <HomeContent /> */}
       <Footer />
     </div>
   )

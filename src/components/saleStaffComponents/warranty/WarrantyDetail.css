@@ -1,0 +1,69 @@
+.warranty-detail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+  }
+  
+  .warranty-title {
+    margin: 50px 0px;
+  }
+  
+  .warranty-title p {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: red;
+  }
+  
+  .warranty-information {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+  }
+  
+  .info-row {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .info-row label {
+    font-size: 1em;
+    margin-bottom: 5px;
+  }
+  
+  .date-display {
+    padding: 10px;
+    font-size: 14px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .date-input {
+    padding: 10px;
+    font-size: 1em;
+  }
+  
+  .error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  
+  .submit-button {
+    padding: 10px;
+    font-size: 1em;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: #45a049;
+  }
+  

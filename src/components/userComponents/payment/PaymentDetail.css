@@ -27,7 +27,6 @@
     flex-direction: column;
     gap: 20px;
     border: 1px solid black;
-
 }
 
 .payment-detail-container .personal-information {
@@ -40,8 +39,8 @@
 .payment-detail-container .payment-method {
     background-color: #fff;
     padding: 50px;
+    padding-top: 20px;
     border-radius: 8px;
-
 }
 
 .payment-detail-container .personal-information label {
@@ -89,8 +88,37 @@
 }
 
 .order-detail li {
-    margin-bottom: 10px;
+    padding: 20px;
+    
 }
+
+/* Cart items */
+.payment-detail-container .list-order .cart-item {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    box-shadow: 1px 2px 4px black;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.payment-detail-container .list-order .cart-item img {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+.payment-detail-container .list-order .cart-item .product-information {
+    flex: 1;
+}
+
+.payment-detail-container .list-order .cart-item .product-information p {
+    margin: 5px 0;
+    font-family: var(--font-family);
+}
+
+/* Action Button */
 
 .payment-detail-container .action-button {
     display: flex;
@@ -123,63 +151,11 @@
     margin-bottom: 10px;
 }
 
-.payment-detail-container .promotion-code button {
-    width: 7rem;
-    padding: 7px;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    background-color: #007bff;
-    color: #fff;
-    transition: background-color 0.3s ease;
-    font-family: var(--font-family);
-    font-size: 1.1em;
-}
 
-.payment-detail-container .promotion-code button:hover {
-    background-color: rgb(10, 168, 207);
-}
 
-.payment-detail-container .order-detail-title{
+.payment-detail-container .order-detail-title {
     font-size: 2em;
     font-weight: bold;
     text-align: center;
     font-family: var(--font-family);
-}
-/* Payment Order's Products */
-
-.payment-detail-container .payment-method ul{
-    display: flex;
-    flex-direction: column;
-    list-style-type: none;
-    padding: 30px 0px;
-}
-
-.payment-detail-container  .list-order .order-detail-preview {
-    display: flex;
-    margin: 30px 0px;
-    border: 1px solid black;
-    border-radius: 5px;
-    width: 90%;
-    padding: 20px 0px;
-}
-
-.payment-detail-container .list-order .order-detail-preview {
-    font-family: var(--font-family);
-}
-
-
-
-.payment-detail-container .list-order .order-detail-preview .order-info p {
-    padding: 2px 0px;
-}
-
-.payment-detail-container .list-order .order-detail-preview img {
-    object-fit: cover;
-    text-align: left;
-    width: 70px;
-    height: 70px;
-    padding: 0px 20px;
 }
