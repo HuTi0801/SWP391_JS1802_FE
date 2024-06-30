@@ -1,13 +1,15 @@
 
 import React, { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+
+import { List, Grid, ListItem, ListItemIcon, Typography, Divider, Box, Link } from '@mui/material';
 import ManagerHeader from "../../../managerComponents/header/ManagerHeader.jsx";
 import Functionbar from "../../../managerComponents/functionbar/Functionbar.jsx";
 import "./assign.css"; // Ensure correct path to your CSS file
 import { useParams } from 'react-router-dom';
 import { useTable } from 'react-table';
-
+import PendingIcon from '@mui/icons-material/Pending';
+import HomeIcon from '@mui/icons-material/Home';
 const PendingAssigned = () => {
     const [pendingAssigned, setPendingAssigned] = useState([]);
     const [error, setError] = useState(null);
@@ -137,16 +139,40 @@ const PendingAssigned = () => {
             <ManagerHeader />
             <Functionbar />
             <h1>Sale Staff List</h1>
-            <div className="PendingAssigned-container">
-                <div className='Pendingcontainer'>
+            <Box className="PendingAssigned-container">
+                <Box className='Pendingcontainer'>
                     <hr className="vertical-line" />
-                    <div>
-                        <ul className="url_Status">
-                            <Link to="/managerorderlist" className="All">All</Link>
-                            <Link to="/pending" className="Pending">Pending</Link>
-                        </ul>
-                    </div>
-                </div>
+
+                    <Box sx={{ maxWidth: 300, textAlign: 'left', marginTop: -5 }}>
+                        <Grid item xs={12} md={3}>
+                            <Box sx={{ textAlign: 'left' }}>
+                                <Typography variant="h6">Diamond Shop</Typography>
+                                <Typography variant="subtitle2">Workspace</Typography>
+                            </Box>
+                            <Divider />
+                            <List>
+
+                                <ListItem button sx={{ pl: 4 }}>
+                                    <ListItemIcon >
+                                        <HomeIcon sx={{ color: 'blue' }} />
+                                    </ListItemIcon>
+                                    <Link href="/managerorderlist" sx={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <Typography variant="h6">Home</Typography>
+                                    </Link>
+                                </ListItem>
+                                <ListItem button sx={{ pl: 4 }}>
+                                    <ListItemIcon >
+                                        <PendingIcon sx={{ color: 'green' }} />
+                                    </ListItemIcon>
+                                    <Link href="/pending" sx={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <Typography variant="h6">Pending</Typography>
+                                    </Link>
+                                </ListItem>
+                            </List>
+                            <Divider />
+                        </Grid>
+                    </Box>
+                </Box>
                 <div>
                     <button className='PendingAssigned' onClick={handleAssignClick}>Assign</button>
                     {warning && <div className="Pendingwarning">{warning}</div>}
@@ -174,7 +200,7 @@ const PendingAssigned = () => {
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </Box>
         </>
     );
 };

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import "./assign.css"
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { Box, Grid } from '@mui/material';
 import ManagerHeader from "../../../managerComponents/header/ManagerHeader.jsx";
 import Functionbar from "../../../managerComponents/functionbar/Functionbar.jsx";
 import MemoizedDeliveredcontainer from "./MemoizedDeliveredcontainer.jsx"
@@ -74,15 +75,17 @@ const DeliveredAssigned = () => {
             <ManagerHeader />
             <Functionbar />
             <h1>Staff List</h1>
-            <div className="DeliveredAssigned-container">
+            <Box sx={{ display: 'flex' }}>
                 <MemoizedDeliveredcontainer id={id} />
-                <div>
+                <Grid container spacing={20} />
+                <Box sx={{ marginTop: 20, marginRight: 500 }}>
+
                     <table className='AllStaff_table'>
                         <thead>
                             <tr>
                                 <th>AccountId</th>
-                                <th>Role</th>
                                 <th>OrderId</th>
+                                <th>Role</th>
                                 <th>Username</th>
                                 <th>Number of Orders</th>
 
@@ -104,8 +107,8 @@ const DeliveredAssigned = () => {
                             })}
                         </tbody>
                     </table>
-                </div>
-            </div>
+                </Box>
+            </Box>
         </>
     )
 }

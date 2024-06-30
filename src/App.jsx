@@ -63,6 +63,9 @@ import ConfirmedRevenue from './pages/managerPages/dashboard/revenue/ConfirmedRe
 import DeliveringRevenue from './pages/managerPages/dashboard/revenue/DeliveringRevenue.jsx'
 import DeliveredRevenue from './pages/managerPages/dashboard/revenue/DeliveredRevenue.jsx'
 import Performance from './pages/managerPages/dashboard/performance/Performance.jsx'
+
+import StaffOrderList from './pages/saleStaffPages/orderList/StaffOrderList.jsx';
+import StaffOrderDetail from './pages/saleStaffPages/orderDetail/StaffOrderDetail.jsx';
 export const Account = () => {
 
 }
@@ -165,7 +168,8 @@ function App() {
         <Route path='/staffPerformance' element={< Performance />} />
       </Routes>
 
-
+      {/* Account Routes */}
+      <Route path='/adminstaff' element={<AccountList />} />
     </div>
   );
 }

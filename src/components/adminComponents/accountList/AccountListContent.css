@@ -1,0 +1,107 @@
+.staff-order-list-content-container {
+    width: 100%;
+    padding: 70px 0px;
+}
+
+.staff-order-list-content {
+    padding-top: 40px;
+    padding-left: 100px;
+}
+
+.staff-order-list-content .list-order {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+}
+
+/* Order detail preview */
+.staff-order-list-content .list-order .order-detail-preview {
+    display: flex;
+    margin: 30px 0px;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 90%;
+    padding: 20px 0px;
+}
+
+.staff-order-list-content .list-order .order-detail-preview {
+    font-size: 2em;
+    font-family: var(--font-family);
+}
+
+.staff-order-list-content .list-order .order-detail-preview .order-info {
+    width: 100%;
+}
+
+.staff-order-list-content .list-order .order-detail-preview .order-info p {
+    padding: 6px 0px;
+}
+
+/* Order List Preview Image */
+.staff-order-list-content .list-order .order-detail-preview img {
+    object-fit: cover;
+    text-align: left;
+    width: 150px;
+    height: 150px;
+    padding: 0px 20px;
+}
+
+/* Status and View Detail Button */
+.staff-order-list-content-container .status-and-view {
+    width: 30%;
+}
+
+.staff-order-list-content-container .status-and-view p {
+    font-family: var(--font-family);
+    font-size: 1em;
+    text-align: left;
+}
+
+.staff-order-list-content-container .status-and-view button {
+    font-family: var(--font-family);
+    margin-top: 50px;
+    font-size: 1em;
+    padding: 10px 50px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: black;
+    color: var(--font-color);
+}
+
+/* Filter select */
+.staff-order-list-content-container .order-list-filter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.staff-order-list-content-container .order-list-filter span {
+    font-family: var(--font-family);
+    font-size: 1.2em;
+}
+
+.staff-order-list-content-container .order-list-filter label {
+    font-family: var(--font-family);
+    font-size: 1.2em;
+}
+
+.staff-order-list-content-container .order-list-filter select {
+    font-family: var(--font-family);
+    font-size: 1em;
+    padding: 3px 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.staff-order-list-content-container .order-list-filter select:focus {
+    border-color: #000;
+}
+
+.staff-order-list-content-container .order-list-filter select option {
+    padding: 10px;
+}

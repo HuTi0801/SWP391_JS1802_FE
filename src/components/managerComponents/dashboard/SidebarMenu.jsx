@@ -3,7 +3,6 @@ import { Grid, List, ListItem, ListItemIcon, ListItemText, Typography, Divider, 
 import HomeIcon from '@mui/icons-material/Home';
 import PeopleIcon from '@mui/icons-material/People';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import ErrorIcon from '@mui/icons-material/Error';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -29,7 +28,7 @@ const SidebarMenu = () => {
                 <List>
                     <ListItem button onClick={handleClick}>
                         <ListItemIcon>
-                            <HomeIcon />
+                            <HomeIcon sx={{ color: 'blue' }} />
                         </ListItemIcon>
                         <ListItemText primary="Overview" />
                         {openOverview ? <ExpandLess /> : <ExpandMore />}
@@ -38,7 +37,7 @@ const SidebarMenu = () => {
                         <List component="div" disablePadding>
                             <ListItem button sx={{ pl: 4 }}>
                                 <ListItemIcon>
-                                    <CheckCircleIcon />
+                                    <CheckCircleIcon sx={{ color: 'green' }} />
                                 </ListItemIcon>
                                 <Link href="/confirmedRevenue" sx={{ textDecoration: 'none', color: 'inherit' }}>
                                     <Typography variant="body2">Confirmed</Typography>
@@ -46,7 +45,7 @@ const SidebarMenu = () => {
                             </ListItem>
                             <ListItem button sx={{ pl: 4 }}>
                                 <ListItemIcon>
-                                    <LocalShippingIcon />
+                                    <LocalShippingIcon sx={{ color: 'orange' }} />
                                 </ListItemIcon>
                                 <Link href="/deliveringRevenue" sx={{ textDecoration: 'none', color: 'inherit' }}>
                                     <Typography variant="body2">Delivering</Typography>
@@ -54,7 +53,7 @@ const SidebarMenu = () => {
                             </ListItem>
                             <ListItem button sx={{ pl: 4 }}>
                                 <ListItemIcon>
-                                    <DoneIcon />
+                                    <DoneIcon sx={{ color: 'blue' }} />
                                 </ListItemIcon>
                                 <Link href="/deliveredRevenue" sx={{ textDecoration: 'none', color: 'inherit' }}>
                                     <Typography variant="body2">Delivered</Typography>
@@ -62,7 +61,7 @@ const SidebarMenu = () => {
                             </ListItem>
                             <ListItem button sx={{ pl: 4 }}>
                                 <ListItemIcon>
-                                    <CancelIcon />
+                                    <CancelIcon sx={{ color: 'red' }} />
                                 </ListItemIcon>
                                 <Link href="/cancelRevenue" sx={{ textDecoration: 'none', color: 'inherit' }}>
                                     <Typography variant="body2">Cancel</Typography>
@@ -72,25 +71,20 @@ const SidebarMenu = () => {
                     </Collapse>
                     <ListItem button>
                         <ListItemIcon>
-                            <PeopleIcon />
+                            <PeopleIcon sx={{ color: 'purple' }} />
                         </ListItemIcon>
                         <Link href="/staffPerformance" sx={{ textDecoration: 'none', color: 'inherit' }}>
                             <Typography variant="body2">Staff</Typography>
                         </Link>
                     </ListItem>
+
                     <ListItem button>
                         <ListItemIcon>
-                            <AccountCircleIcon />
+                            <AccountCircleIcon sx={{ color: 'teal' }} />
                         </ListItemIcon>
                         <Link href="/profile" sx={{ textDecoration: 'none', color: 'inherit' }}>
-                            <Typography variant="body2">Account</Typography>
+                            <Typography variant="h6">Account</Typography>
                         </Link>
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <ErrorIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Error" />
                     </ListItem>
                 </List>
                 <Divider />

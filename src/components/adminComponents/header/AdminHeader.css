@@ -1,0 +1,50 @@
+.admin_header-container {
+    display: flex;
+    height: 12vh;
+    width: 100%;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+}
+
+/* Left Header */
+.admin_header-address {
+    font-size: 0.9em;
+    font-family: var(--font-family);
+    align-self: center;
+    width: 20%;
+    margin: 0px 20px;
+    flex-direction: column;
+}
+
+/* Center Header */
+.admin_header-logo {
+    display: flex;
+    padding: 0px 5px;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
+.admin_header-logo .admin_logo-image {
+    width: 100px;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+/* Right Header */
+.admin_header-right {
+    display: flex;
+    padding: 0px 50px;
+}
+
+.admin_staff-information .admin_staff-FullName,
+.admin_staff-information .admin_staff-ID {
+    margin-right: 100px;
+    color: green;
+}
+
+.admin_staff-information .admin_staff-FullName {
+    margin-bottom: 2px;
+
+}

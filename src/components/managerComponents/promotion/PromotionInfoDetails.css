@@ -85,6 +85,8 @@
 .promotion-infoDetail-container .discountPercent p,
 .promotion-infoDetail-container .memberLevelPromotion p {
     margin-left: 7px;
+    text-align: center;
+
 }
 
 

@@ -1,19 +1,26 @@
+
+
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { updateDiamondShell } from "../../../../redux/actions/diamondShellAction";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import Select from 'react-select';
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./DiamondShellInfoDetails.css";
 import ManagerHeader from "../../header/ManagerHeader";
 import Functionbar from "../../functionbar/Functionbar";
+import {
+    Grid,
+    TextField,
+    Button,
+    Box,
+    Typography,
+} from "@mui/material";
+
 
 const UpdateDiamondShell = () => {
     const dispatch = useDispatch();
     const { id } = useParams();
-    const [error, setError] = useState(null);
     const navigate = useNavigate();
+    const [error, setError] = useState(null);
     const [diamondShell, setDiamondShell] = useState({
         gender: "male",
         imageDiamondShell: "",
@@ -23,9 +30,7 @@ const UpdateDiamondShell = () => {
         secondaryStoneType: "",
         statusDiamondShell: "true",
         accountId: 0,
-        sizeIds: [0]
     });
-
 
     useEffect(() => {
         const fetchDiamondShellDetails = async () => {
@@ -36,8 +41,6 @@ const UpdateDiamondShell = () => {
                 setError(error.message);
             }
         };
-
-
 
         fetchDiamondShellDetails();
     }, [id]);
@@ -51,94 +54,137 @@ const UpdateDiamondShell = () => {
         setDiamondShell({ ...diamondShell, [name]: value });
     };
 
-
     const handleUpdate = async () => {
         dispatch(updateDiamondShell(id, diamondShell));
         alert("Update DiamondShell successfully!!!!");
-        navigate("/diamondshell");
+        navigate("/diamondShellInfoDetails/" + id);
     };
-
-
 
     return (
         <>
             <ManagerHeader />
-            <div className="update-DiamondShell">
-                <Functionbar />
-                <h1>Update DiamondShell</h1>
-                <form>
-                    <div className="sub-update-DiamondShell">
-                        <div className="Material">
-                            <label htmlFor="material">Material:</label>
-                            <input type="text" name="material"
-                                value={diamondShell.material}
-                                onChange={handleChange} />
-                        </div>
-                        <div className="SecondaryStoneType">
-                            <label htmlFor="secondaryStoneType">Secondary Stone Type:</label>
-                            <input
-                                type="text"
-                                name="secondaryStoneType"
-                                value={diamondShell.secondaryStoneType}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className="Quantity">
-                            <label htmlFor="quantity">Quantity:</label>
-                            <input type="text" name="quantity"
-                                value={diamondShell.quantity}
-                                onChange={handleChange} />
-                        </div>
-                        <div className="Price">
-                            <label htmlFor="price">Price:</label>
-                            <input type="text" id="price" name="price"
-                                value={diamondShell.price}
-                                onChange={handleChange} />
-                        </div>
-                        <div className="Gender">
-                            <label htmlFor="gender">Gender:</label>
-                            <input type="text" id="gender" name="gender"
-                                value={diamondShell.gender}
-                                onChange={handleChange} />
-                        </div>
-                        <div className="imageDiamondShell">
-                            <label htmlFor="imageDiamondShell"> Image:</label>
-                            <input type="text" id="imageDiamondShell"
-                                name="imageDiamondShell"
-                                value={diamondShell.imageDiamondShell}
-                                onChange={handleChange} />
-                        </div>
-                        <div className="statusDiamondShell">
-                            <label htmlFor="statusDiamondShell">DiamondShell Status:</label>
-                            <input
-                                type="text"
-                                id="statusDiamondShell"
-                                name="statusDiamondShell"
-                                value={diamondShell.statusDiamondShell}
-                                onChange={handleChange}
-                            />
-                        </div>
-                        <div className="Manager_accountId">
-                            <label htmlFor="accountId">AccountId:</label>
-                            <input
-                                type="text"
-                                id="accountId"
-                                name="accountId"
-                                value={diamondShell.accountId}
-                                onChange={handleChange}
-                            />
-                        </div>
+            <Functionbar />
+            <Box
+                sx={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: 4 }}
+            >
+                <Typography
+                    variant="h4"
+                    gutterBottom
+                    sx={{ color: "red", fontSize: 50, fontWeight: "bold", fontStretch: "expanded" }}
+                >
+                    Update DiamondShell
+                </Typography>
+                <Box
+                    sx={{
+                        width: "60%",
+                        backgroundColor: "#f7f7f7",
+                        padding: 3,
+                        borderRadius: 2,
+                        boxShadow: 3,
+                    }}
+                >
+                    <form>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} md={6}>
+                                <TextField
+                                    fullWidth
+                                    label="Material"
+                                    name="material"
+                                    value={diamondShell.material}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
+
+                            <Grid item xs={12} md={6}>
+                                <TextField
+                                    fullWidth
+                                    label="Secondary Stone Type"
+                                    name="secondaryStoneType"
+                                    value={diamondShell.secondaryStoneType}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
+
+                            <Grid item xs={12} md={6}>
+                                <TextField
+                                    fullWidth
+                                    label="Quantity"
+                                    name="quantity"
+                                    type="text"
+                                    value={diamondShell.quantity}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
+
+                            <Grid item xs={12} md={6}>
+                                <TextField
+                                    fullWidth
+                                    label="Price"
+                                    name="price"
+                                    type="text"
+                                    value={diamondShell.price}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
+
+                            <Grid item xs={12} md={3}>
+                                <TextField
+                                    fullWidth
+                                    label="Gender"
+                                    name="gender"
+                                    value={diamondShell.gender}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
 
 
 
-                        <button type="button" onClick={handleUpdate}>
-                            Update
-                        </button>
-                    </div>
-                </form>
-            </div>
+                            <Grid item xs={12} md={3}>
+                                <TextField
+                                    fullWidth
+                                    label="DiamondShell Status"
+                                    name="statusDiamondShell"
+                                    value={diamondShell.statusDiamondShell}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
+
+
+
+                            <Grid item xs={12} md={6}>
+                                <TextField
+                                    fullWidth
+                                    label="Account Id"
+                                    name="accountId"
+                                    value={diamondShell.accountId}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
+
+                            <Grid item xs={12} md={12}>
+                                <TextField
+                                    fullWidth
+                                    label="Image"
+                                    name="imageDiamondShell"
+                                    value={diamondShell.imageDiamondShell}
+                                    onChange={handleChange}
+                                />
+
+                            </Grid>
+                        </Grid>
+                    </form>
+
+                    <Button
+                        sx={{ marginTop: 2, paddingBottom: 1, paddingTop: 1, paddingLeft: 5, paddingRight: 5, marginLeft: 50, backgroundColor: 'lightgray' }}
+                        variant="contained"
+                        onClick={handleUpdate}
+                    >
+                        Update
+                    </Button>
+                </Box>
+            </Box >
         </>
     );
 };
-
 export default UpdateDiamondShell;
+

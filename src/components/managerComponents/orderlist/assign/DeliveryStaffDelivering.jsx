@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
+import { Box, Grid } from '@mui/material';
 import { useParams } from 'react-router-dom';
 import { useTable } from 'react-table';
 import MemoizedDeliveringcontainer from "./MemoizedDeliveringcontainer.jsx";
@@ -112,9 +113,10 @@ const DeliveryStaffDelivering = () => {
             <ManagerHeader />
             <Functionbar />
             <h1>Delivery Staff List</h1>
-            <div className="DeliveringAssigned-container">
+            <Box sx={{ display: 'flex' }}>
                 <MemoizedDeliveringcontainer id={id} />
-                <div>
+                <Grid container spacing={20} />
+                <Box sx={{ marginTop: 20, marginRight: 500 }}>
                     <table {...getTableProps()} className='Delivering_table'>
                         <thead>
                             {headerGroups.map(headerGroup => (
@@ -138,8 +140,8 @@ const DeliveryStaffDelivering = () => {
                             })}
                         </tbody>
                     </table>
-                </div>
-            </div>
+                </Box>
+            </Box>
         </>
     );
 };

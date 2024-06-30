@@ -3,10 +3,11 @@ import Select from 'react-select';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import DatePicker from 'react-datepicker';
+import { Grid, TextField, FormControl, InputLabel, Button, Box, Typography } from '@mui/material';
 import 'react-datepicker/dist/react-datepicker.css';
 import ManagerHeader from "../../managerComponents/header/ManagerHeader.jsx";
 import Functionbar from "../../managerComponents/functionbar/Functionbar.jsx";
-import "../../../pages/managerPages/promotion/Promotion.css";
+import "../../../pages/managerPages/promotion/Promotion.css"
 
 const CreatePromotion = () => {
     const navigate = useNavigate();
@@ -149,112 +150,126 @@ const CreatePromotion = () => {
         <>
             <ManagerHeader />
             <Functionbar />
-            <div className="create-Promotion">
-                <h1>Create Promotion</h1>
-                <div className="sub-create-Promotion">
-                    <div className="PromotionName">
-                        <label htmlFor="promotionName">PROMOTION NAME:</label>
-                        <input
-                            type="text"
-                            placeholder="Promotion Name"
-                            name="promotionName"
-                            value={promotionData.promotionName}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="DESCRIPTION">
-                        <label htmlFor="description">DESCRIPTION:</label>
-                        <input
-                            type="text"
-                            placeholder="Description"
-                            name="description"
-                            value={promotionData.description}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="DISCOUNTPERCENT">
-                        <label htmlFor="discountPercent">DISCOUNT PERCENT (%):</label>
-                        <input
-                            type="text"
-                            placeholder="Discount Percent"
-                            name="discountPercent"
-                            value={promotionData.discountPercent}
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="STARTDATE">
-                        <label htmlFor="startDate">START DATE:</label>
-                        <DatePicker
-                            selected={promotionData.startDate}
-                            onChange={handleStartDateChange}
-                            dateFormat="dd/MM/yyyy"
-                            placeholderText="dd/mm/yyyy"
-                            className="custom-STARTDATE"
-                        />
-                    </div>
-                    <div className="ENDDATE">
-                        <label htmlFor="endDate">END DATE:</label>
-                        <DatePicker
-                            selected={promotionData.endDate}
-                            onChange={handleEndDateChange}
-                            dateFormat="dd/MM/yyyy"
-                            placeholderText="dd/mm/yyyy"
-                            className="custom-ENDDATE"
-                        />
-                    </div>
-                    <div className="MEMBERLEVEL">
-                        <label htmlFor="memberLevels">MEMBER LEVEL:</label>
-                        <div className="TYPE_MEMBERLEVEL">
-                            <Select
-                                isMulti
-                                options={options_MemberLevel}
-                                onChange={handleSelectChange}
-                                name="memberLevels"
-                                placeholder="Select Member Level"
-                                className="custom-TYPE_MEMBERLEVEL"
-                                value={options_MemberLevel.filter(option =>
-                                    promotionData.memberLevels.includes(option.value)
-                                )}
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 4 }}>
+                <Typography variant="h4" gutterBottom
+                    sx={{ color: 'red', fontSize: 50, fontWeight: 'bold', fontStretch: 'expanded' }}>Create Promotion</Typography>
+                <Box sx={{ width: '60%', backgroundColor: '#f7f7f7', padding: 3, borderRadius: 2, boxShadow: 3, height: 320 }}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} md={6}>
+                            <TextField
+                                fullWidth
+                                label="Promotion Name"
+                                name="promotionName"
+                                value={promotionData.promotionName}
+                                onChange={handleChange}
                             />
-                        </div>
-                    </div>
-                    <div className="TYPE">
-                        <label htmlFor="types">TYPE:</label>
-                        <div className="TYPE_Select">
-                            <Select
-                                isMulti
-                                options={options_Type}
-                                onChange={handleSelectChange}
-                                name="types"
-                                placeholder="Select type"
-                                className="custom-TYPE_Select"
-                                value={options_Type.filter(option =>
-                                    promotionData.types.includes(option.value)
-                                )}
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <TextField
+                                fullWidth
+                                label="Description"
+                                name="description"
+                                value={promotionData.description}
+                                onChange={handleChange}
                             />
-                        </div>
-                    </div>
-                    <div className="PRODUCTIONNAME">
-                        <label htmlFor="productNames">PRODUCT NAME:</label>
-                        <div className="TYPE_PRODUCTIONNAME">
-                            <Select
-                                isMulti
-                                options={productOptions}
-                                onChange={handleProductSelectChange}
-                                name="productNames"
-                                placeholder="Select products"
-                                className="custom-TYPE_PRODUCTIONNAME"
-                                value={productOptions.filter(option =>
-                                    promotionData.productNames.includes(option.value)
-                                )}
+                        </Grid>
+                        <Grid item xs={12} md={6}>
+                            <TextField
+                                fullWidth
+                                label="Discount Percent"
+                                name="discountPercent"
+                                value={promotionData.discountPercent}
+                                onChange={handleChange}
                             />
-                        </div>
-                    </div>
-                </div>
-                <button className='PromotionAdd' onClick={PromotionAdd}>Add</button>
-            </div>
+                        </Grid>
+
+                        <Grid item xs={12} md={6}>
+                            <FormControl fullWidth sx={{ textAlign: 'center' }}>
+                                <Select
+                                    isMulti
+                                    options={options_MemberLevel}
+                                    onChange={handleSelectChange}
+                                    name="memberLevels"
+                                    placeholder="Member Level"
+                                    value={options_MemberLevel.filter(option =>
+                                        promotionData.memberLevels.includes(option.value)
+                                    )}
+                                />
+                            </FormControl>
+                        </Grid>
+
+                        <Grid item xs={12} md={3} sx={{ marginTop: -1 }}>
+                            <InputLabel sx={{ marginLeft: 8 }}>START DATE</InputLabel>
+                            <Box sx={{ marginLeft: -1 }}>
+                                <DatePicker
+                                    selected={promotionData.startDate}
+                                    onChange={handleStartDateChange}
+                                    dateFormat="dd/MM/yyyy"
+                                    wrapperClassName="STARTDATE"
+                                    placeholderText="dd/mm/yyyy"
+                                />
+                            </Box>
+                        </Grid>
+
+                        <Grid item xs={12} md={3} sx={{ marginTop: -1 }}>
+                            <InputLabel sx={{ marginLeft: 10 }}>END DATE</InputLabel>
+                            <Box >
+                                <DatePicker
+                                    selected={promotionData.endDate}
+                                    wrapperClassName="ENDDATE"
+                                    onChange={handleEndDateChange}
+                                    dateFormat="dd/MM/yyyy"
+                                    placeholderText="dd/mm/yyyy"
+
+                                />
+                            </Box>
+                        </Grid>
+
+                        <Grid item xs={12} md={6}>
+                            <FormControl fullWidt sx={{ textAlign: 'center', minWidth: 454 }}>
+                                <Select
+                                    isMulti
+                                    options={options_Type}
+                                    onChange={handleSelectChange}
+                                    name="types"
+                                    placeholder="Select type"
+                                    value={options_Type.filter(option =>
+                                        promotionData.types.includes(option.value)
+                                    )}
+                                />
+                            </FormControl>
+                        </Grid>
+
+                        <Grid item xs={12} md={12} >
+                            <FormControl fullWidt sx={{ textAlign: 'center', minWidth: 926 }}>
+                                <Select
+                                    isMulti
+                                    options={productOptions}
+                                    onChange={handleProductSelectChange}
+                                    name="productNames"
+                                    placeholder=" Product Name"
+                                    value={productOptions.filter(option =>
+                                        promotionData.productNames.includes(option.value)
+                                    )}
+                                />
+                            </FormControl>
+                        </Grid>
+                    </Grid>
+
+                    <Button
+                        sx={{ marginTop: 2, paddingBottom: 1, paddingTop: 1, paddingLeft: 5, paddingRight: 5, marginLeft: 50, backgroundColor: 'lightgray' }}
+                        variant="contained"
+                        className='PromotionAdd'
+                        onClick={PromotionAdd}
+                    >
+                        Add
+                    </Button>
+                </Box>
+            </Box >
         </>
     );
 };
 
 export default CreatePromotion;
+
+

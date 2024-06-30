@@ -5,9 +5,9 @@ import { createDiamondShell } from "../../../../redux/actions/diamondShellAction
 import { useNavigate } from "react-router-dom";
 import Select from 'react-select';
 import axios from 'axios';
-import './Diamondshell.css';
 import ManagerHeader from "../../header/ManagerHeader";
 import Functionbar from "../../functionbar/Functionbar";
+import { Grid, TextField, Select as MuiSelect, MenuItem, FormControl, InputLabel, Button, Box, Typography } from '@mui/material'; // Importing MUI components
 
 const CreateDiamondShell = () => {
     const dispatch = useDispatch();
@@ -72,95 +72,127 @@ const CreateDiamondShell = () => {
         <>
             <ManagerHeader />
             <Functionbar />
-            <div className="create-DiamondShell">
-                <h1>Create DiamondShell</h1>
-                <div className="sub-create-DiamondShell">
-                    <div className="createGender">
-                        <label htmlFor="Gender">Gender:</label>
-                        <select name="gender" placeholder="Gender" onChange={handleChange}>
-                            <option value="">Gender</option>
-                            <option value="female">Female</option>
-                            <option value="male">Male</option>
-                        </select>
-                    </div>
-                    <div className="createimgDiamondShell">
-                        <label htmlFor="imgDiamondShell">Image:</label>
-                        <input
-                            type="text"
-                            placeholder="Image"
-                            name="imageDiamondShell"
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="createMaterial">
-                        <label htmlFor="Material">Material:</label>
-                        <select name="material" placeholder="Material" onChange={handleChange}>
-                            <option value="">Material</option>
-                            <option value="Platinum 18K">Platinum 18K</option>
-                            <option value="Gold 14K">Gold 14K</option>
-                        </select>
-                    </div>
-                    <div className="createPrice">
-                        <label htmlFor="Price">Price:</label>
-                        <input
-                            type="text"
-                            placeholder="Price"
-                            name="price"
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="createQuantity">
-                        <label htmlFor="Quantity">Quantity:</label>
-                        <input
-                            type="number"
-                            placeholder="Quantity"
-                            name="quantity"
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="createSecondaryStoneType">
-                        <label htmlFor="SecondaryStoneType">Secondary Stone Type:</label>
-                        <input
-                            type="text"
-                            placeholder="SecondaryStoneType"
-                            name="secondaryStoneType"
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="createstatusDiamondShell">
-                        <label htmlFor="statusDiamondShell">Status Diamond:</label>
-                        <select name="statusDiamondShell" placeholder="StatusDiamondShell" onChange={handleChange}>
-                            <option value="">StatusDiamondShell</option>
-                            <option value="True">True</option>
-                            <option value="False">False</option>
-                        </select>
-                    </div>
-                    <div className="createAccountId">
-                        <label htmlFor="AccountId">AccountId:</label>
-                        <input
-                            type="text"
-                            placeholder="accountId"
-                            name="accountId"
-                            onChange={handleChange}
-                        />
-                    </div>
-                    <div className="Size">
-                        <label htmlFor="Size">Sizes:</label>
-                        <div className="Select">
-                            <Select
-                                isMulti
-                                name="sizeIds"
-                                options={options}
-                                onChange={handleSizeChange}
-                                placeholder="Select SizeID"
-                                className="custom-Size"
-                            />
-                        </div>
-                    </div>
+            <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 4 }}>
+                <Typography variant="h4" gutterBottom
+                    sx={{ color: 'red', fontSize: 50, fontWeight: 'bold', fontStretch: 'expanded' }}>Create DiamondShell</Typography>
+                <Box sx={{ width: '60%', backgroundColor: '#f7f7f7', padding: 3, borderRadius: 2, boxShadow: 3 }}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} md={6}>
+                            <FormControl fullWidth sx={{ textAlign: 'center' }}>
+                                <InputLabel>Gender</InputLabel>
+                                <MuiSelect
+                                    name="gender"
+                                    value={diamondShell.gender}
+                                    onChange={handleChange}
+                                >
+                                    <MenuItem value="">Gender</MenuItem>
+                                    <MenuItem value="female">Female</MenuItem>
+                                    <MenuItem value="male">Male</MenuItem>
+                                </MuiSelect>
+                            </FormControl>
+                        </Grid>
 
-                </div>
-                <button onClick={diamondShellAdd}>Add</button>
-            </div>
+                        <Grid item xs={12} md={6}>
+                            <FormControl fullWidth sx={{ textAlign: 'center' }}>
+                                <InputLabel>Material</InputLabel>
+                                <MuiSelect
+                                    name="material"
+                                    value={diamondShell.material}
+                                    onChange={handleChange}
+                                >
+                                    <MenuItem value="">Material</MenuItem>
+                                    <MenuItem value="Platinum 18K">Platinum 18K</MenuItem>
+                                    <MenuItem value="Gold 14K">Gold 14K</MenuItem>
+                                </MuiSelect>
+                            </FormControl>
+                        </Grid>
+
+                        <Grid item xs={12} md={6}>
+                            <TextField
+                                fullWidth
+                                label="Price"
+                                name="price"
+                                onChange={handleChange}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12} md={6}>
+                            <TextField
+                                fullWidth
+                                label="Secondary Stone Type"
+                                name="secondaryStoneType"
+                                onChange={handleChange}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12} md={3}>
+                            <TextField
+                                fullWidth
+                                label="Quantity"
+                                name="quantity"
+                                type="number"
+                                inputProps={{ min: 0 }}
+                                onChange={handleChange}
+                            />
+                        </Grid>
+
+
+
+                        <Grid item xs={12} md={3}>
+                            <FormControl fullWidth sx={{ textAlign: 'center' }}>
+                                <InputLabel>Status DiamondShell</InputLabel>
+                                <MuiSelect
+                                    name="statusDiamondShell"
+                                    value={diamondShell.statusDiamondShell}
+                                    onChange={handleChange}
+                                >
+                                    <MenuItem value="">Status DiamondShell</MenuItem>
+                                    <MenuItem value="True">True</MenuItem>
+                                    <MenuItem value="False">False</MenuItem>
+                                </MuiSelect>
+                            </FormControl>
+                        </Grid>
+
+                        <Grid item xs={12} md={6}>
+                            <TextField
+                                fullWidth
+                                label="Account ID"
+                                name="accountId"
+                                onChange={handleChange}
+                            />
+                        </Grid>
+
+                        <Grid item xs={12} md={3}>
+                            <FormControl fullWidth sx={{ textAlign: 'center' }} >
+                                <Select
+                                    isMulti
+                                    name="sizeIds"
+                                    options={options}
+                                    onChange={handleSizeChange}
+                                    placeholder="Size"
+                                />
+
+                            </FormControl>
+                        </Grid>
+
+                        <Grid item xs={12} md={9}>
+                            <TextField
+                                fullWidth
+                                label="Image"
+                                name="imageDiamondShell"
+                                onChange={handleChange}
+                            />
+                        </Grid>
+                    </Grid>
+                    <Button
+                        sx={{ marginTop: 2, paddingBottom: 1, paddingTop: 1, paddingLeft: 5, paddingRight: 5, marginLeft: 50, backgroundColor: 'lightgray' }}
+                        variant="contained"
+                        onClick={diamondShellAdd}
+                    >
+                        Add
+                    </Button>
+                </Box>
+            </Box>
         </>
     );
 };

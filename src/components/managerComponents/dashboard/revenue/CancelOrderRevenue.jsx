@@ -66,8 +66,8 @@ const CancelOrderRevenue = () => {
                                         />
                                         <YAxis
                                             tickFormatter={(value) => `${value / 1000000}M`}
-                                            ticks={[0, 60000000, 100000000, 140000000, 180000000, 200000000, 220000000]}
-                                            domain={[60000000, 220000000]}
+                                            ticks={[0, 20000000, 40000000, 60000000, 80000000, 100000000]}
+                                            domain={[20000000, 100000000]}
                                         />
                                         <Tooltip />
                                         <Bar dataKey="totalRevenue" fill="#8884d8"></Bar>
