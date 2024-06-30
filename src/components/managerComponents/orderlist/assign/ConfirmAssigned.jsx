@@ -2,12 +2,13 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import "./assign.css";
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { List, Grid, ListItem, ListItemIcon, Typography, Divider, Box, Link } from '@mui/material';
 import ManagerHeader from "../../../managerComponents/header/ManagerHeader.jsx";
 import Functionbar from "../../../managerComponents/functionbar/Functionbar.jsx";
 import { useParams } from 'react-router-dom';
 import { useTable } from 'react-table';
-
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import HomeIcon from '@mui/icons-material/Home';
 const ConfirmAssigned = () => {
     const [confirmAssigned, setConfirmAssigned] = useState([]);
     const [error, setError] = useState(null);
@@ -131,16 +132,40 @@ const ConfirmAssigned = () => {
             <ManagerHeader />
             <Functionbar />
             <h1>Delivery Staff List</h1>
-            <div className="ConfirmAssigned-container">
-                <div className='Pendingcontainer'>
+            <Box className="ConfirmAssigned-container">
+                <Box className='Confirmcontainer'>
                     <hr className="vertical-line" />
-                    <div>
-                        <ul className="url_Status">
-                            <Link to="/managerorderlist" className="All">All</Link>
-                            <Link to="/confirm" className="Confirm">Confirm</Link>
-                        </ul>
-                    </div>
-                </div>
+
+                    <Box sx={{ maxWidth: 300, textAlign: 'left', marginTop: -5 }}>
+                        <Grid item xs={12} md={3}>
+                            <Box sx={{ textAlign: 'left' }}>
+                                <Typography variant="h6">Diamond Shop</Typography>
+                                <Typography variant="subtitle2">Workspace</Typography>
+                            </Box>
+                            <Divider />
+                            <List>
+
+                                <ListItem button sx={{ pl: 4 }}>
+                                    <ListItemIcon >
+                                        <HomeIcon sx={{ color: 'blue' }} />
+                                    </ListItemIcon>
+                                    <Link href="/managerorderlist" sx={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <Typography variant="h6">Home</Typography>
+                                    </Link>
+                                </ListItem>
+                                <ListItem button sx={{ pl: 4 }}>
+                                    <ListItemIcon >
+                                        <CheckCircleIcon sx={{ color: 'green' }} />
+                                    </ListItemIcon>
+                                    <Link href="/confirm" sx={{ textDecoration: 'none', color: 'inherit' }}>
+                                        <Typography variant="h6">Confirm</Typography>
+                                    </Link>
+                                </ListItem>
+                            </List>
+                            <Divider />
+                        </Grid>
+                    </Box>
+                </Box>
                 <div>
                     <button className='ConfirmAssigned' onClick={handleAssignClick}>Assign</button>
                     {warning && <div className="Confirmwarning">{warning}</div>}
@@ -168,7 +193,7 @@ const ConfirmAssigned = () => {
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </Box>
         </>
     );
 };

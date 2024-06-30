@@ -2,11 +2,16 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import axios from 'axios';
 import { updateDiamond } from "../../../../redux/actions/productAction";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import './DiamondInfoDetails.css'
-import ManagerHeader from "../../header/ManagerHeader"
-import Functionbar from "../../functionbar/Functionbar"
+import { useParams, useNavigate } from "react-router-dom";
+import ManagerHeader from "../../header/ManagerHeader";
+import Functionbar from "../../functionbar/Functionbar";
+import {
+    Grid,
+    TextField,
+    Button,
+    Box,
+    Typography,
+} from "@mui/material";
 
 const UpdateDiamond = () => {
     const dispatch = useDispatch();
@@ -26,12 +31,14 @@ const UpdateDiamond = () => {
         statusDiamond: true,
         accountId: 0
     });
+
     const handleChange = (e) => {
         setDiamond({
             ...diamond,
             [e.target.name]: e.target.value,
         });
     };
+
     useEffect(() => {
         const fetchDiamondDetails = async () => {
             try {
@@ -44,126 +51,169 @@ const UpdateDiamond = () => {
 
         fetchDiamondDetails();
     }, [id]);
+
     if (error) {
         return <div>Error: {error}</div>;
     }
 
-
     const handleUpdate = async () => {
         dispatch(updateDiamond(id, diamond));
         alert("Update Diamond successfully!!!!");
-        navigate("/diamond");
+        navigate("/diamondInfoDetails/" + id);
     };
 
     return (
         <>
             <ManagerHeader />
+            <Functionbar />
+            <Box
+                sx={{ display: "flex", flexDirection: "column", alignItems: "center", marginTop: 4 }}
+            >
+                <Typography
+                    variant="h4"
+                    gutterBottom
+                    sx={{ color: "red", fontSize: 50, fontWeight: "bold", fontStretch: "expanded" }}
+                >
+                    Update Diamond
+                </Typography>
+                <Box
+                    sx={{
+                        width: "60%",
+                        backgroundColor: "#f7f7f7",
+                        padding: 3,
+                        borderRadius: 2,
+                        boxShadow: 3,
+                    }}
+                >
+                    <form>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} md={6}>
+                                <TextField
+                                    fullWidth
+                                    label="Color"
+                                    name="color"
+                                    value={diamond.color}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
 
-            <div className="update-Diamond">
-                <Functionbar />
-                <h1>Update Diamond</h1>
-                <form>
+                            <Grid item xs={12} md={6}>
+                                <TextField
+                                    fullWidth
+                                    label="Cut"
+                                    name="cut"
+                                    value={diamond.cut}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
 
-                    <div className="sub-update-Diamond">
+                            <Grid item xs={12} md={6}>
+                                <TextField
+                                    fullWidth
+                                    label="Carat Weight"
+                                    name="caratWeight"
+                                    value={diamond.caratWeight}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
 
-                        <div className="Cut">
-                            <label htmlFor="cut">Cut:</label>
-                            <input type="text" name="cut"
-                                value={diamond.cut} onChange={handleChange} />
-                        </div>
+                            <Grid item xs={12} md={6}>
+                                <TextField
+                                    fullWidth
+                                    label="Clarity"
+                                    name="clarity"
+                                    value={diamond.clarity}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
 
-                        <div className="Origin">
-                            <label htmlFor="origin">Origin:</label>
-                            <input type="text" name="origin"
-                                value={diamond.origin}
-                                onChange={handleChange} /></div>
+                            <Grid item xs={12} md={6}>
+                                <TextField
+                                    fullWidth
+                                    label="Origin"
+                                    name="origin"
+                                    value={diamond.origin}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
 
-                        <div className="CaratWeight">
-                            <label htmlFor="caratWeight">CaratWeight:</label>
-                            <input type="text" name="caratWeight"
-                                value={diamond.caratWeight}
-                                onChange={handleChange} /></div>
+                            <Grid item xs={12} md={6}>
+                                <TextField
+                                    fullWidth
+                                    label="Price"
+                                    name="price"
+                                    value={diamond.price}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
 
-                        <div className="Color">
-                            <label htmlFor="color">Color:</label>
-                            <input type="text" name="color"
-                                value={diamond.color}
-                                onChange={handleChange} /></div>
+                            <Grid item xs={12} md={3}>
+                                <TextField
 
-                        <div className="CertificateNumber" >
-                            <label htmlFor="certificateNumber">CertificateNumber:</label>
-                            <input type="text" name="certificateNumber"
-                                value={diamond.certificateNumber}
-                                onChange={handleChange} />
-                        </div>
+                                    fullWidth
+                                    label="Account ID"
+                                    name="accountId"
+                                    value={diamond.accountId}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
 
-                        <div className="Clarity">
+                            <Grid item xs={12} md={3}>
+                                <TextField
 
-                            <label htmlFor="clarity">Clarity:</label>
-                            <input type="text" name="clarity"
-                                value={diamond.clarity}
-                                onChange={handleChange} />
-                        </div>
+                                    fullWidth
+                                    label="Diamond Status"
+                                    name="statusDiamond"
+                                    value={diamond.statusDiamond}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
 
-                        <div className="Quantity">
-                            <label htmlFor="quantity">Quantity:</label>
-                            <input type="number" name="quantity"
-                                value={diamond.quantity}
-                                onChange={handleChange} />
-                        </div>
+                            <Grid item xs={12} md={6}>
+                                <TextField
+                                    fullWidth
+                                    label="Certificate Number"
+                                    name="certificateNumber"
+                                    value={diamond.certificateNumber}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
 
-                        <div className="Price">
-                            <label htmlFor="price">Price:</label>
-                            <input type="text" id="price" name="price"
-                                value={diamond.price}
-                                onChange={handleChange} /></div>
+                            <Grid item xs={12} md={3}>
+                                <TextField
+                                    fullWidth
+                                    label="Quantity"
+                                    name="quantity"
+                                    type="number"
+                                    value={diamond.quantity}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
 
-                        <div className="imgDiamond">
-                            <label htmlFor="imageDiamond">Diamond Image:</label>
-                            <input
-                                type="text"
-                                id="imageDiamond"
-                                name="imageDiamond"
-                                value={diamond.imageDiamond}
+                            <Grid item xs={12} md={9}>
+                                <TextField
 
-                                onChange={handleChange}
-                            />
-                        </div>
+                                    fullWidth
+                                    label="Diamond Image"
+                                    name="imageDiamond"
+                                    value={diamond.imageDiamond}
+                                    onChange={handleChange}
+                                />
+                            </Grid>
 
-                        <div className="statusDiamond">
-                            <label htmlFor="statusDiamond">Diamond Status:</label>
-                            <input
-                                type="text"
-                                id="statusDiamond"
-                                name="statusDiamond"
-                                value={diamond.statusDiamond}
+                        </Grid>
+                    </form>
 
-                                onChange={handleChange}
-                            />
-                        </div>
-
-                        <div className="accountId">
-                            <label htmlFor="accountId">AccountId:</label>
-                            <input
-                                type="text"
-                                id="accountId"
-                                name="accountId"
-                                value={diamond.accountId}
-
-                                onChange={handleChange}
-                            />
-                        </div>
-
-                        <button type="button" onClick={handleUpdate}>
-                            Update
-                        </button>
-
-                    </div>
-                </form>
-            </div>
+                    <Button
+                        sx={{ marginTop: 2, paddingBottom: 1, paddingTop: 1, paddingLeft: 5, paddingRight: 5, marginLeft: 50, backgroundColor: 'lightgray' }}
+                        variant="contained"
+                        onClick={handleUpdate}
+                    >
+                        Update
+                    </Button>
+                </Box>
+            </Box >
         </>
-
     );
 };
-
 export default UpdateDiamond;
