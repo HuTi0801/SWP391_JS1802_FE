@@ -67,6 +67,7 @@ import Performance from './pages/managerPages/dashboard/performance/Performance.
 
 import AccountList from './pages/adminPages/accountList/AccountList.jsx';
 import CustomerAccountDetails from './pages/adminPages/accountDetails/CustomerAccountDetails.jsx';
+import ManagementAccountDetails from './pages/adminPages/accountDetails/ManagementAccountDetails.jsx';
 import Delivery_StaffAccountDetails from './pages/adminPages/accountDetails/Delivery_StaffAccountDetails.jsx';
 import Sale_StaffAccountDetails from './pages/adminPages/accountDetails/Sale_StaffAccountDetails.jsx';
 import BanCustomerAccount from './pages/adminPages/banaccount/BanCustomerAccount.jsx';

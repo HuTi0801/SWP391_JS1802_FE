@@ -47,7 +47,7 @@ const CustomerAccountDetailsContent = () => {
   }
 
   if (!customerAccountDetails) {
-    return <p>Customer Account Info Details not found</p>;
+    return <p>Customer Account's Info Details not found</p>;
   }
 
 

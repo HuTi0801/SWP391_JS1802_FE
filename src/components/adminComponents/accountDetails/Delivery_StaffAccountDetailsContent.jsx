@@ -44,7 +44,7 @@ const Delivery_StaffAccountDetailsContent = () => {
     }
 
     if (!delivery_StaffAccountDetails) {
-        return <p>Delivery Staff Info Details not found</p>;
+        return <p>Delivery Staff Account's Info Details not found</p>;
     }
 
     return (
