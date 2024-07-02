@@ -45,7 +45,7 @@ const Sale_StaffAccountDetailsContent = () => {
     }
 
     if (!sale_StaffAccountDetails) {
-        return <p>Sale Staff Info Details not found</p>;
+        return <p>Sale Staff Account's Info Details not found</p>;
     }
 
     return (
