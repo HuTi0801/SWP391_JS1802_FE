@@ -1,15 +1,23 @@
 .OrderList-container {
     display: inline-flex;
     padding-top: 50px;
-    margin-top: -78px;
-    border-right: 1px solid #000;
+    margin-top: 682px;
+    border-right: 1px solid lightgrey;
 }
 
 .vertical-line {
     border: none;
-    border-right: 1px solid #000;
+    border-right: 1px solid lightgrey;
     height: 100vh;
     margin-right: 20px;
+}
+
+.ListofStatusContainer {
+    display: inline-flex;
+    padding-top: 50px;
+    margin-top: -88px;
+    width: 200px;
+    border-right: 1px solid lightgray;
 }
 
 
@@ -24,52 +32,9 @@
     padding: 8px 16px;
 }
 
-.Pending,
-.Confirm,
-.Delivering,
-.Delivered,
-.Canceled,
-.All {
-    color: black;
-    font-size: 30px;
-    margin-bottom: 30px;
-    text-decoration: none;
-}
-
-.All {
-    margin-left: 2px;
-}
 
 
-.Confirm:hover {
-    color: red;
-    font-weight: bold;
-}
 
-.Pending:hover {
-    color: red;
-    font-weight: bold;
-}
-
-.Delivering:hover {
-    color: red;
-    font-weight: bold;
-}
-
-.Delivered:hover {
-    color: red;
-    font-weight: bold;
-}
-
-.Canceled:hover {
-    color: red;
-    font-weight: bold;
-}
-
-.All:hover {
-    color: red;
-    font-weight: bold;
-}
 
 .list {
     display: flex;

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "./OrderListPage.css"
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import ListofStatus from "../orderlist/status/ListofStatus.jsx"
 import ManagerHeader from "../../managerComponents/header/ManagerHeader.jsx"
 import Functionbar from "../../managerComponents/functionbar/Functionbar.jsx"
 const OrderListPage = () => {
@@ -59,32 +60,8 @@ const OrderListPage = () => {
             <Functionbar />
             <h1>Order List</h1>
             <div className="OrderList-container">
-                <hr className="vertical-line" />
-                <div>
-                    <ul className="url_Status">
 
-                        <Link to="/managerorderlist" className="All">
-                            All
-                        </Link>
-
-                        <Link to="/pending" className="Pending">
-                            Pending
-                        </Link>
-
-                        <Link to="/confirm" className="Confirm">
-                            Confirm
-                        </Link>
-                        <Link to="/delivering" className="Delivering">
-                            Delivering
-                        </Link>
-                        <Link to="/delivered" className="Delivered">
-                            Delivered
-                        </Link>
-                        <Link to="/canceled" className="Canceled">
-                            Canceled
-                        </Link>
-                    </ul>
-                </div>
+                <ListofStatus />
             </div>
             <div className='list'>
                 {records.map((order) => (

@@ -1,14 +1,14 @@
 import React from 'react';
-import './AccountList.css';
 import AdminHeader from '../../../components/adminComponents/header/AdminHeader';
 import AdminSideBar from '../../../components/adminComponents/accountList/AdminSideBar';
-
+import AccountListContent from '../../../components/adminComponents/accountList/AccountListContent';
 const AccountList = () => {
   return (
-    <div className='staff-order-list-container'>
+    <div>
       <AdminHeader />
-      <div className='staff-main-content'>
+      <div>
         <AdminSideBar />
+        <AccountListContent />
       </div>
     </div>
   );

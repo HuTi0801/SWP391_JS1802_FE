@@ -2,29 +2,45 @@ import React, { useEffect, useState } from 'react';
 import "../OrderListPage.css"
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import ListofStatus from "./ListofStatus.jsx"
 import ManagerHeader from "../../../managerComponents/header/ManagerHeader.jsx"
 import Functionbar from "../../../managerComponents/functionbar/Functionbar.jsx"
 const Pending = () => {
 
     const [Pendingoders, setPendingOrders] = useState([]);
+    const [Status, setStatus] = useState(null);
+    const [currentPage, setcurrentPage] = useState(1)
+
+    const recordsPerPage = 3;
     /* Display Pending Order Info  */
-    const getPendingOrderInfo = async () => {
-        try {
-            const response = await axios.get('http://localhost:8080/auth/orders/get-all-orders');
-            return response.data.result;
-        } catch (error) {
-            console.error('Error fetching Pending Order info:', error);
-            return [];
-        }
-    };
+    useEffect(() => {
+        const fetchStatus = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/auth/status-order/get-a-status-order-1');
+                setStatus(response.data.result);
+            } catch (error) {
+                console.error('Error fetching status info:', error);
+            }
+        };
+
+        fetchStatus();
+    }, []);
 
     useEffect(() => {
         const fetchData = async () => {
-            const orderData = await getPendingOrderInfo();
-            setPendingOrders(orderData);
+            if (Status) {
+                try {
+                    const response = await axios.get(`http://localhost:8080/auth/orders/get-order-statusName?statusName=${Status.statusName}`);
+                    setPendingOrders(response.data.result);
+                } catch (error) {
+                    console.error('Error fetching orders:', error);
+                }
+            }
         };
+
         fetchData();
-    }, []);
+    }, [Status]);
+
 
     function formatCurrency(amount) {
         const formatter = new Intl.NumberFormat('vi-VN', {
@@ -35,9 +51,7 @@ const Pending = () => {
         });
         return formatter.format(amount);
     }
-    const [currentPage, setcurrentPage] = useState(1)
 
-    const recordsPerPage = 3;
 
     const lastIndex = currentPage * recordsPerPage;
 
@@ -56,63 +70,39 @@ const Pending = () => {
             <Functionbar />
             <h1>Pending Order List</h1>
             <div className="OrderList-container">
-                <hr className="vertical-line" />
-                <div>
-                    <ul className="url_Status">
-                        <Link to="/managerorderlist" className="All">
-                            All
-                        </Link>
-                        <Link to="/pending" className="Pending">
-                            Pending
-                        </Link>
-
-                        <Link to="/confirm" className="Confirm">
-                            Confirm
-                        </Link>
-                        <Link to="/delivering" className="Delivering">
-                            Delivering
-                        </Link>
-                        <Link to="/delivered" className="Delivered">
-                            Delivered
-                        </Link>
-                        <Link to="/canceled" className="Canceled">
-                            Canceled
-                        </Link>
-                    </ul>
-                </div>
+                <ListofStatus />
             </div>
             <div className='list'>
-                {records.filter(order => order.dateStatusOrders[order.dateStatusOrders.length - 1].status === "Pending")
-                    .map((order) => (
-                        <div key={order.orderId} className='OrderList'>
-                            <div className="CustomerID">
-                                <span>OrderID:</span>
-                                <p>{order.orderId}</p>
-                            </div>
-                            <div className="CustomerName">
-                                <span>Customer Name:</span>
-                                <p>{order.cusName}</p>
-                            </div>
-                            <div className="TotalPrice">
-                                <span>Total Price:</span>
-                                <p>{formatCurrency(order.totalPrice)}</p>
-                            </div>
-                            <div className="OrderStatus">
-                                <span>Phone:</span>
-                                <p>{order.phone}</p>
-                            </div>
-                            <div className='status'>
-                                <span>Status:</span>
-                                <p>{order.dateStatusOrders[order.dateStatusOrders.length - 1].status}</p>
-                            </div>
-                            <Link to={`/pendingassigned/${order.orderId}`} className="Assigned">
-                                Assign
-                            </Link>
-                            <Link to={`/orderDetails/${order.orderId}`} className="ViewDetails">
-                                View Details
-                            </Link>
+                {records.map((order) => (
+                    <div key={order.orderId} className='OrderList'>
+                        <div className="CustomerID">
+                            <span>OrderID:</span>
+                            <p>{order.orderId}</p>
                         </div>
-                    ))}
+                        <div className="CustomerName">
+                            <span>Customer Name:</span>
+                            <p>{order.cusName}</p>
+                        </div>
+                        <div className="TotalPrice">
+                            <span>Total Price:</span>
+                            <p>{formatCurrency(order.totalPrice)}</p>
+                        </div>
+                        <div className="OrderStatus">
+                            <span>Phone:</span>
+                            <p>{order.phone}</p>
+                        </div>
+                        <div className='status'>
+                            <span>Status:</span>
+                            <p>{order.dateStatusOrders[order.dateStatusOrders.length - 1].status}</p>
+                        </div>
+                        <Link to={`/pendingassigned/${order.orderId}`} className="Assigned">
+                            Assign
+                        </Link>
+                        <Link to={`/orderDetails/${order.orderId}`} className="ViewDetails">
+                            View Details
+                        </Link>
+                    </div>
+                ))}
             </div>
 
 
@@ -142,7 +132,7 @@ const Pending = () => {
 
     function prePage() {
 
-        if (currentPage !== firstIndex && currentPage !== 1) {
+        if (currentPage > 1) {
             setcurrentPage(currentPage - 1)
         }
     }
@@ -152,7 +142,7 @@ const Pending = () => {
     }
     function nextPage() {
 
-        if (currentPage !== lastIndex) {
+        if (currentPage < npage) {
             setcurrentPage(currentPage + 1)
         }
     }

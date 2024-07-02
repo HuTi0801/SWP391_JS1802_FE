@@ -1,107 +1,80 @@
-.staff-order-list-content-container {
-    width: 100%;
-    padding: 70px 0px;
-}
-
-.staff-order-list-content {
-    padding-top: 40px;
-    padding-left: 100px;
-}
-
-.staff-order-list-content .list-order {
+.account-list-container {
     display: flex;
     flex-direction: column;
-    list-style-type: none;
-}
-
-/* Order detail preview */
-.staff-order-list-content .list-order .order-detail-preview {
-    display: flex;
-    margin: 30px 0px;
-    border: 1px solid black;
-    border-radius: 5px;
-    width: 90%;
-    padding: 20px 0px;
-}
-
-.staff-order-list-content .list-order .order-detail-preview {
-    font-size: 2em;
-    font-family: var(--font-family);
-}
-
-.staff-order-list-content .list-order .order-detail-preview .order-info {
-    width: 100%;
-}
-
-.staff-order-list-content .list-order .order-detail-preview .order-info p {
-    padding: 6px 0px;
-}
-
-/* Order List Preview Image */
-.staff-order-list-content .list-order .order-detail-preview img {
-    object-fit: cover;
-    text-align: left;
-    width: 150px;
-    height: 150px;
-    padding: 0px 20px;
-}
-
-/* Status and View Detail Button */
-.staff-order-list-content-container .status-and-view {
-    width: 30%;
-}
-
-.staff-order-list-content-container .status-and-view p {
-    font-family: var(--font-family);
-    font-size: 1em;
-    text-align: left;
-}
-
-.staff-order-list-content-container .status-and-view button {
-    font-family: var(--font-family);
-    margin-top: 50px;
-    font-size: 1em;
-    padding: 10px 50px;
-    cursor: pointer;
-    border-radius: 5px;
-    background-color: black;
-    color: var(--font-color);
-}
-
-/* Filter select */
-.staff-order-list-content-container .order-list-filter {
-    display: flex;
     align-items: center;
-    gap: 10px;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 500px;
+    text-align: center;
+}
+
+h1 {
+    color: red;
+}
+
+.filter-container {
     margin-bottom: 20px;
 }
 
-.staff-order-list-content-container .order-list-filter span {
-    font-family: var(--font-family);
-    font-size: 1.2em;
+.filter-container select {
+    margin-left: 10px;
 }
 
-.staff-order-list-content-container .order-list-filter label {
-    font-family: var(--font-family);
-    font-size: 1.2em;
+.filter-container label {
+    margin-left: 20px;
 }
 
-.staff-order-list-content-container .order-list-filter select {
-    font-family: var(--font-family);
-    font-size: 1em;
-    padding: 3px 10px;
-    border: 1px solid black;
-    border-radius: 5px;
-    background-color: #fff;
-    cursor: pointer;
-    outline: none;
-    transition: border-color 0.3s ease;
+.account-list {
+    width: 100%;
+    margin-right: 100px;
 }
 
-.staff-order-list-content-container .order-list-filter select:focus {
-    border-color: #000;
-}
-
-.staff-order-list-content-container .order-list-filter select option {
+.account-item {
+    display: flex;
+    flex-direction: row;
+    /* Change flex direction to row */
+    align-items: center;
+    justify-content: center;
+    /* Center align items vertically */
+    width: 600px;
+    height: 150px;
     padding: 10px;
+    /* Adjust padding to make the item shorter */
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.account-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #ddd;
+    margin-right: 10px;
+}
+
+.account-info {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.account-info p {
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.view-detail-btn {
+    display: block;
+    width: 100px;
+    color: white;
+    border-radius: 15px;
+    background-color: lightgray;
+    text-decoration: none;
+    padding: 14px 10px;
+    margin-left: auto;
+}
+
+.view-detail-btn:hover {
+    color: red;
+    background-color: blue;
 }
