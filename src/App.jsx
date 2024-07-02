@@ -69,6 +69,7 @@ import StaffOrderDetail from './pages/saleStaffPages/orderDetail/StaffOrderDetai
 
 import AccountList from './pages/adminPages/accountList/AccountList.jsx';
 import CustomerAccountDetails from './pages/adminPages/accountDetails/CustomerAccountDetails.jsx';
+import ManagementAccountDetails from './pages/adminPages/accountDetails/ManagementAccountDetails.jsx';
 import Delivery_StaffAccountDetails from './pages/adminPages/accountDetails/Delivery_StaffAccountDetails.jsx';
 import Sale_StaffAccountDetails from './pages/adminPages/accountDetails/Sale_StaffAccountDetails.jsx';
 import BanCustomerAccount from './pages/adminPages/banaccount/BanCustomerAccount.jsx';
@@ -179,6 +180,7 @@ function App() {
       {/* Admin Routes */}
       <Route path='/adminstaff' element={<AccountList />} />
       <Route path='/CustomerAccountDetails/:id' element={<CustomerAccountDetails />} />
+      <Route path='/ManagementAccountDetails/:id' element={<ManagementAccountDetails />} />
       <Route path='/Delivery_StaffAccountDetails/:id' element={<Delivery_StaffAccountDetails />} />
       <Route path='/Sale_StaffAccountDetails/:id' element={<Sale_StaffAccountDetails />} />
       <Route path='/banCustomerAccount/:id' element={<BanCustomerAccount />} />
