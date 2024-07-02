@@ -1,4 +1,4 @@
-.header-container{
+.sale-staff-header-container{
     display: flex;
     height: 12vh;
     width: 100%;
@@ -6,7 +6,7 @@
     border-bottom: 1px solid black;
 }
 /* Left Header */
-.header-address{
+.sale-staff-header-container .header-address{
     font-size: 0.9em;
     font-family: var(--font-family);
     align-self: center;
@@ -16,7 +16,7 @@
 }
 
 /* Center Header */
-.header-logo{
+.sale-staff-header-container .header-logo{
     display: flex;
     padding: 0px 5px;
     width: 50%;
@@ -24,7 +24,7 @@
     align-items: center;
 }
 
-.header-logo .logo-image{
+.sale-staff-header-container .header-logo .logo-image{
     width: 150px;
     height: 100%;
     object-fit: cover;
@@ -32,17 +32,17 @@
 }
 
 /* Right Header */
-.header-right{
+.sale-staff-header-container .header-right{
     display: flex;
     padding: 0px 50px;
 }
 
-.header-profile{
+.sale-staff-header-container .header-profile{
     display: flex;
     padding-right: 10px;
 }
 
-.profile-image{
+.sale-staff-header-container .profile-image{
     width: 40%;
     height: 40%;
     align-self:center;
@@ -51,7 +51,7 @@
     cursor: pointer;
 }
 
-.header-profile .text{
+.sale-staff-header-container .header-profile .text{
     justify-self: center;
     align-self: center;
     font-size: 1.1em;
@@ -59,12 +59,12 @@
     color: black;
 }
 
-.header-cart{
+.sale-staff-header-container .header-cart{
     display: flex;
     padding-left: 10px;
 }
 
-.cart-image{
+.sale-staff-header-container .cart-image{
     width: 50%;
     height: 50%;
     align-self:center;
@@ -72,7 +72,7 @@
     cursor: pointer;
 }
 
-.header-cart .text{
+.sale-staff-header-container .header-cart .text{
     justify-self: center;
     align-self: center;
     font-size: 1.1em;

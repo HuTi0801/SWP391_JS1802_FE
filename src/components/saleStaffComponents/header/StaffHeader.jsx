@@ -14,7 +14,7 @@ const StaffHeader = () => {
 
 
     return (
-        <div className='header-container'>
+        <div className='sale-staff-header-container'>
             <div className='header-address'>
                 <p>Address: ABC Street, Green Avenue, CED City</p>
                 <p>Contact Number: 0902-112-442</p>

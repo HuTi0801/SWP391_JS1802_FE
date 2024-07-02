@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import './DeliveryOrderDetailContent.css'
+import React, { useEffect, useState } from 'react';
+import './DeliveryOrderDetailContent.css';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 
@@ -63,6 +63,14 @@ const DeliveryOrderDetailContent = () => {
       const response = await axios.post(`http://localhost:8080/auth/orders/update-order-status-from-confirmed/${orderId}?newStatus=Delivering`);
       if (response.data.isSuccess) {
         alert("Order Taken Successfully! ");
+        // Update order state immediately after taking order
+        setOrder(prevOrder => ({
+          ...prevOrder,
+          dateStatusOrders: [
+            ...prevOrder.dateStatusOrders,
+            { status: "Delivering", dateStatus: new Date().toISOString() }
+          ]
+        }));
       } else {
         console.error('Failed to take order:', response.data.message);
         alert(response.data.message);
@@ -78,6 +86,14 @@ const DeliveryOrderDetailContent = () => {
       const response = await axios.post(`http://localhost:8080/auth/orders/update-order-status-to-delivered/${orderId}?isCustomer=false&isDelivery=true`);
       if (response.data.isSuccess) {
         alert("Order Delivered Successfully! ");
+        // Update order state immediately after confirming delivery
+        setOrder(prevOrder => ({
+          ...prevOrder,
+          dateStatusOrders: [
+            ...prevOrder.dateStatusOrders,
+            { status: "Delivered", dateStatus: new Date().toISOString() }
+          ]
+        }));
       } else {
         console.error('Failed to deliver order:', response.data.message);
         alert(response.data.message);
@@ -108,8 +124,6 @@ const DeliveryOrderDetailContent = () => {
           <p>Total Price: {formatPrice(order.totalPrice)}</p>
           <p>Deliver To: {order.address}</p>
           <p>Purchase Date: {new Date(order.dateStatusOrders[0].dateStatus).toLocaleString()}</p>
-          {/* Assuming the delivered date needs to be checked and rendered */}
-          <p>Delivered Date:</p>
         </div>
       </div>
       <div className='order-product-list'>
@@ -156,4 +170,4 @@ const DeliveryOrderDetailContent = () => {
   )
 }
 
-export default DeliveryOrderDetailContent
+export default DeliveryOrderDetailContent;

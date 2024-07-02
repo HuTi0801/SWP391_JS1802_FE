@@ -116,9 +116,9 @@ td {
 }
 
 /* Promotion Code */
-.cart-detail-container .promotion-code{
+.cart-detail-container .promotion-code {
     display: flex;
-    justify-content: right ;
+    justify-content: right;
     padding: 50px;
     margin-right: 250px;
     width: 100%;
@@ -137,7 +137,7 @@ td {
     font-family: var(--font-family);
     font-size: 1.1em;
     margin: 0px 5px;
-    
+
 }
 
 .cart-detail-container .promotion-code button:hover {
@@ -176,9 +176,15 @@ td {
     font-size: 1.5em;
     cursor: pointer;
     border-radius: 5px;
+    transition: scale 0.3s ease
+}
+
+
+.cart-detail-container .action-button button:hover {
+    scale: 1.1;
 }
 
 .cart-detail-container .action-button .payment {
     background-color: black;
-    color: var(--font-color);
+    color: white;
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './SearchDiamond.css';
@@ -9,6 +9,14 @@ const SearchDiamond = () => {
   const [priceRange, setPriceRange] = useState([0, 2300000000]); // Initial price range
   const [sliderValue, setSliderValue] = useState([0, 2300000000]); // Slider value
 
+  const [diamondAttributes, setDiamondAttributes] = useState({
+    caratWeights: [],
+    origins: [],
+    clarities: [],
+    colors: [],
+    cuts: [],
+  });
+
   const [diamond, setDiamond] = useState({
     cut: '',
     clarity: '',
@@ -18,7 +26,25 @@ const SearchDiamond = () => {
     max_price: 0,
   });
 
+  useEffect(() => {
+    const fetchDiamondAttributes = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/auth/diamond/attributes');
+        const attributes = response.data.result;
+        setDiamondAttributes({
+          caratWeights: attributes.caratWeights,
+          origins: attributes.origins,
+          clarities: attributes.clarities,
+          colors: attributes.colors,
+          cuts: attributes.cuts,
+        });
+      } catch (error) {
+        console.error('Error fetching diamond attributes:', error);
+      }
+    };
 
+    fetchDiamondAttributes();
+  }, []);
 
   const handleChange = (e) => {
     setDiamond({ ...diamond, [e.target.name]: e.target.value });
@@ -57,33 +83,44 @@ const SearchDiamond = () => {
             <label htmlFor="cut">Cut</label>
             <select name="cut" id="cut" onChange={handleChange}>
               <option value="">Choose Cut</option>
-              <option value="EX">EX</option>
+              {diamondAttributes.cuts.map((cut) => (
+                <option key={cut} value={cut}>
+                  {cut}
+                </option>
+              ))}
             </select>
           </li>
           <li className="clarity">
             <label htmlFor="clarity">Clarity</label>
             <select name="clarity" id="clarity" onChange={handleChange}>
               <option value="">Choose Clarity</option>
-              <option value="VS1">VS1</option>
-              <option value="VS2">VS2</option>
-              <option value="VVS2">VVS2</option>
+              {diamondAttributes.clarities.map((clarity) => (
+                <option key={clarity} value={clarity}>
+                  {clarity}
+                </option>
+              ))}
             </select>
           </li>
           <li className="color">
             <label htmlFor="color">Color</label>
             <select name="color" id="color" onChange={handleChange}>
               <option value="">Choose Color</option>
-              <option value="D">D</option>
-              <option value="F">F</option>
-              <option value="G">G</option>
+              {diamondAttributes.colors.map((color) => (
+                <option key={color} value={color}>
+                  {color}
+                </option>
+              ))}
             </select>
           </li>
           <li className="origin">
             <label htmlFor="origin">Origin</label>
             <select name="origin" id="origin" onChange={handleChange}>
               <option value="">Choose Origin</option>
-              <option value="Natural diamond">Natural Diamond</option>
-              <option value="Artificial diamond">Artificial Diamond</option>
+              {diamondAttributes.origins.map((origin) => (
+                <option key={origin} value={origin}>
+                  {origin}
+                </option>
+              ))}
             </select>
           </li>
           <li className="price-range">

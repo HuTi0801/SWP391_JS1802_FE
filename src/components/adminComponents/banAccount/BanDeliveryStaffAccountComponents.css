@@ -13,7 +13,7 @@
     text-align: left;
 }
 
-h1 {
+.Delivery_Staff-container h1 {
     color: red;
     margin-top: -760px;
     text-align: center;
@@ -52,7 +52,7 @@ h1 {
     max-height: 100%;
 }
 
-img text {
+.Delivery_Staff-container img text {
     margin-top: 20px;
 }
 
@@ -108,7 +108,7 @@ img text {
     padding: 20px 500px 20px 0;
 }
 
-textarea {
+.Delivery_Staff-container textarea {
     width: 224px;
     height: 100px;
     padding: 10px;

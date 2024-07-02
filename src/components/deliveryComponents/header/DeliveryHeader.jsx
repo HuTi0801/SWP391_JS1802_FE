@@ -14,7 +14,7 @@ const DeliveryHeader = () => {
 
 
     return (
-        <div className='header-container'>
+        <div className='delivery-header-container'>
             <div className='header-address'>
                 <p>Address: ABC Street, Green Avenue, CED City</p>
                 <p>Contact Number: 0902-112-442</p>
