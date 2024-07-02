@@ -66,6 +66,14 @@ import Performance from './pages/managerPages/dashboard/performance/Performance.
 
 import StaffOrderList from './pages/saleStaffPages/orderList/StaffOrderList.jsx';
 import StaffOrderDetail from './pages/saleStaffPages/orderDetail/StaffOrderDetail.jsx';
+
+import AccountList from './pages/adminPages/accountList/AccountList.jsx';
+import CustomerAccountDetails from './pages/adminPages/accountDetails/CustomerAccountDetails.jsx';
+import Delivery_StaffAccountDetails from './pages/adminPages/accountDetails/Delivery_StaffAccountDetails.jsx';
+import Sale_StaffAccountDetails from './pages/adminPages/accountDetails/Sale_StaffAccountDetails.jsx';
+import BanCustomerAccount from './pages/adminPages/banaccount/BanCustomerAccount.jsx';
+import BanSaleStaffAccount from './pages/adminPages/banaccount/BanSaleStaffAccount.jsx';
+import BanDeliveryStaffAccount from './pages/adminPages/banaccount/BanDeliveryStaffAccount.jsx';
 export const Account = () => {
 
 }
@@ -168,8 +176,14 @@ function App() {
         <Route path='/staffPerformance' element={< Performance />} />
       </Routes>
 
-      {/* Account Routes */}
+      {/* Admin Routes */}
       <Route path='/adminstaff' element={<AccountList />} />
+      <Route path='/CustomerAccountDetails/:id' element={<CustomerAccountDetails />} />
+      <Route path='/Delivery_StaffAccountDetails/:id' element={<Delivery_StaffAccountDetails />} />
+      <Route path='/Sale_StaffAccountDetails/:id' element={<Sale_StaffAccountDetails />} />
+      <Route path='/banCustomerAccount/:id' element={<BanCustomerAccount />} />
+      <Route path='/banSaleStaffAccount/:id' element={<BanSaleStaffAccount />} />
+      <Route path='/banDeliveryStaffAccount/:id' element={<BanDeliveryStaffAccount />} />
     </div>
   );
 }

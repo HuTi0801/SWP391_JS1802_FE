@@ -2,28 +2,43 @@ import React, { useEffect, useState } from 'react';
 import "../OrderListPage.css"
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import ListofStatus from "./ListofStatus.jsx"
 import ManagerHeader from "../../../managerComponents/header/ManagerHeader.jsx"
 import Functionbar from "../../../managerComponents/functionbar/Functionbar.jsx"
 const Delivered = () => {
     const [Deliveredoders, setDeliveredOrders] = useState([]);
-    /* Display Confirm Order Info  */
-    const getDeliveredOrderInfo = async () => {
-        try {
-            const response = await axios.get('http://localhost:8080/auth/orders/get-all-orders');
-            return response.data.result;
-        } catch (error) {
-            console.error('Error fetching diamond info:', error);
-            return [];
-        }
-    };
+    const [Status, setStatus] = useState(null);
+    const [currentPage, setcurrentPage] = useState(1)
+
+    const recordsPerPage = 3;
+    /* Display Delivered Order Info  */
+    useEffect(() => {
+        const fetchStatus = async () => {
+            try {
+                const response = await axios.get('http://localhost:8080/auth/status-order/get-a-status-order-4');
+                setStatus(response.data.result);
+            } catch (error) {
+                console.error('Error fetching status info:', error);
+            }
+        };
+
+        fetchStatus();
+    }, []);
 
     useEffect(() => {
         const fetchData = async () => {
-            const orderData = await getDeliveredOrderInfo();
-            setDeliveredOrders(orderData);
+            if (Status) {
+                try {
+                    const response = await axios.get(`http://localhost:8080/auth/orders/get-order-statusName?statusName=${Status.statusName}`);
+                    setDeliveredOrders(response.data.result);
+                } catch (error) {
+                    console.error('Error fetching orders:', error);
+                }
+            }
         };
+
         fetchData();
-    }, []);
+    }, [Status]);
 
     function formatCurrency(amount) {
         const formatter = new Intl.NumberFormat('vi-VN', {
@@ -34,9 +49,7 @@ const Delivered = () => {
         });
         return formatter.format(amount);
     }
-    const [currentPage, setcurrentPage] = useState(1)
 
-    const recordsPerPage = 3;
 
     const lastIndex = currentPage * recordsPerPage;
 
@@ -55,66 +68,41 @@ const Delivered = () => {
             <Functionbar />
             <h1>Delivered OrderList</h1>
             <div className="OrderList-container">
-                <hr className="vertical-line" />
-                <div>
-                    <ul className="url_Status">
-
-                        <Link to="/managerorderlist" className="All">
-                            All
-                        </Link>
-                        <Link to="/pending" className="Pending">
-                            Pending
-                        </Link>
-
-                        <Link to="/confirm" className="Confirm">
-                            Confirm
-                        </Link>
-                        <Link to="/delivering" className="Delivering">
-                            Delivering
-                        </Link>
-                        <Link to="/delivered" className="Delivered">
-                            Delivered
-                        </Link>
-                        <Link to="/canceled" className="Canceled">
-                            Canceled
-                        </Link>
-                    </ul>
-                </div>
+                <ListofStatus />
             </div>
             <div className='list'>
 
-                {records.filter(order => order.dateStatusOrders[order.dateStatusOrders.length - 1].status === "Delivered")
-                    .map((order) => (
-                        <div key={order.orderId} className='OrderList'>
-                            <div className="CustomerID">
-                                <span>OrderID:</span>
-                                <p>{order.orderId}</p>
-                            </div>
-                            <div className="CustomerName">
-                                <span>Customer Name:</span>
-                                <p>{order.cusName}</p>
-                            </div>
-                            <div className="TotalPrice">
-                                <span>Total Price:</span>
-                                <p>{formatCurrency(order.totalPrice)}</p>
-                            </div>
-
-                            <div className="OrderStatus">
-                                <span>Phone:</span>
-                                <p>{order.phone}</p>
-                            </div>
-                            <div className='status'>
-                                <span>Status:</span>
-                                <p>{order.dateStatusOrders[order.dateStatusOrders.length - 1].status}</p>
-                            </div>
-                            <Link to={`/deliveredassigned/${order.orderId}`} className="Assigned">
-                                Assigned
-                            </Link>
-                            <Link to={`/orderDetails/${order.orderId}`} className="ViewDetails">
-                                View Details
-                            </Link>
+                {records.map((order) => (
+                    <div key={order.orderId} className='OrderList'>
+                        <div className="CustomerID">
+                            <span>OrderID:</span>
+                            <p>{order.orderId}</p>
                         </div>
-                    ))}
+                        <div className="CustomerName">
+                            <span>Customer Name:</span>
+                            <p>{order.cusName}</p>
+                        </div>
+                        <div className="TotalPrice">
+                            <span>Total Price:</span>
+                            <p>{formatCurrency(order.totalPrice)}</p>
+                        </div>
+
+                        <div className="OrderStatus">
+                            <span>Phone:</span>
+                            <p>{order.phone}</p>
+                        </div>
+                        <div className='status'>
+                            <span>Status:</span>
+                            <p>{order.dateStatusOrders[order.dateStatusOrders.length - 1].status}</p>
+                        </div>
+                        <Link to={`/deliveredassigned/${order.orderId}`} className="Assigned">
+                            Assigned
+                        </Link>
+                        <Link to={`/orderDetails/${order.orderId}`} className="ViewDetails">
+                            View Details
+                        </Link>
+                    </div>
+                ))}
             </div>
 
 
@@ -143,7 +131,7 @@ const Delivered = () => {
     )
     function prePage() {
 
-        if (currentPage !== firstIndex && currentPage !== 1) {
+        if (currentPage > 1) {
             setcurrentPage(currentPage - 1)
         }
     }
@@ -153,7 +141,7 @@ const Delivered = () => {
     }
     function nextPage() {
 
-        if (currentPage !== lastIndex) {
+        if (currentPage < npage) {
             setcurrentPage(currentPage + 1)
         }
     }
