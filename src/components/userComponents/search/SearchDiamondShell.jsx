@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import MinimumDistanceSlider from '../../utilityComponents/priceSlider/MinimumDistanceSlider';
@@ -8,15 +8,35 @@ const SearchDiamondShell = () => {
   const [priceRange, setPriceRange] = useState([0, 2300000000]); // Initial price range
   const [sliderValue, setSliderValue] = useState([0, 2300000000]); // Slider value
 
+  const [diamondShellAttributes, setDiamondShellAttributes] = useState({
+    materials: [],
+    secondaryStoneTypes: [],
+  });
+
   const [diamondShell, setDiamondShell] = useState({
-    id: 0,
-    quantity: 0,
     secondaryStoneType: '',
     material: '',
     gender: '',
-    price: 0,
-    imageDiamondShell: '',
+    min_price: 0,
+    max_price: 0,
   });
+
+  useEffect(() => {
+    const fetchDiamondShellAttributes = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/auth/diamond-shell/attributes');
+        const attributes = response.data.result;
+        setDiamondShellAttributes({
+          materials: attributes.materials,
+          secondaryStoneTypes: attributes.secondaryStoneTypes,
+        });
+      } catch (error) {
+        console.error('Error fetching diamond shell attributes:', error);
+      }
+    };
+
+    fetchDiamondShellAttributes();
+  }, []);
 
   const handleChange = (e) => {
     setDiamondShell({ ...diamondShell, [e.target.name]: e.target.value });
@@ -28,8 +48,8 @@ const SearchDiamondShell = () => {
         'http://localhost:8080/auth/diamond-shell/search-diamond-shell',
         {
           ...diamondShell,
-          min_price: diamondShell.min_price,
-          max_price: diamondShell.max_price,
+          min_price: priceRange[0],
+          max_price: priceRange[1],
         }
       );
       console.log(response.data); // Handle the response data as needed
@@ -55,19 +75,22 @@ const SearchDiamondShell = () => {
             <label htmlFor="material">Material:</label>
             <select name="material" id="material" onChange={handleChange}>
               <option value="">Choose Material</option>
-              <option value="Platinum 18K">Platinum 18K</option>
-              <option value="Platinum 14K">Platinum 14K</option>
-              <option value="Gold 14K">Gold 14K</option>
+              {diamondShellAttributes.materials.map((material) => (
+                <option key={material} value={material}>
+                  {material}
+                </option>
+              ))}
             </select>
           </li>
           <li className="secondary-stone">
             <label htmlFor="secondaryStoneType">Secondary Stone:</label>
             <select name="secondaryStoneType" id="secondaryStoneType" onChange={handleChange}>
               <option value="">Choose Secondary Stone</option>
-              <option value="KC DIA WHIRD1.6x2, 1.1x18.09x44">KC DIA WHIRD1.6x2, 1.1x18.09x44</option>
-              <option value="KC DIA WHIRD1.3x20">KC DIA WHIRD1.3x20</option>
-              <option value="KC DIA WHIRD0.9x44,08x96">KC DIA WHIRD0.9x44,08x96</option>
-              <option value="KC DIA WHIRD1.6x2, 1.3x18">KC DIA WHIRD1.6x2, 1.3x18</option>
+              {diamondShellAttributes.secondaryStoneTypes.map((stoneType) => (
+                <option key={stoneType} value={stoneType}>
+                  {stoneType}
+                </option>
+              ))}
             </select>
           </li>
           <li className="gender">

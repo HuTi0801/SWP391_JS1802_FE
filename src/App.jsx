@@ -64,8 +64,6 @@ import DeliveringRevenue from './pages/managerPages/dashboard/revenue/Delivering
 import DeliveredRevenue from './pages/managerPages/dashboard/revenue/DeliveredRevenue.jsx'
 import Performance from './pages/managerPages/dashboard/performance/Performance.jsx'
 
-import StaffOrderList from './pages/saleStaffPages/orderList/StaffOrderList.jsx';
-import StaffOrderDetail from './pages/saleStaffPages/orderDetail/StaffOrderDetail.jsx';
 
 import AccountList from './pages/adminPages/accountList/AccountList.jsx';
 import CustomerAccountDetails from './pages/adminPages/accountDetails/CustomerAccountDetails.jsx';
@@ -74,6 +72,11 @@ import Sale_StaffAccountDetails from './pages/adminPages/accountDetails/Sale_Sta
 import BanCustomerAccount from './pages/adminPages/banaccount/BanCustomerAccount.jsx';
 import BanSaleStaffAccount from './pages/adminPages/banaccount/BanSaleStaffAccount.jsx';
 import BanDeliveryStaffAccount from './pages/adminPages/banaccount/BanDeliveryStaffAccount.jsx';
+import About from './pages/customerPages/informationPages/About.jsx';
+import DiamondPrices from './pages/customerPages/informationPages/DiamondPrices.jsx';
+import FAQ from './pages/customerPages/informationPages/FAQ.jsx';
+import FingerSizeGuide from './pages/customerPages/informationPages/FingerSizeGuide.jsx';
+import ProductGuide from './pages/customerPages/informationPages/ProductGuide.jsx';
 export const Account = () => {
 
 }
@@ -101,6 +104,11 @@ function App() {
         <Route path='/login' element={<Login />} />
         <Route path='/forgetpassword' element={<ForgetPassword />} />
         <Route path='error' element={<ErrorPage />} />
+        <Route path='/about' element={<About />} />
+        <Route path='/diamondprices' element={<DiamondPrices />} />
+        <Route path='/faq' element={<FAQ />} />
+        <Route path='/fingersizeguide' element={<FingerSizeGuide />} />
+        <Route path='/productguide' element={<ProductGuide />} />
 
         {/* Sale Staff Routes */}
         <Route path='/salestaff' element={<StaffOrderList />} />
@@ -174,16 +182,18 @@ function App() {
         <Route path='/deliveredRevenue' element={< DeliveredRevenue />} />
         <Route path='/deliveringRevenue' element={< DeliveringRevenue />} />
         <Route path='/staffPerformance' element={< Performance />} />
+
+        {/* Admin Routes */}
+        <Route path='/adminstaff' element={<AccountList />} />
+        <Route path='/CustomerAccountDetails/:id' element={<CustomerAccountDetails />} />
+        <Route path='/Delivery_StaffAccountDetails/:id' element={<Delivery_StaffAccountDetails />} />
+        <Route path='/Sale_StaffAccountDetails/:id' element={<Sale_StaffAccountDetails />} />
+        <Route path='/banCustomerAccount/:id' element={<BanCustomerAccount />} />
+        <Route path='/banSaleStaffAccount/:id' element={<BanSaleStaffAccount />} />
+        <Route path='/banDeliveryStaffAccount/:id' element={<BanDeliveryStaffAccount />} />
       </Routes>
 
-      {/* Admin Routes */}
-      <Route path='/adminstaff' element={<AccountList />} />
-      <Route path='/CustomerAccountDetails/:id' element={<CustomerAccountDetails />} />
-      <Route path='/Delivery_StaffAccountDetails/:id' element={<Delivery_StaffAccountDetails />} />
-      <Route path='/Sale_StaffAccountDetails/:id' element={<Sale_StaffAccountDetails />} />
-      <Route path='/banCustomerAccount/:id' element={<BanCustomerAccount />} />
-      <Route path='/banSaleStaffAccount/:id' element={<BanSaleStaffAccount />} />
-      <Route path='/banDeliveryStaffAccount/:id' element={<BanDeliveryStaffAccount />} />
+
     </div>
   );
 }

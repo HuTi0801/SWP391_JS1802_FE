@@ -114,6 +114,15 @@ const OrderDetailContent = () => {
       const response = await axios.post(`http://localhost:8080/auth/orders/update-order-status-to-delivered/${orderId}?isCustomer=true&isDelivery=false`);
       if (response.data.isSuccess) {
         alert("Order Delivered Successfully! ");
+        // Update order state immediately after confirming delivery
+        setOrder(prevOrder => ({
+          ...prevOrder,
+          dateStatusOrders: [
+            ...prevOrder.dateStatusOrders,
+            { status: "Delivered", dateStatus: new Date().toISOString() }
+          ]
+        }));
+        setRefresh(prev => !prev); // Trigger re-fetching of data
       } else {
         console.error('Failed to deliver order:', response.data.message);
         alert(response.data.message);
@@ -197,7 +206,7 @@ const OrderDetailContent = () => {
           </Step>
         ))}
       </Stepper>
-      <div className="order-detail-information"> 
+      <div className="order-detail-information">
         <div className="detail-information-container">
           <p>Order ID: {order.orderId}</p>
           <p>Customer Name: {order.cusName}</p>

@@ -1,6 +1,6 @@
 .shell-product-info-container {
     display: flex;
-    height: calc(100vh-50px);
+    height: 900px;
     margin: 15px 0px;
     gap: 200px;
 
@@ -20,13 +20,13 @@
 
 /* Product Details */
 
-.shell-product-detail {
+.shell-product-info-container .shell-product-detail {
     border: 1px solid black;
     width: 600px;
     height: 25rem;
 }
 
-.shell-product-detail .text {
+.shell-product-info-container .shell-product-detail .text {
     width: 100%;
     padding: 15px 5px;
     font-size: 1.2em;
@@ -36,25 +36,25 @@
     border-bottom: 1px solid black;
 }
 
-.shell-product-detail.text p {
+.shell-product-info-container .shell-product-detail.text p {
     padding: 5px 5px;
     font-size: 1.2em;
     font-family: var(--font-family);
 }
 
-.shell-product-detail .text .price {
+.shell-product-info-container .shell-product-detail .text .price {
     color: red;
     font-weight: bold;
 }
 
-.shell-product-detail .parameter {
+.shell-product-info-container .shell-product-detail .parameter {
     display: grid;
     width: 100%;
     border-bottom: 1px solid black;
 
 }
 
-.shell-product-detail .parameter div {
+.shell-product-info-container .shell-product-info-container.shell-product-detail .parameter div {
     display: flex;
     align-items: center;
     padding: 0px 5px;
@@ -63,14 +63,14 @@
 
 }
 
-.shell-product-detail .parameter select {
+.shell-product-info-container .shell-product-detail .parameter select {
     padding: 3px 10px;
     margin: 15px 10px;
     border-radius: 5px;
     width: 70%;
 }
 
-.shell-product-detail .parameter label {
+.shell-product-info-container .shell-product-detail .parameter label {
     padding: 1px 10px;
     font-size: 1.1em;
     font-family: var(--font-family);
@@ -79,49 +79,67 @@
 
 /* Form Group */
 
-.form-group{
-    border-top: 1px solid black;
-    padding: 12px 50px;
-    width: 500px;
-    text-align: center;
+.shell-product-info-container .form-group {
+    border-top: 1px solid rgb(0,0,0,0.3);
+    padding: 20px 50px;
+    display: flex;
+    align-items: center;
+
 }
 
-.form-group select{
+.shell-product-info-container .form-group select {
     font-size: 1em;
     font-family: var(--font-family);
     width: 200px;
+    /* Adjust width as needed */
+    margin: 0 10px;
+    /* Adjust margins as needed */
 }
 
-.form-group label{
+.shell-product-info-container .form-group label {
     font-size: 1.2em;
     font-family: var(--font-family);
-    padding: 0px 20px;
+    padding: 0 20px;
+    /* Adjust padding as needed */
 }
+
+.shell-product-info-container .form-group a {
+    color: #007bff;
+    /* Blue color */
+    text-decoration: none;
+    margin-left: 10px;
+    /* Adjust margin as needed */
+}
+
+.shell-product-info-container .form-group a:hover {
+    text-decoration: underline;
+}
+
+
 
 /* Button */
 
-.button-payment {
+.shell-product-info-container .button-payment {
     display: flex;
     justify-content: center;
     margin-top: 100px;
     gap: 100px;
 }
 
-.button-payment button {
+.shell-product-info-container .button-payment button {
     padding: 10px 30px;
     font-size: 1.3em;
     font-family: var(--font-family);
 }
 
-.button-payment .add-cart {
+.shell-product-info-container .button-payment .add-cart {
     background-color: white;
     cursor: pointer;
 }
 
-.button-payment .buy-now {
+.shell-product-info-container .button-payment .buy-now {
     border: 0px;
     background-color: black;
     color: var(--font-color);
     cursor: pointer;
 }
-

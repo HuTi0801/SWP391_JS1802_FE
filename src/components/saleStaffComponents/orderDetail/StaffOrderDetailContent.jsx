@@ -67,7 +67,7 @@ const StaffOrderDetailContent = () => {
       const response = await axios.post(`http://localhost:8080/auth/orders/update-order-status-to-confirmed/${orderId}`);
       if (response.data.isSuccess) {
         alert("Order Confirmed Successfully! ");
-        // Assuming order status update should reflect immediately
+        // Update order state immediately after confirmation
         setOrder(prevOrder => ({
           ...prevOrder,
           dateStatusOrders: [

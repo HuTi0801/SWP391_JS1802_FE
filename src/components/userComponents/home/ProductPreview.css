@@ -88,16 +88,16 @@
 }
 
 
-.preview-container button {
+.preview-container .see-all button {
     padding: 10px 20px;
-    font-size: 1.2em;
+    font-size: 1.3em;
     cursor: pointer;
     border-radius: 5px;
     background-color: black;
-    color: var(--font-color);
+    color: white;
     transition: scale 0.3s ease;
 }
 
-.preview-container button:hover {
+.preview-container .see-all button:hover {
     scale: 1.1;
 }

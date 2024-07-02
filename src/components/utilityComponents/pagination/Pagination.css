@@ -3,9 +3,10 @@
     justify-content: center;
     height: 100%;
     margin: 20px 0;
+    color: white;
 }
 
-.pagination-button {
+.pagination-container .pagination-button {
     font-family: var(--font-family);
     font-size: 1em;
     padding: 10px 15px;
@@ -17,11 +18,12 @@
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.pagination-button:hover {
-    background-color: #f0f0f0;
+.pagination-container .pagination-button:hover {
+    background-color: black;
+    color: white;
 }
 
-.pagination-button.active {
+.pagination-container .pagination-button.active {
     background-color: black;
     color: var(--font-color);
 }

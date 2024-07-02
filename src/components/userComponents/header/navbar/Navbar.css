@@ -1,7 +1,11 @@
 .navbar-container {
+    margin-top: 20px;
     width: 100%;
     position: sticky;
+    top: 0;
     z-index: 1;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: #fff;
 }
 
 .navbar-content {
@@ -10,13 +14,6 @@
     align-items: center;
     width: 100%;
     height: 5vh;
-    background-color: var(--bg-color);
-}
-
-.text {
-    color: var(--font-color);
-    font-size: 1.3em;
-    font-family: var(--font-family);
 }
 
 .navbar-container ul {
@@ -25,21 +22,31 @@
     height: 100%;
     list-style-type: none;
     justify-content: space-evenly;
+    margin: 0;
+    padding: 0;
 }
 
 .navbar-container ul li {
-    padding: 0px 50px;
     height: 100%;
-    align-content: center;
+    width: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-container ul li .navbar-text {
+    font-family: var(--font-family);
+    font-size: 1.3rem;
+
 }
 
 .navbar-container ul li:hover {
-    background-color: rgb(122, 122, 122);
+    background-color: rgb(204, 204, 204);
 }
 
-.navbar-content .products{
+.navbar-content .products {
     position: relative;
 }
 
@@ -48,41 +55,30 @@
     display: none;
     position: absolute;
     left: 0;
-    width: 1450px;
+    top: 0;
+    width: 100%;
     z-index: 100;
-    
-    
 }
-
 
 .dropdown-content {
     display: block;
-}
-
-.dropdown-content .product-list{
-    color: rgb(255, 217, 0);
+    background-color: #fff;
 }
 
 .dropdown-content a {
     display: block;
     text-decoration: none;
-    color: var(--font-color);
+    text-align: center;
+    color: black;
     padding: 10px 5px;
-    font-size: 1.3em;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-
+    font-size: 1.3rem;
+    font-family: var(--font-family);
 }
 
 .dropdown-content a:hover {
-    background-color: var(--bg-color);
+    color: red;
 }
 
 .navbar-content .products:hover .dropdown-box {
     display: block;
-    background-color: rgb(122, 122, 122);
-    transform: translateY(9%);
 }
-
-
-
-

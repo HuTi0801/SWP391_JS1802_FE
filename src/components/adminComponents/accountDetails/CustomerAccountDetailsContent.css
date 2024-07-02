@@ -13,7 +13,7 @@
     text-align: left;
 }
 
-h1 {
+.account-detail-container  h1 {
     color: red;
     margin-top: -760px;
     text-align: center;
@@ -52,7 +52,7 @@ h1 {
     max-height: 100%;
 }
 
-img text {
+.account-detail-container  img text {
     margin-top: 20px;
 }
 
