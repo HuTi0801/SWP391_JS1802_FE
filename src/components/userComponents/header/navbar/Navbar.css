@@ -65,7 +65,7 @@
     background-color: #fff;
 }
 
-.dropdown-content a {
+.dropdown-content p {
     display: block;
     text-decoration: none;
     text-align: center;
@@ -75,7 +75,7 @@
     font-family: var(--font-family);
 }
 
-.dropdown-content a:hover {
+.dropdown-content p:hover {
     color: red;
 }
 

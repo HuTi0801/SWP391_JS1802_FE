@@ -15,9 +15,10 @@ const PaymentDetail = () => {
   const [diamondShell, setDiamondShell] = useState([]);
   const [diamond, setDiamond] = useState([]);
   const [loading, setLoading] = useState(true); // Add loading state
-  const customerID = 1;
+  const customerID = localStorage.getItem('customerId');
   const [errors, setErrors] = useState({});
   const alertShown = useRef(false); // Add useRef to track if the alert has been shown
+  const authToken = localStorage.getItem('authToken');
 
   useEffect(() => {
     if (location.state && location.state.status === 'FAILED' && !alertShown.current) {
@@ -29,7 +30,11 @@ const PaymentDetail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.post(`http://localhost:8080/auth/cart/get-cart-by-customer-id/${customerID}`);
+        const response = await axios.post(`http://localhost:8080/auth/cart/get-cart-by-customer-id/${customerID}`, null, {
+          headers: {
+            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+          }
+        });
         const cartData = response.data;
         if (!cartData || !cartData.items) {
           console.error('Cart data or cart items are undefined:', cartData);
@@ -94,7 +99,11 @@ const PaymentDetail = () => {
 
     try {
       localStorage.setItem('paymentReturnData', JSON.stringify(customerInfo)); // Store customerInfo in localStorage
-      const response = await axios.post(`http://localhost:8080/auth/payment/create-payment?cusId=${customerID}&amount=${cart.totalPrice}&language=vn`);
+      const response = await axios.post(`http://localhost:8080/auth/payment/create-payment?cusId=${customerID}&amount=${cart.totalPrice}&language=vn`, null, {
+        headers: {
+          Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+        }
+      });
 
       window.open(response.data.url, '_blank');
     } catch (error) {

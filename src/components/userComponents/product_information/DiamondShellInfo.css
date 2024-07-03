@@ -105,10 +105,10 @@
 
 .shell-product-info-container .form-group a {
     color: #007bff;
-    /* Blue color */
     text-decoration: none;
     margin-left: 10px;
-    /* Adjust margin as needed */
+    cursor: pointer;
+
 }
 
 .shell-product-info-container .form-group a:hover {

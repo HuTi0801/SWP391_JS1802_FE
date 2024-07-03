@@ -11,12 +11,17 @@ const StaffOrderDetailContent = () => {
   const [diamonds, setDiamonds] = useState([]);
   const [diamondShells, setDiamondShells] = useState([]);
   const [warrantyStatus, setWarrantyStatus] = useState(false); // Initial state for warranty
+  const authToken = localStorage.getItem('authToken');
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchOrder = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/auth/orders/get-order-${orderId}`);
+        const response = await axios.get(`http://localhost:8080/auth/orders/get-order-${orderId}`, {
+          headers: {
+            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+          }
+        });
         if (response.data.isSuccess) {
           setOrder(response.data.result);
           // Assume you have a way to determine warranty status from order data
@@ -33,7 +38,11 @@ const StaffOrderDetailContent = () => {
 
     const fetchDiamonds = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/auth/diamond/get-all-diamond');
+        const response = await axios.get('http://localhost:8080/auth/diamond/get-all-diamond', {
+          headers: {
+            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+          }
+        });
         if (response.data.isSuccess) {
           setDiamonds(response.data.result);
         } else {
@@ -46,7 +55,11 @@ const StaffOrderDetailContent = () => {
 
     const fetchDiamondShells = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/auth/diamond-shell/get-all-diamond-shell');
+        const response = await axios.get('http://localhost:8080/auth/diamond-shell/get-all-diamond-shell', {
+          headers: {
+            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+          }
+        });
         if (response.data.isSuccess) {
           setDiamondShells(response.data.result);
         } else {
@@ -64,7 +77,11 @@ const StaffOrderDetailContent = () => {
 
   const handleClickConfirmOrder = async () => {
     try {
-      const response = await axios.post(`http://localhost:8080/auth/orders/update-order-status-to-confirmed/${orderId}`);
+      const response = await axios.post(`http://localhost:8080/auth/orders/update-order-status-to-confirmed/${orderId}`, null, {
+        headers: {
+          Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+        }
+      });
       if (response.data.isSuccess) {
         alert("Order Confirmed Successfully! ");
         // Update order state immediately after confirmation
@@ -91,7 +108,11 @@ const StaffOrderDetailContent = () => {
 
   const handleClickSetWarranty = async () => {
     try {
-      const response = await axios.post(`http://localhost:8080/auth/orders/set-warranty-date/${orderId}`);
+      const response = await axios.post(`http://localhost:8080/auth/orders/set-warranty-date/${orderId}`, null, {
+        headers: {
+          Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+        }
+      });
       if (response.data.isSuccess) {
         alert("Warranty Added Successfully! ");
         setWarrantyStatus(true); // Update warranty status state on success

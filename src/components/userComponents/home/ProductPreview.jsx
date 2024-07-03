@@ -47,7 +47,7 @@ const ProductPreview = () => {
         const itemUrl = item.imageDiamondShell ? `/diamondshell/${item.id}` : `/diamond/${item.id}`;
         navigate(itemUrl);
     };
-    { console.log(diamondShellList) }
+
 
     const productList = [...diamondShellList, ...diamondList];
 

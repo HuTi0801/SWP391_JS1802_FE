@@ -13,11 +13,17 @@ const DeliveryOrderListContent = () => {
     const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
+    const authToken = localStorage.getItem('authToken');
+    const accountId = localStorage.getItem('accountId');
 
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/auth/orders/get-all-orders');
+                const response = await axios.get(`http://localhost:8080/auth/orders/view-shipping-order/${accountId}`, {
+                    headers: {
+                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                    }
+                });
                 const data = response.data.result;
                 if (Array.isArray(data)) {
                     setOrders(data);
@@ -74,7 +80,7 @@ const DeliveryOrderListContent = () => {
             <div className='order-list-content'>
                 <div className='order-list-title'>
                     ORDER LIST
-                </div>  
+                </div>
                 <ul className='list-order'>
                     {filteredOrders.length > 0 ? (
                         ordersToShow.map((order) => (

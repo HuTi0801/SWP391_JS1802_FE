@@ -14,11 +14,16 @@ const CartDetail = () => {
     const [totalPrice, setTotalPrice] = useState(0);
     const [loading, setLoading] = useState(true); // Add loading state
     const [promotionCode, setPromotionCode] = useState(''); // State for promotion code input
-    const customerID = 1;
+    const customerID = localStorage.getItem('customerId');
+    const authToken = localStorage.getItem('authToken');
 
     const fetchCartData = async () => {
         try {
-            const response = await axios.post(`http://localhost:8080/auth/cart/get-cart-by-customer-id/${customerID}`);
+            const response = await axios.post(`http://localhost:8080/auth/cart/get-cart-by-customer-id/${customerID}`, null, {
+                headers: {
+                    Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                }
+            });
             const cartData = response.data;
             if (!cartData || !cartData.items) {
                 console.error('Cart data or cart items are undefined:', cartData);
@@ -72,24 +77,28 @@ const CartDetail = () => {
     const handleMinusQuantity = (item) => {
         if (item.quantity > 0) {
             const newQuantity = item.quantity - 1;
-            updateCartItemQuantity(item.productId, item.productType, newQuantity);
+            updateCartItemQuantity(item.productId, item.productType, newQuantity, item.size);
         }
     };
 
     const handleAddQuantity = (item) => {
         const newQuantity = item.quantity + 1;
-        updateCartItemQuantity(item.productId, item.productType, newQuantity);
+        updateCartItemQuantity(item.productId, item.productType, newQuantity, item.size);
     };
 
-    const updateCartItemQuantity = async (productId, productType, newQuantity) => {
+    const updateCartItemQuantity = async (productId, productType, newQuantity, size) => {
         try {
             // Update quantity in the backend
             const response = await axios.post("http://localhost:8080/auth/cart/update-cart", null, {
+                headers: {
+                    Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                },
                 params: {
                     customerID: customerID,
                     productType: productType,
                     productID: productId,
-                    quantity: newQuantity
+                    quantity: newQuantity,
+                    size: size
                 }
             });
 
@@ -120,6 +129,9 @@ const CartDetail = () => {
         try {
             // Send delete request to server
             const response = await axios.post("http://localhost:8080/auth/cart/delete-cart-item", null, {
+                headers: {
+                    Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                },
                 params: {
                     customerID: customerID,
                     productID: productId,
@@ -148,7 +160,11 @@ const CartDetail = () => {
 
     const handleClickApplyPromotion = async () => {
         try {
-            const response = await axios.post(`http://localhost:8080/auth/cart/apply-promotion?cartId=${cart.cartId}&promotionCode=${promotionCode}&customerID=1`);
+            const response = await axios.post(`http://localhost:8080/auth/cart/apply-promotion?cartId=${cart.cartId}&promotionCode=${promotionCode}&customerID=${customerID}`, null, {
+                headers: {
+                    Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                }
+            });
             console.log(response);
             fetchCartData(); // Refresh cart data after applying promotion
         } catch (error) {
@@ -157,11 +173,15 @@ const CartDetail = () => {
         }
     };
 
-    const handleClickRemovePromotion = async() => {
+    const handleClickRemovePromotion = async () => {
         try {
-            const response = await axios.post(`http://localhost:8080/auth/cart/remove-applying-promotion-code?cartId=${cart.cartId}&customerId=1`)
+            const response = await axios.post(`http://localhost:8080/auth/cart/remove-applying-promotion-code?cartId=${cart.cartId}&customerId=${customerID}`, null, {
+                headers: {
+                    Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                }
+            })
             console.log(response.data)
-            fetchCartData(); 
+            fetchCartData();
         } catch (error) {
             console.error(error);
         }

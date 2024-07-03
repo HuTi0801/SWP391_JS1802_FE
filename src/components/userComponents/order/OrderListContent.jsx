@@ -13,11 +13,17 @@ const OrderListContent = () => {
     const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 10;
+    const authToken = localStorage.getItem('authToken');
+    const customerID = localStorage.getItem('customerId');
 
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/auth/orders/get-all-orders');
+                const response = await axios.get(`http://localhost:8080/auth/orders/get-all-orders-${customerID}`, {
+                    headers: {
+                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                    }
+                });
                 const data = response.data.result;
                 if (Array.isArray(data)) {
                     setOrders(data);

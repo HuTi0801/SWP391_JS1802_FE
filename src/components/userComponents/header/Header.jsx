@@ -12,7 +12,16 @@ const Header = () => {
     }
 
     const handleClickUserProfile = () => {
-        navigate('/userprofile');
+        // Check if user is authenticated
+        const authToken = localStorage.getItem('authToken');
+
+        if (!authToken) {
+            // Redirect to login page if not authenticated
+            navigate('/login');
+        } else {
+            // Navigate to user profile page if authenticated
+            navigate('/userprofile');
+        }
     }
 
     const handleClickCart = () => {
@@ -35,7 +44,6 @@ const Header = () => {
             </div>
             <div className='header-right'>
                 <div className='header-icon' onClick={handleClickUserProfile}>
-
                     <AccountCircleOutlinedIcon className='profile-image' />
                     <div className='text'>Profile</div>
                 </div>

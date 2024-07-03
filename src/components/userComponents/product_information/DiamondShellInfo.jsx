@@ -13,6 +13,8 @@ const DiamondShellInfo = () => {
   const [diamondShell, setDiamondShell] = useState(null);
   const [fingerSize, setFingerSize] = useState([]);
   const navigate = useNavigate();
+  const customerID = localStorage.getItem('customerId');
+  const authToken = localStorage.getItem('authToken');
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -55,11 +57,16 @@ const DiamondShellInfo = () => {
       const cartItem = {
         productID: diamondShell.id,
         productType: "DIAMOND_SHELL",
-        customerID: 1,
+        customerID: customerID,
         size: formik.values.size, // Include the selected size in the cart item
       };
 
-      const response = await axios.post("http://localhost:8080/auth/cart/add-to-cart", null, { params: cartItem });
+      const response = await axios.post("http://localhost:8080/auth/cart/add-to-cart", null, {
+        headers: {
+          Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+        },
+        params: cartItem
+      });
       alert(response.data.message);
       console.log('Add to cart response:', response.data);
 
@@ -131,7 +138,7 @@ const DiamondShellInfo = () => {
               {formik.touched.size && formik.errors.size ? (
                 <div className="invalid-feedback">{formik.errors.size}</div>
               ) : null}
-              <a href="/fingersizeguide" target="_blank" rel="noopener noreferrer">Finger Size Guide</a>
+              <a onClick={() => navigate('/fingersizeguide')}>Finger Size Guide</a>
             </div>
             <div className='button-payment'>
               <button type="button" className='add-cart' onClick={handleAddToCart}>Add To Cart</button>
