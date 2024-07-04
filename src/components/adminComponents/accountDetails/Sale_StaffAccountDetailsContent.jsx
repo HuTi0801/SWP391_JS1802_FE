@@ -7,9 +7,14 @@ const Sale_StaffAccountDetailsContent = () => {
     const [sale_StaffAccountDetails, setSale_StaffDetails] = useState([]);
     const { id } = useParams();
     const [loading, setLoading] = useState(true);
+    const authToken = localStorage.getItem('authToken');
     const HandleUnBan = async (id) => {
         try {
-            const response = await axios.post(`http://localhost:8080/auth/account/unban-account/${id}`);
+            const response = await axios.post(`http://localhost:8080/auth/account/unban-account/${id}`, null, {
+                headers: {
+                    Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                }
+            });
             if (response.data.isSuccess) {
                 alert("Unban id: " + id + " successfully!!");
             } else {
@@ -23,7 +28,11 @@ const Sale_StaffAccountDetailsContent = () => {
 
         const fetchSale_StaffAccount = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/auth/account/view-account-details/${id}`);
+                const response = await axios.get(`http://localhost:8080/auth/account/view-account-details/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                    }
+                });
                 if (response.data.isSuccess) {
                     setSale_StaffDetails(response.data.result);
                 } else {
@@ -50,8 +59,8 @@ const Sale_StaffAccountDetailsContent = () => {
 
     return (
         <>
-            <h1>Sale STAFF ACCOUNT DETAILS</h1>
             <div className="Sale_Staff_account-detail-container">
+                <h1>Sale STAFF ACCOUNT DETAILS</h1>
                 <div className="Sale_Staff_account-detail">
                     <div className="left-section">
                         <div className="account-avatar">

@@ -9,10 +9,14 @@ const BanCustomerAccountComponents = () => {
     const [note, setNote] = useState('');
     const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
-
+    const authToken = localStorage.getItem('authToken');
     const HandleUnBan = async (id) => {
         try {
-            const response = await axios.post(`http://localhost:8080/auth/account/ban-account/${id}`);
+            const response = await axios.post(`http://localhost:8080/auth/account/ban-account/${id}`, null, {
+                headers: {
+                    Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                }
+            });
             if (response.data.isSuccess) {
                 alert("Ban id: " + id + " successfully!!");
                 navigate("/CustomerAccountDetails/" + id);
@@ -27,7 +31,11 @@ const BanCustomerAccountComponents = () => {
     useEffect(() => {
         const fetchCustomerAccount = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/auth/account/view-account-details/${id}`);
+                const response = await axios.get(`http://localhost:8080/auth/account/view-account-details/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                    }
+                });
                 if (response.data.isSuccess) {
                     setCustomerAccountDetails(response.data.result);
                 } else {
@@ -55,8 +63,9 @@ const BanCustomerAccountComponents = () => {
 
     return (
         <>
-            <h1>CUSTOMER ACCOUNT</h1>
+
             <div className="account-detail-container">
+                <h1>CUSTOMER ACCOUNT</h1>
                 <div className="account-detail">
                     <div className="left-section">
                         <div className="account-avatar">

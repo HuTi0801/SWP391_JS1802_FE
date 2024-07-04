@@ -6,6 +6,7 @@
 .Sale_Staff-container {
     width: 900px;
     /* increased width for better layout */
+    margin-top: -700px;
     padding: 20px;
     margin-left: 400px;
     border: var(--border-bg);
@@ -13,9 +14,8 @@
     text-align: left;
 }
 
-.Sale_Staff-container h1 {
+h1 {
     color: red;
-    margin-top: -760px;
     text-align: center;
 }
 
@@ -52,7 +52,7 @@
     max-height: 100%;
 }
 
-.Sale_Staff-container img text {
+img text {
     margin-top: 20px;
 }
 
@@ -62,8 +62,8 @@
     gap: 5px;
 }
 
-.Sale_Staff_account-info p {
-    margin: 0;
+.Sale_Staff_account-info {
+    margin-top: 20px;
 }
 
 .Sale_Staff_account-actions {
@@ -108,7 +108,7 @@
     padding: 20px 500px 20px 0;
 }
 
-.Sale_Staff-container textarea {
+textarea {
     width: 224px;
     height: 100px;
     padding: 10px;

@@ -26,8 +26,8 @@ const AdminHeader = () => {
 
             <div className='admin_header-right'>
                 <div className='admin_staff-information'>
-                    <p className='admin_staff-FullName'>Full Name: </p>
-                    <p className='admin_staff-ID'>ID: </p>
+                    <p className='admin_staff-FullName'>Full Name: Nguyen Duyen</p>
+                    <p className='admin_staff-ID'>ID: 2</p>
                 </div>
             </div>
 

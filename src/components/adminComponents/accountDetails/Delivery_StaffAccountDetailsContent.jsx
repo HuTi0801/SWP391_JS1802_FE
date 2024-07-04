@@ -6,10 +6,16 @@ import { Link } from 'react-router-dom';
 const Delivery_StaffAccountDetailsContent = () => {
     const [delivery_StaffAccountDetails, setDelivery_StaffDetails] = useState([]);
     const { id } = useParams();
+    const authToken = localStorage.getItem('authToken');
     const [loading, setLoading] = useState(true);
     const HandleUnBan = async (id) => {
         try {
-            const response = await axios.post(`http://localhost:8080/auth/account/unban-account/${id}`);
+            const response = await axios.post(`http://localhost:8080/auth/account/unban-account/${id}`, null,
+                {
+                    headers: {
+                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                    }
+                });
             if (response.data.isSuccess) {
                 alert("Unban id: " + id + " successfully!!");
             } else {
@@ -22,7 +28,12 @@ const Delivery_StaffAccountDetailsContent = () => {
     useEffect(() => {
         const fetchDelivery_StaffAccount = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/auth/account/view-account-details/${id}`);
+                const response = await axios.get(`http://localhost:8080/auth/account/view-account-details/${id}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 if (response.data.isSuccess) {
                     setDelivery_StaffDetails(response.data.result);
                 } else {
@@ -49,8 +60,9 @@ const Delivery_StaffAccountDetailsContent = () => {
 
     return (
         <>
-            <h1>DELIVERY STAFF ACCOUNT DETAILS</h1>
+
             <div className="Delivery_Staff_account-detail-container">
+                <h1>DELIVERY STAFF ACCOUNT DETAILS</h1>
                 <div className="Delivery_Staff_account-detail">
                     <div className="left-section">
                         <div className="account-avatar">
