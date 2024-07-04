@@ -6,6 +6,9 @@ const PaymentReturn = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const hasCalledRef = useRef(false); // Ref to track if createOrder has been called
+  const customerID = localStorage.getItem('customerId');
+  const authToken = localStorage.getItem('authToken');
+  const accountId = localStorage.getItem('accountId');
 
   useEffect(() => {
     if (hasCalledRef.current) return; // Prevent subsequent calls
@@ -42,7 +45,8 @@ const PaymentReturn = () => {
       try {
         // Construct the URL parameters for the API request
         const urlParams = new URLSearchParams({
-          id: 1,
+          customerId: customerID,
+          accountId: accountId,
           address: customerInfo.address,
           numberPhone: customerInfo.numberPhone,
           cusName: customerInfo.cusName,
@@ -50,11 +54,15 @@ const PaymentReturn = () => {
           ...paymentDetails
         });
 
-        const response = await axios.post(`http://localhost:8080/auth/orders/create-order?${urlParams.toString()}`);
+        const response = await axios.post(`http://localhost:8080/auth/orders/create-order?${urlParams.toString()}`, null, {
+          headers: {
+            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+          }
+        });
 
         console.log('Order creation response:', response.data);
         console.log('Payment Details:', paymentDetails);
-        navigate('/ordercreation', { state: { response: response.data.result } }); 
+        navigate('/ordercreation', { state: { response: response.data.result } });
       } catch (error) {
         console.error('Error creating order:', error);
         navigate('/error'); // Navigate to error page on error

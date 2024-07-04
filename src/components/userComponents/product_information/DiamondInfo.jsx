@@ -18,6 +18,8 @@ const DiamondInfo = () => {
     const [alertMessage, setAlertMessage] = useState(null);
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
+    const customerID = localStorage.getItem('customerId');
+    const authToken = localStorage.getItem('authToken');
 
     useEffect(() => {
         const fetchDiamond = async () => {
@@ -38,14 +40,12 @@ const DiamondInfo = () => {
             return;
         }
 
-        const cartItem = {
-            productID: diamond.id,
-            productType: "DIAMOND",
-            customerID: 1,
-        };
-
         try {
-            const response = await axios.post("http://localhost:8080/auth/cart/add-to-cart", null, { params: cartItem });
+            const response = await axios.post(`http://localhost:8080/auth/cart/add-to-cart?productID=${diamond.id}&productType=DIAMOND&customerID=${customerID}`,null, {
+                headers: {
+                    Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                }
+            });
             setAlertMessage('Cart Added Successfully!');
             setOpen(true);
         } catch (error) {

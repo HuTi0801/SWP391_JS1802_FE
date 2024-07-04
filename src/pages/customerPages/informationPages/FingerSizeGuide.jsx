@@ -27,30 +27,32 @@ const FingerSizeGuide = () => {
           <strong>Materials Needed:</strong><br />
           Strip of Paper: Use a strip of paper about 1/2 inch (1.3 cm) wide and 4 inches (10 cm) long.<br />
           Ruler: A standard ruler with millimeter measurements.
-          <strong>Steps to Measure Ring Size:</strong><br />
-          <ul>
-
-            <li>
-
-              <strong>Cut the Paper Strip:</strong><br />
-              Cut a straight strip of paper about 1/2 inch wide and 4 inches long. The width should be enough to comfortably wrap around your finger.
-            </li>
-            <li>
-              <strong>Wrap the Paper Around Your Finger:</strong><br />
-              Wrap the paper strip around the base of the finger you want to measure. Make sure the paper is snug but not too tight. It should slide over your knuckle easily.
-            </li>
-            <li>
-              <strong>Mark the Paper:</strong><br />
-              Use a pen or pencil to mark where the end of the paper strip overlaps. Ensure the mark is clear and straight.
-            </li>
-            <li>
-              <strong>Measure the Length:</strong><br />
-              Carefully remove the paper strip from your finger and lay it flat on a surface.<br />
-              Use a ruler to measure the length from the end of the paper to the marked spot. Measure in millimeters for accuracy.
-            </li>
-          </ul>
         </p>
-        <strong>Measuring Ring Size with an Existing Ring</strong>
+        <p className='paragraph'>
+          <strong>Steps to Measure Ring Size:</strong>
+        </p>
+        <ul>
+          <li>
+            <strong>Cut the Paper Strip:</strong><br />
+            Cut a straight strip of paper about 1/2 inch wide and 4 inches long. The width should be enough to comfortably wrap around your finger.
+          </li>
+          <li>
+            <strong>Wrap the Paper Around Your Finger:</strong><br />
+            Wrap the paper strip around the base of the finger you want to measure. Make sure the paper is snug but not too tight. It should slide over your knuckle easily.
+          </li>
+          <li>
+            <strong>Mark the Paper:</strong><br />
+            Use a pen or pencil to mark where the end of the paper strip overlaps. Ensure the mark is clear and straight.
+          </li>
+          <li>
+            <strong>Measure the Length:</strong><br />
+            Carefully remove the paper strip from your finger and lay it flat on a surface.<br />
+            Use a ruler to measure the length from the end of the paper to the marked spot. Measure in millimeters for accuracy.
+          </li>
+        </ul>
+        <p className='paragraph'>
+          <strong>Measuring Ring Size with an Existing Ring</strong>
+        </p>
         <div><img src="https://images.ctfassets.net/7m8i36sp5l90/3IGO4XBiD88X0HZysKlU7p/a4f221ec4f7902ff47bd76302b47006a/Method-1-Ring-Size_2x.jpg" alt="Measuring Ring Size with an Existing Ring" /></div>
         <p className='paragraph'>
           You need to prepare a polymer banknote of any denomination and an existing ring that fits your finger. Then, place the banknote on a flat surface and place the ring so that it aligns with the edge of the number 0 on the banknote. Finally, take a photo and send it to the jewelry store. From this, they can determine your ring size and help you make an accurate choice.

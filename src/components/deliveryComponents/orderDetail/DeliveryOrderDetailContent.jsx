@@ -10,11 +10,16 @@ const DeliveryOrderDetailContent = () => {
   const { orderId } = location.state || {};
   const [diamonds, setDiamonds] = useState([]);
   const [diamondShells, setDiamondShells] = useState([]);
+  const authToken = localStorage.getItem('authToken');
 
   useEffect(() => {
     const fetchOrder = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/auth/orders/get-order-${orderId}`);
+        const response = await axios.get(`http://localhost:8080/auth/orders/get-order-${orderId}`, {
+          headers: {
+            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+          }
+        });
         if (response.data.isSuccess) {
           setOrder(response.data.result);
         } else {
@@ -29,7 +34,11 @@ const DeliveryOrderDetailContent = () => {
 
     const fetchDiamonds = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/auth/diamond/get-all-diamond');
+        const response = await axios.get('http://localhost:8080/auth/diamond/get-all-diamond', {
+          headers: {
+            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+          }
+        });
         if (response.data.isSuccess) {
           setDiamonds(response.data.result);
         } else {
@@ -42,7 +51,11 @@ const DeliveryOrderDetailContent = () => {
 
     const fetchDiamondShells = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/auth/diamond-shell/get-all-diamond-shell');
+        const response = await axios.get('http://localhost:8080/auth/diamond-shell/get-all-diamond-shell', {
+          headers: {
+            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+          }
+        });
         if (response.data.isSuccess) {
           setDiamondShells(response.data.result);
         } else {
@@ -60,7 +73,11 @@ const DeliveryOrderDetailContent = () => {
 
   const handleClickTakeOrder = async () => {
     try {
-      const response = await axios.post(`http://localhost:8080/auth/orders/update-order-status-from-confirmed/${orderId}?newStatus=Delivering`);
+      const response = await axios.post(`http://localhost:8080/auth/orders/update-order-status-from-confirmed/${orderId}?newStatus=Delivering`, null, {
+        headers: {
+          Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+        }
+      });
       if (response.data.isSuccess) {
         alert("Order Taken Successfully! ");
         // Update order state immediately after taking order
@@ -83,7 +100,11 @@ const DeliveryOrderDetailContent = () => {
 
   const handleClickConfirmDelivery = async () => {
     try {
-      const response = await axios.post(`http://localhost:8080/auth/orders/update-order-status-to-delivered/${orderId}?isCustomer=false&isDelivery=true`);
+      const response = await axios.post(`http://localhost:8080/auth/orders/update-order-status-to-delivered/${orderId}?isCustomer=false&isDelivery=true`, null, {
+        headers: {
+          Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+        }
+      });
       if (response.data.isSuccess) {
         alert("Order Delivered Successfully! ");
         // Update order state immediately after confirming delivery

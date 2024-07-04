@@ -17,11 +17,16 @@ const OrderDetailContent = () => {
   const [activeStep, setActiveStep] = useState(0);
   const [hoveredStep, setHoveredStep] = useState(null);
   const [anchorEl, setAnchorEl] = useState(null);
+  const authToken = localStorage.getItem('authToken');
 
   useEffect(() => {
     const fetchOrder = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/auth/orders/get-order-${orderId}`);
+        const response = await axios.get(`http://localhost:8080/auth/orders/get-order-${orderId}`, {
+          headers: {
+            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+          }
+        });
         if (response.data.isSuccess) {
           setOrder(response.data.result);
           updateActiveStep(response.data.result.dateStatusOrders);
@@ -37,7 +42,11 @@ const OrderDetailContent = () => {
 
     const fetchDiamonds = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/auth/diamond/get-all-diamond');
+        const response = await axios.get('http://localhost:8080/auth/diamond/get-all-diamond', {
+          headers: {
+            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+          }
+        });
         if (response.data.isSuccess) {
           setDiamonds(response.data.result);
         } else {
@@ -50,7 +59,11 @@ const OrderDetailContent = () => {
 
     const fetchDiamondShells = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/auth/diamond-shell/get-all-diamond-shell');
+        const response = await axios.get('http://localhost:8080/auth/diamond-shell/get-all-diamond-shell', {
+          headers: {
+            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+          }
+        });
         if (response.data.isSuccess) {
           setDiamondShells(response.data.result);
         } else {
@@ -95,7 +108,11 @@ const OrderDetailContent = () => {
     const userConfirm = window.confirm('Are you sure you want to cancel order?');
     if (userConfirm) {
       try {
-        const response = await axios.post(`http://localhost:8080/auth/orders/cancel-order-${orderId}`);
+        const response = await axios.post(`http://localhost:8080/auth/orders/cancel-order-${orderId}`, null, {
+          headers: {
+            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+          }
+        });
         if (response.data.isSuccess) {
           alert('Order Canceled Successfully!');
           setRefresh((prev) => !prev); // Toggle refresh state to re-fetch the data
@@ -111,7 +128,11 @@ const OrderDetailContent = () => {
 
   const handleClickConfirmDelivery = async () => {
     try {
-      const response = await axios.post(`http://localhost:8080/auth/orders/update-order-status-to-delivered/${orderId}?isCustomer=true&isDelivery=false`);
+      const response = await axios.post(`http://localhost:8080/auth/orders/update-order-status-to-delivered/${orderId}?isCustomer=true&isDelivery=false`, null, {
+        headers: {
+          Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+        }
+      });
       if (response.data.isSuccess) {
         alert("Order Delivered Successfully! ");
         // Update order state immediately after confirming delivery
