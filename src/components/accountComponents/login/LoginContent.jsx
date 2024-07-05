@@ -31,12 +31,28 @@ const LoginContent = () => {
         localStorage.setItem('userRole', userRole);
         localStorage.setItem('customerId', customerId);
         localStorage.setItem('accountId', accountId)
-        console.log(token)
-        console.log(userRole)
-        console.log(customerId)
-        console.log(accountId)
         // Navigate to the homepage or any protected route
-        navigate('/');
+        switch (userRole) {
+          case 'ROLE_CUSTOMER':
+            navigate('/');
+            break;
+          case 'ROLE_SALE_STAFF':
+            navigate('/salestaff');
+            break;
+          case 'ROLE_DELIVERY_STAFF':
+            navigate('/delivery');
+            break;
+          case 'ROLE_MANAGER':
+            navigate('/manager');
+            break;
+          case 'ROLE_ADMIN':
+            navigate('/adminstaff');
+            break;
+          default:
+            console.log("Default Case")
+            break;
+        }
+
       } catch (error) {
         console.error(error);
       }

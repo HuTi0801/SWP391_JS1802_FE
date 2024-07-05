@@ -7,10 +7,15 @@ const CustomerAccountDetailsContent = () => {
   const [customerAccountDetails, setCustomerAccountDetails] = useState([]);
   const { id } = useParams();
   const [loading, setLoading] = useState(true);
-
+  const authToken = localStorage.getItem('authToken');
   const HandleUnBan = async (id) => {
     try {
-      const response = await axios.post(`http://localhost:8080/auth/account/unban-account/${id}`);
+      const response = await axios.post(`http://localhost:8080/auth/account/unban-account/${id}`, null,
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+          }
+        });
       if (response.data.isSuccess) {
         alert("Unban id: " + id + " successfully!!");
 
@@ -25,7 +30,12 @@ const CustomerAccountDetailsContent = () => {
   useEffect(() => {
     const fetchCustomerAccount = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/auth/account/view-account-details/${id}`);
+        const response = await axios.get(`http://localhost:8080/auth/account/view-account-details/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+            }
+          });
         if (response.data.isSuccess) {
           setCustomerAccountDetails(response.data.result);
         } else {
@@ -53,14 +63,15 @@ const CustomerAccountDetailsContent = () => {
 
   return (
     <>
-      <h1>CUSTOMER ACCOUNT DETAILS</h1>
-      <div className="account-detail-container">
-        <div className="account-detail">
+
+      <div className="Customer_account-detail-container">
+        <h1>CUSTOMER ACCOUNT DETAILS</h1>
+        <div className="Customer_account-detail">
           <div className="left-section">
             <div className="account-avatar">
               <img src="avatar-placeholder.png" alt="Avatar" />
             </div>
-            <div className="account-info">
+            <div className="Customer_account-info">
               <p>Username: {customerAccountDetails.username}</p>
               <p>Membership Points: {customerAccountDetails.customerResponse.point}</p>
               <p>Account Type: {customerAccountDetails.role}</p>
@@ -75,34 +86,34 @@ const CustomerAccountDetailsContent = () => {
               <button className="unban-btn" onClick={() => HandleUnBan(customerAccountDetails.id)}>
                 <p className="unban">UNBAN</p></button>
             </div>
-            <div className="account-details-box">
+            <div className="Customer_account-details-box">
 
-              <div className="account_FullName">
+              <div className="Customer_account_FullName">
                 <label>Full Name:</label>
                 <p>{customerAccountDetails.lastName} {customerAccountDetails.firstName}</p>
               </div>
 
-              <div className="account_FirstName">
+              <div className="Customer_account_FirstName">
                 <label>First Name:</label>
                 <p>{customerAccountDetails.firstName}</p>
               </div>
 
-              <div className="account_LastName">
+              <div className="Customer_account_LastName">
                 <label>Last Name:</label>
                 <p>{customerAccountDetails.lastName}</p>
               </div>
 
-              <div className="account_Email">
+              <div className="Customer_account_Email">
                 <label>Email:</label>
                 <p> {customerAccountDetails.customerResponse.email}</p>
               </div>
 
-              <div className="account_PhoneNumber">
+              <div className="Customer_account_PhoneNumber">
                 <label>Phone Number:</label>
                 <p>{customerAccountDetails.customerResponse.phone}</p>
               </div>
 
-              <div className="account_MembershipLevel">
+              <div className="Customer_account_MembershipLevel">
                 <label>Membership Level: </label>
                 <p>{customerAccountDetails.customerResponse.memberLevel}</p>
               </div>

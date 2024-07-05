@@ -3,26 +3,27 @@
 }
 
 
-.account-detail-container {
+.Customer_account-detail-container {
     width: 900px;
     /* increased width for better layout */
     padding: 20px;
+    margin-top: -700px;
     margin-left: 400px;
     border: var(--border-bg);
     border-radius: 5px;
     text-align: left;
 }
 
-.account-detail-container  h1 {
+h1 {
     color: red;
-    margin-top: -760px;
     text-align: center;
 }
 
 
 
-.account-detail {
+.Customer_account-detail {
     display: flex;
+    margin-top: 20px;
     flex-direction: column;
     gap: 20px;
     /* space between sections */
@@ -46,24 +47,24 @@
     border: 1px solid #ccc;
 }
 
-.account-avatar img {
+.Customer_account-avatar img {
     display: block;
     max-width: 100%;
     max-height: 100%;
 }
 
-.account-detail-container  img text {
+img text {
     margin-top: 20px;
 }
 
-.account-info {
+.Customer_account-info {
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
-.account-info p {
-    margin: 0;
+.Customer_account-info {
+    margin-top: 20px;
 }
 
 .account-actions {
@@ -108,32 +109,32 @@
     margin-left: 20px;
 }
 
-.account-details-box {
+.Customer_account-details-box {
     border: var(--border-bg);
     width: 224px;
     padding: 20px 500px 20px 0;
 }
 
-.account-details-box p {
+.Customer_account-details-box p {
     margin-left: 10px;
 }
 
-.account_FullName,
-.account_FirstName,
-.account_LastName,
-.account_Email,
-.account_PhoneNumber,
-.account_MembershipLevel {
+.Customer_account_FullName,
+.Customer_account_FirstName,
+.Customer_account_LastName,
+.Customer_account_Email,
+.Customer_account_PhoneNumber,
+.Customer_account_MembershipLevel {
     display: flex;
     flex-direction: row;
 }
 
-.account_FullName label,
-.account_FirstName label,
-.account_LastName label,
-.account_Email label,
-.account_PhoneNumber label,
-.account_MembershipLevel label {
+.Customer_account_FullName label,
+.Customer_account_FirstName label,
+.Customer_account_LastName label,
+.Customer_account_Email label,
+.Customer_account_PhoneNumber label,
+.Customer_account_MembershipLevel label {
     margin-left: 10px;
 }
 

@@ -6,11 +6,15 @@ const ManagementAccountDetailsContent = () => {
     const [managementAccountDetails, setManagementDetails] = useState([]);
     const { id } = useParams();
     const [loading, setLoading] = useState(true);
-
+    const authToken = localStorage.getItem('authToken');
     useEffect(() => {
         const fetchManagementAccountAccount = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/auth/account/view-account-details/${id}`);
+                const response = await axios.get(`http://localhost:8080/auth/account/view-account-details/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                    }
+                });
                 if (response.data.isSuccess) {
                     setManagementDetails(response.data.result);
                 } else {
@@ -37,8 +41,9 @@ const ManagementAccountDetailsContent = () => {
 
     return (
         <>
-            <h1>MANAGEMENT  ACCOUNT DETAILS</h1>
+
             <div className="Management_account-detail-container">
+                <h1>MANAGEMENT  ACCOUNT DETAILS</h1>
                 <div className="Management_account-detail">
                     <div className="left-section">
                         <div className="account-avatar">

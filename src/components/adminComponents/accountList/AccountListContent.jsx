@@ -7,16 +7,20 @@ const AccountListContent = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [role, setRole] = useState('');
     const [status, setStatus] = useState('');
-
+    const authToken = localStorage.getItem('authToken');
     useEffect(() => {
         const fetchAccounts = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/auth/account/view-accounts-list`, {
-                    params: {
-                        role,
-                        status
-                    }
-                });
+                const response = await axios.get(`http://localhost:8080/auth/account/view-accounts-list`
+                    , {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        },
+                        params: {
+                            role,
+                            status
+                        }
+                    });
                 setAccounts(response.data.result);
             } catch (error) {
                 console.error('Error fetching accounts:', error);
@@ -41,8 +45,8 @@ const AccountListContent = () => {
                 <select id="filter-role" value={role} onChange={(e) => setRole(e.target.value)}>
                     <option value="">All Roles</option>
                     <option value="CUSTOMER">CUSTOMER</option>
-                    <option value="SALE_STAFF">SALE_STAFF</option>
                     <option value="DELIVERY_STAFF">DELIVERY_STAFF</option>
+                    <option value="SALE_STAFF">SALE_STAFF</option>
                 </select>
 
                 <label htmlFor="filter-status">Account Status:</label>
@@ -70,8 +74,12 @@ const AccountListContent = () => {
                             <Link to={`/Sale_StaffAccountDetails/${account.id}`} className="view-detail-btn">
                                 View Details
                             </Link>
-                        ) : (
+                        ) : account.role === 'DELIVERY_STAFF' ? (
                             <Link to={`/Delivery_StaffAccountDetails/${account.id}`} className="view-detail-btn">
+                                View Details
+                            </Link>
+                        ) : (
+                            <Link to={`/ManagementAccountDetails/${account.id}`} className="view-detail-btn">
                                 View Details
                             </Link>
                         )}

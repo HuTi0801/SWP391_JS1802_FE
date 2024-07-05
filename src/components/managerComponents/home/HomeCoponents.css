@@ -1,0 +1,19 @@
+.HomeManager-content-container {
+    width: 100%;
+    height: 124vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    object-fit: cover;
+    background-image: url("https://t3.ftcdn.net/jpg/06/47/49/12/360_F_647491277_CEc0EIRHVlnWkFIgFyoJTtZGCYOjSaNV.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.HomeManager-content-container h1 {
+    padding: 40px;
+    font-size: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

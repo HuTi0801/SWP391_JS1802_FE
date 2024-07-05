@@ -7,15 +7,15 @@
     width: 900px;
     /* increased width for better layout */
     padding: 20px;
+    margin-top: -700px;
     margin-left: 400px;
     border: var(--border-bg);
     border-radius: 5px;
     text-align: left;
 }
 
-.Delivery_Staff_account-detail-container  h1 {
+h1 {
     color: red;
-    margin-top: -760px;
     text-align: center;
 }
 
@@ -58,8 +58,8 @@
     gap: 5px;
 }
 
-.Delivery_Staff_account-info p {
-    margin: 0;
+.Delivery_Staff_account-info {
+    margin-top: 20px;
 }
 
 .Delivery_account-actions {
