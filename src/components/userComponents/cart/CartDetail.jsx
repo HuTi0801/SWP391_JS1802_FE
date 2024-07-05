@@ -89,6 +89,16 @@ const CartDetail = () => {
     const updateCartItemQuantity = async (productId, productType, newQuantity, size) => {
         try {
             // Update quantity in the backend
+            const responseRefresh = await axios.post(`http://localhost:8080/auth/cart/refresh/${customerID}`, null, {
+                headers: {
+                    Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                }
+            });
+
+            if(responseRefresh){
+                console.log("Refresh successful! ")
+            }
+
             const response = await axios.post("http://localhost:8080/auth/cart/update-cart", null, {
                 headers: {
                     Authorization: `Bearer ${authToken}` // Include the token as a Bearer token

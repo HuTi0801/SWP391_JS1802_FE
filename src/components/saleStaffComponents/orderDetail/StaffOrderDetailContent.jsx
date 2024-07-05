@@ -2,10 +2,13 @@ import React, { useEffect, useState } from 'react';
 import './StaffOrderDetailContent.css';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { Modal, Box, Button, TextField } from '@mui/material'; // Import the necessary MUI components
 
 const StaffOrderDetailContent = () => {
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false); // State for modal visibility
+  const [description, setDescription] = useState(''); // State for the cancel description
   const location = useLocation();
   const { orderId } = location.state || {};
   const [diamonds, setDiamonds] = useState([]);
@@ -102,6 +105,44 @@ const StaffOrderDetailContent = () => {
     }
   };
 
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value);
+  };
+
+  const handleSubmitCancelOrder = async () => {
+    try {
+      const response = await axios.post(`http://localhost:8080/auth/orders/cancel-order-${orderId}?description=${description}`, null, {
+        headers: {
+          Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+        }
+      });
+      if (response.data.isSuccess) {
+        alert('Order Canceled Successfully!');
+        setOrder(prevOrder => ({
+          ...prevOrder,
+          dateStatusOrders: [
+            ...prevOrder.dateStatusOrders,
+            { status: "Canceled", dateStatus: new Date().toISOString() }
+          ]
+        }));
+        handleCloseModal();
+      } else {
+        console.error('Failed to cancel order:', response.data.message);
+        alert(response.data.message);
+      }
+    } catch (error) {
+      console.error('Error cancelling order:', error);
+    }
+  };
+
   const handleClickWarranty = () => {
     navigate('/warrantydetail', { state: { orderId: order } });
   };
@@ -147,6 +188,7 @@ const StaffOrderDetailContent = () => {
           <p>Total Price: {formatPrice(order.totalPrice)}</p>
           <p>Deliver To: {order.address}</p>
           <p>Purchase Date: {new Date(order.dateStatusOrders[0].dateStatus).toLocaleDateString('en-GB')}</p>
+          <p>Status: {order.dateStatusOrders[order.dateStatusOrders.length - 1].status}</p>
         </div>
       </div>
       <div className='order-product-list'>
@@ -180,14 +222,48 @@ const StaffOrderDetailContent = () => {
         </ul>
       </div>
       <div className='status-and-button'>
-        <span>Status: {order.dateStatusOrders[order.dateStatusOrders.length - 1].status}</span>
         {order.dateStatusOrders[order.dateStatusOrders.length - 1].status === "Pending" && (
-          <button onClick={handleClickConfirmOrder}>CONFIRM ORDER</button>
+          <>
+            <button className='confirm-order' onClick={handleClickConfirmOrder}>CONFIRM ORDER</button>
+            <button className='confirm-order' onClick={handleOpenModal}>CANCEL ORDER</button>
+          </>
         )}
         {order.dateStatusOrders[order.dateStatusOrders.length - 1].status === "Confirmed" && !warrantyStatus && (
-          <button onClick={handleClickSetWarranty}>SET WARRANTY</button>
+          <button className='confirm-order' onClick={handleClickSetWarranty}>SET WARRANTY</button>
         )}
       </div>
+
+      {/* Modal for entering cancel description */}
+      <Modal
+        open={isModalOpen}
+        onClose={handleCloseModal}
+        aria-labelledby="modal-title"
+        aria-describedby="modal-description"
+      >
+        <Box sx={{ 
+          position: 'absolute', 
+          top: '50%', 
+          left: '50%', 
+          transform: 'translate(-50%, -50%)', 
+          width: 400, 
+          bgcolor: 'background.paper', 
+          border: '2px solid #000', 
+          boxShadow: 24, 
+          p: 4 
+        }}>
+          <h2 id="modal-title">Cancel Order</h2>
+          <TextField
+            id="modal-description"
+            label="Description"
+            multiline
+            rows={4}
+            fullWidth
+            value={description}
+            onChange={handleDescriptionChange}
+          />
+          <Button onClick={handleSubmitCancelOrder} variant="contained" color="primary" sx={{ mt: 2 }}>Submit</Button>
+        </Box>
+      </Modal>
     </div>
   );
 };

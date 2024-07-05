@@ -12,11 +12,16 @@ const OrderDetails = () => {
 
     const [diamonds, setDiamonds] = useState([]);
     const [diamondShells, setDiamondShells] = useState([]);
+    const authToken = localStorage.getItem('authToken');
 
     useEffect(() => {
         const fetchOrder = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/auth/orders/get-order-${id}`);
+                const response = await axios.get(`http://localhost:8080/auth/orders/get-order-${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                    }
+                });
                 if (response.data.isSuccess) {
                     setOrder(response.data.result);
                 } else {

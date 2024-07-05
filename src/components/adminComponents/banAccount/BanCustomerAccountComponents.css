@@ -14,7 +14,7 @@
     text-align: left;
 }
 
-h1 {
+.account-detail-container h1 {
     color: red;
     text-align: center;
 }
@@ -108,7 +108,7 @@ img text {
     padding: 20px 500px 20px 0;
 }
 
-textarea {
+.account-detail-container textarea {
     width: 224px;
     height: 100px;
     padding: 10px;

@@ -18,11 +18,16 @@ const PendingAssigned = () => {
     const [warning, setWarning] = useState('');
     const [order, setOrder] = useState(null);
     const { id } = useParams();
+    const authToken = localStorage.getItem('authToken');
 
     useEffect(() => {
         const fetchPendingAssigned = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/auth/account/get-active-sale-staff-and-order-counts-list');
+                const response = await axios.get('http://localhost:8080/auth/account/get-active-sale-staff-and-order-counts-list', {
+                    headers: {
+                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                    }
+                });
                 setPendingAssigned(response.data);
             } catch (error) {
                 setError(error.message);

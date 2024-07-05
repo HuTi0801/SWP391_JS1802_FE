@@ -81,36 +81,6 @@ import ProtectedRoute from './components/utilityComponents/protectedRoute/Protec
 
 function App() {
 
-  const navigate = useNavigate();
-  const userRole = localStorage.getItem('userRole');
-  useEffect(() => {
-    // Example logic to get user role after login (replace with actual logic)
-
-
-    // Redirect based on user role
-    switch (userRole) {
-      case 'ROLE_CUSTOMER':
-        navigate('/');
-        break;
-      case 'ROLE_SALE_STAFF':
-        navigate('/salestaff');
-        break;
-      case 'ROLE_DELIVERY_STAFF':
-        navigate('/delivery');
-        break;
-      case 'ROLE_MANAGER':
-        navigate('/manager');
-        break;
-      case 'ROLE_ADMIN':
-        navigate('/adminstaff');
-        break;
-      default:
-        console.log("Default Case")
-        break;
-    }
-  }, [userRole]);
-
-
   return (
     <div>
       <Routes>

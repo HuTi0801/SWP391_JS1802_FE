@@ -8,11 +8,16 @@ import Functionbar from "../../managerComponents/functionbar/Functionbar.jsx"
 const OrderListPage = () => {
 
     const [oders, setOrders] = useState([]);
+    const authToken = localStorage.getItem('authToken');
 
     /* Display Order Info  */
     const getOrderInfo = async () => {
         try {
-            const response = await axios.get("http://localhost:8080/auth/orders/get-all-orders");
+            const response = await axios.get("http://localhost:8080/auth/orders/get-all-orders", {
+                headers: {
+                    Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                }
+            });
             return response.data.result;
         } catch (error) {
             console.error('Error fetching diamond info:', error);

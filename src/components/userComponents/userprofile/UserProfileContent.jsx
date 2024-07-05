@@ -21,6 +21,7 @@ const UserProfileContent = () => {
           navigate('/login');
           return;
         }
+        
 
         // API endpoint for fetching user account details
         const accountDetailsUrl = `http://localhost:8080/auth/account/view-account-details/${accountId}`;
@@ -36,7 +37,7 @@ const UserProfileContent = () => {
         setUserData(response.data.result);
       } catch (error) {
         console.error('Error fetching user data:', error);
-
+        navigate('/login')
         // Handle error if fetching user data fails
       }
     };

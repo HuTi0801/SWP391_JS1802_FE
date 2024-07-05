@@ -17,11 +17,16 @@ const ConfirmAssigned = () => {
     const [warning, setWarning] = useState('');
     const [order, setOrder] = useState(null);
     const { id } = useParams();
+    const authToken = localStorage.getItem('authToken');
 
     useEffect(() => {
         const fetchOrder = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/auth/orders/get-order-${id}`);
+                const response = await axios.get(`http://localhost:8080/auth/orders/get-order-${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                    }
+                });
                 setOrder(response.data.result);
             } catch (error) {
                 console.error('Error fetching order:', error);
@@ -33,7 +38,11 @@ const ConfirmAssigned = () => {
 
         const fetchConfirmAssigned = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/auth/account/get-active-delivery-staff-and-order-counts-list');
+                const response = await axios.get('http://localhost:8080/auth/account/get-active-delivery-staff-and-order-counts-list', {
+                    headers: {
+                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                    }
+                });
                 setConfirmAssigned(response.data);
             } catch (error) {
                 setError(error.message);
