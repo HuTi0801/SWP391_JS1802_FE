@@ -14,10 +14,15 @@ const DeliveredAssigned = () => {
     const [SaleStaff, setSaleStaff] = useState([]);
     const [Staff, setStaff] = useState([]);
     const [DeliveryStaff, setDeliveryStaff] = useState([]);
+    const authToken = localStorage.getItem('authToken');
     useEffect(() => {
         const fetchOrder = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/auth/orders/get-order-${id}`);
+                const response = await axios.get(`http://localhost:8080/auth/orders/get-order-${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                    }
+                });
                 setOrder(response.data.result);
             } catch (error) {
                 console.error('Error fetching order:', error);
@@ -28,7 +33,11 @@ const DeliveredAssigned = () => {
 
         const fetchDeliveryStaff = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/auth/account/get-active-delivery-staff-and-order-counts-list');
+                const response = await axios.get('http://localhost:8080/auth/account/get-active-delivery-staff-and-order-counts-list', {
+                    headers: {
+                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                    }
+                });
                 setDeliveryStaff(response.data);
             } catch (error) {
                 setError(error.message);
@@ -38,7 +47,11 @@ const DeliveredAssigned = () => {
         };
         const fetchSaleStaff = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/auth/account/get-active-sale-staff-and-order-counts-list');
+                const response = await axios.get('http://localhost:8080/auth/account/get-active-sale-staff-and-order-counts-list', {
+                    headers: {
+                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                    }
+                });
                 setSaleStaff(response.data);
             } catch (error) {
                 setError(error.message);
@@ -48,7 +61,11 @@ const DeliveredAssigned = () => {
         };
         const fetchStaff = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/auth/account-order/get-staff-accounts-assigning-by-order?orderId=${id}`);
+                const response = await axios.get(`http://localhost:8080/auth/account-order/get-staff-accounts-assigning-by-order?orderId=${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                    }
+                });
                 setStaff(response.data);
             } catch (error) {
                 setError(error.message);

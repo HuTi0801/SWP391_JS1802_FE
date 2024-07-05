@@ -14,7 +14,7 @@
     text-align: left;
 }
 
-h1 {
+.Delivery_Staff-container h1 {
     color: red;
     text-align: center;
 }
@@ -52,7 +52,7 @@ h1 {
     max-height: 100%;
 }
 
-img text {
+.Delivery_Staff-container img text {
     margin-top: 20px;
 }
 

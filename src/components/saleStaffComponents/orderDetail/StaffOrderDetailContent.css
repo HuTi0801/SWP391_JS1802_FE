@@ -104,13 +104,6 @@
     gap: 900px;
 }
 
-.staff-order-detail-content-container .status-and-button span {
-    font-size: 2em;
-    font-family: var(--font-family);
-    border: 1px solid black;
-    padding: 10px;
-    border-radius: 5px;
-}
 
 .staff-order-detail-content-container .status-and-button button {
     font-size: 1.7em;

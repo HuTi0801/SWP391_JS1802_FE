@@ -40,8 +40,13 @@ const DiamondInfo = () => {
             return;
         }
 
+        if (!authToken) {
+            navigate('/login');
+        }
+        console.log(authToken)
+
         try {
-            const response = await axios.post(`http://localhost:8080/auth/cart/add-to-cart?productID=${diamond.id}&productType=DIAMOND&customerID=${customerID}`,null, {
+            const response = await axios.post(`http://localhost:8080/auth/cart/add-to-cart?productID=${diamond.id}&productType=DIAMOND&customerID=${customerID}`, null, {
                 headers: {
                     Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
                 }

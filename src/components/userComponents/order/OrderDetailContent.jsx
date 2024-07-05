@@ -108,7 +108,7 @@ const OrderDetailContent = () => {
     const userConfirm = window.confirm('Are you sure you want to cancel order?');
     if (userConfirm) {
       try {
-        const response = await axios.post(`http://localhost:8080/auth/orders/cancel-order-${orderId}`, null, {
+        const response = await axios.post(`http://localhost:8080/auth/orders/cancel-order-${orderId}?description=CustomerCancel`, null, {
           headers: {
             Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
           }

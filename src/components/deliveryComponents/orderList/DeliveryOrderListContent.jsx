@@ -19,7 +19,7 @@ const DeliveryOrderListContent = () => {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/auth/orders/view-shipping-order/${accountId}`, {
+                const response = await axios.get(`http://localhost:8080/auth/orders/get-all-orders`, {
                     headers: {
                         Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
                     }

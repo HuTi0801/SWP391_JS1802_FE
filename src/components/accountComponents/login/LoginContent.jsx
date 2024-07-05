@@ -67,6 +67,10 @@ const LoginContent = () => {
     navigate('/forgetpassword');
   };
 
+  const handleClickBackHome = () => {
+    navigate('/');
+  }
+
   return (
     <div className="login-content-container">
       <div className="overlay"></div>
@@ -96,6 +100,8 @@ const LoginContent = () => {
             {formik.errors.password && formik.touched.password && <div>{formik.errors.password}</div>}
             <div className="forget-password">
               <span onClick={handleClickForgetPassword}>Forgot Password?</span>
+              <br />
+              <span onClick={handleClickBackHome}>Back to home page</span>
             </div>
             <div className="action-button">
               <button type="submit" className="login-button">

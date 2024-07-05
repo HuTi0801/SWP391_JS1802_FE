@@ -14,7 +14,7 @@
     text-align: left;
 }
 
-h1 {
+.Sale_Staff-container h1 {
     color: red;
     text-align: center;
 }
@@ -52,7 +52,7 @@ h1 {
     max-height: 100%;
 }
 
-img text {
+.Sale_Staff-container img text {
     margin-top: 20px;
 }
 
@@ -108,7 +108,7 @@ img text {
     padding: 20px 500px 20px 0;
 }
 
-textarea {
+.Sale_Staff-container textarea {
     width: 224px;
     height: 100px;
     padding: 10px;
