@@ -2,14 +2,19 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import "../../../pages/managerPages/promotion/Promotion.css";
 import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
 const PromotionList = () => {
     const [Promotion, setPromotion] = useState([]);
+    const authToken = localStorage.getItem('authToken');
 
     /* Display Promotion Info  */
     const getPromotionInfo = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/auth/promotion/get-promotions-list');
+            const response = await axios.get('http://localhost:8080/auth/promotion/get-promotions-list',
+                {
+                    headers: {
+                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                    }
+                });
             return response.data.result;
         } catch (error) {
             console.error('Error fetching diamond info:', error);
@@ -29,7 +34,11 @@ const PromotionList = () => {
         if (!shouldDelete) return;
 
         try {
-            const response = await axios.post(`http://localhost:8080/auth/promotion/delete/${id}`);
+            const response = await axios.post(`http://localhost:8080/auth/promotion/delete/${id}`, null, {
+                headers: {
+                    Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                }
+            });
             if (response.data.isSuccess) {
                 alert("Delete Promotion successfully!!!");
             } else {
@@ -106,7 +115,7 @@ const PromotionList = () => {
     );
 
     function prePage() {
-        if (currentPage !== firstIndex && currentPage !== 1) {
+        if (currentPage > 1) {
             setcurrentPage(currentPage - 1);
         }
     }
@@ -116,7 +125,7 @@ const PromotionList = () => {
     }
 
     function nextPage() {
-        if (currentPage !== lastIndex) {
+        if (currentPage < npage) {
             setcurrentPage(currentPage + 1);
         }
     }

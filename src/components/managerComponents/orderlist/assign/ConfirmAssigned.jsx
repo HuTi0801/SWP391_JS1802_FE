@@ -2,7 +2,8 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import "./assign.css";
 import axios from 'axios';
-import { List, Grid, ListItem, ListItemIcon, Typography, Divider, Box, Link } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { List, Grid, ListItem, ListItemIcon, Typography, Divider, Box } from '@mui/material';
 import ManagerHeader from "../../../managerComponents/header/ManagerHeader.jsx";
 import Functionbar from "../../../managerComponents/functionbar/Functionbar.jsx";
 import { useParams } from 'react-router-dom';
@@ -18,15 +19,15 @@ const ConfirmAssigned = () => {
     const [order, setOrder] = useState(null);
     const { id } = useParams();
     const authToken = localStorage.getItem('authToken');
-
     useEffect(() => {
         const fetchOrder = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/auth/orders/get-order-${id}`, {
-                    headers: {
-                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
-                    }
-                });
+                const response = await axios.get(`http://localhost:8080/auth/orders/get-order-${id}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 setOrder(response.data.result);
             } catch (error) {
                 console.error('Error fetching order:', error);
@@ -38,11 +39,12 @@ const ConfirmAssigned = () => {
 
         const fetchConfirmAssigned = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/auth/account/get-active-delivery-staff-and-order-counts-list', {
-                    headers: {
-                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
-                    }
-                });
+                const response = await axios.get('http://localhost:8080/auth/account/get-active-delivery-staff-and-order-counts-list',
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 setConfirmAssigned(response.data);
             } catch (error) {
                 setError(error.message);
@@ -73,7 +75,12 @@ const ConfirmAssigned = () => {
             setWarning('Please select only one delivery staff');
         } else {
             try {
-                const response = await axios.post(`http://localhost:8080/auth/account-order/assign-staff-to-order?accountId=${Array.from(selectedStaff)[0]}&orderId=${order?.orderId}`);
+                const response = await axios.post(`http://localhost:8080/auth/account-order/assign-staff-to-order?accountId=${Array.from(selectedStaff)[0]}&orderId=${order?.orderId}`
+                    , null, {
+                    headers: {
+                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                    }
+                });
                 if (response.data.isSuccess) {
                     alert("Assign Delivery Staff Successfully!");
                 }
@@ -142,7 +149,7 @@ const ConfirmAssigned = () => {
             <Functionbar />
             <h1>Delivery Staff List</h1>
             <Box className="ConfirmAssigned-container">
-                <Box className='Confirmcontainer'>
+                <Box className='Confirmcontainer' sx={{ marginTop: -12 }}>
                     <hr className="vertical-line" />
 
                     <Box sx={{ maxWidth: 300, textAlign: 'left', marginTop: -5 }}>
@@ -158,7 +165,7 @@ const ConfirmAssigned = () => {
                                     <ListItemIcon >
                                         <HomeIcon sx={{ color: 'blue' }} />
                                     </ListItemIcon>
-                                    <Link href="/managerorderlist" sx={{ textDecoration: 'none', color: 'inherit' }}>
+                                    <Link to="/managerorderlist" style={{ textDecoration: 'none', color: 'inherit' }}>
                                         <Typography variant="h6">Home</Typography>
                                     </Link>
                                 </ListItem>
@@ -166,7 +173,7 @@ const ConfirmAssigned = () => {
                                     <ListItemIcon >
                                         <CheckCircleIcon sx={{ color: 'green' }} />
                                     </ListItemIcon>
-                                    <Link href="/confirm" sx={{ textDecoration: 'none', color: 'inherit' }}>
+                                    <Link to="/confirm" style={{ textDecoration: 'none', color: 'inherit' }}>
                                         <Typography variant="h6">Confirm</Typography>
                                     </Link>
                                 </ListItem>

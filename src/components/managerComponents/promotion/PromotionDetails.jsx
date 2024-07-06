@@ -11,10 +11,15 @@ const PromotionDetails = () => {
     const [totalPages, setTotalPages] = useState(1);
     const { id } = useParams();
     const itemsPerPage = 2;
-
+    const authToken = localStorage.getItem('authToken');
     const getPromotionInfoDetails = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/auth/promotion/view-promotion/${id}`);
+            const response = await axios.get(`http://localhost:8080/auth/promotion/view-promotion/${id}`,
+                {
+                    headers: {
+                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                    }
+                });
             return response.data.result;
         } catch (error) {
             console.error('Error fetching promotion info:', error);

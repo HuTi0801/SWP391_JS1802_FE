@@ -1,14 +1,12 @@
 import React from 'react';
 import './ManagerProfile.css';
+import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import ManagerHeader from "../../managerComponents/header/ManagerHeader"
 import Functionbar from "../../managerComponents/functionbar/Functionbar"
-import axios from 'axios';
 const ManagerProfile = () => {
-
-    const navigate = useNavigate();
-
-    const handleLogout = async () => {
+    const navigate = useNavigate()
+    const handleClickLogOut = async () => {
         // Retrieve the authentication token from localStorage
         const authToken = localStorage.getItem('authToken');
 
@@ -24,7 +22,7 @@ const ManagerProfile = () => {
 
         try {
             // Send a POST request to logout endpoint with token as a header
-            const response = await axios.post(logoutUrl, null, {
+            const response = await axios.post(logoutUrl, {}, {
                 headers: {
                     Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
                 }
@@ -43,7 +41,6 @@ const ManagerProfile = () => {
             // Handle error if logout request fails
         }
     };
-
     return (
         <>  <ManagerHeader />
             <Functionbar />
@@ -51,7 +48,7 @@ const ManagerProfile = () => {
 
                 <div className='action-button'>
 
-                    <button onClick={handleLogout}>Log Out</button>
+                    <button onClick={handleClickLogOut}>Log Out</button>
                 </div>
                 <div className='profile-detail'>
                     <div className='profile-image'>
@@ -62,10 +59,10 @@ const ManagerProfile = () => {
                     </div>
                     <div className='profile-text'>
                         <div className='profile-information'>
-                            <p>First Name: Khoa</p>
-                            <p>Last Name: Tran</p>
-                            <p>Password: *********</p>
-                            <p>Phone Number: +1234567890</p>
+                            <p>First Name: Tien</p>
+                            <p>Last Name: Bui</p>
+                            <p>Password: *****</p>
+                            <p>Phone Number: 0812455681</p>
                         </div>
                     </div>
                 </div>

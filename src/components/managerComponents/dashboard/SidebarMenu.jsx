@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Grid, List, ListItem, ListItemIcon, ListItemText, Typography, Divider, Box, Collapse, Link } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { Grid, List, ListItem, ListItemIcon, ListItemText, Typography, Divider, Box, Collapse } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import PeopleIcon from '@mui/icons-material/People';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -39,7 +40,7 @@ const SidebarMenu = () => {
                                 <ListItemIcon>
                                     <CheckCircleIcon sx={{ color: 'green' }} />
                                 </ListItemIcon>
-                                <Link href="/confirmedRevenue" sx={{ textDecoration: 'none', color: 'inherit' }}>
+                                <Link to="/confirmedRevenue" style={{ textDecoration: 'none', color: 'inherit' }}>
                                     <Typography variant="body2">Confirmed</Typography>
                                 </Link>
                             </ListItem>
@@ -47,7 +48,7 @@ const SidebarMenu = () => {
                                 <ListItemIcon>
                                     <LocalShippingIcon sx={{ color: 'orange' }} />
                                 </ListItemIcon>
-                                <Link href="/deliveringRevenue" sx={{ textDecoration: 'none', color: 'inherit' }}>
+                                <Link to="/deliveringRevenue" style={{ textDecoration: 'none', color: 'inherit' }}>
                                     <Typography variant="body2">Delivering</Typography>
                                 </Link>
                             </ListItem>
@@ -55,7 +56,7 @@ const SidebarMenu = () => {
                                 <ListItemIcon>
                                     <DoneIcon sx={{ color: 'blue' }} />
                                 </ListItemIcon>
-                                <Link href="/deliveredRevenue" sx={{ textDecoration: 'none', color: 'inherit' }}>
+                                <Link to="/deliveredRevenue" style={{ textDecoration: 'none', color: 'inherit' }}>
                                     <Typography variant="body2">Delivered</Typography>
                                 </Link>
                             </ListItem>
@@ -63,7 +64,7 @@ const SidebarMenu = () => {
                                 <ListItemIcon>
                                     <CancelIcon sx={{ color: 'red' }} />
                                 </ListItemIcon>
-                                <Link href="/cancelRevenue" sx={{ textDecoration: 'none', color: 'inherit' }}>
+                                <Link to="/cancelRevenue" style={{ textDecoration: 'none', color: 'inherit' }}>
                                     <Typography variant="body2">Cancel</Typography>
                                 </Link>
                             </ListItem>
@@ -73,7 +74,7 @@ const SidebarMenu = () => {
                         <ListItemIcon>
                             <PeopleIcon sx={{ color: 'purple' }} />
                         </ListItemIcon>
-                        <Link href="/staffPerformance" sx={{ textDecoration: 'none', color: 'inherit' }}>
+                        <Link to="/staffPerformance" style={{ textDecoration: 'none', color: 'inherit' }}>
                             <Typography variant="body2">Staff</Typography>
                         </Link>
                     </ListItem>
@@ -82,7 +83,7 @@ const SidebarMenu = () => {
                         <ListItemIcon>
                             <AccountCircleIcon sx={{ color: 'teal' }} />
                         </ListItemIcon>
-                        <Link href="/profile" sx={{ textDecoration: 'none', color: 'inherit' }}>
+                        <Link to="/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
                             <Typography variant="h6">Account</Typography>
                         </Link>
                     </ListItem>

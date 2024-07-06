@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, List, Grid, ListItem, ListItemIcon, Divider, Typography, Link } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { Box, List, Grid, ListItem, ListItemIcon, Divider, Typography } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import DoneIcon from '@mui/icons-material/Done';
 import PendingIcon from '@mui/icons-material/Pending';
@@ -24,7 +25,7 @@ const ListofStatus = () => {
                             <ListItemIcon>
                                 <HomeIcon sx={{ color: 'blue' }} />
                             </ListItemIcon>
-                            <Link href="/managerorderlist" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <Link to="/managerorderlist" style={{ textDecoration: 'none', color: 'inherit' }}>
                                 <Typography variant="h6">All</Typography>
                             </Link>
                         </ListItem>
@@ -32,7 +33,7 @@ const ListofStatus = () => {
                             <ListItemIcon>
                                 <PendingIcon sx={{ color: 'orange' }} />
                             </ListItemIcon>
-                            <Link href="/pending" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <Link to="/pending" style={{ textDecoration: 'none', color: 'inherit' }}>
                                 <Typography variant="h6">Pending</Typography>
                             </Link>
                         </ListItem>
@@ -40,7 +41,7 @@ const ListofStatus = () => {
                             <ListItemIcon>
                                 <AssignmentTurnedInIcon sx={{ color: 'green' }} />
                             </ListItemIcon>
-                            <Link href="/confirm" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <Link to="/confirm" style={{ textDecoration: 'none', color: 'inherit' }}>
                                 <Typography variant="h6">Confirm</Typography>
                             </Link>
                         </ListItem>
@@ -48,7 +49,7 @@ const ListofStatus = () => {
                             <ListItemIcon>
                                 <LocalShippingIcon sx={{ color: 'purple' }} />
                             </ListItemIcon>
-                            <Link href="/delivering" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <Link to="/delivering" style={{ textDecoration: 'none', color: 'inherit' }}>
                                 <Typography variant="h6">Delivering</Typography>
                             </Link>
                         </ListItem>
@@ -56,7 +57,7 @@ const ListofStatus = () => {
                             <ListItemIcon>
                                 <DoneIcon sx={{ color: 'darkgreen' }} />
                             </ListItemIcon>
-                            <Link href="/delivered" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <Link to="/delivered" style={{ textDecoration: 'none', color: 'inherit' }}>
                                 <Typography variant="h6">Delivered</Typography>
                             </Link>
                         </ListItem>
@@ -64,7 +65,7 @@ const ListofStatus = () => {
                             <ListItemIcon>
                                 <CancelIcon sx={{ color: 'red' }} />
                             </ListItemIcon>
-                            <Link href="/canceled" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <Link to="/canceled" style={{ textDecoration: 'none', color: 'inherit' }}>
                                 <Typography variant="h6">Canceled</Typography>
                             </Link>
                         </ListItem>

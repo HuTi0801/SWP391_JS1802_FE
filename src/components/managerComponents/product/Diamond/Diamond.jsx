@@ -20,14 +20,12 @@ const Diamond = () => {
                     </img>
 
 
-
                     <Link to="/CreateDiamond" className="createDiamond">
                         Create
                     </Link>
-
                 </div>
-                <DiamondInfo />
 
+                <DiamondInfo />
             </div>
 
         </>

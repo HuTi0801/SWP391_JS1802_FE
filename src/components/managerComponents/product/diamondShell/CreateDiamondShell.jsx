@@ -1,7 +1,5 @@
 
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { createDiamondShell } from "../../../../redux/actions/diamondShellAction";
 import { useNavigate } from "react-router-dom";
 import Select from 'react-select';
 import axios from 'axios';
@@ -10,9 +8,8 @@ import Functionbar from "../../functionbar/Functionbar";
 import { Grid, TextField, Select as MuiSelect, MenuItem, FormControl, InputLabel, Button, Box, Typography } from '@mui/material'; // Importing MUI components
 
 const CreateDiamondShell = () => {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
-
+    const authToken = localStorage.getItem('authToken');
     const [diamondShell, setDiamondShell] = useState({
         gender: "",
         imageDiamondShell: "",
@@ -35,17 +32,17 @@ const CreateDiamondShell = () => {
         setDiamondShell({ ...diamondShell, sizeIds });
     };
 
-    const diamondShellAdd = async () => {
-        dispatch(createDiamondShell(diamondShell));
-        alert("Add DiamondShell successfully!!!!");
-        navigate("/diamondshell");
-    };
 
     const [diamondShellSize, setDiamondShellSize] = useState([]);
 
     const fetchDiamondShellSize = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/auth/size/get-all-size');
+            const response = await axios.get('http://localhost:8080/auth/size/get-all-size',
+                {
+                    headers: {
+                        Authorization: `Bearer ${authToken}`
+                    }
+                });
             return response.data.result;
         } catch (error) {
             console.error('Error fetching diamond shell Size info:', error);
@@ -67,6 +64,24 @@ const CreateDiamondShell = () => {
         value: diamondShell_sizeid.id,
         label: diamondShell_sizeid.size,
     }));
+    const diamondShellAdd = async () => {
+        try {
+            const config = {
+                headers: {
+                    'Authorization': `Bearer ${authToken}`,
+                    'Content-Type': 'application/json'
+                }
+            };
+            const response = await axios.post(`http://localhost:8080/auth/diamond-shell/create-diamond-shell`, diamondShell, config);
+            if (response.data.isSuccess) {
+                alert("Add DiamondShell successfully!!!!");
+                navigate("/diamondshell");
+            }
+        } catch (error) {
+            setError(error.message);
+            console.error('Error updating diamond', error);
+        }
+    };
 
     return (
         <>
@@ -166,6 +181,33 @@ const CreateDiamondShell = () => {
                             <FormControl fullWidth sx={{ textAlign: 'center' }} >
                                 <Select
                                     isMulti
+                                    styles={{
+                                        control: (base) => ({
+                                            ...base,
+                                            width: '100%',
+                                            height: '56px',
+                                            borderRadius: '4px',
+                                            border: '1px solid #ccc',
+                                            padding: '0 5px', // Adjust padding if needed
+                                        }),
+                                        multiValue: (base) => ({
+                                            ...base,
+                                            backgroundColor: '#e0e0e0', // Adjust background color for selected options
+                                            borderRadius: '2px',
+                                        }),
+                                        multiValueLabel: (base) => ({
+                                            ...base,
+                                            color: '#333', // Adjust text color for selected options
+                                        }),
+                                        multiValueRemove: (base) => ({
+                                            ...base,
+                                            color: '#333',
+                                            ':hover': {
+                                                backgroundColor: '#ccc', // Adjust hover effect
+                                                color: '#000',
+                                            },
+                                        }),
+                                    }}
                                     name="sizeIds"
                                     options={options}
                                     onChange={handleSizeChange}

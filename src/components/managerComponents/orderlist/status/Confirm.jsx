@@ -10,11 +10,16 @@ const Confirm = () => {
     const [Status, setStatus] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const recordsPerPage = 3;
-
+    const authToken = localStorage.getItem('authToken');
     useEffect(() => {
         const fetchStatus = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/auth/status-order/get-a-status-order-2');
+                const response = await axios.get('http://localhost:8080/auth/status-order/get-a-status-order-2',
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 setStatus(response.data.result);
             } catch (error) {
                 console.error('Error fetching status info:', error);
@@ -28,7 +33,12 @@ const Confirm = () => {
         const fetchData = async () => {
             if (Status) {
                 try {
-                    const response = await axios.get(`http://localhost:8080/auth/orders/get-order-statusName?statusName=${Status.statusName}`);
+                    const response = await axios.get(`http://localhost:8080/auth/orders/get-order-statusName?statusName=${Status.statusName}`,
+                        {
+                            headers: {
+                                Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                            }
+                        });
                     setConfirmOrders(response.data.result);
                 } catch (error) {
                     console.error('Error fetching orders:', error);

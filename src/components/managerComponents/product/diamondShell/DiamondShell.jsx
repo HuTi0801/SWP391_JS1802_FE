@@ -23,18 +23,11 @@ const DiamondShell = () => {
                     <Link to="/createDiamondShell" className="createDiamondShell">
                         Create
                     </Link>
-
-
-                </div>
-                <div className='DiamondShellInfo'>
-                    <DiamondShellInfo />
                 </div>
 
-
+                <DiamondShellInfo />
             </div>
         </>
-
-
     );
 }
 

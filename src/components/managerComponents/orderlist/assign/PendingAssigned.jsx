@@ -1,8 +1,8 @@
 
 import React, { useEffect, useState, useMemo } from 'react';
 import axios from 'axios';
-
-import { List, Grid, ListItem, ListItemIcon, Typography, Divider, Box, Link } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { List, Grid, ListItem, ListItemIcon, Typography, Divider, Box } from '@mui/material';
 import ManagerHeader from "../../../managerComponents/header/ManagerHeader.jsx";
 import Functionbar from "../../../managerComponents/functionbar/Functionbar.jsx";
 import "./assign.css"; // Ensure correct path to your CSS file
@@ -19,15 +19,15 @@ const PendingAssigned = () => {
     const [order, setOrder] = useState(null);
     const { id } = useParams();
     const authToken = localStorage.getItem('authToken');
-
     useEffect(() => {
         const fetchPendingAssigned = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/auth/account/get-active-sale-staff-and-order-counts-list', {
-                    headers: {
-                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
-                    }
-                });
+                const response = await axios.get('http://localhost:8080/auth/account/get-active-sale-staff-and-order-counts-list',
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 setPendingAssigned(response.data);
             } catch (error) {
                 setError(error.message);
@@ -38,7 +38,12 @@ const PendingAssigned = () => {
 
         const fetchOrder = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/auth/orders/get-order-${id}`);
+                const response = await axios.get(`http://localhost:8080/auth/orders/get-order-${id}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 if (response.data.isSuccess) {
                     setOrder(response.data.result);
                 } else {
@@ -77,6 +82,11 @@ const PendingAssigned = () => {
             try {
                 const response = await axios.post(
                     `http://localhost:8080/auth/account-order/assign-staff-to-order?accountId=${Array.from(selectedStaff)[0]}&orderId=${order?.orderId}`
+                    , null, {
+                    headers: {
+                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                    }
+                }
                 );
                 if (response.data.isSuccess) {
                     alert("Assign Sale Staff Successfully!");
@@ -144,8 +154,8 @@ const PendingAssigned = () => {
             <ManagerHeader />
             <Functionbar />
             <h1>Sale Staff List</h1>
-            <Box className="PendingAssigned-container">
-                <Box className='Pendingcontainer'>
+            <Box className="PendingAssigned-container" >
+                <Box className='Pendingcontainer' sx={{ marginTop: -12 }}>
                     <hr className="vertical-line" />
 
                     <Box sx={{ maxWidth: 300, textAlign: 'left', marginTop: -5 }}>
@@ -161,7 +171,7 @@ const PendingAssigned = () => {
                                     <ListItemIcon >
                                         <HomeIcon sx={{ color: 'blue' }} />
                                     </ListItemIcon>
-                                    <Link href="/managerorderlist" sx={{ textDecoration: 'none', color: 'inherit' }}>
+                                    <Link to="/managerorderlist" style={{ textDecoration: 'none', color: 'inherit' }}>
                                         <Typography variant="h6">Home</Typography>
                                     </Link>
                                 </ListItem>
@@ -169,7 +179,7 @@ const PendingAssigned = () => {
                                     <ListItemIcon >
                                         <PendingIcon sx={{ color: 'green' }} />
                                     </ListItemIcon>
-                                    <Link href="/pending" sx={{ textDecoration: 'none', color: 'inherit' }}>
+                                    <Link to="/pending" style={{ textDecoration: 'none', color: 'inherit' }}>
                                         <Typography variant="h6">Pending</Typography>
                                     </Link>
                                 </ListItem>

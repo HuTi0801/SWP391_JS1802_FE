@@ -13,16 +13,17 @@ const DeliveringAssigned = () => {
     const { id } = useParams();
     const [SaleStaff, setSaleStaff] = useState([]);
     const [Staff, setStaff] = useState([]);
-    const [DeliveryStaff, setDeliveryStaff] = useState([]);
     const authToken = localStorage.getItem('authToken');
+    const [DeliveryStaff, setDeliveryStaff] = useState([]);
     useEffect(() => {
         const fetchOrder = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/auth/orders/get-order-${id}`, {
-                    headers: {
-                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
-                    }
-                });
+                const response = await axios.get(`http://localhost:8080/auth/orders/get-order-${id}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 setOrder(response.data.result);
             } catch (error) {
                 console.error('Error fetching order:', error);
@@ -33,11 +34,12 @@ const DeliveringAssigned = () => {
 
         const fetchDeliveryStaff = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/auth/account/get-active-delivery-staff-and-order-counts-list', {
-                    headers: {
-                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
-                    }
-                });
+                const response = await axios.get('http://localhost:8080/auth/account/get-active-delivery-staff-and-order-counts-list',
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 setDeliveryStaff(response.data);
             } catch (error) {
                 setError(error.message);
@@ -47,11 +49,12 @@ const DeliveringAssigned = () => {
         };
         const fetchSaleStaff = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/auth/account/get-active-sale-staff-and-order-counts-list', {
-                    headers: {
-                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
-                    }
-                });
+                const response = await axios.get('http://localhost:8080/auth/account/get-active-sale-staff-and-order-counts-list',
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 setSaleStaff(response.data);
             } catch (error) {
                 setError(error.message);
@@ -61,11 +64,12 @@ const DeliveringAssigned = () => {
         };
         const fetchStaff = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/auth/account-order/get-staff-accounts-assigning-by-order?orderId=${id}`, {
-                    headers: {
-                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
-                    }
-                });
+                const response = await axios.get(`http://localhost:8080/auth/account-order/get-staff-accounts-assigning-by-order?orderId=${id}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 setStaff(response.data);
             } catch (error) {
                 setError(error.message);
@@ -91,12 +95,12 @@ const DeliveringAssigned = () => {
         <><ManagerHeader />
             <Functionbar />
             <h1>Staff List</h1>
-            <Box sx={{ display: 'flex' }}>
+            <Box sx={{ display: 'flex', marginTop: 32 }}>
                 <MemoizedDeliveringcontainer id={id} />
 
                 <Grid container spacing={20} />
 
-                <Box sx={{ marginTop: 20, marginRight: 500 }}>
+                <Box sx={{ marginTop: -10, marginRight: 500 }}>
 
                     <table className='AllStaff_table'>
                         <thead>

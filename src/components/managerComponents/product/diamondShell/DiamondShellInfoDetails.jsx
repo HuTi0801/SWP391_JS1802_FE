@@ -9,7 +9,7 @@ const DiamondShellInfoDetails = () => {
     const [diamondShells, setDiamondShells] = useState([1]);
     const [error, setError] = useState(null);
     const { id } = useParams();
-
+    const authToken = localStorage.getItem('authToken');
 
     useEffect(() => {
         const fetchDiamondShellsDetails = async () => {

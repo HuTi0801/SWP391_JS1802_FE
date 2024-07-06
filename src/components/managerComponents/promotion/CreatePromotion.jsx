@@ -14,6 +14,7 @@ const CreatePromotion = () => {
     const [diamonds, setDiamonds] = useState([]);
     const [diamondShells, setDiamondShells] = useState([]);
     const [selectedProducts, setSelectedProducts] = useState([]);
+    const authToken = localStorage.getItem('authToken');
     const [promotionData, setPromotionData] = useState({
         promotionName: "",
         description: "",
@@ -28,7 +29,12 @@ const CreatePromotion = () => {
     useEffect(() => {
         const fetchDiamonds = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/auth/diamond/get-diamond-names');
+                const response = await axios.get('http://localhost:8080/auth/diamond/get-diamond-names',
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 setDiamonds(response.data);
             } catch (error) {
                 console.error('Error fetching diamond names:', error);
@@ -37,7 +43,12 @@ const CreatePromotion = () => {
 
         const fetchDiamondShells = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/auth/diamond-shell/get-diamond-shell-names');
+                const response = await axios.get('http://localhost:8080/auth/diamond-shell/get-diamond-shell-names',
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 setDiamondShells(response.data);
             } catch (error) {
                 console.error('Error fetching diamond shell names:', error);
@@ -130,10 +141,11 @@ const CreatePromotion = () => {
             const memberLevels = promotionData.memberLevels.map(level => `memberLevels=${encodeURIComponent(level.trim())}`).join('&');
             const types = promotionData.types.map(type => `types=${encodeURIComponent(type.trim())}`).join('&');
             const productNames = promotionData.productNames.map(name => `productNames=${encodeURIComponent(name.trim())}`).join('&');
-
-            const url = `http://localhost:8080/auth/promotion/add?${promotionName}&${description}&${discountPercent}&${startDate}&${endDate}&${memberLevels}&${types}&${productNames}`;
-
-            const response = await axios.post(url);
+            const response = await axios.post(`http://localhost:8080/auth/promotion/add?${promotionName}&${description}&${discountPercent}&${startDate}&${endDate}&${memberLevels}&${types}&${productNames}`, null, {
+                headers: {
+                    Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                }
+            });
 
             if (response.data.isSuccess) {
                 alert("Add Promotion successfully!!!");
@@ -153,7 +165,7 @@ const CreatePromotion = () => {
             <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: 4 }}>
                 <Typography variant="h4" gutterBottom
                     sx={{ color: 'red', fontSize: 50, fontWeight: 'bold', fontStretch: 'expanded' }}>Create Promotion</Typography>
-                <Box sx={{ width: '60%', backgroundColor: '#f7f7f7', padding: 3, borderRadius: 2, boxShadow: 3, height: 320 }}>
+                <Box sx={{ width: '60%', backgroundColor: '#f7f7f7', padding: 3, borderRadius: 2, boxShadow: 3, height: 340 }}>
                     <Grid container spacing={2}>
                         <Grid item xs={12} md={6}>
                             <TextField
@@ -187,10 +199,38 @@ const CreatePromotion = () => {
                             <FormControl fullWidth sx={{ textAlign: 'center' }}>
                                 <Select
                                     isMulti
+                                    styles={{
+                                        control: (base) => ({
+                                            ...base,
+                                            width: '100%',
+                                            height: '56px',
+                                            borderRadius: '4px',
+                                            border: '1px solid #ccc',
+                                            padding: '0 5px', // Adjust padding if needed
+                                        }),
+                                        multiValue: (base) => ({
+                                            ...base,
+                                            backgroundColor: '#e0e0e0', // Adjust background color for selected options
+                                            borderRadius: '2px',
+                                        }),
+                                        multiValueLabel: (base) => ({
+                                            ...base,
+                                            color: '#333', // Adjust text color for selected options
+                                        }),
+                                        multiValueRemove: (base) => ({
+                                            ...base,
+                                            color: '#333',
+                                            ':hover': {
+                                                backgroundColor: '#ccc', // Adjust hover effect
+                                                color: '#000',
+                                            },
+                                        }),
+                                    }}
                                     options={options_MemberLevel}
                                     onChange={handleSelectChange}
                                     name="memberLevels"
                                     placeholder="Member Level"
+                                    style={{ width: '100%', height: '39px', borderRadius: '4px', border: '1px solid #ccc', padding: '5px' }}
                                     value={options_MemberLevel.filter(option =>
                                         promotionData.memberLevels.includes(option.value)
                                     )}
@@ -198,41 +238,69 @@ const CreatePromotion = () => {
                             </FormControl>
                         </Grid>
 
-                        <Grid item xs={12} md={3} sx={{ marginTop: -1 }}>
-                            <InputLabel sx={{ marginLeft: 8 }}>START DATE</InputLabel>
+                        <Grid item xs={12} md={3}>
                             <Box sx={{ marginLeft: -1 }}>
+
                                 <DatePicker
+                                    name="startDate"
                                     selected={promotionData.startDate}
                                     onChange={handleStartDateChange}
                                     dateFormat="dd/MM/yyyy"
                                     wrapperClassName="STARTDATE"
-                                    placeholderText="dd/mm/yyyy"
+                                    placeholderText="Start Date"
                                 />
                             </Box>
                         </Grid>
 
-                        <Grid item xs={12} md={3} sx={{ marginTop: -1 }}>
-                            <InputLabel sx={{ marginLeft: 10 }}>END DATE</InputLabel>
+                        <Grid item xs={12} md={3}>
                             <Box >
                                 <DatePicker
+                                    name="endDate"
                                     selected={promotionData.endDate}
                                     wrapperClassName="ENDDATE"
                                     onChange={handleEndDateChange}
                                     dateFormat="dd/MM/yyyy"
-                                    placeholderText="dd/mm/yyyy"
+                                    placeholderText="End Date"
 
                                 />
                             </Box>
                         </Grid>
 
                         <Grid item xs={12} md={6}>
-                            <FormControl fullWidt sx={{ textAlign: 'center', minWidth: 454 }}>
+                            <FormControl fullWidth sx={{ textAlign: 'center', minWidth: 454 }}>
                                 <Select
                                     isMulti
+                                    styles={{
+                                        control: (base) => ({
+                                            ...base,
+                                            width: '100%',
+                                            height: '56px',
+                                            borderRadius: '4px',
+                                            border: '1px solid #ccc',
+                                            padding: '0 5px', // Adjust padding if needed
+                                        }),
+                                        multiValue: (base) => ({
+                                            ...base,
+                                            backgroundColor: '#e0e0e0', // Adjust background color for selected options
+                                            borderRadius: '2px',
+                                        }),
+                                        multiValueLabel: (base) => ({
+                                            ...base,
+                                            color: '#333', // Adjust text color for selected options
+                                        }),
+                                        multiValueRemove: (base) => ({
+                                            ...base,
+                                            color: '#333',
+                                            ':hover': {
+                                                backgroundColor: '#ccc', // Adjust hover effect
+                                                color: '#000',
+                                            },
+                                        }),
+                                    }}
                                     options={options_Type}
                                     onChange={handleSelectChange}
                                     name="types"
-                                    placeholder="Select type"
+                                    placeholder="Type"
                                     value={options_Type.filter(option =>
                                         promotionData.types.includes(option.value)
                                     )}
@@ -241,9 +309,36 @@ const CreatePromotion = () => {
                         </Grid>
 
                         <Grid item xs={12} md={12} >
-                            <FormControl fullWidt sx={{ textAlign: 'center', minWidth: 926 }}>
+                            <FormControl fullWidth sx={{ textAlign: 'center', minWidth: 926 }}>
                                 <Select
                                     isMulti
+                                    styles={{
+                                        control: (base) => ({
+                                            ...base,
+                                            width: '100%',
+                                            height: '56px',
+                                            borderRadius: '4px',
+                                            border: '1px solid #ccc',
+                                            padding: '0 5px', // Adjust padding if needed
+                                        }),
+                                        multiValue: (base) => ({
+                                            ...base,
+                                            backgroundColor: '#e0e0e0', // Adjust background color for selected options
+                                            borderRadius: '2px',
+                                        }),
+                                        multiValueLabel: (base) => ({
+                                            ...base,
+                                            color: '#333', // Adjust text color for selected options
+                                        }),
+                                        multiValueRemove: (base) => ({
+                                            ...base,
+                                            color: '#333',
+                                            ':hover': {
+                                                backgroundColor: '#ccc', // Adjust hover effect
+                                                color: '#000',
+                                            },
+                                        }),
+                                    }}
                                     options={productOptions}
                                     onChange={handleProductSelectChange}
                                     name="productNames"

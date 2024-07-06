@@ -16,11 +16,16 @@ import SidebarMenu from '../../dashboard/SidebarMenu.jsx';
 const CancelOrderRevenue = () => {
     const [barData, setBarData] = useState([]);
     const [year, setYear] = useState('');
-
+    const authToken = localStorage.getItem('authToken');
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/auth/dashboard/view-revenue?year=${year}`);
+                const response = await axios.get(`http://localhost:8080/auth/dashboard/view-revenue?year=${year}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 const data = response.data;
                 const transformedData = [];
                 const monthsOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; // Define the desired order of months

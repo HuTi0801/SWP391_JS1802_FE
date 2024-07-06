@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
 import axios from 'axios';
-import { updateDiamond } from "../../../../redux/actions/productAction";
 import { useParams, useNavigate } from "react-router-dom";
 import ManagerHeader from "../../header/ManagerHeader";
 import Functionbar from "../../functionbar/Functionbar";
@@ -14,10 +12,10 @@ import {
 } from "@mui/material";
 
 const UpdateDiamond = () => {
-    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [error, setError] = useState(null);
     const { id } = useParams();
+    const authToken = localStorage.getItem('authToken');
     const [diamond, setDiamond] = useState({
         cut: "",
         origin: "xumYCwQHz",
@@ -57,9 +55,22 @@ const UpdateDiamond = () => {
     }
 
     const handleUpdate = async () => {
-        dispatch(updateDiamond(id, diamond));
-        alert("Update Diamond successfully!!!!");
-        navigate("/diamondInfoDetails/" + id);
+        try {
+            const config = {
+                headers: {
+                    'Authorization': `Bearer ${authToken}`,
+                    'Content-Type': 'application/json'
+                }
+            };
+            const response = await axios.post(`http://localhost:8080/auth/diamond/update-diamond-${id}`, diamond, config);
+            if (response.data.isSuccess) {
+                alert("Update Diamond successfully!!!!");
+                navigate("/diamondInfoDetails/" + id);
+            }
+        } catch (error) {
+            setError(error.message);
+            console.error('Error updating diamond', error);
+        }
     };
 
     return (

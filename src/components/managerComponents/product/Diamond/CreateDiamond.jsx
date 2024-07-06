@@ -1,15 +1,15 @@
 
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createProduct } from "../../../../redux/actions/productAction";
 import ManagerHeader from "../../header/ManagerHeader";
 import Functionbar from "../../functionbar/Functionbar";
+import axios from 'axios';
 import { Grid, TextField, Select, MenuItem, FormControl, InputLabel, Button, Box, Typography } from '@mui/material';
 import { useNavigate } from "react-router-dom";
 
 const CreateDiamond = () => {
-    const dispatch = useDispatch();
+
     const navigate = useNavigate();
+    const authToken = localStorage.getItem('authToken');
     const [diamond, setDiamond] = useState({
         caratWeight: '0',
         certificateNumber: "",
@@ -29,10 +29,23 @@ const CreateDiamond = () => {
         setDiamond({ ...diamond, [e.target.name]: e.target.value });
     };
 
-    const diamondAdd = () => {
-        dispatch(createProduct(diamond));
-        alert("Add Diamond successfully!!!!");
-        navigate("/diamond");
+    const diamondAdd = async () => {
+        try {
+            const config = {
+                headers: {
+                    'Authorization': `Bearer ${authToken}`,
+                    'Content-Type': 'application/json'
+                }
+            };
+            const response = await axios.post(`http://localhost:8080/auth/diamond/create-diamond`, diamond, config);
+            if (response.data.isSuccess) {
+                alert("Add Diamond successfully!!!!");
+                navigate("/diamond");
+            }
+        } catch (error) {
+            setError(error.message);
+            console.error('Error updating diamond', error);
+        }
     };
 
     return (

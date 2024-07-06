@@ -6,6 +6,11 @@
     width: 100vw;
 }
 
+h1 {
+    color: red;
+    margin-top: 10px;
+}
+
 .diamond-container .create {
     display: flex;
     flex-direction: column;
@@ -110,7 +115,7 @@
     padding: 10px 50px;
 
     display: flex;
-
+    font-family: var(--font-family);
     text-decoration: none;
     font-weight: bold;
     color: white;
@@ -128,8 +133,10 @@
 .diamondInfo,
 .Delete {
     display: block;
+    font-stretch: expanded;
+    font-family: var(--font-family);
     background-color: rgba(128, 128, 128, 0.811);
-    width: 2.4em;
+    width: 1.2em;
     border-radius: 20px;
 }
 
@@ -146,6 +153,7 @@
 .diamond-card .Delete {
     padding: 12px 60px 23.5px 60px;
     display: flex;
+    padding-top: 15px;
     font-stretch: expanded;
     text-decoration: none;
     font-weight: bold;
@@ -158,8 +166,8 @@
     text-align: center;
     font-size: large;
     margin-left: auto;
-    margin-right: 160px;
-    margin-top: -54px;
+    margin-right: 140px;
+    margin-top: -58px;
 }
 
 /* pagination */

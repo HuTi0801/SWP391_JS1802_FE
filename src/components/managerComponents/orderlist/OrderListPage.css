@@ -1,7 +1,7 @@
 .OrderList-container {
     display: inline-flex;
     padding-top: 50px;
-    margin-top: 682px;
+    margin-top: -88px;
     border-right: 1px solid lightgrey;
 }
 
@@ -21,17 +21,6 @@
 }
 
 
-.url_Status {
-    display: flex;
-    flex-direction: column;
-    list-style-type: none;
-}
-
-.url_Status a {
-    text-decoration: none;
-    padding: 8px 16px;
-}
-
 
 
 
@@ -39,7 +28,7 @@
 .list {
     display: flex;
     flex-direction: column;
-    margin-top: -700px;
+    margin-top: -650px;
 }
 
 .list .OrderList {
@@ -105,6 +94,8 @@
 .Assigned {
     background-color: rgba(128, 128, 128, 0.811);
     width: 20px;
+    font-stretch: expanded;
+    font-family: var(--font-family);
     border-radius: 20px;
     padding: 10px 20px;
     /* Reduce the padding */
@@ -130,9 +121,14 @@
     /* Adjust the top margin */
 }
 
+.OrderList .ViewDetails:hover {
+    color: red;
+    background-color: #007bff;
+}
+
 .OrderList .Assigned {
     display: flex;
-
+    font-stretch: expanded;
     text-decoration: none;
     font-weight: bold;
     color: white;
@@ -148,6 +144,39 @@
     /* Reduce the padding */
     margin-top: -100px;
     /* Adjust the top margin */
+}
+
+.OrderList .Assigned:hover {
+    color: red;
+    background-color: #007bff;
+}
+
+.OrderList .Refund {
+    display: flex;
+    font-family: var(--font-family);
+    font-weight: bold;
+    color: white;
+    border: 1px lightgray solid;
+    background-color: rgba(128, 128, 128, 0.811);
+    border-radius: 20px;
+    border-collapse: collapse;
+    justify-content: space-between;
+    align-items: center;
+    /* Căn giữa theo chiều dọc */
+    flex-direction: column;
+    text-align: center;
+    margin-left: auto;
+    margin-right: 0;
+    margin-top: -120px;
+    padding: 20px 30px;
+    /* Reduce the padding */
+    margin-top: -100px;
+    /* Adjust the top margin */
+}
+
+.OrderList .Refund:hover {
+    color: red;
+    background-color: #007bff;
 }
 
 /* pagination */
