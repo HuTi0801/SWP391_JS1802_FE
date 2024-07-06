@@ -16,29 +16,31 @@ const DeliveryStaffDelivering = () => {
     const [deliveringAssigned, setDeliveringAssigned] = useState([]);
     const [staff, setStaff] = useState([]);
     const authToken = localStorage.getItem('authToken');
-
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const orderResponse = await axios.get(`http://localhost:8080/auth/orders/get-order-${id}`, {
-                    headers: {
-                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
-                    }
-                });
+                const orderResponse = await axios.get(`http://localhost:8080/auth/orders/get-order-${id}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 setOrder(orderResponse.data.result);
 
-                const assignedResponse = await axios.get('http://localhost:8080/auth/account/get-active-delivery-staff-and-order-counts-list', {
-                    headers: {
-                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
-                    }
-                });
+                const assignedResponse = await axios.get('http://localhost:8080/auth/account/get-active-delivery-staff-and-order-counts-list',
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 setDeliveringAssigned(assignedResponse.data);
 
-                const staffResponse = await axios.get(`http://localhost:8080/auth/account-order/get-staff-accounts-assigning-by-order?orderId=${id}`, {
-                    headers: {
-                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
-                    }
-                });
+                const staffResponse = await axios.get(`http://localhost:8080/auth/account-order/get-staff-accounts-assigning-by-order?orderId=${id}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 setStaff(staffResponse.data);
             } catch (error) {
                 setError(error.message);
@@ -127,7 +129,9 @@ const DeliveryStaffDelivering = () => {
             <Functionbar />
             <h1>Delivery Staff List</h1>
             <Box sx={{ display: 'flex' }}>
-                <MemoizedDeliveringcontainer id={id} />
+                <Box sx={{ marginTop: 14 }}>
+                    <MemoizedDeliveringcontainer id={id} />
+                </Box>
                 <Grid container spacing={20} />
                 <Box sx={{ marginTop: 20, marginRight: 500 }}>
                     <table {...getTableProps()} className='Delivering_table'>

@@ -33,7 +33,6 @@
 .Pendingcontainer {
     display: inline-flex;
     padding-top: 50px;
-    margin-top: -88px;
     border-right: 1px solid lightgray;
 }
 
@@ -44,16 +43,6 @@
     margin-right: 20px;
 }
 
-.url_Status {
-    display: flex;
-    flex-direction: column;
-    list-style-type: none;
-}
-
-.url_Status a {
-    text-decoration: none;
-    padding: 8px 16px;
-}
 
 .Pending,
 .All {
@@ -195,16 +184,7 @@
 
 
 
-.url_Status {
-    display: flex;
-    flex-direction: column;
-    list-style-type: none;
-}
 
-.url_Status a {
-    text-decoration: none;
-    padding: 8px 16px;
-}
 
 .Confirm,
 .All {
@@ -437,7 +417,7 @@
 }
 
 .Delivered_table {
-    margin-top: -100px;
+    margin-top: 100px;
     margin-left: 400px;
     width: 100%;
     max-width: 800px;

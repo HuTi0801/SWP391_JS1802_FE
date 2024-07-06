@@ -1,8 +1,6 @@
 
 
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { updateDiamondShell } from "../../../../redux/actions/diamondShellAction";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import ManagerHeader from "../../header/ManagerHeader";
@@ -17,10 +15,10 @@ import {
 
 
 const UpdateDiamondShell = () => {
-    const dispatch = useDispatch();
     const { id } = useParams();
     const navigate = useNavigate();
     const [error, setError] = useState(null);
+    const authToken = localStorage.getItem('authToken');
     const [diamondShell, setDiamondShell] = useState({
         gender: "male",
         imageDiamondShell: "",
@@ -55,9 +53,22 @@ const UpdateDiamondShell = () => {
     };
 
     const handleUpdate = async () => {
-        dispatch(updateDiamondShell(id, diamondShell));
-        alert("Update DiamondShell successfully!!!!");
-        navigate("/diamondShellInfoDetails/" + id);
+        try {
+            const config = {
+                headers: {
+                    'Authorization': `Bearer ${authToken}`,
+                    'Content-Type': 'application/json'
+                }
+            };
+            const response = await axios.post(`http://localhost:8080/auth/diamond-shell/update-diamond-shell-${id}`, diamondShell, config);
+            if (response.data.isSuccess) {
+                alert("Update DiamondShell successfully!!!!");
+                navigate("/diamondShellInfoDetails/" + id);
+            }
+        } catch (error) {
+            setError(error.message);
+            console.error('Error updating diamond', error);
+        }
     };
 
     return (

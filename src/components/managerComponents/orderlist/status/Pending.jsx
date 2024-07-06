@@ -10,13 +10,18 @@ const Pending = () => {
     const [Pendingoders, setPendingOrders] = useState([]);
     const [Status, setStatus] = useState(null);
     const [currentPage, setcurrentPage] = useState(1)
-
+    const authToken = localStorage.getItem('authToken');
     const recordsPerPage = 3;
     /* Display Pending Order Info  */
     useEffect(() => {
         const fetchStatus = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/auth/status-order/get-a-status-order-1');
+                const response = await axios.get('http://localhost:8080/auth/status-order/get-a-status-order-1',
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 setStatus(response.data.result);
             } catch (error) {
                 console.error('Error fetching status info:', error);
@@ -30,7 +35,12 @@ const Pending = () => {
         const fetchData = async () => {
             if (Status) {
                 try {
-                    const response = await axios.get(`http://localhost:8080/auth/orders/get-order-statusName?statusName=${Status.statusName}`);
+                    const response = await axios.get(`http://localhost:8080/auth/orders/get-order-statusName?statusName=${Status.statusName}`,
+                        {
+                            headers: {
+                                Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                            }
+                        });
                     setPendingOrders(response.data.result);
                 } catch (error) {
                     console.error('Error fetching orders:', error);

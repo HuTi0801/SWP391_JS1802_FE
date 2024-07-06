@@ -9,13 +9,18 @@ const Delivering = () => {
     const [Deliveringoders, setDeliveringOrders] = useState([]);
     const [Status, setStatus] = useState(null);
     const [currentPage, setcurrentPage] = useState(1)
-
+    const authToken = localStorage.getItem('authToken');
     const recordsPerPage = 3;
     /* Display  Delivering  Order Info  */
     useEffect(() => {
         const fetchStatus = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/auth/status-order/get-a-status-order-3');
+                const response = await axios.get('http://localhost:8080/auth/status-order/get-a-status-order-3',
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 setStatus(response.data.result);
             } catch (error) {
                 console.error('Error fetching status info:', error);
@@ -29,7 +34,12 @@ const Delivering = () => {
         const fetchData = async () => {
             if (Status) {
                 try {
-                    const response = await axios.get(`http://localhost:8080/auth/orders/get-order-statusName?statusName=${Status.statusName}`);
+                    const response = await axios.get(`http://localhost:8080/auth/orders/get-order-statusName?statusName=${Status.statusName}`,
+                        {
+                            headers: {
+                                Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                            }
+                        });
                     setDeliveringOrders(response.data.result);
                 } catch (error) {
                     console.error('Error fetching orders:', error);

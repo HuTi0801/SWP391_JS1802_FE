@@ -9,19 +9,19 @@ const OrderDetails = () => {
     const [order, setOrder] = useState([]);
     const [loading, setLoading] = useState(true);
     const { id } = useParams();
-
+    const authToken = localStorage.getItem('authToken');
     const [diamonds, setDiamonds] = useState([]);
     const [diamondShells, setDiamondShells] = useState([]);
-    const authToken = localStorage.getItem('authToken');
 
     useEffect(() => {
         const fetchOrder = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/auth/orders/get-order-${id}`, {
-                    headers: {
-                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
-                    }
-                });
+                const response = await axios.get(`http://localhost:8080/auth/orders/get-order-${id}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 if (response.data.isSuccess) {
                     setOrder(response.data.result);
                 } else {
@@ -36,7 +36,12 @@ const OrderDetails = () => {
 
         const fetchDiamonds = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/auth/diamond/get-all-diamond');
+                const response = await axios.get('http://localhost:8080/auth/diamond/get-all-diamond',
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 if (response.data.isSuccess) {
                     setDiamonds(response.data.result);
                 } else {
@@ -49,7 +54,12 @@ const OrderDetails = () => {
 
         const fetchDiamondShells = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/auth/diamond-shell/get-all-diamond-shell');
+                const response = await axios.get('http://localhost:8080/auth/diamond-shell/get-all-diamond-shell',
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 if (response.data.isSuccess) {
                     setDiamondShells(response.data.result);
                 } else {

@@ -16,11 +16,16 @@ import SidebarMenu from '../../dashboard/SidebarMenu.jsx';
 const DeliveringOrderRevenue = () => {
     const [barData, setBarData] = useState([]);
     const [year, setYear] = useState('');
-
+    const authToken = localStorage.getItem('authToken');
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/auth/dashboard/view-revenue?year=${year}`);
+                const response = await axios.get(`http://localhost:8080/auth/dashboard/view-revenue?year=${year}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 const data = response.data;
                 const transformedData = [];
                 const monthsOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; // Define the desired order of months
@@ -66,8 +71,8 @@ const DeliveringOrderRevenue = () => {
                                         />
                                         <YAxis
                                             tickFormatter={(value) => `${value / 1000000}M`}
-                                            ticks={[0, 20000000, 40000000, 60000000, 80000000, 100000000]}
-                                            domain={[20000000, 100000000]}
+                                            ticks={[0, 40000000, 80000000, 120000000, 160000000]}
+                                            domain={[0, 160000000]}
                                         />
                                         <Tooltip />
                                         <Bar dataKey="totalRevenue" fill="#8884d8" >

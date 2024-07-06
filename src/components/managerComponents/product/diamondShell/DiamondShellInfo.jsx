@@ -4,7 +4,7 @@ import "./Diamondshell.css"
 import { Link } from 'react-router-dom';
 const DiamondShellInfo = () => {
     const [diamondShells, setDiamondShells] = useState([]);
-
+    const authToken = localStorage.getItem('authToken');
     const fetchDiamondShells = async () => {
         try {
             const response = await axios.get('http://localhost:8080/auth/diamond-shell/get-all-diamond-shell');
@@ -20,8 +20,11 @@ const DiamondShellInfo = () => {
         if (!shouldDelete) return;
 
         try {
-            const url = `http://localhost:8080/auth/diamond-shell/remove-diamond-shell-${id}`;
-            const response = await axios.post(url);
+            const response = await axios.post(`http://localhost:8080/auth/diamond-shell/remove-diamond-shell-${id}`, null, {
+                headers: {
+                    Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                }
+            });
             const { status } = response.data.result;
 
             if (status === false) {
@@ -156,10 +159,10 @@ const DiamondShellInfo = () => {
 
     function prePage() {
         /*Click vào sự kiện prePag */
-        /*currentPage = 2 (page 2)=> firstIndex = 3 */
-        /* 2 !== 3 */
+        /*currentPage = 2 (page 2)*/
+        /* 2 > 1 */
         /*  setcurrentPage(2 - 1) => currentPage = 1 (page 1) */
-        if (currentPage !== firstIndex && currentPage !== 1) {
+        if (currentPage > 1) {
             setcurrentPage(currentPage - 1)
         }
     }
@@ -169,10 +172,10 @@ const DiamondShellInfo = () => {
     }
     function nextPage() {
         /*Click vào sự kiện nextPage */
-        /*currentPage = 1 (page 1)=> lastIndex = 3 */
-        /* 1 !== 3 */
+        /*currentPage = 1 (page 1)*/
+        /* 1 < 2*/
         /*  setcurrentPage(1 + 1) => currentPage = 2 (page 2) */
-        if (currentPage !== lastIndex) {
+        if (currentPage < npage) {
             setcurrentPage(currentPage + 1)
         }
     }

@@ -1,5 +1,6 @@
 import React, { memo, useState } from 'react';
-import { Grid, List, ListItem, ListItemIcon, Typography, Divider, Box, Collapse, Link } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { Grid, List, ListItem, ListItemIcon, Typography, Divider, Box, Collapse } from '@mui/material';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import HomeIcon from '@mui/icons-material/Home';
@@ -18,9 +19,9 @@ const MemoizedDeliveredcontainer = memo(({ id }) => {
     };
 
     return (
-        <Box sx={{ maxWidth: 240 }}>
+        <Box sx={{ maxWidth: 240, marginTop: -25 }}>
             <Grid item xs={12} md={3}>
-                <Box sx={{ textAlign: 'left', marginTop: -10, borderRight: 1, borderColor: "lightgray" }}>
+                <Box sx={{ textAlign: 'left', marginTop: -15, borderRight: 1, borderColor: "lightgray" }}>
                     <Typography variant="h6">Diamond Shop</Typography>
                     <Typography variant="subtitle2">Workspace</Typography>
                 </Box>
@@ -30,7 +31,7 @@ const MemoizedDeliveredcontainer = memo(({ id }) => {
                         <ListItemIcon>
                             <HomeIcon sx={{ color: 'blue' }} />
                         </ListItemIcon>
-                        <Link href="/managerorderlist" sx={{ textDecoration: 'none', color: 'inherit' }}>
+                        <Link to="/managerorderlist" style={{ textDecoration: 'none', color: 'inherit' }}>
                             <Typography variant="h6">Home</Typography>
                         </Link>
                     </ListItem>
@@ -39,7 +40,7 @@ const MemoizedDeliveredcontainer = memo(({ id }) => {
                         <ListItemIcon>
                             <DoneIcon sx={{ color: 'green' }} />
                         </ListItemIcon>
-                        <Link href="/delivered" sx={{ textDecoration: 'none', color: 'inherit' }}>
+                        <Link to="/delivered" style={{ textDecoration: 'none', color: 'inherit' }}>
                             <Typography variant="h6">Delivered</Typography>
                         </Link>
                     </ListItem>
@@ -58,8 +59,8 @@ const MemoizedDeliveredcontainer = memo(({ id }) => {
                                 <ListItemIcon>
                                     <PeopleIcon sx={{ color: 'purple', marginLeft: -2.2, marginBottom: 2 }} />
                                 </ListItemIcon>
-                                <Link href={`/deliveringassigned/${id}`}
-                                    sx={{ textDecoration: 'none', color: 'inherit', marginLeft: -2, marginBottom: 2 }}>
+                                <Link to={`/deliveredassigned/${id}`}
+                                    style={{ textDecoration: 'none', color: 'inherit', marginLeft: -2, marginBottom: 2 }}>
                                     <Typography variant="body1">All Staff</Typography>
                                 </Link>
                             </ListItem>
@@ -68,8 +69,8 @@ const MemoizedDeliveredcontainer = memo(({ id }) => {
                                 <ListItemIcon>
                                     <AttachMoneyIcon sx={{ color: 'darkgreen', marginLeft: -2.2, marginBottom: 2 }} />
                                 </ListItemIcon>
-                                <Link href={`/saleStaffDelivering/${id}`}
-                                    sx={{ textDecoration: 'none', color: 'inherit', marginLeft: -2, marginTop: -2 }}>
+                                <Link to={`/saleStaffDelivered/${id}`}
+                                    style={{ textDecoration: 'none', color: 'inherit', marginLeft: -2, marginTop: -2 }}>
                                     <Typography variant="body1">Sale Staff</Typography>
                                 </Link>
                             </ListItem>
@@ -78,8 +79,8 @@ const MemoizedDeliveredcontainer = memo(({ id }) => {
                                 <ListItemIcon>
                                     <LocalShippingIcon sx={{ color: 'darkgreen', marginLeft: -2.2, marginBottom: 2 }} />
                                 </ListItemIcon>
-                                <Link href={`/deliveryStaffDelivering/${id}`}
-                                    sx={{ textDecoration: 'none', color: 'inherit', marginLeft: -2.2, marginTop: -2 }}>
+                                <Link to={`/deliveryStaffDelivered/${id}`}
+                                    style={{ textDecoration: 'none', color: 'inherit', marginLeft: -2.2, marginTop: -2 }}>
                                     <Typography variant="body1">Delivery Staff</Typography>
                                 </Link>
                             </ListItem>
@@ -90,7 +91,7 @@ const MemoizedDeliveredcontainer = memo(({ id }) => {
                         <ListItemIcon>
                             <AccountCircleIcon sx={{ color: 'teal' }} />
                         </ListItemIcon>
-                        <Link href="/profile" sx={{ textDecoration: 'none', color: 'inherit' }}>
+                        <Link to="/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
                             <Typography variant="h6">Account</Typography>
                         </Link>
                     </ListItem>

@@ -80,7 +80,7 @@
 .sub-links {
     position: absolute;
     top: 100%;
-    width: 100vw;
+    width: 86.2vw;
     margin-left: 50px;
     /* Thay đổi giá trị này để điều chỉnh khoảng cách */
     display: flex;
@@ -97,6 +97,7 @@
 
 .sub-links .diamondshell {
     margin-left: 82px;
+
 }
 
 .function-container .url .sub-links .diamond {

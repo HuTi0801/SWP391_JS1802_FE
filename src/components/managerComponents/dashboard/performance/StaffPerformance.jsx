@@ -20,11 +20,17 @@ const StaffPerformance = () => {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     const [staffUsername, setStaffUsername] = useState([]);
+    const authToken = localStorage.getItem('authToken');
     useEffect(() => {
 
         const fetchData = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/auth/dashboard/view-staff-performance?year=${year}`);
+                const response = await axios.get(`http://localhost:8080/auth/dashboard/view-staff-performance?year=${year}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 const data = response.data;
                 const transformedData = [];
                 const monthsOrder = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]; // Define the desired order of months
@@ -48,7 +54,12 @@ const StaffPerformance = () => {
                 return;
             }
             try {
-                const response = await axios.get(`http://localhost:8080/auth/dashboard/view-staff-performance?year=${year}`);
+                const response = await axios.get(`http://localhost:8080/auth/dashboard/view-staff-performance?year=${year}`,
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 setStaffUsername(response.data);
             } catch (error) {
                 console.error('Error fetching order:', error);

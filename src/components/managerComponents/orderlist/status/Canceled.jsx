@@ -9,13 +9,18 @@ const Canceled = () => {
     const [Canceloders, setCancelOrders] = useState([]);
     const [Status, setStatus] = useState(null);
     const [currentPage, setcurrentPage] = useState(1)
-
+    const authToken = localStorage.getItem('authToken');
     const recordsPerPage = 3;
     /* Display Canceled Order Info  */
     useEffect(() => {
         const fetchStatus = async () => {
             try {
-                const response = await axios.get('http://localhost:8080/auth/status-order/get-a-status-order-5');
+                const response = await axios.get('http://localhost:8080/auth/status-order/get-a-status-order-5',
+                    {
+                        headers: {
+                            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                        }
+                    });
                 setStatus(response.data.result);
             } catch (error) {
                 console.error('Error fetching status info:', error);
@@ -29,7 +34,12 @@ const Canceled = () => {
         const fetchData = async () => {
             if (Status) {
                 try {
-                    const response = await axios.get(`http://localhost:8080/auth/orders/get-order-statusName?statusName=${Status.statusName}`);
+                    const response = await axios.get(`http://localhost:8080/auth/orders/get-order-statusName?statusName=${Status.statusName}`,
+                        {
+                            headers: {
+                                Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                            }
+                        });
                     setCancelOrders(response.data.result);
                 } catch (error) {
                     console.error('Error fetching orders:', error);
@@ -49,6 +59,21 @@ const Canceled = () => {
         return formatter.format(amount);
     }
 
+    const HandleRefund = async (id, cusName) => {
+        const shouldRefund = window.confirm(`Do you want to refund the customer named ${cusName}`);
+        if (!shouldRefund) return;
+
+        try {
+            const response = await axios.post(`http://localhost:8080/auth/transaction/update-order-info/${id}`);
+            if (response.data.isSuccess) {
+                alert("Refund successfully!!!");
+            } else {
+                console.error('Failed to refund:', response.data.message);
+            }
+        } catch (error) {
+            console.error('Error refund:', error);
+        }
+    }
 
     const lastIndex = currentPage * recordsPerPage;
 
@@ -93,9 +118,9 @@ const Canceled = () => {
                             <span>Status:</span>
                             <p>{order.dateStatusOrders[order.dateStatusOrders.length - 1].status}</p>
                         </div>
-                        <Link to="/assigned" className="Assigned">
-                            Drop
-                        </Link>
+                        <button className="Refund" onClick={() => { HandleRefund(order.orderId, order.cusName) }}>
+                            Refund
+                        </button>
                         <Link to={`/orderDetails/${order.orderId}`} className="ViewDetails">
                             View Details
                         </Link>
