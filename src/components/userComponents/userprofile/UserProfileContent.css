@@ -16,7 +16,7 @@
     width: 100%;
     margin: 20px 0px;
     padding: 20px;
-    font-size: 1em;
+    font-size: 1.3rem; /* Updated font size */
     cursor: pointer;
     border: 1px solid black;
     border-radius: 5px;
@@ -67,7 +67,6 @@
 }
 
 .user-profile-content-container .profile-text .profile-information {
-    overflow: hidden;
     margin: 10px 20px;
     width: 50%;
 }
@@ -81,7 +80,67 @@
 .user-profile-content-container .profile-information p,
 .membership-detail p {
     margin: 5px 0;
-    font-size: 2em;
+    font-size: 1.3rem; /* Updated font size */
     padding: 10px 0px;
     font-family: var(--font-family);
+}
+
+/* Edit profile, save changes, and cancel buttons */
+
+.user-profile-content-container .profile-text button {
+    width: 30%;
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 1.3rem; /* Updated font size */
+    cursor: pointer;
+    border: 1px solid black;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.user-profile-content-container .profile-text button:hover {
+    background-color: black;
+    color: white;
+}
+
+.user-profile-content-container .profile-text button[type='submit'] {
+    margin-right: 10px; /* Space between Save Changes and Cancel buttons */
+}
+
+.user-profile-content-container .profile-text button[type='button'] {
+    background-color: white;
+    color: black;
+}
+
+/* Update fields */
+
+.user-profile-content-container .profile-text label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.3rem; /* Updated font size */
+}
+
+.user-profile-content-container .profile-text input {
+    width: 50%;
+    padding: 10px;
+    font-size: 1.3rem; /* Updated font size */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+}
+
+.user-profile-content-container .profile-text input:focus {
+    outline: none;
+    border-color: black;
+}
+
+.user-profile-content-container .profile-text .error {
+    color: red;
+    margin-top: 5px;
+    font-size: 1rem; /* Adjusted error message font size */
+}
+
+.user-profile-content-container .profile-text p {
+    margin-bottom: 5px;
+    font-size: 1.3rem; /* Updated font size */
 }

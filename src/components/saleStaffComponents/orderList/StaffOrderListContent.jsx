@@ -19,7 +19,7 @@ const StaffOrderListContent = () => {
     useEffect(() => {
         const fetchOrders = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/auth/orders/get-all-orders`, {
+                const response = await axios.get(`http://localhost:8080/auth/orders/get-all-orders-by-${staffId}`, {
                     headers: {
                         Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
                     }

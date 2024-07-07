@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './DeliveryOrderDetailContent.css';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
+import moment from "moment";
 
 const DeliveryOrderDetailContent = () => {
   const [order, setOrder] = useState(null);
@@ -133,6 +134,10 @@ const DeliveryOrderDetailContent = () => {
     return new Intl.NumberFormat('vi-VN').format(price) + 'đ';
   };
 
+  const formatDateTime = (dateTime) => {
+    return moment(dateTime).format('h:mm:ss A - dddd, MMMM Do YYYY');
+  };
+
   return (
     <div className='staff-order-detail-content-container'>
       <div className='title'>
@@ -144,7 +149,8 @@ const DeliveryOrderDetailContent = () => {
           <p>Customer Name: {order.cusName}</p>
           <p>Total Price: {formatPrice(order.totalPrice)}</p>
           <p>Deliver To: {order.address}</p>
-          <p>Purchase Date: {new Date(order.dateStatusOrders[0].dateStatus).toLocaleString()}</p>
+          <p>Purchase Date: {order.dateStatusOrders.length > 0 && formatDateTime(order.dateStatusOrders[0].dateStatus)}</p>
+          <p>Status: {order.dateStatusOrders[order.dateStatusOrders.length - 1].status}</p>
         </div>
       </div>
       <div className='order-product-list'>
@@ -178,7 +184,6 @@ const DeliveryOrderDetailContent = () => {
         </ul>
       </div>
       <div className='status-and-button'>
-        <span>Status: {order.dateStatusOrders[order.dateStatusOrders.length - 1].status}</span>
         {order.dateStatusOrders[order.dateStatusOrders.length - 1].status === "Confirmed" && (
           <button onClick={handleClickTakeOrder}>TAKE ORDER</button>
         )}

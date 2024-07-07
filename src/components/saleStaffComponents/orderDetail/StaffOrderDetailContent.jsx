@@ -3,6 +3,7 @@ import './StaffOrderDetailContent.css';
 import axios from 'axios';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Modal, Box, Button, TextField } from '@mui/material'; // Import the necessary MUI components
+import moment from "moment";
 
 const StaffOrderDetailContent = () => {
   const [order, setOrder] = useState(null);
@@ -27,7 +28,6 @@ const StaffOrderDetailContent = () => {
         });
         if (response.data.isSuccess) {
           setOrder(response.data.result);
-          // Assume you have a way to determine warranty status from order data
           setWarrantyStatus(response.data.result.hasWarranty); // Example: Check if order has warranty set
         } else {
           console.error('Failed to fetch order:', response.data.message);
@@ -80,23 +80,36 @@ const StaffOrderDetailContent = () => {
 
   const handleClickConfirmOrder = async () => {
     try {
-      const response = await axios.post(`http://localhost:8080/auth/orders/update-order-status-to-confirmed/${orderId}`, null, {
+      const confirmResponse = await axios.post(`http://localhost:8080/auth/orders/update-order-status-to-confirmed/${orderId}`, null, {
         headers: {
           Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
         }
       });
-      if (response.data.isSuccess) {
-        alert("Order Confirmed Successfully! ");
-        // Update order state immediately after confirmation
-        setOrder(prevOrder => ({
-          ...prevOrder,
-          dateStatusOrders: [
-            ...prevOrder.dateStatusOrders,
-            { status: "Confirmed", dateStatus: new Date().toISOString() }
-          ]
-        }));
+      if (confirmResponse.data.isSuccess) {
+        const warrantyResponse = await axios.post(`http://localhost:8080/auth/orders/set-warranty-date/${orderId}`, null, {
+          headers: {
+            Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+          }
+        });
+
+        if (warrantyResponse.data.isSuccess) {
+          alert("Order Confirmed and Warranty Set Successfully!");
+          setWarrantyStatus(true); // Update warranty status state on success
+          // Update order state immediately after confirmation and setting warranty
+          setOrder(prevOrder => ({
+            ...prevOrder,
+            dateStatusOrders: [
+              ...prevOrder.dateStatusOrders,
+              { status: "Confirmed", dateStatus: new Date().toISOString() },
+              { status: "Warranty Set", dateStatus: new Date().toISOString() }
+            ]
+          }));
+        } else {
+          console.error('Failed to set warranty:', warrantyResponse.data.message);
+          alert("Order Confirmed, but Failed to Set Warranty");
+        }
       } else {
-        console.error('Failed to confirm order:', response.data.message);
+        console.error('Failed to confirm order:', confirmResponse.data.message);
         alert("Order Update Failed");
       }
     } catch (error) {
@@ -144,31 +157,15 @@ const StaffOrderDetailContent = () => {
   };
 
   const handleClickWarranty = () => {
-    navigate('/warrantydetail', { state: { orderId: order } });
-  };
-
-  const handleClickSetWarranty = async () => {
-    try {
-      const response = await axios.post(`http://localhost:8080/auth/orders/set-warranty-date/${orderId}`, null, {
-        headers: {
-          Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
-        }
-      });
-      if (response.data.isSuccess) {
-        alert("Warranty Added Successfully! ");
-        setWarrantyStatus(true); // Update warranty status state on success
-      } else {
-        console.error('Failed to set warranty:', response.data.message);
-        alert("Failed to set warranty");
-      }
-    } catch (error) {
-      console.error('Error setting warranty:', error);
-      alert("Error setting warranty");
-    }
+    navigate('/warrantydetail', { state: { orderId: orderId } });
   };
 
   const formatPrice = (price) => {
     return new Intl.NumberFormat('vi-VN').format(price) + 'đ';
+  };
+
+  const formatDateTime = (dateTime) => {
+    return moment(dateTime).format('h:mm:ss A - dddd, MMMM Do YYYY');
   };
 
   if (loading) {
@@ -179,7 +176,9 @@ const StaffOrderDetailContent = () => {
     <div className='staff-order-detail-content-container'>
       <div className='title'>
         <p className='title-text'>ORDER DETAIL</p>
-        <button className='warranty-button' onClick={handleClickWarranty}>WARRANTY</button>
+        {order.dateStatusOrders[order.dateStatusOrders.length - 1].status !== "Pending" && !warrantyStatus && (
+          <button className='warranty-button' onClick={handleClickWarranty}>WARRANTY</button>
+        )}
       </div>
       <div className='order-detail-information'>
         <div className='detail-information-container'>
@@ -187,7 +186,7 @@ const StaffOrderDetailContent = () => {
           <p>Customer Name: {order.cusName}</p>
           <p>Total Price: {formatPrice(order.totalPrice)}</p>
           <p>Deliver To: {order.address}</p>
-          <p>Purchase Date: {new Date(order.dateStatusOrders[0].dateStatus).toLocaleDateString('en-GB')}</p>
+          <p>Purchase Date: {order.dateStatusOrders.length > 0 && formatDateTime(order.dateStatusOrders[0].dateStatus)}</p>
           <p>Status: {order.dateStatusOrders[order.dateStatusOrders.length - 1].status}</p>
         </div>
       </div>
@@ -228,9 +227,6 @@ const StaffOrderDetailContent = () => {
             <button className='confirm-order' onClick={handleOpenModal}>CANCEL ORDER</button>
           </>
         )}
-        {order.dateStatusOrders[order.dateStatusOrders.length - 1].status === "Confirmed" && !warrantyStatus && (
-          <button className='confirm-order' onClick={handleClickSetWarranty}>SET WARRANTY</button>
-        )}
       </div>
 
       {/* Modal for entering cancel description */}
@@ -240,16 +236,16 @@ const StaffOrderDetailContent = () => {
         aria-labelledby="modal-title"
         aria-describedby="modal-description"
       >
-        <Box sx={{ 
-          position: 'absolute', 
-          top: '50%', 
-          left: '50%', 
-          transform: 'translate(-50%, -50%)', 
-          width: 400, 
-          bgcolor: 'background.paper', 
-          border: '2px solid #000', 
-          boxShadow: 24, 
-          p: 4 
+        <Box sx={{
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
+          width: 400,
+          bgcolor: 'background.paper',
+          border: '2px solid #000',
+          boxShadow: 24,
+          p: 4
         }}>
           <h2 id="modal-title">Cancel Order</h2>
           <TextField
