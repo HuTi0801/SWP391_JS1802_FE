@@ -8,6 +8,7 @@ const AccountListContent = () => {
     const [role, setRole] = useState('');
     const [status, setStatus] = useState('');
     const authToken = localStorage.getItem('authToken');
+
     useEffect(() => {
         const fetchAccounts = async () => {
             try {
