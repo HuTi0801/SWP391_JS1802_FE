@@ -4,7 +4,7 @@ const HomeCoponents = () => {
     return (
         <div className="HomeManager-content-container">
 
-            <h1>MANAGER PAGE</h1>
+            <h1>MANAGER BUI TIEN</h1>
         </div>
     )
 }

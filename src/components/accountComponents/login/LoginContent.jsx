@@ -100,7 +100,6 @@ const LoginContent = () => {
             {formik.errors.password && formik.touched.password && <div>{formik.errors.password}</div>}
             <div className="forget-password">
               <span onClick={handleClickForgetPassword}>Forgot Password?</span>
-              <br />
               <span onClick={handleClickBackHome}>Back to home page</span>
             </div>
             <div className="action-button">

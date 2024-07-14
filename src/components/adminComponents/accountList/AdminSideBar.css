@@ -1,15 +1,23 @@
-.staff-side-bar-container {
+.admin-bar-container {
   width: 200px;
   min-height: 100vh;
   border-right: 1px solid black;
   padding: 20px;
 }
 
-.side-bar-items {
+.admin-bar-items {
   width: 100%;
 }
 
-.side-bar-items button {
+.admin-bar-container p {
+  text-align: center;
+  padding: 30px 0px;
+  font-family: var(--font-family);
+  font-size: 1.5em;
+  color: green;
+}
+
+.admin-bar-items button {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
@@ -17,10 +25,9 @@
   cursor: pointer;
   border: 1px solid black;
   border-radius: 5px;
-  transition: background-color 0.3s ease;
 }
 
-.side-bar-items button:hover {
+.admin-bar-items button:hover {
   background-color: black;
   color: var(--font-color);
 }

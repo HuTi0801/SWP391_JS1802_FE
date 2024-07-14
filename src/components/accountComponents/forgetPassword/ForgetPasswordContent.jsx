@@ -7,7 +7,6 @@ import axios from 'axios'; // Ensure axios is imported
 
 const ForgetPasswordContent = () => {
     const navigate = useNavigate();
-    const authToken = localStorage.getItem('authToken');
 
     /* Start Formik */
     const formik = useFormik({
@@ -28,9 +27,12 @@ const ForgetPasswordContent = () => {
         onSubmit: async (values) => {
             try {
                 const response = await axios.post(`http://localhost:8080/auth/account/forgetPassword?phone=${values.phone}&newPassword=${values.newPassword}`);
-                navigate('/login');
-                console.log(response.data);
-                alert("Password Changed Successfully!")
+                if (response.data.isSuccess === true) {
+                    navigate('/login');
+                    console.log(response.data);
+                    alert("Password Changed Successfully!")
+                }
+
             }
             catch (error) {
                 console.log(error);
