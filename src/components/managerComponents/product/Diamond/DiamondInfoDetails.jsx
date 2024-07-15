@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import "./DiamondInfoDetails.css"
 import ManagerHeader from "../../header/ManagerHeader"
 import Functionbar from "../../functionbar/Functionbar"
+import DiamondSidebarMenu from "./DiamondSidebarMenu.jsx"
 const DiamondInfoDetails = () => {
     const [diamond, setDiamond] = useState([1]);
     const [error, setError] = useState(null);
@@ -42,11 +43,10 @@ const DiamondInfoDetails = () => {
         <>
             <ManagerHeader />
             <Functionbar />
-
+            <DiamondSidebarMenu />
 
             <div className="diamond-infodetails-container">
 
-                <h1>Diamond  Details</h1>
                 <div className="text">
                     <span>Name:</span>
                     <p>{diamond.origin}  {diamond.cut}  {diamond.color}  {diamond.clarity}</p>

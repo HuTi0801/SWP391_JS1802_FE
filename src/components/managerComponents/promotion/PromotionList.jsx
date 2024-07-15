@@ -87,9 +87,11 @@ const PromotionList = () => {
                     <Link to={`/promotionInfoDetail/${promotion.id}`} className="PromotionInfo">
                         View Details
                     </Link>
-                    <button className="Delete" onClick={() => { DeletePromotion(promotion.id, promotion.promotionCode) }}>
-                        Delete
-                    </button>
+                    <div className='action-Delete'>
+                        <button className="Delete" onClick={() => { DeletePromotion(promotion.id, promotion.promotionCode) }}>
+                            Delete
+                        </button>
+                    </div>
                 </div>
             ))}
 

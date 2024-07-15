@@ -61,6 +61,7 @@
     margin-top: 20px;
     border-radius: 5px;
     font-stretch: expanded;
+    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.45);
 }
 
 .promotion-info-container .promotion-card .PromotionID {
@@ -115,10 +116,8 @@
 
 /* ViewDetail Button */
 .promotion-card .PromotionInfo {
-    padding: 14px 40px;
-
+    padding: 10px 50px;
     display: flex;
-
     text-decoration: none;
     font-weight: bold;
     color: white;
@@ -133,35 +132,43 @@
 
 }
 
-.PromotionInfo,
-.Delete {
-    display: block;
+.PromotionInfo {
+    display: flex;
     font-stretch: expanded;
     font-family: var(--font-family);
-    background-color: rgba(128, 128, 128, 0.811);
-    width: 2.4em;
-    border-radius: 20px;
+    background-color: black;
+    width: 1.2em;
+    border: 1px black solid;
+    border-radius: 4px;
+}
+
+.action-Delete .Delete {
+    display: flex;
+    font-stretch: expanded;
+    font-family: var(--font-family);
+    background-color: white;
+    width: 1.2em;
+    border: 1px black solid;
+    border-radius: 4px;
 }
 
 .promotion-card .PromotionInfo:hover {
-    color: rgba(255, 0, 0, 0.826);
-    background-color: rgba(0, 106, 255, 0.934)
+    color: red;
+    border: 1px black solid;
+    background-color: rgba(0, 106, 255, 0.934);
 }
 
-.promotion-card .Delete:hover {
-    color: rgba(255, 0, 0, 0.826);
-    background-color: rgba(0, 106, 255, 0.934)
+.promotion-card .action-Delete .Delete:hover {
+    color: red;
+    border: 1px black solid;
+    background-color: rgba(0, 106, 255, 0.934);
 }
 
-.promotion-card .Delete {
-    padding: 20px 50px;
-    padding-bottom: 23.5px;
+.promotion-card .action-Delete .Delete {
+    padding: 12px 60px 23.5px 60px;
     display: flex;
     font-stretch: expanded;
-    text-decoration: none;
     font-weight: bold;
-    color: white;
-    border-style: none;
     justify-content: center;
     align-items: center;
     /* Căn giữa theo chiều dọc */
@@ -170,7 +177,7 @@
     font-size: large;
     margin-left: auto;
     margin-right: 150px;
-    margin-top: -64px;
+    margin-top: -58px;
 }
 
 
@@ -208,14 +215,6 @@
 
 }
 
-
-
-.PromotionAdd:hover {
-
-    color: rgba(255, 0, 0, 0.826);
-    background-color: rgba(0, 106, 255, 0.934)
-}
-
 input {
     display: flex;
     justify-content: flex-start;
@@ -230,4 +229,49 @@ input {
     font-size: medium;
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Create Promotion */
+.create-validation-promotionName,
+.create-validation-description,
+.create-validation-discountPercent {
+    font-size: medium;
+    color: red;
+    font-weight: bold;
+}
+
+
+.create-validation-memberLevels {
+    margin-right: 168px;
+    font-size: medium;
+    color: red;
+    font-weight: bold;
+}
+
+.create-validation-startDate {
+    margin-left: 10px;
+    font-size: medium;
+    color: red;
+    font-weight: bold;
+}
+
+.create-validation-endDate {
+    margin-left: 10px;
+    font-size: medium;
+    color: red;
+    font-weight: bold;
+}
+
+.create-validation-types {
+    margin-right: 100px;
+    font-size: medium;
+    color: red;
+    font-weight: bold;
+}
+
+.create-validation-productNames {
+    margin-right: 564px;
+    font-size: medium;
+    color: red;
+    font-weight: bold;
 }

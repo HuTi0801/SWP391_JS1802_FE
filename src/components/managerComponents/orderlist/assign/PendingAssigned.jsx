@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 import { useTable } from 'react-table';
 import PendingIcon from '@mui/icons-material/Pending';
 import HomeIcon from '@mui/icons-material/Home';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const PendingAssigned = () => {
     const [pendingAssigned, setPendingAssigned] = useState([]);
     const [error, setError] = useState(null);
@@ -185,6 +186,14 @@ const PendingAssigned = () => {
                                 </ListItem>
                             </List>
                             <Divider />
+                            <ListItem button sx={{ pl: 4 }}>
+                                <ListItemIcon>
+                                    <AccountCircleIcon sx={{ color: 'teal' }} />
+                                </ListItemIcon>
+                                <Link to="/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    <Typography variant="h6">Account</Typography>
+                                </Link>
+                            </ListItem>
                         </Grid>
                     </Box>
                 </Box>

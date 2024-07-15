@@ -164,8 +164,9 @@ function App() {
         <Route path='/staffPerformance' element={<ProtectedRoute element={Performance} allowedRoles={['ROLE_MANAGER']} />} />
 
         {/* Admin Routes */}
-        <Route path='/ManagementAccountDetails/:id' element={<ProtectedRoute element={ManagementAccountDetails} allowedRoles={['ROLE_ADMIN']} />} />
+
         <Route path='/adminstaff' element={<ProtectedRoute element={AccountList} allowedRoles={['ROLE_ADMIN']} />} />
+        <Route path='/ManagementAccountDetails/:id' element={<ProtectedRoute element={ManagementAccountDetails} allowedRoles={['ROLE_ADMIN']} />} />
         <Route path='/CustomerAccountDetails/:id' element={<ProtectedRoute element={CustomerAccountDetails} allowedRoles={['ROLE_ADMIN']} />} />
         <Route path='/Delivery_StaffAccountDetails/:id' element={<ProtectedRoute element={Delivery_StaffAccountDetails} allowedRoles={['ROLE_ADMIN']} />} />
         <Route path='/Sale_StaffAccountDetails/:id' element={<ProtectedRoute element={Sale_StaffAccountDetails} allowedRoles={['ROLE_ADMIN']} />} />

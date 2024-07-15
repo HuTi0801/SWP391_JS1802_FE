@@ -43,8 +43,9 @@ const AdminSideBar = () => {
 
 
   return (
-    <div className='staff-side-bar-container'>
-      <div className='side-bar-items'>
+    <div className='admin-bar-container'>
+      <div className='admin-bar-items'>
+        <p>Admin</p>
         <button onClick={handleClickLogOut}>LOG OUT</button>
       </div>
     </div>

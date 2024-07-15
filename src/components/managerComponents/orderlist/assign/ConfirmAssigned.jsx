@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom';
 import { useTable } from 'react-table';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import HomeIcon from '@mui/icons-material/Home';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const ConfirmAssigned = () => {
     const [confirmAssigned, setConfirmAssigned] = useState([]);
     const [error, setError] = useState(null);
@@ -179,6 +180,14 @@ const ConfirmAssigned = () => {
                                 </ListItem>
                             </List>
                             <Divider />
+                            <ListItem button sx={{ pl: 4 }}>
+                                <ListItemIcon>
+                                    <AccountCircleIcon sx={{ color: 'teal' }} />
+                                </ListItemIcon>
+                                <Link to="/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    <Typography variant="h6">Account</Typography>
+                                </Link>
+                            </ListItem>
                         </Grid>
                     </Box>
                 </Box>

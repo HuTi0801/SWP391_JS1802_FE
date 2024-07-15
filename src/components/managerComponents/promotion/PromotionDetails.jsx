@@ -4,7 +4,7 @@ import axios from 'axios';
 import ManagerHeader from "../header/ManagerHeader.jsx";
 import Functionbar from "../functionbar/Functionbar.jsx";
 import { useParams } from 'react-router-dom';
-
+import PromotionSidebarMenu from "./PromotionSidebarMenu.jsx"
 const PromotionDetails = () => {
     const [promotionDetails, setPromotionDetails] = useState({});
     const [currentPage, setCurrentPage] = useState(1);
@@ -93,8 +93,9 @@ const PromotionDetails = () => {
         <>
             <ManagerHeader />
             <Functionbar />
-            <h1>Promotion Details</h1>
+            <PromotionSidebarMenu />
             <div className="promotion-infoDetail-container">
+                <h1>Promotion Details</h1>
                 {paginatedItems.map((item) => (
                     <div className='promotion-card' key={`${item.type}-${item.index}`}>
                         <div className="promotionName">
@@ -110,7 +111,7 @@ const PromotionDetails = () => {
                             <p>{memberLevelPromotion}</p>
                         </div>
                         <div className="discountPercent">
-                            <span>Discount Percent:</span>
+                            <span>Discount Percent (%):</span>
                             <p>{discountPercent}</p>
                         </div>
 

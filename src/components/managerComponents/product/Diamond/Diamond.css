@@ -60,6 +60,7 @@ h1 {
     margin-top: 40px;
     border-radius: 5px;
     font-stretch: expanded;
+    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.45);
 }
 
 .diamond-info-container .diamond-card .ID {
@@ -113,7 +114,6 @@ h1 {
 /* ViewDetail Button */
 .diamond-card .diamondInfo {
     padding: 10px 50px;
-
     display: flex;
     font-family: var(--font-family);
     text-decoration: none;
@@ -130,35 +130,46 @@ h1 {
 
 }
 
-.diamondInfo,
-.Delete {
-    display: block;
+.diamondInfo {
+    display: flex;
     font-stretch: expanded;
     font-family: var(--font-family);
-    background-color: rgba(128, 128, 128, 0.811);
+    background-color: black;
     width: 1.2em;
-    border-radius: 20px;
+    border: 1px black solid;
+    border-radius: 4px;
 }
+
+.action-Delete .Delete {
+    display: flex;
+    font-stretch: expanded;
+    font-family: var(--font-family);
+    background-color: white;
+    width: 1.2em;
+    border: 1px black solid;
+    border-radius: 4px;
+}
+
+
 
 .diamond-card .diamondInfo:hover {
     color: rgba(255, 0, 0, 0.826);
     background-color: rgba(0, 106, 255, 0.934)
 }
 
-.diamond-card .Delete:hover {
+.diamond-card .action-Delete .Delete:hover {
     color: rgba(255, 0, 0, 0.826);
     background-color: rgba(0, 106, 255, 0.934)
 }
 
-.diamond-card .Delete {
-    padding: 12px 60px 23.5px 60px;
+.diamond-card .action-Delete .Delete {
+    padding: 12px 60px 20px 60px;
     display: flex;
     padding-top: 15px;
     font-stretch: expanded;
     text-decoration: none;
     font-weight: bold;
-    color: white;
-    border-style: none;
+    cursor: pointer;
     justify-content: center;
     align-items: center;
     /* Căn giữa theo chiều dọc */
@@ -168,6 +179,81 @@ h1 {
     margin-left: auto;
     margin-right: 140px;
     margin-top: -58px;
+}
+
+/* Create Diamond */
+.create-validation-color {
+    margin-right: 320px;
+    font-size: medium;
+    color: red;
+    font-weight: bold;
+}
+
+.create-validation-cut {
+    margin-right: 334px;
+    font-size: medium;
+    color: red;
+    font-weight: bold;
+}
+
+.create-validation-caratWeight,
+.create-validation-price,
+.create-validation-accountId,
+.create-validation-quantity,
+.create-validation-imageDiamond {
+    font-size: medium;
+    color: red;
+    font-weight: bold;
+}
+
+.create-validation-accountId {
+
+    font-size: medium;
+    color: red;
+    font-weight: bold;
+}
+
+.create-validation-certificateNumber {
+    margin-right: 170px;
+    font-size: medium;
+    color: red;
+    font-weight: bold;
+}
+
+.create-validation-statusDiamond {
+    margin-right: 84px;
+    font-size: medium;
+    color: red;
+    font-weight: bold;
+}
+
+.create-validation-clarity {
+    margin-right: 312px;
+    font-size: medium;
+    color: red;
+    font-weight: bold;
+}
+
+.create-validation-origin {
+    margin-right: 316px;
+    font-size: medium;
+    color: red;
+    font-weight: bold;
+}
+
+/* Diamond Sidebar Menu */
+.DiamondSidebarMenu {
+    display: inline-flex;
+    padding-top: 50px;
+    width: 200px;
+    border-right: 1px solid lightgray;
+}
+
+.Diamond-vertical-line {
+    border: none;
+    border-right: 1px solid lightgrey;
+    height: 100vh;
+    margin-right: 20px;
 }
 
 /* pagination */
@@ -205,7 +291,7 @@ h1 {
     background-color: #f5f5f5;
 }
 
-.page-link.active {
+.page-link:focus {
     font-weight: bold;
     background-color: #007bff;
     color: #fff;

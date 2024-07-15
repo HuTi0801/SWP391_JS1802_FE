@@ -105,9 +105,11 @@ const DiamondInfo = () => {
                         <Link to={`/diamondInfoDetails/${diamond.id}`} className="diamondInfo">
                             View Details
                         </Link>
-                        <button className="Delete" onClick={() => DeleteDiamond(diamond.id)}>
-                            Delete
-                        </button>
+                        <div className='action-Delete'>
+                            <button className="Delete" onClick={() => DeleteDiamond(diamond.id)}>
+                                Delete
+                            </button>
+                        </div>
                     </div>
                 ))}
                 <nav>

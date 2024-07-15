@@ -123,11 +123,11 @@ const DiamondShellInfo = () => {
                             <Link to={`/diamondShellInfoDetails/${diamondShell.id}`} className='diamondShellInfo'>
                                 View Details
                             </Link>
-
-                            <button className='Delete' onClick={() => DeleteDiamondShell(diamondShell.id)}>
-                                Delete
-                            </button>
-
+                            <div className='action-Delete'>
+                                <button className='Delete' onClick={() => DeleteDiamondShell(diamondShell.id)}>
+                                    Delete
+                                </button>
+                            </div>
                         </div>
                     </div>
                 ))}

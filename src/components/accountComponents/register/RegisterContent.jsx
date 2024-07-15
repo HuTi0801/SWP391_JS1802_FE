@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './RegisterContent.css'
 import { useFormik } from 'formik';
 import * as yup from "yup";
@@ -8,8 +8,6 @@ import { useNavigate } from 'react-router-dom';
 
 const RegisterContent = () => {
     const navigate = useNavigate();
-
-    /* Start Formik */
     const formik = useFormik({
         initialValues: {
             first_name: "",
@@ -23,28 +21,29 @@ const RegisterContent = () => {
             last_name: yup.string().required("Please Enter Last_Name"),
             password: yup.string().required("Please Enter Password").max(8, " Do not enter more than 8 characters "),
             phone_number: yup.string().required("Please Enter Phone number").max(10, " Do not enter more than 10 digits "),
-            email: yup.string().required("Please Enter Email").matches(
-                /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                "Please enter a valid email address"
-            ),
+            email: yup.string().required("Please Enter Email").matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Please enter a valid email address"),
         }),
+        validateOnBlur: false,
+        validateOnChange: false,
         onSubmit: async (values) => {
             try {
-                await axios.post("http://localhost:8080", values)
-                console.log(values)
+                const response = await
+                    axios.post(`http://localhost:8080/auth/account/register?email=${values.email}&phone_number=${values.phone_number}&first_name=${values.first_name}n&last_name=${values.last_name}&password=${values.password}`);
+                if (response.data.isSuccess === true) {
+                    navigate('/login');
+                    console.log(response.data);
+                    alert("Register successfully!")
+                } else {
+                    alert("Email already exists.")
+                }
             }
             catch (error) {
-                console.error(error)
+                console.log(error);
+                alert("Error Register")
             }
         }
-
-
     })
 
-    /* End Formik */
-    const handleClickRegister = () => {
-        navigate("/login");
-    }
     return (
         <div className='register-content-container'>
             <div className='overlay'></div>
@@ -98,14 +97,14 @@ const RegisterContent = () => {
                         <input type="text"
                             name='email'
                             placeholder='Enter Email'
-                            value={formik.values.em}
+                            value={formik.values.email}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
                         />
                         {formik.errors.email && formik.touched.email && <div>{formik.errors.email}</div>}
 
                         <div className='action-button'>
-                            <button onClick={handleClickRegister} className='register-button'>
+                            <button type='submit' className='register-button'>
                                 REGISTER
                             </button>
                         </div>

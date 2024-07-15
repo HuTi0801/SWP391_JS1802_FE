@@ -1,15 +1,15 @@
-.account-list-container {
+.admin-account-list-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-left: 500px;
-    margin-top: -1000px;
+    margin-top: -800px;
     padding: 20px;
     max-width: 500px;
     text-align: center;
 }
 
-.account-list-container h1 {
+.admin-account-list-container h1 {
     color: red;
 }
 
@@ -25,12 +25,13 @@
     margin-left: 20px;
 }
 
-.account-list {
+.admin-account-list {
     width: 100%;
     margin-right: 100px;
 }
 
-.account-item {
+
+.admin-account-list .account-item {
     display: flex;
     flex-direction: row;
     /* Change flex direction to row */
@@ -44,7 +45,10 @@
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    outline: none;
+    box-shadow: 0 5px 4px rgba(0, 0, 0, 0.45);
 }
+
 
 .account-avatar {
     width: 50px;
@@ -61,6 +65,7 @@
 
 .account-info p {
     padding: 5px;
+    font-size: 1.2em;
     margin-bottom: 5px;
 }
 

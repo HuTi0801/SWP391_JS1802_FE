@@ -39,7 +39,7 @@ const AccountListContent = () => {
     const numbers = [...Array(npage + 1).keys()].slice(1);
 
     return (
-        <div className="account-list-container">
+        <div className="admin-account-list-container">
             <h1>ACCOUNT LIST</h1>
             <div className="filter-container">
                 <label htmlFor="filter-role">Role:</label>
@@ -57,7 +57,7 @@ const AccountListContent = () => {
                     <option value="InActive">InActive</option>
                 </select>
             </div>
-            <div className="account-list">
+            <div className="admin-account-list">
                 {records.map((account) => (
                     <div key={account.id} className="account-item">
                         <div className="account-avatar"></div>
@@ -71,6 +71,7 @@ const AccountListContent = () => {
                             <Link to={`/CustomerAccountDetails/${account.id}`} className="view-detail-btn">
                                 View Details
                             </Link>
+
                         ) : account.role === 'SALE_STAFF' ? (
                             <Link to={`/Sale_StaffAccountDetails/${account.id}`} className="view-detail-btn">
                                 View Details

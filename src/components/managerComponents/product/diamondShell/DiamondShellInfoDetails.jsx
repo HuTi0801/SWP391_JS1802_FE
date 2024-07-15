@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import "./DiamondShellInfoDetails.css"
 import ManagerHeader from "../../header/ManagerHeader"
 import Functionbar from "../../functionbar/Functionbar"
+import DiamondShellSidebarMenu from "./DiamondShellSidebarMenu.jsx"
 const DiamondShellInfoDetails = () => {
     const [diamondShells, setDiamondShells] = useState([1]);
     const [error, setError] = useState(null);
@@ -42,9 +43,9 @@ const DiamondShellInfoDetails = () => {
         <>
             <ManagerHeader />
             <Functionbar />
+            <DiamondShellSidebarMenu />
             <div className="diamond-shell-infodetails-container">
 
-                <h1>DiamondShell  Details</h1>
                 <div>
 
                     <div className="text">

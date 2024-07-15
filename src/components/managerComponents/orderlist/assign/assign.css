@@ -5,25 +5,8 @@
     border-right: 1px solid lightgray;
 }
 
-.PendingAssigned-container .Assigned {
-    padding: 20px;
-    color: white;
-    background-color: rgba(142, 136, 136, 0.4);
-    font-size: larger;
-    width: fit-content;
-    margin-top: -700px;
-    position: relative;
-    margin-left: 860px;
-    top: 40px;
-}
-
-.PendingAssigned-container .Assigned:hover {
-    color: rgba(255, 0, 0, 0.826);
-    background-color: rgba(0, 106, 255, 0.934);
-}
-
 .Pendingwarning {
-    color: rgb(93, 0, 255);
+    color: red;
     font-weight: bold;
     font-size: medium;
     margin-top: 20px;
@@ -118,9 +101,9 @@
 
 .PendingAssigned {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: black;
     color: #fff;
-    border: none;
+    border: 1px black solid;
     display: block;
     border-radius: 5px;
     cursor: pointer;
@@ -132,6 +115,11 @@
     margin-left: 360px;
 }
 
+.PendingAssigned:hover {
+    color: red;
+    border: 1px black solid;
+    background-color: rgba(0, 106, 255, 0.934);
+}
 
 /*  */
 
@@ -142,25 +130,8 @@
     border-right: 1px solid lightgray;
 }
 
-.ConfirmAssigned-container .Assigned {
-    padding: 20px;
-    color: white;
-    background-color: rgba(142, 136, 136, 0.4);
-    font-size: larger;
-    width: fit-content;
-    margin-top: -700px;
-    position: relative;
-    margin-left: 860px;
-    top: 40px;
-}
-
-.ConfirmAssigned-container .Assigned:hover {
-    color: rgba(255, 0, 0, 0.826);
-    background-color: rgba(0, 106, 255, 0.934);
-}
-
 .Confirmwarning {
-    color: rgb(93, 0, 255);
+    color: red;
     font-weight: bold;
     font-size: medium;
     margin-top: 20px;
@@ -181,10 +152,6 @@
     height: 100vh;
     margin-right: 20px;
 }
-
-
-
-
 
 .Confirm,
 .All {
@@ -262,9 +229,9 @@
 
 .ConfirmAssigned {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: black;
     color: #fff;
-    border: none;
+    border: 1px black solid;
     display: block;
     border-radius: 5px;
     cursor: pointer;
@@ -275,6 +242,12 @@
     margin-top: -700px;
     margin-left: 360px;
     /* Ensures the button stays above other elements */
+}
+
+.ConfirmAssigned:hover {
+    color: red;
+    border: 1px black solid;
+    background-color: rgba(0, 106, 255, 0.934);
 }
 
 /*  */
@@ -405,11 +378,7 @@
 }
 
 
-
-
-
 /*  */
-
 
 .Delivered_table .DateofReceiptGoods,
 .Delivered_table .TimeofReceiptGoods {
