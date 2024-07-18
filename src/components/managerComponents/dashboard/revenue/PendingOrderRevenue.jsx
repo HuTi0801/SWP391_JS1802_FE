@@ -13,7 +13,8 @@ import axios from 'axios';
 import ManagerHeader from "../../../managerComponents/header/ManagerHeader.jsx";
 import Functionbar from "../../../managerComponents/functionbar/Functionbar.jsx";
 import SidebarMenu from '../../dashboard/SidebarMenu.jsx';
-const DeliveringOrderRevenue = () => {
+
+const PendingOrderRevenue = () => {
     const [barData, setBarData] = useState([]);
     const [year, setYear] = useState("");
     const [totalRevenue, setTotalRevenue] = useState(0);
@@ -36,7 +37,7 @@ const DeliveringOrderRevenue = () => {
                 let totalConfirmedOrders = 0;
 
                 monthsOrder.forEach((month) => {
-                    const monthData = data.filter((entry) => entry.statusName === 'Delivering').find((entry) => entry.month === month);
+                    const monthData = data.filter((entry) => entry.statusName === 'Pending').find((entry) => entry.month === month);
                     const monthRevenue = monthData ? monthData.totalRevenue : 0;
                     transformedData.push({ month: month, totalRevenue: monthRevenue });
                     totalConfirmedRevenue += monthRevenue;
@@ -132,4 +133,4 @@ const DeliveringOrderRevenue = () => {
     );
 }
 
-export default DeliveringOrderRevenue
+export default PendingOrderRevenue;

@@ -154,12 +154,12 @@ h1 {
 }
 
 .diamond-shell-card .diamondShellInfo:hover {
-    color: rgba(255, 0, 0, 0.826);
+    color: red;
     background-color: rgba(0, 106, 255, 0.934)
 }
 
 .diamond-shell-card .Delete:hover {
-    color: rgba(255, 0, 0, 0.826);
+    color: red;
     background-color: rgba(0, 106, 255, 0.934)
 }
 

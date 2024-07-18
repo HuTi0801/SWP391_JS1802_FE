@@ -37,10 +37,10 @@ const CreateDiamond = () => {
             cut: yup.string().required("Please select cut"),
             imageDiamond: yup.string().required("Please enter image URL").url("Please enter a valid URL"),
             origin: yup.string().required("Please select origin"),
-            price: yup.number().required("Please enter price").min(0, "Price cannot be negative"),
-            quantity: yup.number().required("Please enter quantity").min(0, "Quantity cannot be negative"),
+            price: yup.number().required("Please enter price").min(1000000, "Price cannot be less than 1M(VND)").max(2000000000, "Price cannot be greater than 2B(VND)"),
+            quantity: yup.number().required("Please enter quantity").min(1, "Quantity cannot be less than 1"),
             statusDiamond: yup.string().required("Please select status"),
-            accountId: yup.number().required("Please enter account ID").min(0, "Account ID cannot be negative"),
+            accountId: yup.number().required("Please enter account ID").min(1, "Account ID cannot be less than 1"),
         }),
         onSubmit: async (values) => {
             try {

@@ -3,7 +3,7 @@ import DashBoardComponent from "../../../components/managerComponents/dashboard/
 const DashBoard = () => {
     return (
         <>
-            <div className='dashboard-container'>
+            <div>
                 <DashBoardComponent />
             </div>
         </>
