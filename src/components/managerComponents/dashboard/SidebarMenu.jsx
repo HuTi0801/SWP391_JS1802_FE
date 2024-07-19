@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Grid, List, ListItem, ListItemIcon, ListItemText, Typography, Divider, Box, Collapse } from '@mui/material';
+import { Grid, List, ListItem, ListItemIcon, Typography, Divider, Box, Collapse } from '@mui/material';
 import HomeIcon from '@mui/icons-material/Home';
 import PeopleIcon from '@mui/icons-material/People';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -10,32 +10,47 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import DoneIcon from '@mui/icons-material/Done';
 import CancelIcon from '@mui/icons-material/Cancel';
-
+import PendingIcon from '@mui/icons-material/Pending';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 const SidebarMenu = () => {
-    const [openOverview, setOpenOverview] = useState(false);
+    const [openStatus, setOpenStatus] = useState(false);
+    const [openStaff, setOpenStaff] = useState(false);
 
-    const handleClick = () => {
-        setOpenOverview(!openOverview);
+    const handleStatusClick = () => {
+        setOpenStatus(!openStatus);
+    };
+
+    const handleStaffClick = () => {
+        setOpenStaff(!openStaff);
     };
 
     return (
-        <Box>
+        <Box sx={{ width: 200 }}>
             <Grid item xs={12} md={3}>
-                <Box sx={{ overflow: 'auto', textAlign: 'center', p: 2 }}>
+                <Box sx={{ overflow: 'auto', textAlign: 'center', padding: 3 }}>
                     <Typography variant="h6">Diamond Shop</Typography>
                     <Typography variant="subtitle2">Workspace</Typography>
                 </Box>
                 <Divider />
                 <List>
-                    <ListItem button onClick={handleClick}>
+                    <ListItem button onClick={handleStatusClick}>
                         <ListItemIcon>
                             <HomeIcon sx={{ color: 'blue' }} />
                         </ListItemIcon>
-                        <ListItemText primary="Overview" />
-                        {openOverview ? <ExpandLess /> : <ExpandMore />}
+                        <Typography variant="h6">Status</Typography>
+                        {openStatus ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
-                    <Collapse in={openOverview} timeout="auto" unmountOnExit>
+                    <Collapse in={openStatus} timeout="auto" unmountOnExit>
                         <List component="div" disablePadding>
+                            <ListItem button sx={{ pl: 4 }}>
+                                <ListItemIcon>
+                                    <PendingIcon sx={{ color: 'lightgrey' }} />
+                                </ListItemIcon>
+                                <Link to="/pendingRevenue" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    <Typography variant="body2">Pending</Typography>
+                                </Link>
+                            </ListItem>
+
                             <ListItem button sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <CheckCircleIcon sx={{ color: 'green' }} />
@@ -44,6 +59,7 @@ const SidebarMenu = () => {
                                     <Typography variant="body2">Confirmed</Typography>
                                 </Link>
                             </ListItem>
+
                             <ListItem button sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <LocalShippingIcon sx={{ color: 'orange' }} />
@@ -52,6 +68,7 @@ const SidebarMenu = () => {
                                     <Typography variant="body2">Delivering</Typography>
                                 </Link>
                             </ListItem>
+
                             <ListItem button sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <DoneIcon sx={{ color: 'blue' }} />
@@ -60,6 +77,7 @@ const SidebarMenu = () => {
                                     <Typography variant="body2">Delivered</Typography>
                                 </Link>
                             </ListItem>
+
                             <ListItem button sx={{ pl: 4 }}>
                                 <ListItemIcon>
                                     <CancelIcon sx={{ color: 'red' }} />
@@ -68,17 +86,39 @@ const SidebarMenu = () => {
                                     <Typography variant="body2">Cancel</Typography>
                                 </Link>
                             </ListItem>
+
                         </List>
                     </Collapse>
-                    <ListItem button>
+                    <Divider />
+                    <ListItem button onClick={handleStaffClick}>
                         <ListItemIcon>
                             <PeopleIcon sx={{ color: 'purple' }} />
                         </ListItemIcon>
-                        <Link to="/staffPerformance" style={{ textDecoration: 'none', color: 'inherit' }}>
-                            <Typography variant="body2">Staff</Typography>
-                        </Link>
+                        <Typography variant="h6">Staff</Typography>
+                        {openStaff ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
 
+                    <Collapse in={openStaff} timeout="auto" unmountOnExit>
+                        <List component="div" disablePadding>
+                            <ListItem button sx={{ pl: 4 }}>
+                                <ListItemIcon>
+                                    <AttachMoneyIcon sx={{ color: 'darkgreen' }} />
+                                </ListItemIcon>
+                                <Link to="/salestaffPerformance" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    <Typography variant="body2">Sale Staff</Typography>
+                                </Link>
+                            </ListItem>
+                            <ListItem button sx={{ pl: 4 }}>
+                                <ListItemIcon>
+                                    <LocalShippingIcon sx={{ color: 'darkgreen' }} />
+                                </ListItemIcon>
+                                <Link to="/deliverystaffPerformance" style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    <Typography variant="body2">Delivery Staff</Typography>
+                                </Link>
+                            </ListItem>
+                        </List>
+                    </Collapse>
+                    <Divider />
                     <ListItem button>
                         <ListItemIcon>
                             <AccountCircleIcon sx={{ color: 'teal' }} />

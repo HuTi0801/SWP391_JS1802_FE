@@ -90,7 +90,7 @@ const Canceled = () => {
         <>
             <ManagerHeader />
             <Functionbar />
-            <h1>Cancled Order List</h1>
+            <h1>Cancel Order List</h1>
             <div className="OrderList-container">
 
                 <ListofStatus />

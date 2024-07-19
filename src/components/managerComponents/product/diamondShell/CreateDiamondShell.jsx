@@ -64,11 +64,12 @@ const CreateDiamondShell = () => {
         validationSchema: yup.object({
             gender: yup.string().required("Please select gender"),
             material: yup.string().required("Please select material"),
-            price: yup.number().required("Please enter price").min(0),
-            quantity: yup.number().required("Please enter quantity").min(0),
+            price: yup.number().required("Please enter price")
+                .min(1000000, "Price cannot be less than 1M(VND)").max(2000000000, "Price cannot be greater than 2B(VND)"),
+            quantity: yup.number().required("Please enter quantity").min(1, "Quantity cannot be less than 1"),
             secondaryStoneType: yup.string().required("Please enter secondary stone type"),
             statusDiamondShell: yup.string().required("Please select status"),
-            accountId: yup.number().required("Please enter account ID").min(0),
+            accountId: yup.number().required("Please enter account ID").min(1, "Account ID cannot be less than 1"),
             sizeIds: yup.array().of(yup.number().required()).min(1, "Please select at least one size"),
             imageDiamondShell: yup.string().required("Please enter image URL").url("Please enter a valid URL"),
         }),

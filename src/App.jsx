@@ -61,7 +61,9 @@ import CancelRevenue from './pages/managerPages/dashboard/revenue/CancelRevenue.
 import ConfirmedRevenue from './pages/managerPages/dashboard/revenue/ConfirmedRevenue.jsx'
 import DeliveringRevenue from './pages/managerPages/dashboard/revenue/DeliveringRevenue.jsx'
 import DeliveredRevenue from './pages/managerPages/dashboard/revenue/DeliveredRevenue.jsx'
-import Performance from './pages/managerPages/dashboard/performance/Performance.jsx'
+import PendingRevenue from './pages/managerPages/dashboard/revenue/PendingRevenue.jsx'
+import SaleStaffPerformance from './pages/managerPages/dashboard/performance/SaleStaffPerformance.jsx'
+import DeliveryStaffPerformance from './pages/managerPages/dashboard/performance/DeliveryStaffPerformance.jsx'
 
 
 import AccountList from './pages/adminPages/accountList/AccountList.jsx';
@@ -157,11 +159,13 @@ function App() {
 
         {/* DashBoard Components */}
         <Route path='/dashBoard' element={<ProtectedRoute element={DashBoard} allowedRoles={['ROLE_MANAGER']} />} />
+        <Route path='/pendingRevenue' element={<ProtectedRoute element={PendingRevenue} allowedRoles={['ROLE_MANAGER']} />} />
         <Route path='/cancelRevenue' element={<ProtectedRoute element={CancelRevenue} allowedRoles={['ROLE_MANAGER']} />} />
         <Route path='/confirmedRevenue' element={<ProtectedRoute element={ConfirmedRevenue} allowedRoles={['ROLE_MANAGER']} />} />
         <Route path='/deliveredRevenue' element={<ProtectedRoute element={DeliveredRevenue} allowedRoles={['ROLE_MANAGER']} />} />
         <Route path='/deliveringRevenue' element={<ProtectedRoute element={DeliveringRevenue} allowedRoles={['ROLE_MANAGER']} />} />
-        <Route path='/staffPerformance' element={<ProtectedRoute element={Performance} allowedRoles={['ROLE_MANAGER']} />} />
+        <Route path='/salestaffPerformance' element={<ProtectedRoute element={SaleStaffPerformance} allowedRoles={['ROLE_MANAGER']} />} />
+        <Route path='/deliverystaffPerformance' element={<ProtectedRoute element={DeliveryStaffPerformance} allowedRoles={['ROLE_MANAGER']} />} />
 
         {/* Admin Routes */}
 

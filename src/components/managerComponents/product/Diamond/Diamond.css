@@ -153,12 +153,12 @@ h1 {
 
 
 .diamond-card .diamondInfo:hover {
-    color: rgba(255, 0, 0, 0.826);
+    color: red;
     background-color: rgba(0, 106, 255, 0.934)
 }
 
 .diamond-card .action-Delete .Delete:hover {
-    color: rgba(255, 0, 0, 0.826);
+    color: red;
     background-color: rgba(0, 106, 255, 0.934)
 }
 

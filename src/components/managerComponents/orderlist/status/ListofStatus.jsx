@@ -66,7 +66,7 @@ const ListofStatus = () => {
                                 <CancelIcon sx={{ color: 'red' }} />
                             </ListItemIcon>
                             <Link to="/canceled" style={{ textDecoration: 'none', color: 'inherit' }}>
-                                <Typography variant="h6">Canceled</Typography>
+                                <Typography variant="h6">Cancel</Typography>
                             </Link>
                         </ListItem>
                         <Divider />

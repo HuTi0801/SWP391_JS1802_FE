@@ -3,7 +3,7 @@ import Select from 'react-select';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import DatePicker from 'react-datepicker';
-import { Grid, TextField, FormControl, Button, Box, Typography } from '@mui/material';
+import { Grid, TextField, FormControl, Button, Box, Typography, InputAdornment, IconButton } from '@mui/material';
 import 'react-datepicker/dist/react-datepicker.css';
 import ManagerHeader from "../../managerComponents/header/ManagerHeader.jsx";
 import Functionbar from "../../managerComponents/functionbar/Functionbar.jsx";
@@ -11,7 +11,7 @@ import "../../../pages/managerPages/promotion/Promotion.css"
 import PromotionSidebarMenu from "./PromotionSidebarMenu.jsx"
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 const CreatePromotion = () => {
     const navigate = useNavigate();
     const [diamonds, setDiamonds] = useState([]);
@@ -211,7 +211,22 @@ const CreatePromotion = () => {
                                     onChange={date => formik.setFieldValue('startDate', date)}
                                     onBlur={() => formik.setFieldTouched('startDate', true)}
                                     dateFormat="dd/MM/yyyy"
-                                    placeholderText="Start Date"
+                                    placeholderText="DD/MM/YYYY"
+                                    customInput={
+                                        <TextField
+                                            label="Started Date"
+                                            fullWidth
+                                            InputProps={{
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <IconButton>
+                                                            <CalendarMonthIcon />
+                                                        </IconButton>
+                                                    </InputAdornment>
+                                                ),
+                                            }}
+                                        />
+                                    }
                                 />
                                 {formik.touched.startDate && formik.errors.startDate && <div className="create-validation-startDate">{formik.errors.startDate}</div>}
                             </Grid>
@@ -222,7 +237,22 @@ const CreatePromotion = () => {
                                     onChange={date => formik.setFieldValue('endDate', date)}
                                     onBlur={() => formik.setFieldTouched('endDate', true)}
                                     dateFormat="dd/MM/yyyy"
-                                    placeholderText="End Date"
+                                    placeholderText="DD/MM/YYYY"
+                                    customInput={
+                                        <TextField
+                                            label="Ended Date"
+                                            fullWidth
+                                            InputProps={{
+                                                endAdornment: (
+                                                    <InputAdornment position="end">
+                                                        <IconButton>
+                                                            <CalendarMonthIcon />
+                                                        </IconButton>
+                                                    </InputAdornment>
+                                                ),
+                                            }}
+                                        />
+                                    }
                                 />
                                 {formik.touched.endDate && formik.errors.endDate && <div className="create-validation-endDate">{formik.errors.endDate}</div>}
                             </Grid>
