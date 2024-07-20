@@ -108,8 +108,8 @@ const DashBoardComponent = () => {
                                     value={year}
                                     onChange={handleYearChange}
                                     sx={{ marginRight: 2 }}
-                                    error={!!error}
-                                    helperText={error}
+                                // error={!!error}
+                                // helperText={error}
                                 />
                             </Paper>
                         </Grid>
@@ -132,61 +132,61 @@ const DashBoardComponent = () => {
                         <Grid item xs={12} md={8}>
                             <Paper sx={{ paddingRight: 2, paddingTop: 4, paddingBottom: 2, paddingLeft: 2 }}>
                                 <Typography variant="h6">Total Revenue (VND)</Typography>
-                                {loading ? (
+                                {/* {loading ? (
                                     <Box display="flex" justifyContent="center" alignItems="center" height={300}>
                                         <CircularProgress />
                                     </Box>
                                 ) : error ? (
                                     <Alert severity="error">{error}</Alert>
-                                ) : (
-                                    <ResponsiveContainer width="100%" height={300}>
-                                        <BarChart data={barData}>
-                                            <CartesianGrid strokeDasharray="3 3" />
-                                            <XAxis
-                                                dataKey="month"
-                                                ticks={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
-                                                domain={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
-                                                tick={{ fontSize: 18, angle: 0, dy: 3 }} // Adjust tick properties
-                                            />
-                                            <YAxis
-                                                tickFormatter={(value) => `${value / 1000000}`}
-                                                ticks={[0, 500000000, 1000000000, 1500000000, 2000000000, 2500000000]}
-                                                domain={[0, 2500000000]}
-                                                tick={{ fontSize: 18 }}
-                                            />
-                                            <Tooltip />
-                                            <Bar dataKey="totalRevenue" fill="#8884d8" />
-                                        </BarChart>
-                                    </ResponsiveContainer>
-                                )}
+                                ) : ( */}
+                                <ResponsiveContainer width="100%" height={300}>
+                                    <BarChart data={barData}>
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis
+                                            dataKey="month"
+                                            ticks={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
+                                            domain={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]}
+                                            tick={{ fontSize: 18, angle: 0, dy: 3 }} // Adjust tick properties
+                                        />
+                                        <YAxis
+                                            tickFormatter={(value) => `${value / 1000000}`}
+                                            ticks={[0, 500000000, 1000000000, 1500000000, 2000000000, 2500000000]}
+                                            domain={[0, 2500000000]}
+                                            tick={{ fontSize: 18 }}
+                                        />
+                                        <Tooltip />
+                                        <Bar dataKey="totalRevenue" fill="#8884d8" />
+                                    </BarChart>
+                                </ResponsiveContainer>
+                                {/* )} */}
                             </Paper>
                         </Grid>
                         <Grid item xs={12} md={4}>
                             <Paper sx={{ paddingRight: 2, paddingTop: 2, paddingBottom: 4, paddingLeft: 2, textAlign: 'center' }}>
                                 <Typography variant="h6">Order Status Distribution In Year</Typography>
-                                {loading ? (
+                                {/* {loading ? (
                                     <Box display="flex" justifyContent="center" alignItems="center" height={300}>
                                         <CircularProgress />
                                     </Box>
                                 ) : error ? (
                                     <Alert severity="error">{error}</Alert>
-                                ) : (
-                                    <ResponsiveContainer width="100%" height={300}>
-                                        <PieChart>
-                                            <Pie
-                                                data={pieData.map((entry) => ({ ...entry, value: parseFloat(entry.value) }))}
-                                                dataKey="value"
-                                                outerRadius={100}
-                                                label={({ name, value }) => `${value}%`}
-                                            > {pieData.map((entry, index) => (
-                                                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                                            ))}
-                                            </Pie>
-                                            <Tooltip />
-                                            <Legend />
-                                        </PieChart>
-                                    </ResponsiveContainer>
-                                )}
+                                ) : ( */}
+                                <ResponsiveContainer width="100%" height={300}>
+                                    <PieChart>
+                                        <Pie
+                                            data={pieData.map((entry) => ({ ...entry, value: parseFloat(entry.value) }))}
+                                            dataKey="value"
+                                            outerRadius={100}
+                                            label={({ name, value }) => `${value}%`}
+                                        > {pieData.map((entry, index) => (
+                                            <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                                        ))}
+                                        </Pie>
+                                        <Tooltip />
+                                        <Legend />
+                                    </PieChart>
+                                </ResponsiveContainer>
+                                {/* )} */}
                             </Paper>
                         </Grid>
                     </Grid>

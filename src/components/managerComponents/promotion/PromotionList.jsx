@@ -28,7 +28,7 @@ const PromotionList = () => {
             setPromotion(PromotionListData);
         };
         fetchData();
-    }, []);
+    }, [Promotion]);
     const DeletePromotion = async (id, promotionCode) => {
         const shouldDelete = window.confirm(`Do you want to delete promotion ID: ${promotionCode}`);
         if (!shouldDelete) return;

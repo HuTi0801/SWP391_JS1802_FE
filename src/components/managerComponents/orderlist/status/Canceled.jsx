@@ -64,11 +64,15 @@ const Canceled = () => {
         if (!shouldRefund) return;
 
         try {
-            const response = await axios.post(`http://localhost:8080/auth/transaction/update-order-info/${id}`);
-            if (response.data.isSuccess) {
-                alert("Refund successfully!!!");
-            } else {
-                console.error('Failed to refund:', response.data.message);
+            const response = await axios.post(`http://localhost:8080/auth/transaction/update-order-info/${id}`, null, {
+                headers: {
+                    Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                }
+            });
+            if (response.data.isSuccess === true) {
+                alert("The transaction has been successfully refunded!!!");
+            } else if (response.data.isSuccess === false) {
+                alert("Transaction has already been refunded and cannot be refunded again.");
             }
         } catch (error) {
             console.error('Error refund:', error);

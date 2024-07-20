@@ -37,7 +37,9 @@ const SidebarMenu = () => {
                         <ListItemIcon>
                             <HomeIcon sx={{ color: 'blue' }} />
                         </ListItemIcon>
-                        <Typography variant="h6">Status</Typography>
+                        <Link to="/dashboard" style={{ textDecoration: 'none', color: 'inherit' }}>
+                            <Typography variant="h6">Status</Typography>
+                        </Link>
                         {openStatus ? <ExpandLess /> : <ExpandMore />}
                     </ListItem>
                     <Collapse in={openStatus} timeout="auto" unmountOnExit>
