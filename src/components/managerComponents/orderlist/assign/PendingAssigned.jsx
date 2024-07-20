@@ -60,7 +60,7 @@ const PendingAssigned = () => {
 
         fetchOrder();
         fetchPendingAssigned();
-    }, [id]);
+    }, [pendingAssigned]);
 
     const handleCheckboxChange = (accountId) => {
         setSelectedStaff(prev => {

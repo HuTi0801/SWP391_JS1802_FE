@@ -72,15 +72,18 @@
 .view-detail-btn {
     display: block;
     width: 100px;
-    color: white;
-    border-radius: 15px;
-    background-color: lightgray;
+    font-stretch: expanded;
+    font-family: var(--font-family);
+    background-color: black;
     text-decoration: none;
     padding: 14px 10px;
     margin-left: auto;
+    color: #ffffff;
+    border: 1px black solid;
+    border-radius: 4px;
 }
 
 .view-detail-btn:hover {
     color: red;
-    background-color: blue;
+    background-color: rgba(0, 106, 255, 0.934)
 }

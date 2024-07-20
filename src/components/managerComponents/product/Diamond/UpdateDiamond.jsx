@@ -45,10 +45,9 @@ const UpdateDiamond = () => {
             cut: yup.string().required("Please enter cut"),
             imageDiamond: yup.string().required("Please enter image URL").url("Please enter a valid URL"),
             origin: yup.string().required("Please enter origin"),
-            price: yup.number().required("Please enter price").min(0, "Price cannot be negative"),
+            price: yup.number().required("Please enter price").min(1000000, "Price cannot be less than 1M(VND)").max(2000000000, "Price cannot be greater than 2B(VND)"),
             quantity: yup.number().required("Please enter quantity").min(0, "Quantity cannot be negative"),
             statusDiamond: yup.string().required("Please select status"),
-            accountId: yup.number().required("Please enter account ID").min(0, "Account ID cannot be negative"),
         }),
         onSubmit: async (values) => {
             try {
@@ -183,17 +182,6 @@ const UpdateDiamond = () => {
                             <Grid item xs={12} md={3}>
                                 <TextField
                                     fullWidth
-                                    label="Account ID"
-                                    name="accountId"
-                                    value={formik.values.accountId}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                />
-                                {formik.touched.accountId && formik.errors.accountId && <div className="update-validation">{formik.errors.accountId}</div>}
-                            </Grid>
-                            <Grid item xs={12} md={3}>
-                                <TextField
-                                    fullWidth
                                     label="Diamond Status"
                                     name="statusDiamond"
                                     value={formik.values.statusDiamond}
@@ -201,17 +189,6 @@ const UpdateDiamond = () => {
                                     onBlur={formik.handleBlur}
                                 />
                                 {formik.touched.statusDiamond && formik.errors.statusDiamond && <div className="update-validation">{formik.errors.statusDiamond}</div>}
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                <TextField
-                                    fullWidth
-                                    label="Certificate Number"
-                                    name="certificateNumber"
-                                    value={formik.values.certificateNumber}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                />
-                                {formik.touched.certificateNumber && formik.errors.certificateNumber && <div className="update-validation">{formik.errors.certificateNumber}</div>}
                             </Grid>
                             <Grid item xs={12} md={3}>
                                 <TextField
@@ -225,7 +202,18 @@ const UpdateDiamond = () => {
                                 />
                                 {formik.touched.quantity && formik.errors.quantity && <div className="update-validation">{formik.errors.quantity}</div>}
                             </Grid>
-                            <Grid item xs={12} md={9}>
+                            <Grid item xs={12} md={6}>
+                                <TextField
+                                    fullWidth
+                                    label="Certificate Number"
+                                    name="certificateNumber"
+                                    value={formik.values.certificateNumber}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                />
+                                {formik.touched.certificateNumber && formik.errors.certificateNumber && <div className="update-validation">{formik.errors.certificateNumber}</div>}
+                            </Grid>
+                            <Grid item xs={12} md={12}>
                                 <TextField
                                     fullWidth
                                     label="Image Diamond"

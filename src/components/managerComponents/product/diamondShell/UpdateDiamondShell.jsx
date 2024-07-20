@@ -25,10 +25,9 @@ const UpdateDiamondShell = () => {
         material: yup.string().required("Please enter material"),
         secondaryStoneType: yup.string().required("Please enter secondary stone type"),
         quantity: yup.number().required("Please enter quantity").min(0, "Quantity cannot be negative"),
-        price: yup.number().required("Please enter price").min(0, "Price cannot be negative"),
+        price: yup.number().required("Please enter price").min(1000000, "Price cannot be less than 1M(VND)").max(2000000000, "Price cannot be greater than 2B(VND)"),
         gender: yup.string().required("Please enter gender"),
         statusDiamondShell: yup.string().required("Please enter status"),
-        accountId: yup.number().required("Please enter account ID").min(0, "Account ID cannot be negative"),
         imageDiamondShell: yup.string().required("Please enter image URL").url("Please enter a valid URL"),
     });
 
@@ -41,7 +40,7 @@ const UpdateDiamondShell = () => {
             quantity: "0",
             secondaryStoneType: "",
             statusDiamondShell: "true",
-            accountId: 0,
+            accountId: 1,
         },
         validationSchema,
         onSubmit: async (values) => {
@@ -153,7 +152,7 @@ const UpdateDiamondShell = () => {
                                 />
                                 {formik.touched.price && formik.errors.price && <div className="update-validation">{formik.errors.price}</div>}
                             </Grid>
-                            <Grid item xs={12} md={3}>
+                            <Grid item xs={12} md={6}>
                                 <TextField
                                     fullWidth
                                     label="Gender"
@@ -164,7 +163,7 @@ const UpdateDiamondShell = () => {
                                 />
                                 {formik.touched.gender && formik.errors.gender && <div className="update-validation">{formik.errors.gender}</div>}
                             </Grid>
-                            <Grid item xs={12} md={3}>
+                            <Grid item xs={12} md={6}>
                                 <TextField
                                     fullWidth
                                     label="DiamondShell Status"
@@ -174,18 +173,6 @@ const UpdateDiamondShell = () => {
                                     onBlur={formik.handleBlur}
                                 />
                                 {formik.touched.statusDiamondShell && formik.errors.statusDiamondShell && <div className="update-validation">{formik.errors.statusDiamondShell}</div>}
-                            </Grid>
-                            <Grid item xs={12} md={6}>
-                                <TextField
-                                    fullWidth
-                                    label="Account Id"
-                                    name="accountId"
-                                    type="number"
-                                    value={formik.values.accountId}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                />
-                                {formik.touched.accountId && formik.errors.accountId && <div className="update-validation">{formik.errors.accountId}</div>}
                             </Grid>
                             <Grid item xs={12} md={12}>
                                 <TextField

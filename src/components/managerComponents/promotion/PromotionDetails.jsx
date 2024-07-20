@@ -4,7 +4,8 @@ import axios from 'axios';
 import ManagerHeader from "../header/ManagerHeader.jsx";
 import Functionbar from "../functionbar/Functionbar.jsx";
 import { useParams } from 'react-router-dom';
-import PromotionSidebarMenu from "./PromotionSidebarMenu.jsx"
+import PromotionSidebarMenu from "./PromotionSidebarMenu.jsx";
+
 const PromotionDetails = () => {
     const [promotionDetails, setPromotionDetails] = useState({});
     const [currentPage, setCurrentPage] = useState(1);
@@ -14,12 +15,11 @@ const PromotionDetails = () => {
     const authToken = localStorage.getItem('authToken');
     const getPromotionInfoDetails = async () => {
         try {
-            const response = await axios.get(`http://localhost:8080/auth/promotion/view-promotion/${id}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
-                    }
-                });
+            const response = await axios.get(`http://localhost:8080/auth/promotion/view-promotion/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${authToken}`
+                }
+            });
             return response.data.result;
         } catch (error) {
             console.error('Error fetching promotion info:', error);
@@ -89,6 +89,11 @@ const PromotionDetails = () => {
         }
     };
 
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-GB'); // 'en-GB' formats the date as DD/MM/YYYY
+    };
+
     return (
         <>
             <ManagerHeader />
@@ -125,11 +130,11 @@ const PromotionDetails = () => {
                         </div>
                         <div className="Startdate">
                             <span>Start date:</span>
-                            <p>{new Date(startDate).toLocaleDateString()}</p>
+                            <p>{formatDate(startDate)}</p>
                         </div>
                         <div className="Enddate">
                             <span>End date:</span>
-                            <p>{new Date(endDate).toLocaleDateString()}</p>
+                            <p>{formatDate(endDate)}</p>
                         </div>
                     </div>
                 ))}

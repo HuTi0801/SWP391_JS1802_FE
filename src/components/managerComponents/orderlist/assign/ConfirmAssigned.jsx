@@ -55,7 +55,7 @@ const ConfirmAssigned = () => {
         };
         fetchOrder();
         fetchConfirmAssigned();
-    }, [id]);
+    }, [confirmAssigned]);
 
     const handleCheckboxChange = (accountId) => {
         setSelectedStaff(prev => {

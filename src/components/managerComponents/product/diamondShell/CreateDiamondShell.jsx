@@ -69,7 +69,6 @@ const CreateDiamondShell = () => {
             quantity: yup.number().required("Please enter quantity").min(1, "Quantity cannot be less than 1"),
             secondaryStoneType: yup.string().required("Please enter secondary stone type"),
             statusDiamondShell: yup.string().required("Please select status"),
-            accountId: yup.number().required("Please enter account ID").min(1, "Account ID cannot be less than 1"),
             sizeIds: yup.array().of(yup.number().required()).min(1, "Please select at least one size"),
             imageDiamondShell: yup.string().required("Please enter image URL").url("Please enter a valid URL"),
         }),
@@ -178,7 +177,7 @@ const CreateDiamondShell = () => {
                                 {formik.touched.secondaryStoneType && formik.errors.secondaryStoneType && <div className="create-validation-secondaryStoneType">{formik.errors.secondaryStoneType}</div>}
                             </Grid>
 
-                            <Grid item xs={12} md={3}>
+                            <Grid item xs={12} md={4}>
                                 <TextField
                                     fullWidth
                                     label="Quantity"
@@ -192,7 +191,7 @@ const CreateDiamondShell = () => {
                                 {formik.touched.quantity && formik.errors.quantity && <div className="create-validation-quantity">{formik.errors.quantity}</div>}
                             </Grid>
 
-                            <Grid item xs={12} md={3}>
+                            <Grid item xs={12} md={4}>
                                 <FormControl fullWidth sx={{ textAlign: 'center' }}>
                                     <InputLabel>Status DiamondShell</InputLabel>
                                     <MuiSelect
@@ -209,21 +208,7 @@ const CreateDiamondShell = () => {
                                 </FormControl>
                             </Grid>
 
-                            <Grid item xs={12} md={6}>
-                                <TextField
-                                    fullWidth
-                                    label="Account ID"
-                                    name="accountId"
-                                    type="number"
-                                    inputProps={{ min: 0 }}
-                                    value={formik.values.accountId}
-                                    onChange={formik.handleChange}
-                                    onBlur={formik.handleBlur}
-                                />
-                                {formik.touched.accountId && formik.errors.accountId && <div className="create-validation-accountId">{formik.errors.accountId}</div>}
-                            </Grid>
-
-                            <Grid item xs={12} md={3}>
+                            <Grid item xs={12} md={4}>
                                 <FormControl fullWidth sx={{ textAlign: 'center' }}>
                                     <Select
                                         isMulti
@@ -248,7 +233,7 @@ const CreateDiamondShell = () => {
                                 </FormControl>
                             </Grid>
 
-                            <Grid item xs={12} md={9}>
+                            <Grid item xs={12} md={12}>
                                 <TextField
                                     fullWidth
                                     label="Image"
