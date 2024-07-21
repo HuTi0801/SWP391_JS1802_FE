@@ -40,6 +40,7 @@ const CreateDiamond = () => {
             price: yup.number().required("Please enter price").min(1000000, "Price cannot be less than 1M(VND)").max(2000000000, "Price cannot be greater than 2B(VND)"),
             quantity: yup.number().required("Please enter quantity").min(1, "Quantity cannot be less than 1"),
             statusDiamond: yup.string().required("Please select status"),
+            // accountId: yup.number().required("Please enter account ID").min(1, "Account ID cannot be less than 1"),
         }),
         onSubmit: async (values) => {
             try {
@@ -50,9 +51,11 @@ const CreateDiamond = () => {
                     }
                 };
                 const response = await axios.post(`http://localhost:8080/auth/diamond/create-diamond`, values, config);
-                if (response.data.isSuccess) {
+                if (response.data.isSuccess === true) {
                     alert("Add Diamond successfully!!!!");
                     navigate("/diamond");
+                } else if (response.data.isSuccess === false) {
+                    alert(response.data.message);
                 }
             } catch (error) {
                 console.error('Error creating diamond', error);
@@ -65,7 +68,9 @@ const CreateDiamond = () => {
         <>
             <ManagerHeader />
             <Functionbar />
-            <DiamondSidebarMenu />
+            <Grid item xs={12} md={4}>
+                <DiamondSidebarMenu />
+            </Grid>
             <Box
                 sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: -95 }}
             >
@@ -109,7 +114,6 @@ const CreateDiamond = () => {
                                     >
                                         <MenuItem value="">Cut</MenuItem>
                                         <MenuItem value="EX">EX</MenuItem>
-                                        <MenuItem value="VG">VG</MenuItem>
                                     </Select>
                                     {formik.touched.cut && formik.errors.cut && <div className="create-validation-cut">{formik.errors.cut}</div>}
                                 </FormControl>
@@ -172,6 +176,17 @@ const CreateDiamond = () => {
                                 />
                                 {formik.touched.price && formik.errors.price && <div className="create-validation-price ">{formik.errors.price}</div>}
                             </Grid>
+                            {/* <Grid item xs={12} md={3}>
+                                <TextField
+                                    fullWidth
+                                    label="Account ID"
+                                    name="accountId"
+                                    value={formik.values.accountId}
+                                    onChange={formik.handleChange}
+                                    onBlur={formik.handleBlur}
+                                />
+                                {formik.touched.accountId && formik.errors.accountId && <div className="create-validation-accountId ">{formik.errors.accountId}</div>}
+                            </Grid> */}
                             <Grid item xs={12} md={3}>
                                 <FormControl fullWidth sx={{ textAlign: 'center' }}>
                                     <InputLabel>Status Diamond</InputLabel>

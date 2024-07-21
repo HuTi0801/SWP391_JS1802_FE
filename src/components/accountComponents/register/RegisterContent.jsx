@@ -23,18 +23,18 @@ const RegisterContent = () => {
             phone_number: yup.string().required("Please Enter Phone number").max(10, " Do not enter more than 10 digits "),
             email: yup.string().required("Please Enter Email").matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, "Please enter a valid email address"),
         }),
-        validateOnBlur: false,
-        validateOnChange: false,
+        // validateOnBlur: false,
+        // validateOnChange: false,
         onSubmit: async (values) => {
             try {
                 const response = await
-                    axios.post(`http://localhost:8080/auth/account/register?email=${values.email}&phone_number=${values.phone_number}&first_name=${values.first_name}n&last_name=${values.last_name}&password=${values.password}`);
+                    axios.post(`http://localhost:8080/auth/account/register?email=${values.email}&phone_number=${values.phone_number}&first_name=${values.first_name}&last_name=${values.last_name}&password=${values.password}`);
                 if (response.data.isSuccess === true) {
                     navigate('/login');
                     console.log(response.data);
                     alert("Register successfully!")
-                } else {
-                    alert("Email already exists.")
+                } else if (response.data.isSuccess === false) {
+                    alert(response.data.message)
                 }
             }
             catch (error) {

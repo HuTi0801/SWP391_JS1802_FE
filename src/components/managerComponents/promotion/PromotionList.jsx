@@ -49,7 +49,10 @@ const PromotionList = () => {
         }
     };
 
-
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-GB'); // 'en-GB' formats the date as DD/MM/YYYY
+    };
 
     const [currentPage, setcurrentPage] = useState(1);
     const recordsPerPage = 3;
@@ -73,11 +76,11 @@ const PromotionList = () => {
                     </div>
                     <div className="Startdate">
                         <span>Start date:</span>
-                        <p>{new Date(promotion.startDate).toLocaleDateString()}</p>
+                        <p>{formatDate(promotion.startDate)}</p>
                     </div>
                     <div className="Enddate">
                         <span>End date:</span>
-                        <p>{new Date(promotion.endDate).toLocaleDateString()}</p>
+                        <p>{formatDate(promotion.endDate)}</p>
                     </div>
                     <div className="Type">
                         <span>Type:</span>
