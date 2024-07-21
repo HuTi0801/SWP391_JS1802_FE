@@ -106,6 +106,7 @@ const OrderDetails = () => {
                     <p>Total Price: {formatCurrency(order.totalPrice)}</p>
                     <p>Deliver To: {order.address}</p>
                     <p>Purchase Date: {new Date(order.dateStatusOrders[0].dateStatus).toLocaleString()}</p>
+                    {order.cancel && <p>Description (Cancelled): {order.description}</p>}
                 </div>
             </div>
             <div className='order-product-list'>

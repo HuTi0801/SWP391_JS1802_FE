@@ -43,7 +43,25 @@ const OrderListPage = () => {
         });
         return formatter.format(amount);
     }
+    const HandleRefund = async (id, cusName) => {
+        const shouldRefund = window.confirm(`Do you want to refund the customer named ${cusName}`);
+        if (!shouldRefund) return;
 
+        try {
+            const response = await axios.post(`http://localhost:8080/auth/transaction/update-order-info/${id}`, null, {
+                headers: {
+                    Authorization: `Bearer ${authToken}` // Include the token as a Bearer token
+                }
+            });
+            if (response.data.isSuccess === true) {
+                alert("The transaction has been successfully refunded!!!");
+            } else if (response.data.isSuccess === false) {
+                alert("Transaction has already been refunded and cannot be refunded again.");
+            }
+        } catch (error) {
+            console.error('Error refund:', error);
+        }
+    }
     const [currentPage, setcurrentPage] = useState(1)
 
     const recordsPerPage = 3;
@@ -110,9 +128,13 @@ const OrderListPage = () => {
                                 Assigned
                             </Link>
                         ) : (
-                            <Link to={`/canceledorder/${order.orderId}`} className="Assigned">
+                            // <Link to={`/canceledorder/${order.orderId}`} className="Assigned">
+                            //     Refund
+                            // </Link>
+
+                            <button className="Refund" onClick={() => { HandleRefund(order.orderId, order.cusName) }}>
                                 Refund
-                            </Link>
+                            </button>
                         )}
                         <Link to={`/orderDetails/${order.orderId}`} className="ViewDetails">
                             View Details

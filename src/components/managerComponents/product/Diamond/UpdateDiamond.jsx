@@ -37,15 +37,15 @@ const UpdateDiamond = () => {
         },
         validationSchema: yup.object({
             caratWeight: yup.number().required("Please enter carat weight").min(0, "Carat weight cannot be negative"),
-            certificateNumber: yup.string()
-                .required("Please enter certificate number")
-                .matches(/^GIA\d{10}$/, "Please enter a valid Certificate Number (GIA followed by 10 digits)"),
+            // certificateNumber: yup.string()
+            //     .required("Please enter certificate number")
+            //     .matches(/^GIA\d{10}$/, "Please enter a valid Certificate Number (GIA followed by 10 digits)"),
             clarity: yup.string().required("Please enter clarity"),
             color: yup.string().required("Please enter color"),
             cut: yup.string().required("Please enter cut"),
             imageDiamond: yup.string().required("Please enter image URL").url("Please enter a valid URL"),
             origin: yup.string().required("Please enter origin"),
-            price: yup.number().required("Please enter price").min(1000000, "Price cannot be less than 1M(VND)").max(2000000000, "Price cannot be greater than 2B(VND)"),
+            price: yup.number().required("Please enter price").min(0, "Price cannot be negative"),
             quantity: yup.number().required("Please enter quantity").min(0, "Quantity cannot be negative"),
             statusDiamond: yup.string().required("Please select status"),
         }),
@@ -179,6 +179,7 @@ const UpdateDiamond = () => {
                                 />
                                 {formik.touched.price && formik.errors.price && <div className="update-validation">{formik.errors.price}</div>}
                             </Grid>
+
                             <Grid item xs={12} md={3}>
                                 <TextField
                                     fullWidth
@@ -202,7 +203,7 @@ const UpdateDiamond = () => {
                                 />
                                 {formik.touched.quantity && formik.errors.quantity && <div className="update-validation">{formik.errors.quantity}</div>}
                             </Grid>
-                            <Grid item xs={12} md={6}>
+                            {/* <Grid item xs={12} md={6}>
                                 <TextField
                                     fullWidth
                                     label="Certificate Number"
@@ -212,8 +213,9 @@ const UpdateDiamond = () => {
                                     onBlur={formik.handleBlur}
                                 />
                                 {formik.touched.certificateNumber && formik.errors.certificateNumber && <div className="update-validation">{formik.errors.certificateNumber}</div>}
-                            </Grid>
-                            <Grid item xs={12} md={12}>
+                            </Grid> */}
+
+                            <Grid item xs={12} md={6}>
                                 <TextField
                                     fullWidth
                                     label="Image Diamond"
